@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import type { GameState, GameAction, BattlePhase } from '../game/types'
+import { getRandomQuestion } from '../game/QuestionSelector'
 
 const initialState: GameState = {
   gamePhase: 'title',
@@ -85,6 +86,22 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             phase: isDefeat ? 'defeat' : state.battle.phase,
           },
         }
+      }
+    }
+
+    case 'NEXT_QUESTION': {
+      if (!state.battle || !state.currentOcean) return state
+
+      const question = getRandomQuestion({ oceanId: state.currentOcean })
+      if (!question) return state // No more questions available
+
+      return {
+        ...state,
+        battle: {
+          ...state.battle,
+          currentQuestion: question,
+          phase: 'showing_question',
+        },
       }
     }
 
