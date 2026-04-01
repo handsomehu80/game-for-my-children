@@ -24,7 +24,7 @@ describe('Data Validation', () => {
   })
 
   it('questions should have correct options structure', () => {
-    Object.values(questionsData).flat().forEach((question) => {
+    questionsData.forEach((question) => {
       expect(question.options).toBeDefined()
       expect(question.options.length).toBeGreaterThan(0)
       question.options.forEach((opt) => {
