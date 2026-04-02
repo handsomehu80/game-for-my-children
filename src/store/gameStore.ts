@@ -1,6 +1,24 @@
 import { create } from 'zustand'
-import type { GameState, GameAction, BattlePhase } from '../game/types'
+import type {
+  GameState,
+  GameAction,
+  BattlePhase,
+  ExplorationState,
+  ExplorationAction,
+  Portal,
+} from '../game/types'
+import {
+  initialExplorationState,
+  explorationTransition,
+} from '../game/ExplorationStateMachine'
+import { getAreasByOcean, getAreaById } from '../data/areas'
 import { getRandomQuestion } from '../game/QuestionSelector'
+
+// ==================== 探索相关 reducer ====================
+
+function explorationReducer(state: ExplorationState, action: ExplorationAction): ExplorationState {
+  return explorationTransition(state, action)
+}
 
 const initialState: GameState = {
   gamePhase: 'title',
@@ -133,6 +151,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         unlockedOceans: newUnlockedOceans,
         gamePhase: 'world_map',
         battle: null,
+        exploration: null,
       }
     }
 
@@ -150,11 +169,142 @@ function gameReducer(state: GameState, action: GameAction): GameState {
   }
 }
 
+// ==================== Store Interface ====================
+
 interface GameStore extends GameState {
   dispatch: (action: GameAction) => void
+  // 探索相关方法
+  explorationDispatch: (action: ExplorationAction) => void
+  startExploration: (oceanId: string) => void
+  selectArea: (areaId: string) => void
+  generatePortals: () => void
+  receiveKey: (count: number) => void
+  unlockArea: (areaId: string) => void
+  checkDifficultyDowngrade: () => void
 }
 
-export const useGameStore = create<GameStore>((set) => ({
+// ==================== 创建 Store ====================
+
+export const useGameStore = create<GameStore>((set, get) => ({
   ...initialState,
+
   dispatch: (action) => set((state) => gameReducer(state, action)),
+
+  // 探索 dispatch
+  explorationDispatch: (action) =>
+    set((state) => {
+      if (!state.exploration) return state
+      const newExploration = explorationReducer(state.exploration, action)
+      return { exploration: newExploration }
+    }),
+
+  // 开始探索
+  startExploration: (oceanId) => {
+    set({
+      exploration: {
+        ...initialExplorationState,
+        phase: 'exploring',
+        currentOcean: oceanId,
+      },
+      gamePhase: 'exploration',
+    })
+  },
+
+  // 选择区域
+  selectArea: (areaId) => {
+    const state = get()
+    if (!state.exploration) return
+
+    const area = getAreaById(areaId)
+    if (!area) return
+
+    // 检查钥匙
+    if (area.requiredKeys > 0 && !state.exploration.unlockedAreas.includes(areaId)) {
+      if (state.exploration.collectedKeys < area.requiredKeys) {
+        get().explorationDispatch({
+          type: 'EXPLORATION_ERROR',
+          error: `需要 ${area.requiredKeys} 把钥匙`,
+        })
+        return
+      }
+    }
+
+    get().explorationDispatch({ type: 'SELECT_AREA', areaId })
+  },
+
+  // 生成传送门
+  generatePortals: () => {
+    const state = get()
+    if (!state.exploration || !state.exploration.currentArea) return
+
+    const currentArea = getAreaById(state.exploration.currentArea)
+    if (!currentArea) return
+
+    const areas = getAreasByOcean(state.exploration.currentOcean!)
+    const unexploredAreas = areas.filter(
+      (a) => !state.exploration!.defeatedMiniBosses.includes(a.id) && a.id !== currentArea.id
+    )
+    const completedAreas = areas.filter((a) =>
+      state.exploration!.defeatedMiniBosses.includes(a.id)
+    )
+
+    // 生成2-3个传送门
+    const portalCount = Math.random() > 0.5 ? 3 : 2
+    const portals: Portal[] = []
+
+    // 至少1个通向未完成区域
+    if (unexploredAreas.length > 0) {
+      const randomIndex = Math.floor(Math.random() * unexploredAreas.length)
+      portals.push({
+        id: `portal_${Date.now()}_0`,
+        targetAreaId: unexploredAreas[randomIndex].id,
+        type: 'normal',
+      })
+    }
+
+    // 其余随机
+    const availableTargets = [...unexploredAreas, ...completedAreas].filter(
+      (a) => !portals.some((p) => p.targetAreaId === a.id)
+    )
+
+    while (portals.length < portalCount && availableTargets.length > 0) {
+      const idx = Math.floor(Math.random() * availableTargets.length)
+      const target = availableTargets.splice(idx, 1)[0]
+      portals.push({
+        id: `portal_${Date.now()}_${portals.length}`,
+        targetAreaId: target.id,
+        type: target.type === 'hidden' ? 'hidden' : 'normal',
+      })
+    }
+
+    const seed = Date.now()
+    get().explorationDispatch({ type: 'GENERATE_PORTALS', portals, seed })
+  },
+
+  // 接收钥匙（30%概率掉落）
+  receiveKey: (count) => {
+    get().explorationDispatch({ type: 'RECEIVE_KEY', count })
+  },
+
+  // 解锁区域
+  unlockArea: (areaId) => {
+    const state = get()
+    if (!state.exploration) return
+    if (state.exploration.collectedKeys < 1) return
+
+    get().explorationDispatch({ type: 'UNLOCK_AREA', areaId })
+  },
+
+  // 检查是否需要降级难度
+  checkDifficultyDowngrade: () => {
+    const state = get()
+    if (!state.exploration || !state.exploration.currentArea) return
+
+    const failedAttempts = state.exploration.failedAttempts[state.exploration.currentArea] || 0
+    if (failedAttempts >= 5) {
+      // 触发降级逻辑
+      console.log('Should downgrade difficulty for area:', state.exploration.currentArea)
+      // TODO: 实现降级逻辑
+    }
+  },
 }))
