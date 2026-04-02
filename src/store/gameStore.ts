@@ -10,6 +10,7 @@ const initialState: GameState = {
   completedOceans: [],
   battle: null,
   totalScore: 0,
+  exploration: null,
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {

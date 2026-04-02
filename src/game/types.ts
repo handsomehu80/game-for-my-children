@@ -131,7 +131,7 @@ export interface PerformanceTracker {
 }
 
 // 游戏状态
-export type GamePhase = 'title' | 'world_map' | 'battle' | 'result' | 'game_over'
+export type GamePhase = 'title' | 'world_map' | 'battle' | 'result' | 'game_over' | 'exploration'
 
 export interface GameState {
   gamePhase: GamePhase
@@ -141,6 +141,7 @@ export interface GameState {
   completedOceans: string[]
   battle: BattleState | null
   totalScore: number
+  exploration: ExplorationState | null
 }
 
 // 游戏动作
@@ -154,3 +155,106 @@ export type GameAction =
   | { type: 'COMPLETE_OCEAN' }
   | { type: 'GAME_OVER' }
   | { type: 'RESET_GAME' }
+
+// ==================== 探索系统类型 ====================
+
+// 探索 Phase
+export type ExplorationPhase =
+  | 'exploring'        // 选择目的地
+  | 'moving'           // 移动动画
+  | 'encounter'        // 遭遇判定
+  | 'battle'           // 战斗中
+  | 'hidden_area'      // 进入隐藏区域
+  | 'treasure'         // 宝箱/奖励
+  | 'portal_appear'    // 传送门出现
+  | 'boss_appearing'   // 大Boss出现
+  | 'victory'          // 区域胜利
+  | 'error'            // 异常状态
+  | 'rollback'         // 回滚状态
+
+// 知识区域类型
+export type KnowledgeArea = 'math' | 'chinese' | 'english' | 'comprehensive'
+
+// 区域
+export interface Area {
+  id: string
+  oceanId: string
+  knowledgeArea: KnowledgeArea
+  name: string
+  difficulty: 1 | 2 | 3  // 1-3星
+  type: 'normal' | 'hidden' | 'treasure' | 'boss'
+  position: { x: number; z: number }  // 地图坐标
+  requiredKeys: number         // 需要钥匙数量 (0 = 不需要)
+  monsterId?: string           // 关联怪物
+  connections: string[]        // 连接的区域ID
+}
+
+// 传送门
+export interface Portal {
+  id: string
+  targetAreaId: string
+  type: 'normal' | 'hidden' | 'event'
+}
+
+// 传送门配置
+export interface PortalConfig {
+  seed: number
+  portals: Portal[]
+  generatedAt: number
+}
+
+// 存档点类型
+export type SavepointType = 'battle_win' | 'area_unlock' | 'treasure'
+
+// 存档点
+export interface Savepoint {
+  type: SavepointType
+  createdAt: number
+  stateSnapshot: {
+    visitedAreas: string[]
+    defeatedMiniBosses: string[]
+    unlockedAreas: string[]
+    collectedKeys: number
+    collectedItems: Item[]
+  }
+}
+
+// 探索状态
+export interface ExplorationState {
+  phase: ExplorationPhase
+  currentOcean: string | null
+  currentArea: string | null
+  visitedAreas: string[]           // 已访问区域
+  defeatedMiniBosses: string[]     // 已击败小boss
+  unlockedAreas: string[]          // 已解锁区域（使用钥匙后）
+  collectedKeys: number            // 收集的钥匙数量
+  collectedItems: Item[]           // 收集的物品
+  availablePortals: Portal[]        // 当前可选传送门
+  portalSeed: number | null        // 传送门随机种子
+  failedAttempts: Record<string, number>  // 每个区域的失败次数
+  lastError: string | null         // 最后错误信息
+  // 回滚相关
+  savepoints: Savepoint[]          // 存档点历史
+  lastSavepoint: Savepoint | null  // 上一个存档点
+  retryCount: number              // 当前区域的失败重试次数
+}
+
+// 探索动作
+export type ExplorationAction =
+  | { type: 'START_EXPLORATION'; oceanId: string }
+  | { type: 'SELECT_AREA'; areaId: string }
+  | { type: 'MOVE_COMPLETE' }
+  | { type: 'ENCOUNTER_RESULT'; result: 'battle' | 'treasure' | 'hidden_event' }
+  | { type: 'BATTLE_WIN'; areaId: string }
+  | { type: 'BATTLE_LOSE' }
+  | { type: 'OPEN_TREASURE'; treasures: Item[] }
+  | { type: 'RECEIVE_KEY'; count: number }
+  | { type: 'UNLOCK_AREA'; areaId: string }
+  | { type: 'GENERATE_PORTALS'; portals: Portal[]; seed: number }
+  | { type: 'SELECT_PORTAL'; portal: Portal }
+  | { type: 'BOSS_APPEAR' }
+  | { type: 'AREA_COMPLETE' }
+  | { type: 'CREATE_SAVEPOINT'; savepointType: SavepointType }
+  | { type: 'EXPLORATION_ERROR'; error: string }
+  | { type: 'ROLLBACK_TO_SAVEPOINT' }
+  | { type: 'RESET_EXPLORATION' }
