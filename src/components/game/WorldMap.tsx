@@ -1,12 +1,14 @@
 import { useGameStore } from '../../store/gameStore'
 import { oceansData } from '../../data/oceans'
 import { monstersData } from '../../data/monsters'
-import { getRandomQuestion } from '../../game/QuestionSelector'
 import type { Player } from '../../game/types'
 
-export default function WorldMap() {
+interface WorldMapProps {
+  onEnterOcean: (oceanId: string) => void
+}
+
+export default function WorldMap({ onEnterOcean }: WorldMapProps) {
   const state = useGameStore()
-  const dispatch = useGameStore.getState().dispatch
 
   const handleOceanSelect = (oceanId: string) => {
     const ocean = oceansData[oceanId]
@@ -17,12 +19,7 @@ export default function WorldMap() {
     const monster = monstersData[monsterId]
     if (!monster) return
 
-    // Get random question for this ocean
-    const question = getRandomQuestion({ oceanId })
-    if (!question) return
-
-    dispatch({ type: 'SELECT_OCEAN', ocean: oceanId })
-    dispatch({ type: 'START_BATTLE', monster, question })
+    onEnterOcean(oceanId)
   }
 
   return (
