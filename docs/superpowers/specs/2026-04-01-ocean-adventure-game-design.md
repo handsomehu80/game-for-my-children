@@ -306,11 +306,11 @@ interface ComboSkillDefinition {
 
 ```typescript
 const OCEAN_DIFFICULTY = {
-  east: [1, 2],      // 东海 - 启蒙/基础
-  west: [2, 3],      // 西海 - 基础/进阶
-  south: [3, 3],     // 南海 - 进阶
-  north: [4, 4],     // 北冰洋 - 挑战
-  mysterious: [5, 5], // 神秘海 - 大师
+  east: [1, 2],         // 东大洋 - 启蒙/基础
+  west: [2, 3],         // 西洋大洋 - 基础/进阶
+  southHot: [3, 3],     // 南热大洋 - 进阶
+  northIce: [4, 4],     // 北冰大洋 - 挑战
+  mysterious: [5, 5],   // 神秘大洋 - 大师
 }
 ```
 

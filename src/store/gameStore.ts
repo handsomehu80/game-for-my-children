@@ -53,7 +53,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const newBattleLog = [
         ...state.battle.battleLog,
         {
-          type: isCorrect ? 'correct' : 'wrong',
+          type: (isCorrect ? 'correct' : 'wrong') as 'correct' | 'wrong',
           message: isCorrect ? '回答正确！' : '回答错误！',
           timestamp: Date.now(),
         },
@@ -120,7 +120,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case 'COMPLETE_OCEAN': {
       if (!state.currentOcean) return state
       const newCompletedOceans = [...state.completedOceans, state.currentOcean]
-      const oceanOrder = ['east', 'west', 'south', 'north', 'mysterious'] as const
+      const oceanOrder = ['east', 'west', 'southHot', 'northIce', 'mysterious'] as const
       const currentIndex = oceanOrder.indexOf(state.currentOcean as typeof oceanOrder[number])
       const nextOcean = oceanOrder[currentIndex + 1]
       const newUnlockedOceans = nextOcean && !state.unlockedOceans.includes(nextOcean)

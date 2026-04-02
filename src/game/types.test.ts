@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { Player, Monster, Question, BattleState } from './types'
+import type { Player, Monster } from './types'
 
 describe('Core Types', () => {
   it('Player should have required fields', () => {

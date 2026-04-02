@@ -1,21 +1,28 @@
-import { useGame } from '../../context/GameContext'
+import { useGameStore } from '../../store/gameStore'
 import { oceansData } from '../../data/oceans'
-import { getMonstersByOcean } from '../../data/monsters'
-import { getRandomQuestion } from '../../data/questions'
+import { monstersData } from '../../data/monsters'
+import { getRandomQuestion } from '../../game/QuestionSelector'
+import type { Player } from '../../game/types'
 
 export default function WorldMap() {
-  const { state, dispatch } = useGame()
+  const state = useGameStore()
+  const dispatch = useGameStore.getState().dispatch
 
   const handleOceanSelect = (oceanId: string) => {
     const ocean = oceansData[oceanId]
-    const monsters = getMonstersByOcean(oceanId)
-    if (monsters.length === 0) return
+    if (!ocean) return
 
-    const randomMonster = monsters[Math.floor(Math.random() * monsters.length)]
-    const question = getRandomQuestion(ocean.difficulty)
+    // Get first monster for this ocean
+    const monsterId = ocean.monsters[0]
+    const monster = monstersData[monsterId]
+    if (!monster) return
 
-    dispatch({ type: 'SELECT_OCEAN', ocean: oceanId as any })
-    dispatch({ type: 'START_BATTLE', monster: randomMonster, question })
+    // Get random question for this ocean
+    const question = getRandomQuestion({ oceanId })
+    if (!question) return
+
+    dispatch({ type: 'SELECT_OCEAN', ocean: oceanId })
+    dispatch({ type: 'START_BATTLE', monster, question })
   }
 
   return (
@@ -23,10 +30,11 @@ export default function WorldMap() {
       <h2>🗺️ 世界地图</h2>
       <div className="oceans-grid">
         {Object.values(oceansData).map((ocean) => {
-          const isUnlocked = state.unlockedOceans.includes(ocean.id as any)
-          const isCompleted = state.completedOceans.includes(ocean.id as any)
-          const monsters = getMonstersByOcean(ocean.id)
-          const bossName = monsters[0]?.name || '???'
+          const isUnlocked = state.unlockedOceans.includes(ocean.id)
+          const isCompleted = state.completedOceans.includes(ocean.id)
+          const monsterId = ocean.monsters[0]
+          const monster = monstersData[monsterId]
+          const bossName = monster?.name || '???'
 
           return (
             <div
@@ -45,7 +53,7 @@ export default function WorldMap() {
       </div>
       <div className="player-status">
         <h3>船员状态</h3>
-        {state.players.map((player) => (
+        {state.players.map((player: Player) => (
           <div key={player.id} className="player-card">
             <span>{player.name}</span>
             <span>HP: {player.hp}/{player.maxHp}</span>

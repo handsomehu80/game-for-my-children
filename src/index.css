@@ -111,8 +111,8 @@ body {
 
 .ocean-card.east { background: linear-gradient(135deg, rgba(0, 119, 190, 0.3), rgba(0, 180, 216, 0.3)); }
 .ocean-card.west { background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 159, 67, 0.3)); }
-.ocean-card.south { background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 107, 107, 0.3)); }
-.ocean-card.north { background: linear-gradient(135deg, rgba(67, 97, 238, 0.3), rgba(76, 201, 240, 0.3)); }
+.ocean-card.southHot { background: linear-gradient(135deg, rgba(255, 159, 67, 0.3), rgba(255, 107, 107, 0.3)); }
+.ocean-card.northIce { background: linear-gradient(135deg, rgba(67, 97, 238, 0.3), rgba(76, 201, 240, 0.3)); }
 .ocean-card.mysterious { background: linear-gradient(135deg, rgba(76, 29, 149, 0.5), rgba(138, 43, 226, 0.3)); }
 
 .ocean-card.locked {
