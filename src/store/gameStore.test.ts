@@ -131,5 +131,63 @@ describe('Game Store', () => {
       expect(state.battle?.player.hp).toBe(90)
       expect(state.battle?.comboCount).toBe(0)
     })
+
+    // P0-5: null/undefined handling tests
+    it('should handle null battle gracefully', () => {
+      const { dispatch } = useGameStore.getState()
+      // No battle started, try to answer question
+      dispatch({ type: 'ANSWER_QUESTION', answerIndex: 0 })
+      const state = useGameStore.getState()
+      // Should return state unchanged (battle is null)
+      expect(state.battle).toBeNull()
+    })
+
+    it('should handle question with undefined options', () => {
+      const { dispatch } = useGameStore.getState()
+      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+      const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
+      const question = {
+        id: 'q1',
+        content: '1+1=?',
+        type: 'single' as const,
+        difficulty: 1 as const,
+        category: 'math' as const,
+        options: undefined as any, // P0-5: undefined options
+      }
+
+      dispatch({ type: 'START_GAME', players: [player] })
+      dispatch({ type: 'START_BATTLE', monster, question })
+      const stateBefore = useGameStore.getState()
+      expect(stateBefore.battle?.currentQuestion?.options).toBeUndefined()
+
+      // Try to answer - should gracefully handle
+      dispatch({ type: 'ANSWER_QUESTION', answerIndex: 0 })
+      const stateAfter = useGameStore.getState()
+      // State should remain unchanged
+      expect(stateAfter.battle?.player.hp).toBe(100)
+    })
+
+    it('should handle question with empty options', () => {
+      const { dispatch } = useGameStore.getState()
+      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+      const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
+      const question = {
+        id: 'q1',
+        content: '1+1=?',
+        type: 'single' as const,
+        difficulty: 1 as const,
+        category: 'math' as const,
+        options: [] as any, // P0-5: empty options
+      }
+
+      dispatch({ type: 'START_GAME', players: [player] })
+      dispatch({ type: 'START_BATTLE', monster, question })
+
+      // Try to answer - should gracefully handle
+      dispatch({ type: 'ANSWER_QUESTION', answerIndex: 0 })
+      const state = useGameStore.getState()
+      // State should remain unchanged since options is empty
+      expect(state.battle?.player.hp).toBe(100)
+    })
   })
 })

@@ -65,10 +65,17 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
 
     case 'ANSWER_QUESTION': {
-      if (!state.battle || !state.battle.currentQuestion) return state
+      // P0-5: Enhanced null/undefined handling
+      if (!state.battle) return state
+      if (!state.battle.currentQuestion) return state
+      if (!state.battle.currentQuestion.options) return state
+
       const question = state.battle.currentQuestion
-      // P0-1: Explicit boundary check
+      // P0-5: Guard against empty options
       const validAnswerCount = question.options.length
+      if (validAnswerCount === 0) return state
+
+      // P0-1: Explicit boundary check
       const answerIndex = Math.min(Math.max(0, action.answerIndex), validAnswerCount - 1)
       const isCorrect = question.options[answerIndex]?.isCorrect ?? false
 

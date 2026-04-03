@@ -4,26 +4,29 @@ import { oceansData } from '../data/oceans'
 
 export interface QuestionSelectorOptions {
   oceanId: string
-  difficultyOverride?: number
-  categoryFilter?: string[]
+  difficulty?: number | null
+  category?: string
 }
 
 export function getRandomQuestion(options: QuestionSelectorOptions): Question | null {
-  const { oceanId, difficultyOverride, categoryFilter } = options
+  const { oceanId, difficulty, category } = options
+
+  // P0-5: Fallback to 1 if difficulty is null/undefined
+  const effectiveDifficulty = difficulty ?? 1
 
   // Get ocean difficulty range
   const ocean = Object.values(oceansData).find(o => o.id === oceanId)
   if (!ocean) return null
 
-  const [minDiff, maxDiff] = difficultyOverride
-    ? [difficultyOverride, difficultyOverride]
+  const [minDiff, maxDiff] = difficulty != null
+    ? [effectiveDifficulty, effectiveDifficulty]
     : ocean.difficulty
 
   // Filter questions by difficulty and category
   const filtered = questionsData.filter(q => {
     if (q.difficulty < minDiff || q.difficulty > maxDiff) return false
-    if (categoryFilter && categoryFilter.length > 0) {
-      if (!categoryFilter.includes(q.category)) return false
+    if (category && category.length > 0) {
+      if (q.category !== category) return false
     }
     return true
   })

@@ -19,4 +19,28 @@ describe('QuestionSelector', () => {
     const question = getRandomQuestion({ oceanId: 'invalid_ocean' })
     expect(question).toBeNull()
   })
+
+  // P0-5: null/undefined difficulty handling
+  it('should fallback to default difficulty (1) when difficulty is null', () => {
+    const question = getRandomQuestion({ oceanId: 'east', difficulty: null })
+    expect(question).toBeDefined()
+    expect(question?.difficulty).toBeDefined()
+  })
+
+  it('should fallback to default difficulty (1) when difficulty is undefined', () => {
+    const question = getRandomQuestion({ oceanId: 'east', difficulty: undefined })
+    expect(question).toBeDefined()
+    expect(question?.difficulty).toBeDefined()
+  })
+
+  it('should use explicit difficulty when provided', () => {
+    const question = getRandomQuestion({ oceanId: 'east', difficulty: 2 })
+    expect(question).toBeDefined()
+    expect(question?.difficulty).toBe(2)
+  })
+
+  it('should handle category filter', () => {
+    const question = getRandomQuestion({ oceanId: 'east', category: 'math' })
+    expect(question).toBeDefined()
+  })
 })
