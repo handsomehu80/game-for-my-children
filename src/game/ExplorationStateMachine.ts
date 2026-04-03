@@ -1,4 +1,4 @@
-import type { ExplorationState, ExplorationAction, Portal, Area, Item, Savepoint } from './types'
+import type { ExplorationState, ExplorationAction, Savepoint } from './types'
 import { getAreaById } from '../data/areas'
 
 // 初始探索状态
@@ -231,7 +231,7 @@ export function explorationTransition(
         case 'ROLLBACK_TO_SAVEPOINT':
           // 回滚到上一个存档点
           if (state.lastSavepoint) {
-            return {
+            const rolledBackState = {
               ...state,
               phase: 'exploring',
               currentArea: null,  // 回到选择区域
@@ -239,6 +239,8 @@ export function explorationTransition(
               retryCount: 0,
               lastError: null,
             }
+            // P0-4: 验证回滚后的状态一致性
+            return validateExplorationState(rolledBackState)
           }
           return { ...state, phase: 'exploring', lastError: null }
         default:
@@ -248,7 +250,7 @@ export function explorationTransition(
     case 'rollback':
       // 回滚到存档点
       if (state.lastSavepoint) {
-        return {
+        const rolledBackState = {
           ...state,
           phase: 'exploring',
           currentArea: null,
@@ -256,6 +258,8 @@ export function explorationTransition(
           retryCount: 0,
           lastError: null,
         }
+        // P0-4: 验证回滚后的状态一致性
+        return validateExplorationState(rolledBackState)
       }
       return { ...state, phase: 'exploring', lastError: null }
 
@@ -278,6 +282,21 @@ export function getAvailableActions(state: ExplorationState): ExplorationAction[
     default:
       return []
   }
+}
+
+// P0-4: 验证探索状态一致性
+// 检查unlockedAreas是否只包含需要钥匙的区域（requiredKeys > 0）
+// 如果一个区域不需要钥匙（requiredKeys === 0）却在unlockedAreas中，这是无效状态
+export function validateExplorationState(state: ExplorationState): ExplorationState {
+  const validUnlocks = state.unlockedAreas.filter(areaId => {
+    const area = getAreaById(areaId)
+    return area && area.requiredKeys > 0
+  })
+
+  if (validUnlocks.length !== state.unlockedAreas.length) {
+    return { ...state, unlockedAreas: validUnlocks }
+  }
+  return state
 }
 
 // 检查是否可以进入区域

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { explorationTransition, initialExplorationState, canEnterArea } from './ExplorationStateMachine'
+import { explorationTransition, initialExplorationState, canEnterArea, validateExplorationState } from './ExplorationStateMachine'
 
 describe('ExplorationStateMachine', () => {
   describe('initial state', () => {
@@ -174,6 +174,63 @@ describe('ExplorationStateMachine', () => {
       }
       const result = canEnterArea(state, 'east_hidden_A')
       expect(result.allowed).toBe(false)
+    })
+  })
+
+  describe('P0-4: Island unlock state validation', () => {
+    it('应在rollback时验证unlockedAreas一致性', () => {
+      // 模拟一个不一致的状态：普通区域（requiredKeys=0）被错误地放入unlockedAreas
+      const invalidState: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'rollback',
+        currentArea: 'east_math_1',
+        unlockedAreas: ['east_math_1', 'east_hidden_A'],  // east_math_1 不需要钥匙，不应在此
+        collectedKeys: 1,
+        lastSavepoint: {
+          type: 'battle_win',
+          createdAt: Date.now(),
+          stateSnapshot: {
+            visitedAreas: ['east_math_1'],
+            defeatedMiniBosses: [],
+            unlockedAreas: ['east_math_1', 'east_hidden_A'],
+            collectedKeys: 1,
+            collectedItems: [],
+          },
+        },
+      }
+
+      // 执行 rollback (通过 ROLLBACK_TO_SAVEPOINT action)
+      const result = explorationTransition(invalidState, { type: 'ROLLBACK_TO_SAVEPOINT' })
+
+      // east_math_1 应该被移除（因为它 requiredKeys=0，不需要解锁）
+      // east_hidden_A 应该保留（因为它 requiredKeys=1）
+      expect(result.unlockedAreas).toEqual(['east_hidden_A'])
+      expect(result.unlockedAreas).not.toContain('east_math_1')
+    })
+
+    it('validateExplorationState应保留有效的unlockedAreas', () => {
+      const validState: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'exploring',
+        unlockedAreas: ['east_hidden_A'],  // 只包含需要钥匙的区域
+        collectedKeys: 1,
+      }
+
+      const result = validateExplorationState(validState)
+      expect(result.unlockedAreas).toEqual(['east_hidden_A'])
+    })
+
+    it('validateExplorationState应过滤掉无效的unlockedAreas', () => {
+      const invalidState: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'exploring',
+        unlockedAreas: ['east_math_1', 'east_hidden_A'],  // east_math_1 不需要钥匙
+        collectedKeys: 1,
+      }
+
+      const result = validateExplorationState(invalidState)
+      expect(result.unlockedAreas).toEqual(['east_hidden_A'])
+      expect(result.unlockedAreas).not.toContain('east_math_1')
     })
   })
 })
