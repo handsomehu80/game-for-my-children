@@ -96,13 +96,6 @@ function isTimestampKey(key: string): boolean {
 }
 
 /**
- * Get the data key from a timestamp key
- */
-function getDataKeyFromTimestampKey(tsKey: string): string {
-  return tsKey.slice(0, -3) // Remove '_ts' suffix
-}
-
-/**
  * Cleanup oldest entries when storage is over 80% capacity
  * Removes oldest 30% of data entries (not timestamp keys)
  */

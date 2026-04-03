@@ -1,4 +1,4 @@
-import type { ExplorationState, ExplorationAction, Savepoint } from './types'
+import type { ExplorationState, ExplorationAction, ExplorationPhase, Savepoint } from './types'
 import { getAreaById } from '../data/areas'
 
 // 初始探索状态
@@ -246,9 +246,9 @@ export function explorationTransition(
         case 'ROLLBACK_TO_SAVEPOINT':
           // 回滚到上一个存档点
           if (state.lastSavepoint) {
-            const rolledBackState = {
+            const rolledBackState: ExplorationState = {
               ...state,
-              phase: 'exploring',
+              phase: 'exploring' as ExplorationPhase,
               currentArea: null,  // 回到选择区域
               ...state.lastSavepoint.stateSnapshot,
               battleFailedAttempts: 0,
@@ -265,9 +265,9 @@ export function explorationTransition(
     case 'rollback':
       // 回滚到存档点
       if (state.lastSavepoint) {
-        const rolledBackState = {
+        const rolledBackState: ExplorationState = {
           ...state,
-          phase: 'exploring',
+          phase: 'exploring' as ExplorationPhase,
           currentArea: null,
           ...state.lastSavepoint.stateSnapshot,
           battleFailedAttempts: 0,

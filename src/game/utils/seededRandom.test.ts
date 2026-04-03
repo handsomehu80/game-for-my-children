@@ -243,9 +243,7 @@ describe('generatePortalSeed', () => {
   })
 
   it('should use Date.now() when timestamp not provided', () => {
-    const before = Date.now()
     const seed1 = generatePortalSeed('east')
-    const after = Date.now()
 
     // Seed should be a number in reasonable range
     expect(seed1).toBeGreaterThan(0)

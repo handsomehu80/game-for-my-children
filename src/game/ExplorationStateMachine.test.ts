@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import type { ExplorationState } from './types'
 import { explorationTransition, initialExplorationState, canEnterArea, validateExplorationState } from './ExplorationStateMachine'
 
 describe('ExplorationStateMachine', () => {

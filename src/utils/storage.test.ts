@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import {
   getStorageInfo,
   checkStorageCapacity,
@@ -37,18 +37,6 @@ Object.defineProperty(globalThis, 'localStorage', {
   value: mockLocalStorage,
   writable: true,
 })
-
-// Helper to clear all ocean_game_ prefixed keys
-function clearOceanGameStorage(): void {
-  const keysToRemove: string[] = []
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i)
-    if (key && (key.startsWith(STORAGE_KEY_PREFIX) || key.endsWith('_ts'))) {
-      keysToRemove.push(key)
-    }
-  }
-  keysToRemove.forEach(key => localStorage.removeItem(key))
-}
 
 describe('Storage Utils', () => {
   beforeEach(() => {
