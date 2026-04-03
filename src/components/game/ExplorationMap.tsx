@@ -29,31 +29,43 @@ export default function ExplorationMap() {
     if (exploration?.phase === 'moving') {
       const timer = setTimeout(() => {
         explorationDispatch({ type: 'MOVE_COMPLETE' })
-      }, 1000) // 1秒移动动画
+      }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [exploration?.phase])
+  }, [exploration?.phase, explorationDispatch])
 
   // 模拟遭遇判定
   useEffect(() => {
-    if (exploration?.phase === 'encounter') {
-      const area = areas.find((a) => a.id === exploration.currentArea)
-      if (!area) return
+    if (!exploration || exploration.phase !== 'encounter') return
+    const area = areas.find((a) => a.id === exploration.currentArea)
+    if (!area) return
 
-      let result: 'battle' | 'treasure' | 'hidden_event'
-      if (area.type === 'treasure') {
-        result = 'treasure'
-      } else if (area.type === 'hidden') {
-        result = 'battle'
-      } else if (Math.random() < 0.2) {
-        result = 'hidden_event'
-      } else {
-        result = 'battle'
-      }
-
-      explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
+    let result: 'battle' | 'treasure' | 'hidden_event'
+    if (area.type === 'treasure') {
+      result = 'treasure'
+    } else if (area.type === 'hidden') {
+      // P0-2: 隐藏区域跳过随机，直接触发战斗
+      result = 'battle'
+    } else if (Math.random() < 0.2) {
+      result = 'hidden_event'
+    } else {
+      result = 'battle'
     }
-  }, [exploration?.phase])
+
+    explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
+  }, [exploration?.phase, exploration?.currentArea])
+
+  // 战斗阶段 - 触发实际战斗
+  useEffect(() => {
+    if (exploration && exploration.phase === 'battle' && exploration.currentArea) {
+      const area = areas.find((a) => a.id === exploration.currentArea)
+      if (!area || !area.monsterId) return
+
+      // 这里应该触发实际战斗，但目前只是记录状态
+      // 战斗逻辑需要在 battle phase 处理
+      console.log('Battle started in area:', exploration.currentArea, 'monster:', area.monsterId)
+    }
+  }, [exploration?.phase, exploration?.currentArea])
 
   // 战斗胜利后生成传送门
   useEffect(() => {
@@ -75,6 +87,18 @@ export default function ExplorationMap() {
     }
   }, [exploration?.phase])
 
+  // 手动触发战斗胜利（用于测试）
+  const handleBattleWin = () => {
+    if (exploration?.currentArea) {
+      explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
+    }
+  }
+
+  // 手动触发战斗失败（用于测试）
+  const handleBattleLose = () => {
+    explorationDispatch({ type: 'BATTLE_LOSE' })
+  }
+
   if (!exploration) {
     return (
       <div className="exploration-map">
@@ -84,21 +108,21 @@ export default function ExplorationMap() {
   }
 
   return (
-    <div className="exploration-map" style={{ position: 'relative', width: '600px', height: '600px', margin: '0 auto' }}>
-      <h2 style={{ textAlign: 'center' }}>🗺️ {exploration.currentOcean} 探索地图</h2>
+    <div className="exploration-map" style={{ position: 'relative', width: '700px', margin: '0 auto', padding: '20px' }}>
+      <h2 style={{ textAlign: 'center' }}>🗺️ {exploration.currentOcean === 'east' ? '东大洋' : exploration.currentOcean} 探索地图</h2>
 
       {/* 玩家状态 */}
-      <div className="player-status" style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+      <div className="player-status" style={{ display: 'flex', gap: '16px', marginBottom: '16px', justifyContent: 'center' }}>
         <div>🔑 钥匙: {exploration.collectedKeys}</div>
         <div>⚔️ 已击败: {exploration.defeatedMiniBosses.length} / 9</div>
       </div>
 
-      {/* 地图区域 */}
+      {/* 地图区域 - 扩大容器确保所有区域可见 */}
       <div
         style={{
           position: 'relative',
           width: '100%',
-          height: '400px',
+          height: '500px',
           background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
           borderRadius: '12px',
           overflow: 'hidden',
@@ -108,7 +132,7 @@ export default function ExplorationMap() {
           <AreaNode key={area.id} areaId={area.id} onClick={handleAreaClick} />
         ))}
 
-        {/* 连接线（简化版） */}
+        {/* 连接线 - 使用与 AreaNode 一致的偏移量计算 */}
         <svg
           style={{
             position: 'absolute',
@@ -126,10 +150,10 @@ export default function ExplorationMap() {
               return (
                 <line
                   key={`${area.id}-${connId}`}
-                  x1={area.position.x * 80 + 240}
-                  y1={area.position.z * 80 + 240}
-                  x2={target.position.x * 80 + 240}
-                  y2={target.position.z * 80 + 240}
+                  x1={area.position.x * 60 + 185}
+                  y1={area.position.z * 60 + 115}
+                  x2={target.position.x * 60 + 185}
+                  y2={target.position.z * 60 + 115}
                   stroke="rgba(255,255,255,0.2)"
                   strokeWidth="2"
                 />
@@ -146,10 +170,48 @@ export default function ExplorationMap() {
         {exploration.phase === 'encounter' && <span>遭遇判定中...</span>}
         {exploration.phase === 'battle' && <span>战斗开始！</span>}
         {exploration.phase === 'treasure' && <span>发现宝箱！</span>}
-        {exploration.phase === 'victory' && <span>战斗胜利！</span>}
+        {exploration.phase === 'victory' && <span>🎉 战斗胜利！</span>}
         {exploration.phase === 'portal_appear' && <span>选择传送门</span>}
         {exploration.phase === 'error' && <span style={{ color: 'red' }}>错误: {exploration.lastError}</span>}
+        {exploration.phase === 'rollback' && <span style={{ color: 'orange' }}>回滚中...</span>}
       </div>
+
+      {/* 战斗测试按钮 - 当在 battle phase 时显示 */}
+      {exploration.phase === 'battle' && (
+        <div style={{ marginTop: '16px', textAlign: 'center' }}>
+          <p style={{ marginBottom: '8px' }}>当前区域: {areas.find(a => a.id === exploration.currentArea)?.name}</p>
+          <button
+            onClick={handleBattleWin}
+            style={{
+              padding: '10px 20px',
+              margin: '0 8px',
+              background: 'linear-gradient(135deg, #00ff88, #00cc66)',
+              border: 'none',
+              borderRadius: '8px',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+            }}
+          >
+            模拟战斗胜利
+          </button>
+          <button
+            onClick={handleBattleLose}
+            style={{
+              padding: '10px 20px',
+              margin: '0 8px',
+              background: 'linear-gradient(135deg, #ff6b6b, #c92a2a)',
+              border: 'none',
+              borderRadius: '8px',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+            }}
+          >
+            模拟战斗失败
+          </button>
+        </div>
+      )}
 
       {/* 传送门选择 */}
       {exploration.phase === 'portal_appear' && exploration.availablePortals.length > 0 && (
@@ -169,6 +231,26 @@ export default function ExplorationMap() {
           🔑 你有 {exploration.collectedKeys} 把钥匙，可以解锁隐藏区域
         </div>
       )}
+
+      {/* 返回世界地图按钮 */}
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <button
+          onClick={() => {
+            explorationDispatch({ type: 'RESET_EXPLORATION' })
+            useGameStore.getState().dispatch({ type: 'RESET_GAME' } as any)
+          }}
+          style={{
+            padding: '8px 16px',
+            background: 'rgba(255,255,255,0.1)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            borderRadius: '8px',
+            color: 'white',
+            cursor: 'pointer',
+          }}
+        >
+          返回标题
+        </button>
+      </div>
     </div>
   )
 }
