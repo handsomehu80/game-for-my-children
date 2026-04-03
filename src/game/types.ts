@@ -168,6 +168,7 @@ export type ExplorationPhase =
   | 'treasure'         // 宝箱/奖励
   | 'portal_appear'    // 传送门出现
   | 'boss_appearing'   // 大Boss出现
+  | 'area_complete'    // 区域完成
   | 'victory'          // 区域胜利
   | 'error'            // 异常状态
   | 'rollback'         // 回滚状态
@@ -237,6 +238,8 @@ export interface ExplorationState {
   savepoints: Savepoint[]          // 存档点历史
   lastSavepoint: Savepoint | null  // 上一个存档点
   retryCount: number              // 当前区域的失败重试次数
+  // P1-2: Track victories for guaranteed key drop
+  consecutiveVictoriesWithoutKey: number
 }
 
 // 探索动作
@@ -258,3 +261,4 @@ export type ExplorationAction =
   | { type: 'EXPLORATION_ERROR'; error: string }
   | { type: 'ROLLBACK_TO_SAVEPOINT' }
   | { type: 'RESET_EXPLORATION' }
+  | { type: 'RESET_VICTORY_COUNTER' }  // P1-2: Reset victory counter after key drop

@@ -18,6 +18,7 @@ export const initialExplorationState: ExplorationState = {
   savepoints: [],
   lastSavepoint: null,
   retryCount: 0,
+  consecutiveVictoriesWithoutKey: 0,  // P1-2: Track victories for guaranteed key drop
 }
 
 // 状态转换函数（纯函数）
@@ -28,6 +29,11 @@ export function explorationTransition(
   // RESET_EXPLORATION 可以在任何阶段生效
   if (action.type === 'RESET_EXPLORATION') {
     return initialExplorationState
+  }
+
+  // P1-2: RESET_VICTORY_COUNTER 可以在任何阶段生效
+  if (action.type === 'RESET_VICTORY_COUNTER') {
+    return { ...state, consecutiveVictoriesWithoutKey: 0 }
   }
 
   switch (state.phase) {

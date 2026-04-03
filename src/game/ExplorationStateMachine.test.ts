@@ -233,4 +233,28 @@ describe('ExplorationStateMachine', () => {
       expect(result.unlockedAreas).not.toContain('east_math_1')
     })
   })
+
+  describe('P1-2: Guaranteed key drop', () => {
+    it('初始状态应有consecutiveVictoriesWithoutKey为0', () => {
+      expect(initialExplorationState.consecutiveVictoriesWithoutKey).toBe(0)
+    })
+
+    it('RESET_VICTORY_COUNTER应重置consecutiveVictoriesWithoutKey为0', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        consecutiveVictoriesWithoutKey: 5,
+      }
+      const result = explorationTransition(state, { type: 'RESET_VICTORY_COUNTER' })
+      expect(result.consecutiveVictoriesWithoutKey).toBe(0)
+    })
+
+    it('RESET_EXPLORATION应重置consecutiveVictoriesWithoutKey为0', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        consecutiveVictoriesWithoutKey: 3,
+      }
+      const result = explorationTransition(state, { type: 'RESET_EXPLORATION' })
+      expect(result.consecutiveVictoriesWithoutKey).toBe(0)
+    })
+  })
 })

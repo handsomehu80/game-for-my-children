@@ -250,6 +250,29 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const currentArea = getAreaById(state.exploration.currentArea)
     if (!currentArea) return
 
+    // P1-2: Guaranteed key drop - every 5 victories = 1 key
+    const newConsecutiveVictories = state.exploration.consecutiveVictoriesWithoutKey + 1
+    let keyDrop = 0
+
+    if (currentArea.type === 'boss') {
+      keyDrop = 1  // Boss always drops
+    } else if (Math.random() < 0.3) {
+      keyDrop = 1  // 30% normal drop
+    }
+
+    // P1-2: Guaranteed key every 5 victories
+    if (newConsecutiveVictories >= 5 && keyDrop === 0) {
+      keyDrop = 1
+      get().explorationDispatch({ type: 'RESET_VICTORY_COUNTER' })
+    } else if (keyDrop > 0) {
+      get().explorationDispatch({ type: 'RESET_VICTORY_COUNTER' })
+    }
+
+    // Award key if dropped
+    if (keyDrop > 0) {
+      get().explorationDispatch({ type: 'RECEIVE_KEY', count: keyDrop })
+    }
+
     const areas = getAreasByOcean(state.exploration.currentOcean!)
     const unexploredAreas = areas.filter(
       (a) => !state.exploration!.defeatedMiniBosses.includes(a.id) && a.id !== currentArea.id
@@ -291,7 +314,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     get().explorationDispatch({ type: 'GENERATE_PORTALS', portals, seed })
   },
 
-  // 接收钥匙（30%概率掉落）
+  // 接收钥匙（30%概率掉落） - 现在由 generatePortals 内部调用
   receiveKey: (count) => {
     get().explorationDispatch({ type: 'RECEIVE_KEY', count })
   },

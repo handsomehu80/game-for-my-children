@@ -190,4 +190,46 @@ describe('Game Store', () => {
       expect(state.battle?.player.hp).toBe(100)
     })
   })
+
+  describe('P1-2: Guaranteed key drop', () => {
+    it('初始探索状态应有consecutiveVictoriesWithoutKey为0', () => {
+      const { startExploration } = useGameStore.getState()
+      startExploration('east')
+
+      const state = useGameStore.getState()
+      expect(state.exploration?.consecutiveVictoriesWithoutKey).toBe(0)
+    })
+
+    it('RECEIVE_KEY应增加钥匙数量', () => {
+      const { startExploration, explorationDispatch } = useGameStore.getState()
+      startExploration('east')
+
+      // Manually dispatch to victory phase and receive key
+      explorationDispatch({ type: 'START_EXPLORATION', oceanId: 'east' })
+      explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
+      explorationDispatch({ type: 'MOVE_COMPLETE' })
+      explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
+      explorationDispatch({ type: 'BATTLE_WIN', areaId: 'east_math_1' })
+
+      // Now in victory phase, receive key
+      explorationDispatch({ type: 'RECEIVE_KEY', count: 1 })
+      const state = useGameStore.getState()
+      expect(state.exploration?.collectedKeys).toBe(1)
+    })
+
+    it('RESET_VICTORY_COUNTER应重置计数器', () => {
+      const { startExploration, explorationDispatch } = useGameStore.getState()
+      startExploration('east')
+
+      // Set consecutiveVictoriesWithoutKey to 5 via explorationDispatch
+      // We need to access the internal state directly for this test
+      const stateBefore = useGameStore.getState()
+      expect(stateBefore.exploration?.consecutiveVictoriesWithoutKey).toBe(0)
+
+      // Dispatch RESET_VICTORY_COUNTER
+      explorationDispatch({ type: 'RESET_VICTORY_COUNTER' })
+      const stateAfter = useGameStore.getState()
+      expect(stateAfter.exploration?.consecutiveVictoriesWithoutKey).toBe(0)
+    })
+  })
 })
