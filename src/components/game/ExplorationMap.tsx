@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGameStore } from '../../store/gameStore'
 import { getAreasByOcean } from '../../data/areas'
 import { AreaNode } from './AreaNode'
@@ -6,6 +6,12 @@ import { Portal } from './Portal'
 
 export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
+
+  // P0-3: Use ref to prevent stale closures in useEffect hooks
+  const latestExplorationRef = useRef(exploration)
+  useEffect(() => {
+    latestExplorationRef.current = exploration
+  }, [exploration])
 
   const selectArea = useGameStore((state) => state.selectArea)
   const generatePortals = useGameStore((state) => state.generatePortals)
@@ -29,18 +35,18 @@ export default function ExplorationMap() {
 
   // 模拟移动动画完成
   useEffect(() => {
-    if (exploration?.phase === 'moving') {
+    if (latestExplorationRef.current?.phase === 'moving') {
       const timer = setTimeout(() => {
         explorationDispatch({ type: 'MOVE_COMPLETE' })
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [exploration?.phase, explorationDispatch])
+  }, [explorationDispatch])
 
   // 模拟遭遇判定
   useEffect(() => {
-    if (!exploration || exploration.phase !== 'encounter') return
-    const area = areas.find((a) => a.id === exploration.currentArea)
+    if (!latestExplorationRef.current || latestExplorationRef.current.phase !== 'encounter') return
+    const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
     if (!area) return
 
     let result: 'battle' | 'treasure' | 'hidden_event'
@@ -56,24 +62,23 @@ export default function ExplorationMap() {
     }
 
     explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
-    // P0-2: Add 'areas' to dependency array since we use areas.find()
-  }, [exploration?.phase, exploration?.currentArea, areas])
+  }, [areas, explorationDispatch])
 
   // 战斗阶段 - 触发实际战斗
   useEffect(() => {
-    if (exploration && exploration.phase === 'battle' && exploration.currentArea) {
-      const area = areas.find((a) => a.id === exploration.currentArea)
+    if (latestExplorationRef.current && latestExplorationRef.current.phase === 'battle' && latestExplorationRef.current.currentArea) {
+      const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
       if (!area || !area.monsterId) return
 
       // 这里应该触发实际战斗，但目前只是记录状态
       // 战斗逻辑需要在 battle phase 处理
-      console.log('Battle started in area:', exploration.currentArea, 'monster:', area.monsterId)
+      console.log('Battle started in area:', latestExplorationRef.current.currentArea, 'monster:', area.monsterId)
     }
-  }, [exploration?.phase, exploration?.currentArea])
+  }, [areas])
 
   // 战斗胜利后生成传送门
   useEffect(() => {
-    if (exploration?.phase === 'victory') {
+    if (latestExplorationRef.current?.phase === 'victory') {
       // 30% 概率掉落钥匙
       if (Math.random() < 0.3) {
         explorationDispatch({ type: 'RECEIVE_KEY', count: 1 })
@@ -81,15 +86,15 @@ export default function ExplorationMap() {
       // 生成传送门
       generatePortals()
     }
-  }, [exploration?.phase])
+  }, [explorationDispatch, generatePortals])
 
   // 宝箱开启
   useEffect(() => {
-    if (exploration?.phase === 'treasure') {
+    if (latestExplorationRef.current?.phase === 'treasure') {
       const treasures = [{ id: 'treasure_1', name: '金币 x10', type: 'consumable' as const }]
       explorationDispatch({ type: 'OPEN_TREASURE', treasures })
     }
-  }, [exploration?.phase])
+  }, [explorationDispatch])
 
   // 手动触发战斗胜利（用于测试）
   const handleBattleWin = () => {
