@@ -256,5 +256,35 @@ describe('ExplorationStateMachine', () => {
       const result = explorationTransition(state, { type: 'RESET_EXPLORATION' })
       expect(result.consecutiveVictoriesWithoutKey).toBe(0)
     })
+
+    it('INCREMENT_VICTORY_COUNTER应递增consecutiveVictoriesWithoutKey', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        consecutiveVictoriesWithoutKey: 0,
+      }
+      const result = explorationTransition(state, { type: 'INCREMENT_VICTORY_COUNTER' })
+      expect(result.consecutiveVictoriesWithoutKey).toBe(1)
+    })
+
+    it('INCREMENT_VICTORY_COUNTER应从任意值递增', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        consecutiveVictoriesWithoutKey: 3,
+      }
+      const result = explorationTransition(state, { type: 'INCREMENT_VICTORY_COUNTER' })
+      expect(result.consecutiveVictoriesWithoutKey).toBe(4)
+    })
+
+    it('连续5次胜利后INCREMENT_VICTORY_COUNTER应使计数器达到5', () => {
+      let state: ExplorationState = { ...initialExplorationState, consecutiveVictoriesWithoutKey: 0 }
+      // Simulate 4 victories
+      for (let i = 0; i < 4; i++) {
+        state = explorationTransition(state, { type: 'INCREMENT_VICTORY_COUNTER' })
+      }
+      expect(state.consecutiveVictoriesWithoutKey).toBe(4)
+      // 5th victory
+      state = explorationTransition(state, { type: 'INCREMENT_VICTORY_COUNTER' })
+      expect(state.consecutiveVictoriesWithoutKey).toBe(5)
+    })
   })
 })

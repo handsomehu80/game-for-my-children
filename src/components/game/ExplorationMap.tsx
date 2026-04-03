@@ -100,6 +100,8 @@ export default function ExplorationMap() {
   const handleBattleWin = () => {
     // P0-3: Only dispatch if in battle phase
     if (exploration?.phase === 'battle' && exploration?.currentArea) {
+      // P1-2: Increment victory counter BEFORE BATTLE_WIN so generatePortals sees updated value
+      explorationDispatch({ type: 'INCREMENT_VICTORY_COUNTER' })
       explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
     }
   }

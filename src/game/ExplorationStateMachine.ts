@@ -36,6 +36,11 @@ export function explorationTransition(
     return { ...state, consecutiveVictoriesWithoutKey: 0 }
   }
 
+  // P1-2: INCREMENT_VICTORY_COUNTER 可以在任何阶段生效
+  if (action.type === 'INCREMENT_VICTORY_COUNTER') {
+    return { ...state, consecutiveVictoriesWithoutKey: state.consecutiveVictoriesWithoutKey + 1 }
+  }
+
   switch (state.phase) {
     case 'exploring':
       switch (action.type) {

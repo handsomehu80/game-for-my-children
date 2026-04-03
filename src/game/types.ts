@@ -262,3 +262,4 @@ export type ExplorationAction =
   | { type: 'ROLLBACK_TO_SAVEPOINT' }
   | { type: 'RESET_EXPLORATION' }
   | { type: 'RESET_VICTORY_COUNTER' }  // P1-2: Reset victory counter after key drop
+  | { type: 'INCREMENT_VICTORY_COUNTER' }  // P1-2: Increment victory counter
