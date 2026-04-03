@@ -79,11 +79,7 @@ export default function ExplorationMap() {
   // 战斗胜利后生成传送门
   useEffect(() => {
     if (latestExplorationRef.current?.phase === 'victory') {
-      // 30% 概率掉落钥匙
-      if (Math.random() < 0.3) {
-        explorationDispatch({ type: 'RECEIVE_KEY', count: 1 })
-      }
-      // 生成传送门
+      // Key drop is now handled inside generatePortals (P1-2 guaranteed system)
       generatePortals()
     }
   }, [explorationDispatch, generatePortals])
