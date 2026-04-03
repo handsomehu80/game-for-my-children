@@ -11,6 +11,9 @@ export default function ExplorationMap() {
   const generatePortals = useGameStore((state) => state.generatePortals)
   const explorationDispatch = useGameStore((state) => state.explorationDispatch)
 
+  // P0-1: Extract magic number to named constant
+  const HIDDEN_EVENT_PROBABILITY = 0.2
+
   // 获取当前大洋的区域
   const areas = exploration?.currentOcean ? getAreasByOcean(exploration.currentOcean) : []
 
@@ -46,14 +49,15 @@ export default function ExplorationMap() {
     } else if (area.type === 'hidden') {
       // P0-2: 隐藏区域跳过随机，直接触发战斗
       result = 'battle'
-    } else if (Math.random() < 0.2) {
+    } else if (Math.random() < HIDDEN_EVENT_PROBABILITY) {
       result = 'hidden_event'
     } else {
       result = 'battle'
     }
 
     explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
-  }, [exploration?.phase, exploration?.currentArea])
+    // P0-2: Add 'areas' to dependency array since we use areas.find()
+  }, [exploration?.phase, exploration?.currentArea, areas])
 
   // 战斗阶段 - 触发实际战斗
   useEffect(() => {
@@ -89,14 +93,18 @@ export default function ExplorationMap() {
 
   // 手动触发战斗胜利（用于测试）
   const handleBattleWin = () => {
-    if (exploration?.currentArea) {
+    // P0-3: Only dispatch if in battle phase
+    if (exploration?.phase === 'battle' && exploration?.currentArea) {
       explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
     }
   }
 
   // 手动触发战斗失败（用于测试）
   const handleBattleLose = () => {
-    explorationDispatch({ type: 'BATTLE_LOSE' })
+    // P0-3: Only dispatch if in battle phase
+    if (exploration?.phase === 'battle') {
+      explorationDispatch({ type: 'BATTLE_LOSE' })
+    }
   }
 
   if (!exploration) {
