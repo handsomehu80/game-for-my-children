@@ -67,7 +67,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case 'ANSWER_QUESTION': {
       if (!state.battle || !state.battle.currentQuestion) return state
       const question = state.battle.currentQuestion
-      const isCorrect = question.options[action.answerIndex]?.isCorrect ?? false
+      // P0-1: Explicit boundary check
+      const validAnswerCount = question.options.length
+      const answerIndex = Math.min(Math.max(0, action.answerIndex), validAnswerCount - 1)
+      const isCorrect = question.options[answerIndex]?.isCorrect ?? false
 
       const newBattleLog = [
         ...state.battle.battleLog,
