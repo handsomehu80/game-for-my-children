@@ -17,7 +17,7 @@ export const initialExplorationState: ExplorationState = {
   lastError: null,
   savepoints: [],
   lastSavepoint: null,
-  retryCount: 0,
+  battleFailedAttempts: 0,
   consecutiveVictoriesWithoutKey: 0,  // P1-2: Track victories for guaranteed key drop
 }
 
@@ -120,23 +120,23 @@ export function explorationTransition(
             defeatedMiniBosses: newDefeated,
             savepoints: [...state.savepoints, savepoint],
             lastSavepoint: savepoint,
-            retryCount: 0,  // 重置重试计数
+            battleFailedAttempts: 0,  // 重置重试计数
           }
         }
         case 'BATTLE_LOSE': {
           // 增加失败计数
-          const newRetryCount = state.retryCount + 1
+          const newBattleFailedAttempts = state.battleFailedAttempts + 1
           const failedAttempts = {
             ...state.failedAttempts,
             [state.currentArea || '']: (state.failedAttempts[state.currentArea || ''] || 0) + 1,
           }
           // 检查是否超过最大重试次数（3次）
-          if (newRetryCount >= 3) {
+          if (newBattleFailedAttempts >= 3) {
             return {
               ...state,
               phase: 'rollback',
               failedAttempts,
-              retryCount: newRetryCount,
+              battleFailedAttempts: newBattleFailedAttempts,
               lastError: 'Max retries exceeded, rolling back',
             }
           }
@@ -144,8 +144,8 @@ export function explorationTransition(
             ...state,
             phase: 'error',
             failedAttempts,
-            retryCount: newRetryCount,
-            lastError: `Battle lost (retry ${newRetryCount}/3)`,
+            battleFailedAttempts: newBattleFailedAttempts,
+            lastError: `Battle lost (retry ${newBattleFailedAttempts}/3)`,
           }
         }
         default:
@@ -247,7 +247,7 @@ export function explorationTransition(
               phase: 'exploring',
               currentArea: null,  // 回到选择区域
               ...state.lastSavepoint.stateSnapshot,
-              retryCount: 0,
+              battleFailedAttempts: 0,
               lastError: null,
             }
             // P0-4: 验证回滚后的状态一致性
@@ -266,7 +266,7 @@ export function explorationTransition(
           phase: 'exploring',
           currentArea: null,
           ...state.lastSavepoint.stateSnapshot,
-          retryCount: 0,
+          battleFailedAttempts: 0,
           lastError: null,
         }
         // P0-4: 验证回滚后的状态一致性

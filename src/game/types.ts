@@ -237,7 +237,7 @@ export interface ExplorationState {
   // 回滚相关
   savepoints: Savepoint[]          // 存档点历史
   lastSavepoint: Savepoint | null  // 上一个存档点
-  retryCount: number              // 当前区域的失败重试次数
+  battleFailedAttempts: number   // 当前区域的失败重试次数 (battle retries, not per-area failedAttempts)
   // P1-2: Track victories for guaranteed key drop
   consecutiveVictoriesWithoutKey: number
 }
