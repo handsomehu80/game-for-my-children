@@ -208,6 +208,10 @@ export function explorationTransition(
         case 'SELECT_PORTAL':
           return { ...state, phase: 'moving', currentArea: action.portal.targetAreaId }
         case 'UNLOCK_AREA':
+          // P1-4: Validate key count before unlocking
+          if (state.collectedKeys < 1) {
+            return { ...state, phase: 'error', lastError: 'Not enough keys to unlock area' }
+          }
           return {
             ...state,
             unlockedAreas: state.unlockedAreas.includes(action.areaId)

@@ -287,4 +287,87 @@ describe('ExplorationStateMachine', () => {
       expect(state.consecutiveVictoriesWithoutKey).toBe(5)
     })
   })
+
+  describe('P1-4: Visit-to-unlock rule', () => {
+    // P1-4 规则:
+    // 1. 收集至少1把钥匙
+    // 2. 在传送门界面选择"解锁隐藏岛屿"
+    // 3. 解锁后，该区域变为永久可访问（不再需要钥匙）
+
+    it('UNLOCK_AREA应消耗1钥匙并解锁隐藏区域', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'portal_appear' as const,
+        collectedKeys: 2,
+        unlockedAreas: [],
+      }
+      const result = explorationTransition(state, { type: 'UNLOCK_AREA', areaId: 'east_hidden_A' })
+      expect(result.unlockedAreas).toContain('east_hidden_A')
+      expect(result.collectedKeys).toBe(1)
+    })
+
+    it('解锁后的隐藏区域应在unlockedAreas中', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'portal_appear' as const,
+        collectedKeys: 1,
+        unlockedAreas: [],
+      }
+      const result = explorationTransition(state, { type: 'UNLOCK_AREA', areaId: 'east_hidden_A' })
+      expect(result.unlockedAreas).toEqual(['east_hidden_A'])
+    })
+
+    it('已解锁的隐藏区域不需要钥匙即可进入', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        currentOcean: 'east',
+        collectedKeys: 0,  // 无钥匙
+        unlockedAreas: ['east_hidden_A'],  // 但已解锁
+      }
+      const result = canEnterArea(state, 'east_hidden_A')
+      expect(result.allowed).toBe(true)
+    })
+
+    it('未解锁的隐藏区域需要钥匙才能进入', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        currentOcean: 'east',
+        collectedKeys: 0,
+        unlockedAreas: [],  // 未解锁
+      }
+      const result = canEnterArea(state, 'east_hidden_A')
+      expect(result.allowed).toBe(false)
+    })
+
+    it('解锁后的隐藏区域再次进入不需要花费钥匙', () => {
+      // Simulate unlock
+      let state: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'portal_appear' as const,
+        collectedKeys: 1,
+        unlockedAreas: [],
+      }
+      state = explorationTransition(state, { type: 'UNLOCK_AREA', areaId: 'east_hidden_A' })
+      expect(state.collectedKeys).toBe(0)  // 消耗了1钥匙
+      expect(state.unlockedAreas).toContain('east_hidden_A')
+
+      // Try to enter - should succeed without spending keys
+      const enterResult = canEnterArea(state, 'east_hidden_A')
+      expect(enterResult.allowed).toBe(true)
+      // Keys should still be 0 (not spent again)
+      expect(state.collectedKeys).toBe(0)
+    })
+
+    it('解锁隐藏区域时应验证钥匙数量不足', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'portal_appear' as const,
+        collectedKeys: 0,  // 无钥匙
+        unlockedAreas: [],
+      }
+      const result = explorationTransition(state, { type: 'UNLOCK_AREA', areaId: 'east_hidden_A' })
+      expect(result.phase).toBe('error')
+      expect(result.unlockedAreas).not.toContain('east_hidden_A')
+    })
+  })
 })
