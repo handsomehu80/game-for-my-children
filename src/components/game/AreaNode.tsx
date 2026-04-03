@@ -27,14 +27,14 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
     }
   }
 
-  // 根据区域类型渲染不同样式
+  // 根据区域类型渲染不同样式 - 使用更小的间距确保所有区域可见
   const getNodeStyle = () => {
     const base = {
       position: 'absolute' as const,
-      left: `${area.position.x * 80 + 200}px`,
-      top: `${area.position.z * 80 + 200}px`,
-      width: '80px',
-      height: '80px',
+      left: `${area.position.x * 60 + 150}px`,
+      top: `${area.position.z * 60 + 80}px`,
+      width: '70px',
+      height: '70px',
       borderRadius: '8px',
       display: 'flex',
       flexDirection: 'column' as const,
@@ -70,22 +70,22 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
       {area.type === 'treasure' && <span style={{ fontSize: '20px' }}>📦</span>}
       {area.type === 'normal' && <span style={{ fontSize: '20px' }}>⚔️</span>}
 
-      <span style={{ color: 'white', fontSize: '10px', marginTop: '4px', textAlign: 'center' }}>
+      <span style={{ color: 'white', fontSize: '9px', marginTop: '4px', textAlign: 'center' }}>
         {area.name.length > 6 ? area.name.slice(0, 5) + '...' : area.name}
       </span>
 
-      <span style={{ color: '#ffd700', fontSize: '10px' }}>
+      <span style={{ color: '#ffd700', fontSize: '9px' }}>
         {getDifficultyStars(area.difficulty)}
       </span>
 
       {isDefeated && (
-        <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '16px' }}>
+        <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '14px' }}>
           ✅
         </span>
       )}
 
       {!isUnlocked && (
-        <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '16px' }}>
+        <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '14px' }}>
           🔒
         </span>
       )}

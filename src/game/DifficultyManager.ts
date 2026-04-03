@@ -1,4 +1,3 @@
-import type { ExplorationState } from './types'
 
 const DIFFICULTY_ADJUSTMENT = {
   maxAttemptsBeforeDowngrade: 5,

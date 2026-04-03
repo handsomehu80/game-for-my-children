@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>探险模式设计方案 - 大航海时代风格</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Chakra Petch', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1f3c 100%);
+      min-height: 100vh;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      text-align: center;
+      color: #88a4c8;
+      margin-bottom: 30px;
+    }
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .tab-btn {
+      padding: 12px 30px;
+      border: 2px solid #ffd700;
+      background: transparent;
+      color: #ffd700;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: #ffd700;
+      color: #0a1628;
+    }
+
+    /* Design Panels */
+    .design-panel {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s;
+    }
+    .design-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ========== 方案A: 复古航海地图风格 ========== */
+    .design-a {
+      background: linear-gradient(180deg, #2c1810 0%, #3d2817 50%, #1a0f0a 100%);
+      border: 8px solid #8b6914;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 30px rgba(139,105,20,0.5), inset 0 0 50px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .design-a::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .design-a .header {
+      text-align: center;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.5rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .design-a .header::before, .design-a .header::after {
+      content: '⚓';
+      margin: 0 15px;
+    }
+
+    /* 罗盘 */
+    .compass-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .compass {
+      width: 120px;
+      height: 120px;
+      border: 4px solid #8b6914;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f5e6c8 0%, #d4a574 70%, #8b6914 100%);
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .compass-needle {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 4px; height: 80px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(to bottom, #ff4444 50%, #ffffff 50%);
+    }
+    .compass-direction {
+      position: absolute;
+      font-weight: bold;
+      color: #2c1810;
+      font-size: 1rem;
+    }
+    .compass-direction.n { top: 8px; left: 50%; transform: translateX(-50%); }
+    .compass-direction.s { bottom: 8px; left: 50%; transform: translateX(-50%); }
+    .compass-direction.e { right: 10px; top: 50%; transform: translateY(-50%); }
+    .compass-direction.w { left: 10px; top: 50%; transform: translateY(-50%); }
+    .compass-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      background: #8b6914;
+      border-radius: 50%;
+    }
+
+    /* 地图区域 */
+    .map-container {
+      background: linear-gradient(135deg, #f5e6c8 0%, #e8d4b0 100%);
+      border: 6px solid #8b6914;
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .map-title {
+      text-align: center;
+      color: #2c1810;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      font-family: 'Ma Shan Zheng', cursive;
+    }
+    .map-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .map-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .map-node {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.7rem;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    .map-node:hover { transform: scale(1.1); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+    .map-node.boss {
+      background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+      border: 3px solid gold;
+      width: 80px; height: 80px;
+    }
+    .map-node.boss::after { content: '👑'; font-size: 1.5rem; }
+    .map-node.normal-math { background: linear-gradient(135deg, #4dabf7, #1c7ed6); }
+    .map-node.normal-chinese { background: linear-gradient(135deg, #69db7c, #2f9e44); }
+    .map-node.normal-english { background: linear-gradient(135deg, #748ffc, #364fc7); }
+    .map-node.hidden { background: linear-gradient(135deg, #9b59b6, #6c3483); border: 2px dashed #9b59b6; }
+    .map-node.treasure { background: linear-gradient(135deg, #ffd700, #f39c12); }
+    .map-node-label { font-size: 0.65rem; margin-top: 2px; }
+    .map-node.locked::before {
+      content: '🔒';
+      position: absolute;
+      top: -8px; right: -8px;
+      font-size: 1rem;
+    }
+    .map-node.defeated::after {
+      content: '✅';
+      position: absolute;
+      top: -8px; right: -8px;
+      font-size: 1rem;
+    }
+
+    /* 连接线 */
+    .map-connections {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    /* 状态栏 */
+    .status-bar-a {
+      display: flex;
+      justify-content: space-around;
+      background: linear-gradient(90deg, #2c1810, #3d2817, #2c1810);
+      border: 3px solid #8b6914;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .status-item-a {
+      text-align: center;
+      color: #ffd700;
+    }
+    .status-item-a .icon { font-size: 1.5rem; }
+    .status-item-a .value { font-size: 1.2rem; font-weight: bold; }
+    .status-item-a .label { font-size: 0.8rem; color: #d4a574; }
+
+    /* ========== 方案B: 像素复古游戏风格 ========== */
+    .design-b {
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+      border: 4px solid #00d9ff;
+      border-radius: 4px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,217,255,0.3);
+      font-family: 'Press Start 2P', monospace;
+    }
+    .header-b {
+      text-align: center;
+      font-size: 1rem;
+      color: #00ff88;
+      text-shadow: 0 0 10px #00ff88;
+      margin-bottom: 15px;
+      animation: neonPulse 2s infinite;
+    }
+    @keyframes neonPulse {
+      0%, 100% { text-shadow: 0 0 10px #00ff88; }
+      50% { text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+    }
+
+    .hud-b {
+      display: flex;
+      justify-content: space-between;
+      background: #000;
+      border: 2px solid #00d9ff;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 0.6rem;
+    }
+    .hud-b .hearts { color: #ff4444; }
+    .hud-b .diamonds { color: #00ffff; }
+    .hud-b .combo { color: #ffff00; }
+
+    .pixel-map {
+      background: #000;
+      border: 3px solid #00d9ff;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .pixel-map-title {
+      text-align: center;
+      color: #00d9ff;
+      font-size: 0.7rem;
+      margin-bottom: 10px;
+      border-bottom: 2px dashed #00d9ff;
+      padding-bottom: 10px;
+    }
+    .pixel-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .pixel-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 2px;
+    }
+    .pixel-cell:hover { transform: scale(1.05); filter: brightness(1.3); }
+    .pixel-cell.boss { background: linear-gradient(135deg, #ff6b6b, #c92a2a); border: 2px solid gold; }
+    .pixel-cell.math { background: linear-gradient(135deg, #4dabf7, #1c7ed6); }
+    .pixel-cell.chinese { background: linear-gradient(135deg, #69db7c, #2f9e44); }
+    .pixel-cell.english { background: linear-gradient(135deg, #748ffc, #364fc7); }
+    .pixel-cell.hidden { background: linear-gradient(135deg, #9b59b6, #6c3483); border: 2px dashed #9b59b6; }
+    .pixel-cell.treasure { background: linear-gradient(135deg, #ffd700, #f39c12); }
+    .pixel-cell .emoji { font-size: 1rem; }
+    .pixel-cell .label { font-size: 0.4rem; margin-top: 2px; color: white; }
+
+    .inventory-b {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      background: #000;
+      border: 2px solid #00d9ff;
+      padding: 10px;
+      font-size: 0.5rem;
+    }
+    .inv-slot {
+      width: 40px; height: 40px;
+      background: #1a1a2e;
+      border: 2px solid #00d9ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    /* ========== 方案C: 现代冒险游戏风格 ========== */
+    .design-c {
+      background: linear-gradient(180deg, #0d2137 0%, #1a3a5c 50%, #0d2137 100%);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .header-c {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header-c h2 {
+      font-size: 1.8rem;
+      background: linear-gradient(45deg, #00d9ff, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 5px;
+    }
+    .progress-bar-c {
+      height: 24px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .progress-fill-c {
+      height: 100%;
+      background: linear-gradient(90deg, #00ff88, #00d9ff);
+      border-radius: 12px;
+      transition: width 0.5s;
+    }
+    .progress-text-c {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .progress-container-c {
+      position: relative;
+      height: 24px;
+      margin-top: 8px;
+    }
+
+    .modern-map {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .modern-map-title {
+      text-align: center;
+      color: #88a4c8;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    .modern-nodes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .modern-node {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .modern-node:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,217,255,0.4); }
+    .modern-node.boss {
+      background: linear-gradient(135deg, #ff6b6b, #c92a2a);
+      border: 4px solid gold;
+    }
+    .modern-node.math { background: linear-gradient(135deg, #4dabf7, #1c7ed6); }
+    .modern-node.chinese { background: linear-gradient(135deg, #69db7c, #2f9e44); }
+    .modern-node.english { background: linear-gradient(135deg, #748ffc, #364fc7); }
+    .modern-node.hidden { background: linear-gradient(135deg, #9b59b6, #6c3483); }
+    .modern-node.treasure { background: linear-gradient(135deg, #ffd700, #f39c12); }
+    .modern-node .emoji { font-size: 1.8rem; }
+    .modern-node .label { font-size: 0.65rem; margin-top: 4px; color: white; text-align: center; }
+    .modern-node .stars { color: #ffd700; font-size: 0.6rem; }
+    .modern-node.locked::after {
+      content: '🔒';
+      position: absolute;
+      top: -5px; right: -5px;
+      font-size: 1.2rem;
+    }
+    .modern-node.defeated::before {
+      content: '✓';
+      position: absolute;
+      top: -5px; left: -5px;
+      width: 20px; height: 20px;
+      background: #00ff88;
+      border-radius: 50%;
+      color: #0d2137;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stats-cards-c {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-card-c {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-card-c .icon { font-size: 1.5rem; margin-bottom: 5px; }
+    .stat-card-c .value { font-size: 1.2rem; font-weight: bold; color: #00d9ff; }
+    .stat-card-c .label { font-size: 0.75rem; color: #88a4c8; }
+
+    .nav-buttons-c {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .nav-btn-c {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, rgba(0,217,255,0.2), rgba(0,255,136,0.2));
+      border: 1px solid #00d9ff;
+      border-radius: 8px;
+      color: #00d9ff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .nav-btn-c:hover {
+      background: linear-gradient(135deg, #00d9ff, #00ff88);
+      color: #0d2137;
+    }
+
+    /* Legend */
+    .legend {
+      max-width: 900px;
+      margin: 30px auto;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .legend h3 { text-align: center; margin-bottom: 15px; color: #88a4c8; }
+    .legend-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    .legend-dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+    }
+    .legend-dot.boss { background: linear-gradient(135deg, #ff6b6b, #c92a2a); border: 2px solid gold; }
+    .legend-dot.math { background: linear-gradient(135deg, #4dabf7, #1c7ed6); }
+    .legend-dot.chinese { background: linear-gradient(135deg, #69db7c, #2f9e44); }
+    .legend-dot.english { background: linear-gradient(135deg, #748ffc, #364fc7); }
+    .legend-dot.hidden { background: linear-gradient(135deg, #9b59b6, #6c3483); }
+    .legend-dot.treasure { background: linear-gradient(135deg, #ffd700, #f39c12); }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #88a4c8;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧭 探险模式设计方案 🧭</h1>
+  <p class="subtitle">大航海时代风格 - 三种视觉方案对比</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showPanel('a')">方案 A<br><small>复古航海地图</small></button>
+    <button class="tab-btn" onclick="showPanel('b')">方案 B<br><small>像素复古游戏</small></button>
+    <button class="tab-btn" onclick="showPanel('c')">方案 C<br><small>现代冒险游戏</small></button>
+  </div>
+
+  <!-- 方案A: 复古航海地图风格 -->
+  <div id="panel-a" class="design-panel active">
+    <div class="design-a">
+      <div class="header">东大洋探索</div>
+
+      <div class="compass-container">
+        <div class="compass">
+          <div class="compass-direction n">N</div>
+          <div class="compass-direction s">S</div>
+          <div class="compass-direction e">E</div>
+          <div class="compass-direction w">W</div>
+          <div class="compass-needle"></div>
+          <div class="compass-center"></div>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <div class="map-title">📜 东大洋航海图 📜</div>
+        <div class="map-grid">
+          <div class="map-row">
+            <div class="map-node boss" title="东大洋守护者">
+              <span>👑</span>
+              <span class="map-node-label">大Boss</span>
+            </div>
+          </div>
+          <div class="map-row">
+            <div class="map-node normal-math" title="数学迷宫-挑战">
+              <span>⚔️</span>
+              <span class="map-node-label">⭐⭐⭐</span>
+            </div>
+            <div class="map-node normal-chinese" title="文字森林-挑战">
+              <span>📖</span>
+              <span class="map-node-label">⭐⭐⭐</span>
+            </div>
+            <div class="map-node normal-english" title="单词海洋-挑战">
+              <span>🌊</span>
+              <span class="map-node-label">⭐⭐⭐</span>
+            </div>
+          </div>
+          <div class="map-row">
+            <div class="map-node normal-math" title="数学迷宫-进阶">
+              <span>⚔️</span>
+              <span class="map-node-label">⭐⭐</span>
+            </div>
+            <div class="map-node normal-chinese" title="文字森林-进阶">
+              <span>📖</span>
+              <span class="map-node-label">⭐⭐</span>
+            </div>
+            <div class="map-node normal-english" title="单词海洋-进阶">
+              <span>🌊</span>
+              <span class="map-node-label">⭐⭐</span>
+            </div>
+          </div>
+          <div class="map-row">
+            <div class="map-node normal-math" title="数学迷宫-入门">
+              <span>⚔️</span>
+              <span class="map-node-label">⭐</span>
+            </div>
+            <div class="map-node treasure" title="奖励宝箱">
+              <span>📦</span>
+              <span class="map-node-label">宝箱</span>
+            </div>
+            <div class="map-node normal-chinese" title="文字森林-入门">
+              <span>📖</span>
+              <span class="map-node-label">⭐</span>
+            </div>
+            <div class="map-node normal-english" title="单词海洋-入门">
+              <span>🌊</span>
+              <span class="map-node-label">⭐</span>
+            </div>
+          </div>
+          <div class="map-row">
+            <div class="map-node hidden locked" title="秘密宝藏室A">
+              <span>🔮</span>
+              <span class="map-node-label">隐藏A</span>
+            </div>
+            <div class="map-node hidden locked" title="秘密宝藏室B">
+              <span>🔮</span>
+              <span class="map-node-label">隐藏B</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-bar-a">
+        <div class="status-item-a">
+          <div class="icon">🔑</div>
+          <div class="value">2</div>
+          <div class="label">钥匙</div>
+        </div>
+        <div class="status-item-a">
+          <div class="icon">⚔️</div>
+          <div class="value">3/9</div>
+          <div class="label">已击败</div>
+        </div>
+        <div class="status-item-a">
+          <div class="icon">🏴‍☠️</div>
+          <div class="value">⭐⭐</div>
+          <div class="label">当前难度</div>
+        </div>
+        <div class="status-item-a">
+          <div class="icon">⚓</div>
+          <div class="value">港口</div>
+          <div class="label">贸易系统</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案B: 像素复古游戏风格 -->
+  <div id="panel-b" class="design-panel">
+    <div class="design-b">
+      <div class="header-b">★ ═══ 东大洋探索 ═══ ★</div>
+
+      <div class="hud-b">
+        <span class="hearts">❤️❤️❤️❤️❤️</span>
+        <span class="diamonds">💎 1250</span>
+        <span class="combo">⚡ COMBO x3</span>
+      </div>
+
+      <div class="pixel-map">
+        <div class="pixel-map-title">▓▓▓▓▓▓▓ 探索区域 ▓▓▓▓▓▓▓▓</div>
+        <div class="pixel-grid">
+          <div class="pixel-cell boss" title="东大洋守护者">
+            <span class="emoji">👑</span>
+            <span class="label">BOSS</span>
+          </div>
+          <div class="pixel-cell math" title="数学迷宫-挑战">
+            <span class="emoji">⚔️</span>
+            <span class="label">⭐⭐⭐</span>
+          </div>
+          <div class="pixel-cell chinese" title="文字森林-挑战">
+            <span class="emoji">📖</span>
+            <span class="label">⭐⭐⭐</span>
+          </div>
+          <div class="pixel-cell english" title="单词海洋-挑战">
+            <span class="emoji">🌊</span>
+            <span class="label">⭐⭐⭐</span>
+          </div>
+          <div class="pixel-cell math" title="数学迷宫-进阶">
+            <span class="emoji">⚔️</span>
+            <span class="label">⭐⭐</span>
+          </div>
+          <div class="pixel-cell chinese" title="文字森林-进阶">
+            <span class="emoji">📖</span>
+            <span class="label">⭐⭐</span>
+          </div>
+          <div class="pixel-cell english" title="单词海洋-进阶">
+            <span class="emoji">🌊</span>
+            <span class="label">⭐⭐</span>
+          </div>
+          <div class="pixel-cell math" title="数学迷宫-入门">
+            <span class="emoji">⚔️</span>
+            <span class="label">⭐</span>
+          </div>
+          <div class="pixel-cell treasure" title="奖励宝箱">
+            <span class="emoji">📦</span>
+            <span class="label">宝箱</span>
+          </div>
+          <div class="pixel-cell chinese" title="文字森林-入门">
+            <span class="emoji">📖</span>
+            <span class="label">⭐</span>
+          </div>
+          <div class="pixel-cell english" title="单词海洋-入门">
+            <span class="emoji">🌊</span>
+            <span class="label">⭐</span>
+          </div>
+          <div class="pixel-cell hidden locked" title="秘密宝藏室A">
+            <span class="emoji">🔮</span>
+            <span class="label">隐藏A</span>
+          </div>
+          <div class="pixel-cell hidden locked" title="秘密宝藏室B">
+            <span class="emoji">🔮</span>
+            <span class="label">隐藏B</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inventory-b">
+        <span style="color: #00d9ff; margin-right: 10px;">🎒 物品:</span>
+        <div class="inv-slot">🔑</div>
+        <div class="inv-slot">🔑</div>
+        <div class="inv-slot">📿</div>
+        <div class="inv-slot">⚗️</div>
+        <div class="inv-slot"></div>
+        <div class="inv-slot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案C: 现代冒险游戏风格 -->
+  <div id="panel-c" class="design-panel">
+    <div class="design-c">
+      <div class="header-c">
+        <h2>🌊 东大洋探索</h2>
+        <div class="progress-container-c">
+          <div class="progress-bar-c">
+            <div class="progress-fill-c" style="width: 33%;"></div>
+          </div>
+          <span class="progress-text-c">探索进度: 33%</span>
+        </div>
+      </div>
+
+      <div class="stats-cards-c">
+        <div class="stat-card-c">
+          <div class="icon">🔑</div>
+          <div class="value">2</div>
+          <div class="label">钥匙</div>
+        </div>
+        <div class="stat-card-c">
+          <div class="icon">⚔️</div>
+          <div class="value">3/9</div>
+          <div class="label">已击败</div>
+        </div>
+        <div class="stat-card-c">
+          <div class="icon">💎</div>
+          <div class="value">1250</div>
+          <div class="label">金币</div>
+        </div>
+        <div class="stat-card-c">
+          <div class="icon">⚡</div>
+          <div class="value">x3</div>
+          <div class="label">连击</div>
+        </div>
+      </div>
+
+      <div class="modern-map">
+        <div class="modern-map-title">点击区域开始探索</div>
+        <div class="modern-nodes">
+          <div class="modern-node boss" title="东大洋守护者">
+            <span class="emoji">👑</span>
+            <span class="label">大Boss</span>
+            <span class="stars">⭐⭐⭐</span>
+          </div>
+          <div class="modern-node math" title="数学迷宫-挑战">
+            <span class="emoji">⚔️</span>
+            <span class="label">数学-挑战</span>
+            <span class="stars">⭐⭐⭐</span>
+          </div>
+          <div class="modern-node chinese" title="文字森林-挑战">
+            <span class="emoji">📖</span>
+            <span class="label">语文-挑战</span>
+            <span class="stars">⭐⭐⭐</span>
+          </div>
+          <div class="modern-node english" title="单词海洋-挑战">
+            <span class="emoji">🌊</span>
+            <span class="label">英语-挑战</span>
+            <span class="stars">⭐⭐⭐</span>
+          </div>
+          <div class="modern-node math defeated" title="数学迷宫-进阶">
+            <span class="emoji">⚔️</span>
+            <span class="label">数学-进阶</span>
+            <span class="stars">⭐⭐</span>
+          </div>
+          <div class="modern-node chinese" title="文字森林-进阶">
+            <span class="emoji">📖</span>
+            <span class="label">语文-进阶</span>
+            <span class="stars">⭐⭐</span>
+          </div>
+          <div class="modern-node english defeated" title="单词海洋-进阶">
+            <span class="emoji">🌊</span>
+            <span class="label">英语-进阶</span>
+            <span class="stars">⭐⭐</span>
+          </div>
+          <div class="modern-node math" title="数学迷宫-入门">
+            <span class="emoji">⚔️</span>
+            <span class="label">数学-入门</span>
+            <span class="stars">⭐</span>
+          </div>
+          <div class="modern-node treasure" title="奖励宝箱">
+            <span class="emoji">📦</span>
+            <span class="label">宝箱</span>
+          </div>
+          <div class="modern-node chinese" title="文字森林-入门">
+            <span class="emoji">📖</span>
+            <span class="label">语文-入门</span>
+            <span class="stars">⭐</span>
+          </div>
+          <div class="modern-node english" title="单词海洋-入门">
+            <span class="emoji">🌊</span>
+            <span class="label">英语-入门</span>
+            <span class="stars">⭐</span>
+          </div>
+          <div class="modern-node hidden locked" title="秘密宝藏室A">
+            <span class="emoji">🔮</span>
+            <span class="label">隐藏A</span>
+            <span class="stars">⭐⭐</span>
+          </div>
+          <div class="modern-node hidden locked" title="秘密宝藏室B">
+            <span class="emoji">🔮</span>
+            <span class="label">隐藏B</span>
+            <span class="stars">⭐⭐</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons-c">
+        <button class="nav-btn-c">🏠 船坞</button>
+        <button class="nav-btn-c">🏪 商店</button>
+        <button class="nav-btn-c">⛪ 教堂</button>
+        <button class="nav-btn-c">⚓ 港口</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <h3>📋 图例说明</h3>
+    <div class="legend-items">
+      <div class="legend-item"><div class="legend-dot boss"></div>大Boss区域</div>
+      <div class="legend-item"><div class="legend-dot math"></div>数学区域</div>
+      <div class="legend-item"><div class="legend-dot chinese"></div>语文区域</div>
+      <div class="legend-item"><div class="legend-dot english"></div>英语区域</div>
+      <div class="legend-item"><div class="legend-dot hidden"></div>隐藏区域(需钥匙)</div>
+      <div class="legend-item"><div class="legend-dot treasure"></div>宝箱区域</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>请选择一个方案后，我将基于该方案设计详细的实现计划</p>
+    <p style="margin-top: 10px; color: #ffd700;">A = 复古航海地图 | B = 像素复古游戏 | C = 现代冒险游戏</p>
+  </div>
+
+  <script>
+    function showPanel(letter) {
+      document.querySelectorAll('.design-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + letter).classList.add('active');
+      event.target.closest('.tab-btn').classList.add('active');
+    }
+  </script>
+</body>
+</html>

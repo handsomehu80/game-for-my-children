@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海洋探险界面 - 大航海时代风格</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Press+Start+2P&family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Chakra Petch', sans-serif;
+      background: linear-gradient(180deg, #87CEEB 0%, #1E90FF 30%, #000080 100%);
+      min-height: 100vh;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* Ocean Animation */
+    .ocean {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+    }
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 100px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,0.3) 25%,
+        transparent 50%,
+        rgba(255,255,255,0.2) 75%,
+        transparent 100%);
+      animation: wave 8s linear infinite;
+    }
+    .wave:nth-child(1) { top: 10%; animation-duration: 7s; opacity: 0.5; }
+    .wave:nth-child(2) { top: 25%; animation-duration: 9s; animation-delay: -2s; opacity: 0.4; }
+    .wave:nth-child(3) { top: 45%; animation-duration: 11s; animation-delay: -4s; opacity: 0.3; }
+    .wave:nth-child(4) { top: 65%; animation-duration: 8s; animation-delay: -1s; opacity: 0.4; }
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Floating Clouds */
+    .clouds {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 200px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .cloud {
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50px;
+      animation: floatCloud 60s linear infinite;
+    }
+    .cloud::before, .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud-1 { width: 100px; height: 40px; top: 30px; left: -100px; animation-duration: 45s; }
+    .cloud-2 { width: 150px; height: 50px; top: 80px; left: -150px; animation-duration: 55s; animation-delay: -20s; }
+    .cloud-3 { width: 80px; height: 30px; top: 50px; left: -80px; animation-duration: 50s; animation-delay: -10s; }
+    @keyframes floatCloud {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(100vw + 200px)); }
+    }
+
+    /* Main Game Container */
+    .game-container {
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top HUD */
+    .top-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+    }
+    .player-stats {
+      display: flex;
+      gap: 20px;
+    }
+    .stat-box {
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #ffd700;
+      border-radius: 8px;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stat-box .icon { font-size: 1.5rem; }
+    .stat-box .value { font-size: 1.2rem; font-weight: bold; color: #ffd700; }
+
+    /* Compass Rose */
+    .compass-rose {
+      position: absolute;
+      top: 80px;
+      right: 30px;
+      width: 120px;
+      height: 120px;
+      z-index: 20;
+    }
+    .compass-rose svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+
+    /* Map Area */
+    .map-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Islands */
+    .island {
+      position: absolute;
+      cursor: pointer;
+      transition: all 0.3s;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+    }
+    .island:hover { transform: scale(1.1); filter: drop-shadow(0 12px 24px rgba(0,0,0,0.6)); }
+    .island.boss { z-index: 15; }
+    .island.boss::after {
+      content: '👑';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+    .island.visited::before {
+      content: '✓';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background: #00ff00;
+      color: #000;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      z-index: 10;
+    }
+    .island.locked::after {
+      content: '🔒';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      font-size: 1.5rem;
+      z-index: 10;
+    }
+    .island-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .island-icon { font-size: 2.5rem; }
+    .island-name {
+      font-size: 0.7rem;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      margin-top: 5px;
+      text-align: center;
+      max-width: 80px;
+    }
+    .island-stars { color: #ffd700; font-size: 0.6rem; }
+
+    /* Ship */
+    .ship {
+      position: absolute;
+      z-index: 25;
+      transition: all 2s ease-in-out;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+    .ship.moving {
+      animation: shipRock 0.5s ease-in-out infinite;
+    }
+    @keyframes shipRock {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    /* Treasure Markers */
+    .treasure-marker {
+      position: absolute;
+      animation: treasureGlow 2s ease-in-out infinite;
+    }
+    @keyframes treasureGlow {
+      0%, 100% { filter: drop-shadow(0 0 5px gold); }
+      50% { filter: drop-shadow(0 0 15px gold); }
+    }
+
+    /* Route Lines */
+    .route-line {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Bottom Panel */
+    .bottom-panel {
+      background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 80%, transparent 100%);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .nav-btn {
+      padding: 15px 25px;
+      background: linear-gradient(135deg, #8b4513, #654321);
+      border: 3px solid #ffd700;
+      border-radius: 8px;
+      color: #ffd700;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn:hover {
+      background: linear-gradient(135deg, #a0522d, #8b4513);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+    }
+
+    /* Style Variants */
+    .style-a .island {
+      background: radial-gradient(ellipse at center, #228B22 0%, #006400 60%, #8B4513 80%, #654321 100%);
+      border-radius: 50% 60% 40% 50%;
+      padding: 20px;
+    }
+    .style-a .island::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 10%;
+      width: 80%;
+      height: 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 100%);
+      border-radius: 50%;
+    }
+
+    .style-b .island {
+      background: linear-gradient(135deg, #2d5a27 0%, #1a3a15 100%);
+      border-radius: 5px;
+      image-rendering: pixelated;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    }
+
+    .style-c .island {
+      background: radial-gradient(ellipse at 30% 30%, #4ade80 0%, #22c55e 50%, #166534 100%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* Style Tabs */
+    .style-tabs {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .style-tab {
+      padding: 10px 20px;
+      background: transparent;
+      border: 2px solid #ffd700;
+      color: #ffd700;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Chakra Petch', sans-serif;
+      transition: all 0.3s;
+    }
+    .style-tab:hover, .style-tab.active {
+      background: #ffd700;
+      color: #000;
+    }
+
+    /* Mini Map */
+    .mini-map {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 150px;
+      height: 150px;
+      background: rgba(0,0,0,0.6);
+      border: 3px solid #ffd700;
+      border-radius: 10px;
+      z-index: 30;
+      overflow: hidden;
+    }
+    .mini-map-content {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .mini-island {
+      position: absolute;
+      border-radius: 50%;
+      background: #228B22;
+    }
+    .mini-ship {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #ff4444;
+      border-radius: 50%;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.9);
+      border: 4px solid #ffd700;
+      border-radius: 16px;
+      padding: 30px 50px;
+      text-align: center;
+      z-index: 200;
+      display: none;
+    }
+    .notification.show { display: block; animation: popIn 0.3s ease-out; }
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+    .notification h2 { color: #ffd700; margin-bottom: 15px; font-family: 'Ma Shan Zheng', cursive; font-size: 2rem; }
+    .notification p { margin-bottom: 20px; }
+    .notification button {
+      padding: 10px 30px;
+      background: #ffd700;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ocean Background -->
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <!-- Clouds -->
+  <div class="clouds">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+  </div>
+
+  <!-- Style Tabs -->
+  <div class="style-tabs">
+    <button class="style-tab active" onclick="switchStyle('a')">🌍 方案A<br><small>复古航海</small></button>
+    <button class="style-tab" onclick="switchStyle('b')">🎮 方案B<br><small>像素复古</small></button>
+    <button class="style-tab" onclick="switchStyle('c')">⚡ 方案C<br><small>现代冒险</small></button>
+  </div>
+
+  <!-- Game Container -->
+  <div class="game-container style-a" id="gameContainer">
+    <!-- Top HUD -->
+    <div class="top-hud">
+      <div class="player-stats">
+        <div class="stat-box">
+          <span class="icon">❤️</span>
+          <span class="value">5/5</span>
+        </div>
+        <div class="stat-box">
+          <span class="icon">💎</span>
+          <span class="value">1250</span>
+        </div>
+        <div class="stat-box">
+          <span class="icon">🔑</span>
+          <span class="value">2</span>
+        </div>
+        <div class="stat-box">
+          <span class="icon">⚔️</span>
+          <span class="value">3/9</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compass Rose -->
+    <div class="compass-rose">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="compassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffd700"/>
+            <stop offset="100%" style="stop-color:#b8860b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="#8b4513" stroke="url(#compassGrad)" stroke-width="3"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#654321" stroke-width="1"/>
+        <!-- N -->
+        <polygon points="50,8 45,30 50,25 55,30" fill="#ff4444"/>
+        <!-- S -->
+        <polygon points="50,92 45,70 50,75 55,70" fill="#ffffff"/>
+        <!-- E -->
+        <polygon points="92,50 70,45 75,50 70,55" fill="#ffffff"/>
+        <!-- W -->
+        <polygon points="8,50 30,45 25,50 30,55" fill="#ffffff"/>
+        <text x="50" y="6" text-anchor="middle" fill="#ff4444" font-size="8" font-weight="bold">N</text>
+        <text x="50" y="98" text-anchor="middle" fill="#333" font-size="6">S</text>
+        <text x="96" y="52" text-anchor="middle" fill="#333" font-size="6">E</text>
+        <text x="4" y="52" text-anchor="middle" fill="#333" font-size="6">W</text>
+        <circle cx="50" cy="50" r="5" fill="url(#compassGrad)"/>
+      </svg>
+    </div>
+
+    <!-- Map Area with Islands -->
+    <div class="map-area" id="mapArea">
+      <!-- SVG Route Lines -->
+      <svg class="route-line" id="routeSvg">
+        <defs>
+          <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.8"/>
+            <stop offset="100%" style="stop-color:#ffd700;stop-opacity:0.3"/>
+          </linearGradient>
+        </defs>
+        <!-- Routes will be drawn dynamically -->
+      </svg>
+
+      <!-- Islands -->
+      <!-- Boss Island - Center Top -->
+      <div class="island boss" id="island-boss" style="left: 45%; top: 8%;" onclick="selectIsland('boss')">
+        <div class="island-content">
+          <span class="island-icon">🏝️</span>
+          <span class="island-name">东大洋守护者</span>
+          <span class="island-stars">⭐⭐⭐</span>
+        </div>
+      </div>
+
+      <!-- Math Islands -->
+      <div class="island" id="island-math-3" style="left: 25%; top: 22%;" onclick="selectIsland('math3')">
+        <div class="island-content">
+          <span class="island-icon">⚔️</span>
+          <span class="island-name">数学迷宫·挑战</span>
+          <span class="island-stars">⭐⭐⭐</span>
+        </div>
+      </div>
+      <div class="island" id="island-math-2" style="left: 15%; top: 38%;" onclick="selectIsland('math2')">
+        <div class="island-content">
+          <span class="island-icon">⚔️</span>
+          <span class="island-name">数学迷宫·进阶</span>
+          <span class="island-stars">⭐⭐</span>
+        </div>
+      </div>
+      <div class="island" id="island-math-1" style="left: 8%; top: 55%;" onclick="selectIsland('math1')">
+        <div class="island-content">
+          <span class="island-icon">⚔️</span>
+          <span class="island-name">数学迷宫·入门</span>
+          <span class="island-stars">⭐</span>
+        </div>
+      </div>
+
+      <!-- Chinese Islands -->
+      <div class="island" id="island-chinese-3" style="left: 50%; top: 28%;" onclick="selectIsland('chinese3')">
+        <div class="island-content">
+          <span class="island-icon">📖</span>
+          <span class="island-name">文字森林·挑战</span>
+          <span class="island-stars">⭐⭐⭐</span>
+        </div>
+      </div>
+      <div class="island" id="island-chinese-2" style="left: 42%; top: 45%;" onclick="selectIsland('chinese2')">
+        <div class="island-content">
+          <span class="island-icon">📖</span>
+          <span class="island-name">文字森林·进阶</span>
+          <span class="island-stars">⭐⭐</span>
+        </div>
+      </div>
+      <div class="island" id="island-chinese-1" style="left: 55%; top: 60%;" onclick="selectIsland('chinese1')">
+        <div class="island-content">
+          <span class="island-icon">📖</span>
+          <span class="island-name">文字森林·入门</span>
+          <span class="island-stars">⭐</span>
+        </div>
+      </div>
+
+      <!-- English Islands -->
+      <div class="island" id="island-english-3" style="left: 72%; top: 22%;" onclick="selectIsland('english3')">
+        <div class="island-content">
+          <span class="island-icon">🌊</span>
+          <span class="island-name">单词海洋·挑战</span>
+          <span class="island-stars">⭐⭐⭐</span>
+        </div>
+      </div>
+      <div class="island" id="island-english-2" style="left: 82%; top: 38%;" onclick="selectIsland('english2')">
+        <div class="island-content">
+          <span class="island-icon">🌊</span>
+          <span class="island-name">单词海洋·进阶</span>
+          <span class="island-stars">⭐⭐</span>
+        </div>
+      </div>
+      <div class="island" id="island-english-1" style="left: 88%; top: 55%;" onclick="selectIsland('english1')">
+        <div class="island-content">
+          <span class="island-icon">🌊</span>
+          <span class="island-name">单词海洋·入门</span>
+          <span class="island-stars">⭐</span>
+        </div>
+      </div>
+
+      <!-- Treasure Island -->
+      <div class="island treasure-marker" id="island-treasure" style="left: 30%; top: 50%;" onclick="selectIsland('treasure')">
+        <div class="island-content">
+          <span class="island-icon">📦</span>
+          <span class="island-name">宝藏岛屿</span>
+        </div>
+      </div>
+
+      <!-- Hidden Islands -->
+      <div class="island locked" id="island-hidden-a" style="left: 5%; top: 25%;" onclick="selectIsland('hiddenA')">
+        <div class="island-content">
+          <span class="island-icon">🔮</span>
+          <span class="island-name">秘密宝藏室A</span>
+          <span class="island-stars">⭐⭐</span>
+        </div>
+      </div>
+      <div class="island locked" id="island-hidden-b" style="left: 92%; top: 40%;" onclick="selectIsland('hiddenB')">
+        <div class="island-content">
+          <span class="island-icon">🔮</span>
+          <span class="island-name">秘密宝藏室B</span>
+          <span class="island-stars">⭐⭐</span>
+        </div>
+      </div>
+
+      <!-- Ship -->
+      <div class="ship" id="ship" style="left: 48%; top: 48%;">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <ellipse cx="30" cy="55" rx="20" ry="5" fill="rgba(0,0,0,0.3)"/>
+          <path d="M10,45 Q30,35 50,45 L45,25 Q30,20 15,25 Z" fill="#8B4513"/>
+          <path d="M30,10 L30,40 M20,15 L30,10 L40,15" stroke="#654321" stroke-width="2"/>
+          <polygon points="30,10 30,35 45,25" fill="#f5f5dc"/>
+          <polygon points="30,10 30,35 15,25" fill="#e8e8d0"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Mini Map -->
+    <div class="mini-map">
+      <div class="mini-map-content" id="miniMapContent">
+        <div class="mini-island" style="left: 45%; top: 8%; width: 10%; height: 8%; background: #ff6b6b;"></div>
+        <div class="mini-island" style="left: 25%; top: 22%; width: 8%; height: 6%;"></div>
+        <div class="mini-island" style="left: 50%; top: 28%; width: 8%; height: 6%;"></div>
+        <div class="mini-island" style="left: 72%; top: 22%; width: 8%; height: 6%;"></div>
+        <div class="mini-ship" id="miniShip" style="left: 48%; top: 48%;"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-panel">
+      <button class="nav-btn">🏠 船坞</button>
+      <button class="nav-btn">🏪 商店</button>
+      <button class="nav-btn">⛪ 教堂</button>
+      <button class="nav-btn">📊 港口</button>
+      <button class="nav-btn" onclick="showNotification()">⚓ 港口菜单</button>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <h2>🏝️ 岛屿选择</h2>
+    <p id="notificationText">选择一个岛屿开始探险！</p>
+    <button onclick="hideNotification()">确定</button>
+  </div>
+
+  <script>
+    // Island positions for route drawing
+    const islandPositions = {
+      boss: { x: 45, y: 8 },
+      math3: { x: 25, y: 22 },
+      math2: { x: 15, y: 38 },
+      math1: { x: 8, y: 55 },
+      chinese3: { x: 50, y: 28 },
+      chinese2: { x: 42, y: 45 },
+      chinese1: { x: 55, y: 60 },
+      english3: { x: 72, y: 22 },
+      english2: { x: 82, y: 38 },
+      english1: { x: 88, y: 55 },
+      treasure: { x: 30, y: 50 },
+      hiddenA: { x: 5, y: 25 },
+      hiddenB: { x: 92, y: 40 }
+    };
+
+    // Routes between islands
+    const routes = [
+      ['math1', 'math2'], ['math2', 'math3'], ['math3', 'boss'],
+      ['chinese1', 'chinese2'], ['chinese2', 'chinese3'], ['chinese3', 'boss'],
+      ['english1', 'english2'], ['english2', 'english3'], ['english3', 'boss'],
+      ['math1', 'chinese1'], ['chinese1', 'english1'],
+      ['math2', 'chinese2'], ['chinese2', 'english2'],
+      ['treasure', 'math2'], ['treasure', 'chinese2']
+    ];
+
+    // Draw route lines
+    function drawRoutes() {
+      const svg = document.getElementById('routeSvg');
+      svg.innerHTML = '<defs><linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#ffd700;stop-opacity:0.2"/></linearGradient></defs>';
+
+      routes.forEach(([from, to]) => {
+        const fromPos = islandPositions[from];
+        const toPos = islandPositions[to];
+        if (fromPos && toPos) {
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', fromPos.x + '%');
+          line.setAttribute('y1', fromPos.y + '%');
+          line.setAttribute('x2', toPos.x + '%');
+          line.setAttribute('y2', toPos.y + '%');
+          line.setAttribute('stroke', 'url(#routeGrad)');
+          line.setAttribute('stroke-width', '2');
+          line.setAttribute('stroke-dasharray', '5,5');
+          svg.appendChild(line);
+        }
+      });
+    }
+
+    // Select island
+    function selectIsland(islandId) {
+      const island = document.getElementById('island-' + islandId);
+      if (island.classList.contains('locked')) {
+        showNotification('🔒 这个岛屿需要钥匙才能进入！');
+        return;
+      }
+
+      const ship = document.getElementById('ship');
+      const miniShip = document.getElementById('miniShip');
+      const islandPos = islandPositions[islandId];
+
+      // Move ship
+      ship.classList.add('moving');
+      ship.style.left = (islandPos.x - 2) + '%';
+      ship.style.top = (islandPos.y + 5) + '%';
+
+      miniShip.style.left = (islandPos.x - 2) + '%';
+      miniShip.style.top = (islandPos.y + 5) + '%';
+
+      setTimeout(() => {
+        ship.classList.remove('moving');
+        showNotification('⚔️ 到达 ' + islandId + '，准备战斗！');
+      }, 2000);
+    }
+
+    // Show notification
+    function showNotification(text) {
+      const notif = document.getElementById('notification');
+      document.getElementById('notificationText').textContent = text || '选择一个岛屿开始探险！';
+      notif.classList.add('show');
+    }
+
+    // Hide notification
+    function hideNotification() {
+      document.getElementById('notification').classList.remove('show');
+    }
+
+    // Switch style
+    function switchStyle(style) {
+      const container = document.getElementById('gameContainer');
+      container.className = 'game-container style-' + style;
+
+      document.querySelectorAll('.style-tab').forEach(tab => tab.classList.remove('active'));
+      event.target.closest('.style-tab').classList.add('active');
+    }
+
+    // Mark islands as visited (for demo)
+    function markVisited(islandId) {
+      document.getElementById('island-' + islandId).classList.add('visited');
+    }
+
+    // Initialize
+    drawRoutes();
+
+    // Demo: click on islands to see ship movement
+    console.log('点击岛屿可以让船移动到该岛屿！');
+  </script>
+</body>
+</html>

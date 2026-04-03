@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npm test:*)",
+      "Bash(npx tsc:*)",
+      "Bash(q)",
+      "Bash(pkill -f \"vitest\")",
+      "Bash(python3 scripts/search.py \"entertainment gaming adventure ocean exploration retro\" --design-system -p \"Ocean Adventure Game\")",
+      "Bash(python3 src/ui-ux-pro-max/scripts/search.py \"entertainment gaming adventure ocean exploration retro\" --design-system -p \"Ocean Adventure Game\")",
+      "Bash(python3 src/ui-ux-pro-max/scripts/search.py \"entertainment gaming nautical vintage sea adventure map\" --design-system -p \"Ocean Adventure Game\")",
+      "Bash(python3 src/ui-ux-pro-max/scripts/search.py --domain style)",
+      "Bash(python3 src/ui-ux-pro-max/scripts/search.py \"vintage nautical map treasure pirate\" --domain style)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/exploration-design-showcase.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8888/exploration-design-showcase.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:9000/exploration-design-ocean.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:9090/exploration-design-reveal.html)",
+      "Bash(pkill -f vitest)"
+    ]
+  }
+}

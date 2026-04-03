@@ -13,6 +13,7 @@ import {
 } from '../game/ExplorationStateMachine'
 import { getAreasByOcean, getAreaById } from '../data/areas'
 import { getRandomQuestion } from '../game/QuestionSelector'
+import { SeededRandom, generatePortalSeed } from '../game/utils/seededRandom'
 
 // ==================== 探索相关 reducer ====================
 
@@ -250,13 +251,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const currentArea = getAreaById(state.exploration.currentArea)
     if (!currentArea) return
 
+    // P1-5: Use seeded random for reproducible portal generation
+    const timestamp = Date.now()
+    const seed = generatePortalSeed(state.exploration.currentOcean!, timestamp)
+    const rng = new SeededRandom(seed)
+
     // P1-2: Guaranteed key drop - every 5 victories = 1 key
     const newConsecutiveVictories = state.exploration.consecutiveVictoriesWithoutKey + 1
     let keyDrop = 0
 
     if (currentArea.type === 'boss') {
       keyDrop = 1  // Boss always drops
-    } else if (Math.random() < 0.3) {
+    } else if (rng.chance(0.3)) {
       keyDrop = 1  // 30% normal drop
     }
 
@@ -282,17 +288,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
     )
 
     // 生成2-3个传送门
-    const portalCount = Math.random() > 0.5 ? 3 : 2
+    const portalCount = rng.chance(0.5) ? 3 : 2
     const portals: Portal[] = []
 
     // 至少1个通向未完成区域
     if (unexploredAreas.length > 0) {
-      const randomIndex = Math.floor(Math.random() * unexploredAreas.length)
-      portals.push({
-        id: `portal_${Date.now()}_0`,
-        targetAreaId: unexploredAreas[randomIndex].id,
-        type: 'normal',
-      })
+      const target = rng.pick(unexploredAreas)
+      if (target) {
+        portals.push({
+          id: `portal_${timestamp}_0`,
+          targetAreaId: target.id,
+          type: 'normal',
+        })
+      }
     }
 
     // 其余随机
@@ -301,16 +309,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
     )
 
     while (portals.length < portalCount && availableTargets.length > 0) {
-      const idx = Math.floor(Math.random() * availableTargets.length)
-      const target = availableTargets.splice(idx, 1)[0]
+      const target = rng.pick(availableTargets)
+      if (!target) break
+      // Remove the picked target from availableTargets
+      const idx = availableTargets.indexOf(target)
+      if (idx > -1) availableTargets.splice(idx, 1)
       portals.push({
-        id: `portal_${Date.now()}_${portals.length}`,
+        id: `portal_${timestamp}_${portals.length}`,
         targetAreaId: target.id,
         type: target.type === 'hidden' ? 'hidden' : 'normal',
       })
     }
 
-    const seed = Date.now()
     get().explorationDispatch({ type: 'GENERATE_PORTALS', portals, seed })
   },
 

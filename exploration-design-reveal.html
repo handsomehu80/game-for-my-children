@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>东大洋探索 - 大航海时代</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Press+Start+2P&family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Chakra Petch', sans-serif;
+      background: #0a1628;
+      min-height: 100vh;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* Ocean Layers */
+    .ocean-container {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, #1a3a5c 0%, #0d2137 100%);
+    }
+
+    /* Animated Ocean Waves */
+    .ocean-waves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .wave-layer {
+      position: absolute;
+      width: 300%;
+      height: 200px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 600,0 900,60 C1200,120 1200,60 1200,60 L1200,120 L0,120 Z' fill='rgba(30,144,255,0.1)'/%3E%3C/svg%3E") repeat-x;
+      animation: waveMove 20s linear infinite;
+    }
+    .wave-layer:nth-child(1) { top: 5%; animation-duration: 25s; opacity: 0.3; }
+    .wave-layer:nth-child(2) { top: 15%; animation-duration: 20s; animation-delay: -5s; opacity: 0.25; }
+    .wave-layer:nth-child(3) { top: 30%; animation-duration: 30s; animation-delay: -10s; opacity: 0.2; }
+    .wave-layer:nth-child(4) { top: 50%; animation-duration: 35s; animation-delay: -15s; opacity: 0.15; }
+    .wave-layer:nth-child(5) { top: 70%; animation-duration: 28s; animation-delay: -8s; opacity: 0.1; }
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-33.33%); }
+    }
+
+    /* Fog of War / Unexplored Areas */
+    .fog-layer {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 30% 60%, transparent 20%, rgba(10,22,40,0.7) 60%);
+      pointer-events: none;
+      z-index: 50;
+      transition: all 2s;
+    }
+    .fog-layer.revealed {
+      background: radial-gradient(ellipse at var(--reveal-x, 50%) var(--reveal-y, 50%), transparent 30%, rgba(10,22,40,0.3) 70%);
+    }
+
+    /* Game Container */
+    .game-container {
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top HUD */
+    .top-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+      position: relative;
+      z-index: 60;
+    }
+    .player-stats {
+      display: flex;
+      gap: 15px;
+    }
+    .stat-box {
+      background: rgba(0,0,0,0.7);
+      border: 2px solid #8b6914;
+      border-radius: 8px;
+      padding: 8px 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(5px);
+    }
+    .stat-box .icon { font-size: 1.3rem; }
+    .stat-box .value { font-size: 1.1rem; font-weight: bold; color: #ffd700; }
+
+    .title-area {
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .title-area h1 {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.5rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(255,215,0,0.3);
+    }
+    .title-area .subtitle {
+      font-size: 0.9rem;
+      color: #88a4c8;
+      margin-top: 5px;
+    }
+
+    /* Map Area */
+    .map-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Islands - Varied Designs */
+    .island {
+      position: absolute;
+      cursor: pointer;
+      transition: all 0.5s ease-out;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+    }
+    .island:hover {
+      transform: scale(1.08);
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.7));
+    }
+    .island.locked { filter: grayscale(0.5) brightness(0.7); }
+    .island.visited::after {
+      content: '✓';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #228B22;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 2px solid #ffd700;
+    }
+
+    /* Island SVG Designs */
+    .island-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .island-label {
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 4px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+      font-size: 0.75rem;
+      color: #ffd700;
+      border: 1px solid #8b6914;
+      text-align: center;
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .island-stars {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ffd700;
+      font-size: 0.7rem;
+    }
+
+    /* Special Islands */
+    .island.boss-island .island-label { color: #ff6b6b; border-color: #ff6b6b; }
+    .island.boss-island::before {
+      content: '👑';
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      animation: crownBounce 1s ease-in-out infinite;
+      z-index: 10;
+    }
+    @keyframes crownBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+      50% { transform: translateX(-50%) translateY(-8px) scale(1.1); }
+    }
+
+    .island.treasure-island .island-label { color: #ffd700; }
+    .island.treasure-island::before {
+      content: '💎';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      animation: sparkle 1.5s ease-in-out infinite;
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+      50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+    }
+
+    .island.hidden-island .island-label { color: #9b59b6; }
+    .island.hidden-island::after {
+      content: '🔮';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      font-size: 1.2rem;
+    }
+
+    /* Ship */
+    .ship {
+      position: absolute;
+      z-index: 40;
+      transition: all 2s ease-in-out;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+    .ship.moving {
+      animation: shipRock 0.8s ease-in-out infinite;
+    }
+    @keyframes shipRock {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-5px) rotate(2deg); }
+    }
+
+    /* Compass */
+    .compass {
+      position: absolute;
+      top: 80px;
+      right: 25px;
+      width: 100px;
+      height: 100px;
+      z-index: 55;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    }
+
+    /* Mini Map */
+    .mini-map {
+      position: absolute;
+      bottom: 100px;
+      right: 20px;
+      width: 140px;
+      height: 140px;
+      background: rgba(0,0,0,0.7);
+      border: 3px solid #8b6914;
+      border-radius: 10px;
+      z-index: 55;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+    }
+    .mini-map-title {
+      background: rgba(139,105,20,0.8);
+      color: #ffd700;
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 3px;
+      font-family: 'Ma Shan Zheng', cursive;
+    }
+    .mini-map-content {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 20px);
+    }
+
+    /* Bottom Panel */
+    .bottom-panel {
+      background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 80%, transparent 100%);
+      padding: 15px 20px 25px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      z-index: 60;
+    }
+    .nav-btn {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #654321, #3d2817);
+      border: 2px solid #8b6914;
+      border-radius: 8px;
+      color: #ffd700;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-btn:hover {
+      background: linear-gradient(135deg, #8b6914, #654321);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139,105,20,0.5);
+    }
+
+    /* Reveal Animation */
+    .island.revealing {
+      animation: islandReveal 1.5s ease-out forwards;
+    }
+    @keyframes islandReveal {
+      0% { opacity: 0; transform: scale(0.5); filter: blur(10px) brightness(0.3); }
+      50% { opacity: 0.7; transform: scale(1.1); filter: blur(2px) brightness(0.8); }
+      100% { opacity: 1; transform: scale(1); filter: blur(0) brightness(1); }
+    }
+
+    /* Route Lines SVG */
+    .routes-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #2c1810, #3d2817);
+      border: 4px solid #8b6914;
+      border-radius: 16px;
+      padding: 25px 40px;
+      text-align: center;
+      z-index: 200;
+      display: none;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    }
+    .notification.show { display: block; animation: popIn 0.4s ease-out; }
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    .notification h2 {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.8rem;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+    .notification p { margin-bottom: 15px; font-size: 1rem; }
+    .notification button {
+      padding: 10px 30px;
+      background: linear-gradient(135deg, #8b6914, #654321);
+      border: 2px solid #ffd700;
+      border-radius: 8px;
+      color: #ffd700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .notification button:hover {
+      background: linear-gradient(135deg, #a67c00, #8b6914);
+    }
+
+    /* Progress indicator */
+    .exploration-progress {
+      position: absolute;
+      bottom: 85px;
+      left: 20px;
+      background: rgba(0,0,0,0.7);
+      border: 2px solid #8b6914;
+      border-radius: 8px;
+      padding: 10px 15px;
+      z-index: 55;
+    }
+    .progress-title { font-size: 0.8rem; color: #88a4c8; margin-bottom: 5px; }
+    .progress-bar {
+      width: 120px;
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #228B22, #32CD32);
+      border-radius: 4px;
+      transition: width 0.5s;
+    }
+
+    /* Controls */
+    .controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+    }
+    .ctrl-btn {
+      padding: 10px 15px;
+      background: rgba(0,0,0,0.7);
+      border: 2px solid #8b6914;
+      border-radius: 8px;
+      color: #ffd700;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .ctrl-btn:hover {
+      background: rgba(139,105,20,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="ocean-container">
+    <div class="ocean-waves">
+      <div class="wave-layer"></div>
+      <div class="wave-layer"></div>
+      <div class="wave-layer"></div>
+      <div class="wave-layer"></div>
+      <div class="wave-layer"></div>
+    </div>
+  </div>
+
+  <div class="fog-layer" id="fogLayer"></div>
+
+  <div class="controls">
+    <button class="ctrl-btn" onclick="revealAllIslands()">🔓 揭示全部岛屿</button>
+    <button class="ctrl-btn" onclick="resetReveal()">🔄 重置迷雾</button>
+  </div>
+
+  <div class="game-container">
+    <!-- Top HUD -->
+    <div class="top-hud">
+      <div class="player-stats">
+        <div class="stat-box"><span class="icon">❤️</span><span class="value">5/5</span></div>
+        <div class="stat-box"><span class="icon">💎</span><span class="value">1250</span></div>
+        <div class="stat-box"><span class="icon">🔑</span><span class="value">2</span></div>
+        <div class="stat-box"><span class="icon">⚔️</span><span class="value">3/9</span></div>
+      </div>
+      <div class="title-area">
+        <h1>🌊 东大洋探索 🌊</h1>
+        <div class="subtitle">大航海时代 - 寻找宝藏与荣耀</div>
+      </div>
+      <div style="width: 150px;"></div>
+    </div>
+
+    <!-- Map Area -->
+    <div class="map-area" id="mapArea">
+      <!-- Route Lines -->
+      <svg class="routes-svg" id="routesSvg"></svg>
+
+      <!-- Islands Container -->
+      <div id="islandsContainer">
+
+        <!-- Boss Island - Large Volcanic Island -->
+        <div class="island boss-island revealing" id="island-boss" data-x="50" data-y="8" style="left: 50%; top: 8%; transform: translateX(-50%);" onclick="selectIsland('boss')">
+          <svg width="140" height="120" viewBox="0 0 140 120">
+            <!-- Volcanic mountain shape -->
+            <ellipse cx="70" cy="110" rx="65" ry="15" fill="rgba(0,0,0,0.3)"/>
+            <path d="M10,105 Q30,90 45,95 Q55,70 70,30 Q85,70 95,95 Q110,90 130,105 Z" fill="#228B22"/>
+            <path d="M45,95 Q55,70 70,30 Q85,70 95,95" fill="#1a6b1a"/>
+            <!-- Volcano peak -->
+            <path d="M60,35 L70,15 L80,35 Z" fill="#4a4a4a"/>
+            <ellipse cx="70" cy="35" rx="12" ry="6" fill="#ff6b00"/>
+            <ellipse cx="70" cy="30" rx="8" ry="4" fill="#ff8c00"/>
+            <!-- Smoke -->
+            <circle cx="68" cy="18" r="4" fill="rgba(200,200,200,0.6)">
+              <animate attributeName="cy" values="18;8;18" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="72" cy="12" r="3" fill="rgba(200,200,200,0.4)">
+              <animate attributeName="cy" values="12;2;12" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Palm trees -->
+            <ellipse cx="25" cy="85" rx="15" ry="8" fill="#228B22"/>
+            <rect x="23" y="75" width="4" height="15" fill="#8B4513"/>
+            <ellipse cx="115" cy="88" rx="12" ry="6" fill="#228B22"/>
+            <rect x="113" y="80" width="4" height="12" fill="#8B4513"/>
+            <!-- Castle on top -->
+            <rect x="62" y="40" width="16" height="20" fill="#696969"/>
+            <rect x="60" y="38" width="6" height="8" fill="#808080"/>
+            <rect x="74" y="38" width="6" height="8" fill="#808080"/>
+          </svg>
+          <div class="island-label">东大洋守护者</div>
+          <div class="island-stars">⭐⭐⭐</div>
+        </div>
+
+        <!-- Math Island 3 - Mountain Range -->
+        <div class="island revealing" data-x="28" data-y="20" style="left: 28%; top: 20%;" onclick="selectIsland('math3')">
+          <svg width="100" height="90" viewBox="0 0 100 90">
+            <ellipse cx="50" cy="82" rx="45" ry="12" fill="rgba(0,0,0,0.3)"/>
+            <!-- Mountain range -->
+            <path d="M5,80 Q15,50 30,55 Q40,30 50,40 Q60,30 70,55 Q85,50 95,80 Z" fill="#2d5a27"/>
+            <path d="M20,60 Q30,40 40,50 Q50,35 60,50 Q70,40 80,60" fill="#3d7a37"/>
+            <!-- Snow caps -->
+            <path d="M40,30 L50,40 L60,50 Q50,35 40,30" fill="#ffffff" opacity="0.8"/>
+            <path d="M30,55 L40,50 L45,55 Q35,52 30,55" fill="#ffffff" opacity="0.6"/>
+            <!-- Cave entrance -->
+            <ellipse cx="50" cy="70" rx="8" ry="6" fill="#1a1a1a"/>
+          </svg>
+          <div class="island-label">数学迷宫·挑战</div>
+          <div class="island-stars">⭐⭐⭐</div>
+        </div>
+
+        <!-- Math Island 2 - Forest Island -->
+        <div class="island revealing" data-x="15" data-y="38" style="left: 15%; top: 38%;" onclick="selectIsland('math2')">
+          <svg width="90" height="80" viewBox="0 0 90 80">
+            <ellipse cx="45" cy="72" rx="40" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <ellipse cx="45" cy="60" rx="38" ry="25" fill="#228B22"/>
+            <ellipse cx="45" cy="50" rx="30" ry="18" fill="#2d8a2d"/>
+            <!-- Trees -->
+            <ellipse cx="25" cy="40" rx="12" ry="15" fill="#1a6b1a"/>
+            <rect x="23" y="50" width="4" height="12" fill="#8B4513"/>
+            <ellipse cx="45" cy="35" rx="15" ry="18" fill="#228B22"/>
+            <rect x="43" y="48" width="4" height="14" fill="#8B4513"/>
+            <ellipse cx="65" cy="42" rx="10" ry="12" fill="#2d8a2d"/>
+            <rect x="63" y="52" width="4" height="10" fill="#8B4513"/>
+          </svg>
+          <div class="island-label">数学迷宫·进阶</div>
+          <div class="island-stars">⭐⭐</div>
+        </div>
+
+        <!-- Math Island 1 - Small Beach -->
+        <div class="island revealing" data-x="8" data-y="55" style="left: 8%; top: 55%;" onclick="selectIsland('math1')">
+          <svg width="70" height="60" viewBox="0 0 70 60">
+            <!-- Beach -->
+            <ellipse cx="35" cy="50" rx="32" ry="12" fill="#f4d03f"/>
+            <ellipse cx="35" cy="48" rx="28" ry="8" fill="#e6c229"/>
+            <!-- Water edge -->
+            <ellipse cx="35" cy="45" rx="30" ry="8" fill="#5dade2" opacity="0.5"/>
+            <!-- Palm tree -->
+            <path d="M35,48 Q38,30 35,15" stroke="#8B4513" stroke-width="4" fill="none"/>
+            <ellipse cx="28" cy="18" rx="10" ry="6" fill="#228B22" transform="rotate(-30 28 18)"/>
+            <ellipse cx="42" cy="18" rx="10" ry="6" fill="#228B22" transform="rotate(30 42 18)"/>
+            <ellipse cx="35" cy="12" rx="8" ry="5" fill="#2d8a2d"/>
+            <!-- Coconut -->
+            <circle cx="33" cy="22" r="2" fill="#8B4513"/>
+            <circle cx="37" cy="24" r="2" fill="#8B4513"/>
+          </svg>
+          <div class="island-label">数学迷宫·入门</div>
+          <div class="island-stars">⭐</div>
+        </div>
+
+        <!-- Chinese Island 3 - Pagoda Island -->
+        <div class="island revealing" data-x="55" data-y="26" style="left: 55%; top: 26%;" onclick="selectIsland('chinese3')">
+          <svg width="110" height="100" viewBox="0 0 110 100">
+            <ellipse cx="55" cy="92" rx="50" ry="12" fill="rgba(0,0,0,0.3)"/>
+            <!-- Island base -->
+            <ellipse cx="55" cy="80" rx="48" ry="18" fill="#228B22"/>
+            <!-- Pagoda -->
+            <rect x="45" y="55" width="20" height="25" fill="#8b0000"/>
+            <path d="M40,55 L55,40 L70,55 Z" fill="#8b0000"/>
+            <path d="M38,48 L55,30 L72,48 Z" fill="#a52a2a"/>
+            <rect x="48" y="60" width="14" height="18" fill="#2c1810"/>
+            <rect x="50" y="62" width="4" height="6" fill="#ffd700"/>
+            <rect x="56" y="62" width="4" height="6" fill="#ffd700"/>
+            <!-- Top spire -->
+            <rect x="53" y="25" width="4" height="10" fill="#ffd700"/>
+            <circle cx="55" cy="22" r="4" fill="#ffd700"/>
+            <!-- Decorations -->
+            <ellipse cx="25" cy="75" rx="10" ry="6" fill="#2d8a2d"/>
+            <ellipse cx="85" cy="78" rx="8" ry="5" fill="#2d8a2d"/>
+          </svg>
+          <div class="island-label">文字森林·挑战</div>
+          <div class="island-stars">⭐⭐⭐</div>
+        </div>
+
+        <!-- Chinese Island 2 - Bamboo Grove -->
+        <div class="island revealing" data-x="45" data-y="44" style="left: 45%; top: 44%;" onclick="selectIsland('chinese2')">
+          <svg width="95" height="85" viewBox="0 0 95 85">
+            <ellipse cx="47" cy="78" rx="42" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <ellipse cx="47" cy="68" rx="40" ry="18" fill="#228B22"/>
+            <!-- Bamboo -->
+            <rect x="25" y="25" width="5" height="45" fill="#90EE90"/>
+            <rect x="25" y="30" width="5" height="2" fill="#228B22"/>
+            <rect x="25" y="40" width="5" height="2" fill="#228B22"/>
+            <rect x="25" y="50" width="5" height="2" fill="#228B22"/>
+            <rect x="40" y="20" width="5" height="50" fill="#90EE90"/>
+            <rect x="40" y="28" width="5" height="2" fill="#228B22"/>
+            <rect x="40" y="40" width="5" height="2" fill="#228B22"/>
+            <rect x="40" y="52" width="5" height="2" fill="#228B22"/>
+            <rect x="55" y="28" width="5" height="42" fill="#90EE90"/>
+            <rect x="55" y="35" width="5" height="2" fill="#228B22"/>
+            <rect x="55" y="48" width="5" height="2" fill="#228B22"/>
+            <rect x="70" y="32" width="5" height="38" fill="#90EE90"/>
+            <rect x="70" y="40" width="5" height="2" fill="#228B22"/>
+            <rect x="70" y="52" width="5" height="2" fill="#228B22"/>
+            <!-- Bamboo leaves -->
+            <ellipse cx="20" cy="25" rx="8" ry="4" fill="#228B22" transform="rotate(-20 20 25)"/>
+            <ellipse cx="50" cy="18" rx="8" ry="4" fill="#228B22" transform="rotate(15 50 18)"/>
+            <ellipse cx="75" cy="30" rx="8" ry="4" fill="#228B22" transform="rotate(-10 75 30)"/>
+          </svg>
+          <div class="island-label">文字森林·进阶</div>
+          <div class="island-stars">⭐⭐</div>
+        </div>
+
+        <!-- Chinese Island 1 - Lotus Pond -->
+        <div class="island revealing" data-x="58" data-y="62" style="left: 58%; top: 62%;" onclick="selectIsland('chinese1')">
+          <svg width="85" height="75" viewBox="0 0 85 75">
+            <ellipse cx="42" cy="68" rx="38" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <!-- Island -->
+            <ellipse cx="42" cy="55" rx="35" ry="18" fill="#228B22"/>
+            <!-- Pond -->
+            <ellipse cx="42" cy="58" rx="20" ry="10" fill="#5dade2"/>
+            <!-- Lotus flowers -->
+            <ellipse cx="35" cy="55" rx="4" ry="6" fill="#ff69b4"/>
+            <ellipse cx="42" cy="52" rx="3" ry="5" fill="#ff1493"/>
+            <ellipse cx="49" cy="56" rx="4" ry="5" fill="#ff69b4"/>
+            <!-- Lily pads -->
+            <ellipse cx="38" cy="60" rx="5" ry="3" fill="#228B22"/>
+            <ellipse cx="48" cy="59" rx="4" ry="2" fill="#2d8a2d"/>
+            <!-- Small tree -->
+            <ellipse cx="65" cy="45" rx="10" ry="12" fill="#228B22"/>
+            <rect x="63" y="55" width="4" height="8" fill="#8B4513"/>
+          </svg>
+          <div class="island-label">文字森林·入门</div>
+          <div class="island-stars">⭐</div>
+        </div>
+
+        <!-- English Island 3 - Lighthouse Island -->
+        <div class="island revealing" data-x="75" data-y="20" style="left: 75%; top: 20%;" onclick="selectIsland('english3')">
+          <svg width="100" height="110" viewBox="0 0 100 110">
+            <ellipse cx="50" cy="102" rx="45" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <!-- Rocky base -->
+            <path d="M10,95 Q20,85 30,90 Q40,80 50,88 Q60,78 70,88 Q80,82 90,95 Z" fill="#696969"/>
+            <path d="M15,92 Q30,85 45,90 Q55,82 70,88 Q82,85 88,92 Z" fill="#808080"/>
+            <!-- Lighthouse -->
+            <rect x="42" y="40" width="16" height="50" fill="#f5f5f5"/>
+            <rect x="40" y="35" width="20" height="8" fill="#f5f5f5"/>
+            <path d="M38,35 L50,20 L62,35 Z" fill="#ff0000"/>
+            <circle cx="50" cy="28" r="4" fill="#ffff00">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Light beams -->
+            <path d="M50,28 L20,45 L25,50 Z" fill="rgba(255,255,0,0.2)">
+              <animate attributeName="opacity" values="0.2;0.4;0.2" dur="1s" repeatCount="indefinite"/>
+            </path>
+            <path d="M50,28 L80,45 L75,50 Z" fill="rgba(255,255,0,0.2)">
+              <animate attributeName="opacity" values="0.2;0.4;0.2" dur="1s" repeatCount="indefinite"/>
+            </path>
+            <!-- Door and windows -->
+            <rect x="46" y="75" width="8" height="12" fill="#8B4513"/>
+            <rect x="44" y="50" width="5" height="6" fill="#87CEEB"/>
+            <rect x="51" y="50" width="5" height="6" fill="#87CEEB"/>
+            <rect x="44" y="62" width="5" height="6" fill="#87CEEB"/>
+            <rect x="51" y="62" width="5" height="6" fill="#87CEEB"/>
+          </svg>
+          <div class="island-label">单词海洋·挑战</div>
+          <div class="island-stars">⭐⭐⭐</div>
+        </div>
+
+        <!-- English Island 2 - Shipwreck Island -->
+        <div class="island revealing" data-x="85" data-y="40" style="left: 85%; top: 40%;" onclick="selectIsland('english2')">
+          <svg width="90" height="80" viewBox="0 0 90 80">
+            <ellipse cx="45" cy="72" rx="40" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <!-- Sandy island -->
+            <ellipse cx="45" cy="62" rx="38" ry="16" fill="#f4d03f"/>
+            <ellipse cx="45" cy="58" rx="30" ry="10" fill="#e6c229"/>
+            <!-- Shipwreck -->
+            <path d="M25,50 L35,35 L55,35 L60,50 L55,55 L30,55 Z" fill="#8B4513"/>
+            <rect x="38" y="25" width="4" height="15" fill="#654321"/>
+            <polygon points="40,25 40,38 55,38" fill="#d4a574"/>
+            <!-- Broken mast -->
+            <rect x="48" y="30" width="3" height="20" fill="#654321" transform="rotate(15 49 40)"/>
+            <!-- Debris -->
+            <rect x="20" y="55" width="8" height="3" fill="#8B4513" transform="rotate(-10 24 56)"/>
+            <rect x="65" y="52" width="6" height="3" fill="#654321" transform="rotate(20 68 53)"/>
+            <!-- Seaweed -->
+            <path d="M30,60 Q32,50 30,45" stroke="#228B22" stroke-width="2" fill="none"/>
+            <path d="M55,58 Q58,48 55,42" stroke="#228B22" stroke-width="2" fill="none"/>
+          </svg>
+          <div class="island-label">单词海洋·进阶</div>
+          <div class="island-stars">⭐⭐</div>
+        </div>
+
+        <!-- English Island 1 - Coral Reef -->
+        <div class="island revealing" data-x="90" data-y="58" style="left: 90%; top: 58%;" onclick="selectIsland('english1')">
+          <svg width="75" height="65" viewBox="0 0 75 65">
+            <ellipse cx="37" cy="58" rx="33" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <!-- Small island -->
+            <ellipse cx="37" cy="52" rx="30" ry="12" fill="#f4d03f"/>
+            <!-- Water -->
+            <ellipse cx="37" cy="48" rx="25" ry="8" fill="#5dade2" opacity="0.4"/>
+            <!-- Coral -->
+            <ellipse cx="20" cy="48" rx="6" ry="8" fill="#ff69b4"/>
+            <ellipse cx="30" cy="45" rx="5" ry="10" fill="#ff1493"/>
+            <ellipse cx="45" cy="47" rx="6" ry="9" fill="#ff69b4"/>
+            <ellipse cx="55" cy="50" rx="4" ry="7" fill="#db7093"/>
+            <!-- Fish -->
+            <ellipse cx="15" cy="40" rx="4" ry="2" fill="#ffa500">
+              <animate attributeName="cx" values="15;25;15" dur="3s" repeatCount="indefinite"/>
+            </ellipse>
+            <ellipse cx="55" cy="38" rx="3" ry="2" fill="#00ffff">
+              <animate attributeName="cx" values="55;45;55" dur="2.5s" repeatCount="indefinite"/>
+            </ellipse>
+          </svg>
+          <div class="island-label">单词海洋·入门</div>
+          <div class="island-stars">⭐</div>
+        </div>
+
+        <!-- Treasure Island - Golden Island -->
+        <div class="island treasure-island revealing" data-x="32" data-y="52" style="left: 32%; top: 52%;" onclick="selectIsland('treasure')">
+          <svg width="95" height="85" viewBox="0 0 95 85">
+            <ellipse cx="47" cy="78" rx="42" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <!-- Island -->
+            <ellipse cx="47" cy="65" rx="40" ry="18" fill="#228B22"/>
+            <ellipse cx="47" cy="60" rx="35" ry="12" fill="#2d8a2d"/>
+            <!-- Treasure chest -->
+            <rect x="32" y="50" width="30" height="20" rx="3" fill="#8B4513"/>
+            <rect x="32" y="50" width="30" height="8" fill="#a0522d"/>
+            <rect x="44" y="52" width="6" height="8" fill="#ffd700"/>
+            <circle cx="47" cy="56" r="2" fill="#ffd700"/>
+            <!-- Gold coins spilling -->
+            <circle cx="28" cy="62" r="4" fill="#ffd700"/>
+            <circle cx="35" cy="65" r="3" fill="#ffd700"/>
+            <circle cx="62" cy="63" r="4" fill="#ffd700"/>
+            <circle cx="68" cy="60" r="3" fill="#ffd700"/>
+            <circle cx="25" cy="58" r="2" fill="#ffec8b"/>
+            <circle cx="72" cy="65" r="2" fill="#ffec8b"/>
+            <!-- Sparkles -->
+            <polygon points="40,45 42,48 45,45 42,42" fill="#ffd700">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+            </polygon>
+            <polygon points="55,42 57,45 60,42 57,39" fill="#ffd700">
+              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+            </polygon>
+          </svg>
+          <div class="island-label">宝藏岛屿</div>
+        </div>
+
+        <!-- Hidden Island A - Mystical Cave -->
+        <div class="island hidden-island locked" data-x="5" data-y="28" style="left: 5%; top: 28%;" onclick="selectIsland('hiddenA')">
+          <svg width="85" height="75" viewBox="0 0 85 75">
+            <ellipse cx="42" cy="68" rx="38" ry="10" fill="rgba(0,0,0,0.3)"/>
+            <!-- Dark island -->
+            <ellipse cx="42" cy="58" rx="36" ry="16" fill="#1a1a2e"/>
+            <ellipse cx="42" cy="52" rx="28" ry="10" fill="#0d0d1a"/>
+            <!-- Glowing crystals -->
+            <polygon points="25,45 28,35 31,45" fill="#9b59b6">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+            </polygon>
+            <polygon points="40,40 44,25 48,40" fill="#8e44ad">
+              <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+            </polygon>
+            <polygon points="55,45 58,32 61,45" fill="#9b59b6">
+              <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite"/>
+            </polygon>
+            <!-- Cave entrance -->
+            <ellipse cx="42" cy="55" rx="10" ry="8" fill="#050510"/>
+            <!-- Mystical fog -->
+            <ellipse cx="42" cy="50" rx="20" ry="6" fill="rgba(138,43,226,0.3)">
+              <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite"/>
+            </ellipse>
+          </svg>
+          <div class="island-label">秘密宝藏室A 🔒</div>
+          <div class="island-stars">⭐⭐</div>
+        </div>
+
+        <!-- Hidden Island B - Ancient Ruins -->
+        <div class="island hidden-island locked" data-x="93" data-y="45" style="left: 93%; top: 45%;" onclick="selectIsland('hiddenB')">
+          <svg width="80" height="70" viewBox="0 0 80 70">
+            <ellipse cx="40" cy="65" rx="35" ry="8" fill="rgba(0,0,0,0.3)"/>
+            <!-- Overgrown island -->
+            <ellipse cx="40" cy="55" rx="32" ry="14" fill="#228B22"/>
+            <!-- Ruins -->
+            <rect x="15" y="35" width="8" height="22" fill="#808080"/>
+            <rect x="28" y="30" width="6" height="27" fill="#696969"/>
+            <rect x="38" y="25" width="10" height="32" fill="#808080"/>
+            <rect x="52" y="35" width="8" height="22" fill="#696969"/>
+            <rect x="60" y="40" width="6" height="17" fill="#808080"/>
+            <!-- Broken column top -->
+            <rect x="14" y="30" width="10" height="5" fill="#909090"/>
+            <rect x="27" y="25" width="8" height="5" fill="#787878"/>
+            <!-- Vines -->
+            <path d="M38,25 Q35,15 40,10" stroke="#228B22" stroke-width="2" fill="none"/>
+            <path d="M52,35 Q55,28 52,22" stroke="#2d8a2d" stroke-width="2" fill="none"/>
+            <!-- Glowing orb -->
+            <circle cx="40" cy="18" r="5" fill="#00ffff">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+          <div class="island-label">秘密宝藏室B 🔒</div>
+          <div class="island-stars">⭐⭐</div>
+        </div>
+
+      </div>
+
+      <!-- Ship -->
+      <div class="ship" id="ship" style="left: 48%; top: 48%;">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <!-- Water reflection -->
+          <ellipse cx="30" cy="55" rx="18" ry="4" fill="rgba(0,0,0,0.2)"/>
+          <!-- Hull -->
+          <path d="M8,45 Q15,38 30,38 Q45,38 52,45 L48,28 Q30,24 12,28 Z" fill="#8B4513"/>
+          <path d="M10,43 Q18,38 30,38 Q42,38 50,43 L47,30 Q30,26 13,30 Z" fill="#a0522d"/>
+          <!-- Deck -->
+          <path d="M12,38 L15,30 L45,30 L48,38 Z" fill="#d2691e"/>
+          <!-- Mast -->
+          <rect x="28" y="12" width="4" height="28" fill="#654321"/>
+          <!-- Crow's nest -->
+          <rect x="26" y="10" width="8" height="6" fill="#8B4513"/>
+          <!-- Sails -->
+          <path d="M32,14 L32,35 L50,32 Z" fill="#f5f5dc"/>
+          <path d="M28,14 L28,35 L10,32 Z" fill="#e8e8d0"/>
+          <!-- Flag -->
+          <polygon points="30,10 30,18 38,14" fill="#ff0000"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Compass -->
+    <div class="compass">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="compassGradA" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffd700"/>
+            <stop offset="100%" style="stop-color:#8b6914"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="#2c1810" stroke="url(#compassGradA)" stroke-width="3"/>
+        <circle cx="50" cy="50" r="42" fill="none" stroke="#8b6914" stroke-width="1"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#654321" stroke-width="1"/>
+        <!-- Direction markers -->
+        <polygon points="50,8 45,30 50,25 55,30" fill="#ff4444"/>
+        <polygon points="50,92 45,70 50,75 55,70" fill="#f5f5f5"/>
+        <polygon points="92,50 70,45 75,50 70,55" fill="#f5f5f5"/>
+        <polygon points="8,50 30,45 25,50 30,55" fill="#f5f5f5"/>
+        <!-- Center -->
+        <circle cx="50" cy="50" r="6" fill="url(#compassGradA)"/>
+        <circle cx="50" cy="50" r="3" fill="#ffd700"/>
+        <!-- Labels -->
+        <text x="50" y="7" text-anchor="middle" fill="#ff4444" font-size="9" font-weight="bold" font-family="'Ma Shan Zheng'">北</text>
+        <text x="50" y="97" text-anchor="middle" fill="#333" font-size="7">南</text>
+        <text x="95" y="52" text-anchor="middle" fill="#333" font-size="7">东</text>
+        <text x="5" y="52" text-anchor="middle" fill="#333" font-size="7">西</text>
+      </svg>
+    </div>
+
+    <!-- Mini Map -->
+    <div class="mini-map">
+      <div class="mini-map-title">🌍 东大洋</div>
+      <div class="mini-map-content" id="miniMapContent">
+        <svg width="100%" height="100%" viewBox="0 0 100 100">
+          <!-- Mini islands -->
+          <circle cx="50" cy="10" r="4" fill="#ff6b6b"/>
+          <circle cx="28" cy="22" r="3" fill="#228B22"/>
+          <circle cx="55" cy="28" r="3" fill="#228B22"/>
+          <circle cx="75" cy="22" r="3" fill="#228B22"/>
+          <circle cx="15" cy="40" r="2.5" fill="#228B22"/>
+          <circle cx="45" cy="46" r="2.5" fill="#228B22"/>
+          <circle cx="58" cy="64" r="2.5" fill="#228B22"/>
+          <circle cx="85" cy="42" r="2.5" fill="#228B22"/>
+          <circle cx="90" cy="60" r="2" fill="#228B22"/>
+          <circle cx="32" cy="54" r="3" fill="#ffd700"/>
+          <circle cx="5" cy="30" r="2" fill="#9b59b6"/>
+          <circle cx="93" cy="47" r="2" fill="#9b59b6"/>
+          <!-- Ship -->
+          <circle id="miniShip" cx="50" cy="50" r="3" fill="#ff4444"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Exploration Progress -->
+    <div class="exploration-progress">
+      <div class="progress-title">探索进度</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 23%;"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-panel">
+      <button class="nav-btn">🏠 船坞</button>
+      <button class="nav-btn">🏪 商店</button>
+      <button class="nav-btn">⛪ 教堂</button>
+      <button class="nav-btn">📊 港口</button>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <h2 id="notifTitle">🏝️ 提示</h2>
+    <p id="notifText">选择一个岛屿开始探险！</p>
+    <button onclick="hideNotification()">确定</button>
+  </div>
+
+  <script>
+    // Island positions for navigation
+    const islandData = {
+      boss: { x: 50, y: 8, name: '东大洋守护者', stars: '⭐⭐⭐' },
+      math3: { x: 28, y: 20, name: '数学迷宫·挑战', stars: '⭐⭐⭐' },
+      math2: { x: 15, y: 38, name: '数学迷宫·进阶', stars: '⭐⭐' },
+      math1: { x: 8, y: 55, name: '数学迷宫·入门', stars: '⭐' },
+      chinese3: { x: 55, y: 26, name: '文字森林·挑战', stars: '⭐⭐⭐' },
+      chinese2: { x: 45, y: 44, name: '文字森林·进阶', stars: '⭐⭐' },
+      chinese1: { x: 58, y: 62, name: '文字森林·入门', stars: '⭐' },
+      english3: { x: 75, y: 20, name: '单词海洋·挑战', stars: '⭐⭐⭐' },
+      english2: { x: 85, y: 40, name: '单词海洋·进阶', stars: '⭐⭐' },
+      english1: { x: 90, y: 58, name: '单词海洋·入门', stars: '⭐' },
+      treasure: { x: 32, y: 52, name: '宝藏岛屿', stars: '' },
+      hiddenA: { x: 5, y: 28, name: '秘密宝藏室A', stars: '⭐⭐', locked: true },
+      hiddenB: { x: 93, y: 45, name: '秘密宝藏室B', stars: '⭐⭐', locked: true }
+    };
+
+    let visitedCount = 0;
+    const totalIslands = 13;
+
+    // Reveal all islands (for demo)
+    function revealAllIslands() {
+      document.querySelectorAll('.island').forEach((island, i) => {
+        setTimeout(() => {
+          island.classList.remove('locked');
+          island.querySelector('.island-label').textContent = island.querySelector('.island-label').textContent.replace(' 🔒', '');
+        }, i * 100);
+      });
+      document.getElementById('fogLayer').classList.add('revealed');
+    }
+
+    // Reset fog
+    function resetReveal() {
+      document.querySelectorAll('.island').forEach(island => {
+        island.classList.add('revealing');
+        if (island.classList.contains('hidden-island')) {
+          island.classList.add('locked');
+        }
+      });
+      visitedCount = 0;
+      updateProgress();
+      showNotification('重置探索进度', '准备好开始新的探险！');
+    }
+
+    // Select island
+    function selectIsland(id) {
+      const island = document.getElementById('island-' + id);
+      const data = islandData[id];
+
+      if (island.classList.contains('locked')) {
+        showNotification('🔒 需要钥匙', '这个岛屿需要钥匙才能进入！');
+        return;
+      }
+
+      const ship = document.getElementById('ship');
+      const miniShip = document.getElementById('miniShip');
+
+      // Move ship
+      ship.classList.add('moving');
+      ship.style.left = (data.x - 3) + '%';
+      ship.style.top = (data.y + 5) + '%';
+
+      miniShip.setAttribute('cx', data.x + '%');
+      miniShip.setAttribute('cy', (data.y + 5) + '%');
+
+      // Update fog to reveal around this area
+      const fog = document.getElementById('fogLayer');
+      fog.style.setProperty('--reveal-x', data.x + '%');
+      fog.style.setProperty('--reveal-y', data.y + '%');
+      fog.classList.add('revealed');
+
+      // Mark as visited
+      if (!island.classList.contains('visited')) {
+        island.classList.add('visited');
+        visitedCount++;
+        updateProgress();
+      }
+
+      setTimeout(() => {
+        ship.classList.remove('moving');
+
+        if (id === 'boss') {
+          showNotification('👑 准备战斗！', '东大洋守护者出现！准备战斗！');
+        } else if (id === 'treasure') {
+          showNotification('💎 发现宝藏！', '恭喜找到宝藏岛屿！获得奖励！');
+        } else {
+          showNotification('⚔️ 抵达 ' + data.name, '准备开始知识挑战！');
+        }
+      }, 2000);
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      const percent = Math.round((visitedCount / totalIslands) * 100);
+      document.getElementById('progressFill').style.width = percent + '%';
+    }
+
+    // Show notification
+    function showNotification(title, text) {
+      document.getElementById('notifTitle').textContent = title;
+      document.getElementById('notifText').textContent = text;
+      document.getElementById('notification').classList.add('show');
+    }
+
+    // Hide notification
+    function hideNotification() {
+      document.getElementById('notification').classList.remove('show');
+    }
+
+    // Draw route lines on main map
+    function drawRoutes() {
+      const routes = [
+        ['math1', 'math2'], ['math2', 'math3'], ['math3', 'boss'],
+        ['chinese1', 'chinese2'], ['chinese2', 'chinese3'], ['chinese3', 'boss'],
+        ['english1', 'english2'], ['english2', 'english3'], ['english3', 'boss'],
+        ['math1', 'chinese1'], ['chinese1', 'english1'],
+        ['math2', 'chinese2'], ['chinese2', 'english2'],
+        ['treasure', 'math2'], ['treasure', 'chinese2']
+      ];
+
+      const svg = document.getElementById('routesSvg');
+      svg.innerHTML = '<defs><linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.4"/><stop offset="100%" style="stop-color:#ffd700;stop-opacity:0.15"/></linearGradient></defs>';
+
+      routes.forEach(([from, to]) => {
+        const fromData = islandData[from];
+        const toData = islandData[to];
+        if (fromData && toData) {
+          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          line.setAttribute('x1', fromData.x + '%');
+          line.setAttribute('y1', fromData.y + '%');
+          line.setAttribute('x2', toData.x + '%');
+          line.setAttribute('y2', toData.y + '%');
+          line.setAttribute('stroke', 'url(#routeGrad)');
+          line.setAttribute('stroke-width', '1');
+          line.setAttribute('stroke-dasharray', '4,4');
+          svg.appendChild(line);
+        }
+      });
+    }
+
+    // Initialize
+    drawRoutes();
+
+    // Show intro notification
+    setTimeout(() => {
+      showNotification('🌊 欢迎来到东大洋！', '点击岛屿开始你的探险之旅');
+    }, 1500);
+  </script>
+</body>
+</html>

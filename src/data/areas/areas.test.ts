@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { eastAreas, getAreasByOcean, getAreaById, getDifficultyStars } from './index'
+import { getAreasByOcean, getAreaById, getDifficultyStars } from './index'
 
 describe('Areas Data', () => {
   it('东大洋应有13个区域', () => {
