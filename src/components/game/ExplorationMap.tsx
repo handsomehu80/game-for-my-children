@@ -5,6 +5,7 @@ import { AreaNode } from './AreaNode'
 import { Portal } from './Portal'
 import { ConfirmDialog } from './ConfirmDialog'
 import { DangerConfirmDialog } from './DangerConfirmDialog'
+import OceanSailingScene from './OceanSailingScene'
 
 export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
@@ -23,6 +24,10 @@ export default function ExplorationMap() {
   const [showAreaConfirm, setShowAreaConfirm] = useState(false)
   const [pendingAreaId, setPendingAreaId] = useState<string | null>(null)
   const [showExitConfirm, setShowExitConfirm] = useState(false)
+
+  // Sailing state
+  const [isSailing, setIsSailing] = useState(false)
+  const [sailingTarget, setSailingTarget] = useState<{x: number, y: number} | null>(null)
 
   // P0-1: Extract magic number to named constant
   const HIDDEN_EVENT_PROBABILITY = 0.2
@@ -51,10 +56,27 @@ export default function ExplorationMap() {
   // 区域确认对话框处理
   const handleAreaConfirm = () => {
     if (pendingAreaId) {
-      selectArea(pendingAreaId)
+      const area = getAreaById(pendingAreaId)
+      if (area) {
+        // Start sailing animation
+        setSailingTarget({ x: area.position.x, y: area.position.z })
+        setIsSailing(true)
+        // Note: The actual state transition to 'sailing' happens via selectArea below
+        selectArea(pendingAreaId)
+      }
     }
     setShowAreaConfirm(false)
     setPendingAreaId(null)
+  }
+
+  const handleSailingArrived = () => {
+    setIsSailing(false)
+    setSailingTarget(null)
+    explorationDispatch({ type: 'SAILING_COMPLETE' })
+    // Small delay then transition to moving
+    setTimeout(() => {
+      explorationDispatch({ type: 'ARRIVED' })
+    }, 300)
   }
 
   const handleAreaCancel = () => {
@@ -157,6 +179,19 @@ export default function ExplorationMap() {
   }
 
   return (
+    <>
+      {/* Sailing Animation Scene */}
+      {isSailing && sailingTarget && (
+        <OceanSailingScene
+          isActive={isSailing}
+          startPosition={{ x: 0, y: 0 }}
+          endPosition={sailingTarget}
+          onArrived={handleSailingArrived}
+          isReducedMotion={false}
+        />
+      )}
+
+      <div className="exploration-map" style={{ position: 'relative', width: '700px', margin: '0 auto', padding: '20px' }}>
     <div className="exploration-map" style={{ position: 'relative', width: '700px', margin: '0 auto', padding: '20px' }}>
       <h2 style={{ textAlign: 'center' }}>🗺️ {exploration.currentOcean === 'east' ? '东大洋' : exploration.currentOcean} 探索地图</h2>
 
@@ -215,6 +250,8 @@ export default function ExplorationMap() {
       {/* 当前状态提示 */}
       <div className="phase-indicator" style={{ marginTop: '16px', textAlign: 'center' }}>
         {exploration.phase === 'exploring' && <span>选择要探索的区域</span>}
+        {exploration.phase === 'sailing' && <span>⛵ 航行中...</span>}
+        {exploration.phase === 'arrived' && <span>🏝️ 到达！</span>}
         {exploration.phase === 'moving' && <span>移动中...</span>}
         {exploration.phase === 'encounter' && <span>遭遇判定中...</span>}
         {exploration.phase === 'battle' && <span>战斗开始！</span>}
@@ -323,5 +360,6 @@ export default function ExplorationMap() {
         onCancel={() => setShowExitConfirm(false)}
       />
     </div>
+    </>
   )
 }

@@ -205,8 +205,11 @@ describe('Game Store', () => {
       startExploration('east')
 
       // Manually dispatch to victory phase and receive key
+      // Full flow: exploring -> sailing -> arrived -> moving -> encounter -> battle -> victory
       explorationDispatch({ type: 'START_EXPLORATION', oceanId: 'east' })
       explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
+      explorationDispatch({ type: 'SAILING_COMPLETE' })
+      explorationDispatch({ type: 'ARRIVED' })
       explorationDispatch({ type: 'MOVE_COMPLETE' })
       explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
       explorationDispatch({ type: 'BATTLE_WIN', areaId: 'east_math_1' })

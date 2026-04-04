@@ -24,13 +24,13 @@ describe('ExplorationStateMachine', () => {
   })
 
   describe('SELECT_AREA', () => {
-    it('应从exploring转换到moving', () => {
+    it('应从exploring转换到sailing', () => {
       const state = { ...initialExplorationState, currentOcean: 'east' }
       const result = explorationTransition(state, {
         type: 'SELECT_AREA',
         areaId: 'east_math_1',
       })
-      expect(result.phase).toBe('moving')
+      expect(result.phase).toBe('sailing')
       expect(result.currentArea).toBe('east_math_1')
     })
 
