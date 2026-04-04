@@ -79,7 +79,7 @@ export default function ExplorationMap() {
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [explorationDispatch])
+  }, [exploration, explorationDispatch])
 
   // 模拟遭遇判定
   useEffect(() => {
