@@ -1,0 +1,66 @@
+<h2>P2 优化项目概览</h2>
+<p class="subtitle">4 个优化建议 - 目标用户：儿童玩家</p>
+
+<div class="section">
+<h3>4 个 P2 优化项</h3>
+<div class="options">
+  <div class="option" data-choice="p2-1" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h4>P2-1: SVG 加载性能</h4>
+      <p>使用 SVG sprites 或 CSS containment 隔离重绘，减少 DOM 节点数量</p>
+    </div>
+  </div>
+  <div class="option" data-choice="p2-2" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h4>P2-2: 色盲/视力障碍支持</h4>
+      <p>添加高对比度模式 + 图案/纹理辅助辨识岛屿类型</p>
+    </div>
+  </div>
+  <div class="option" data-choice="p2-3" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h4>P2-3: 儿童确认面板</h4>
+      <p>简化确认流程，大按钮 + 重复提示，避免误触</p>
+    </div>
+  </div>
+  <div class="option" data-choice="p2-4" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h4>P2-4: 隐藏岛屿可见性</h4>
+      <p>添加微弱发光效果提示（不破坏探索惊喜）</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>设计方向</h3>
+<p>这些优化涉及不同方面，你想如何处理？</p>
+<div class="options">
+  <div class="option" data-choice="integrated" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h4>统一设计系统</h4>
+      <p>一次性定义好无障碍+儿童友好的完整设计规范，4 个优化全部遵循</p>
+    </div>
+  </div>
+  <div class="option" data-choice="sequential" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h4>逐个实现</h4>
+      <p>按优先级逐个设计+实现 P2-3 → P2-2 → P2-4 → P2-1</p>
+    </div>
+  </div>
+  <div class="option" data-choice="critical-first" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h4>关键优先</h4>
+      <p>先做 P2-2（无障碍）+ P2-3（儿童友好），再做其他</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<p class="label" style="margin-top: 24px">点击选择设计方案方向</p>

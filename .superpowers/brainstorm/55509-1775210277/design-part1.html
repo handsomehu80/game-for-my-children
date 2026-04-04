@@ -1,0 +1,83 @@
+<h2>设计方案 - 第一部分：整体架构</h2>
+<p class="subtitle">Claymorphism 风格 + 无障碍支持</p>
+
+<div class="section">
+<h3>设计系统基础</h3>
+<div class="pros-cons">
+  <div class="pros">
+    <h4>色彩方案</h4>
+    <ul>
+      <li>主色：#2563EB（学习蓝）</li>
+      <li>次色：#3B82F6（海洋蓝）</li>
+      <li>CTA：#F97316（冒险橙）</li>
+      <li>背景：#F8FAFC（浅灰白）</li>
+      <li>文字：#1E293B（深灰）</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>字体方案</h4>
+    <ul>
+      <li>标题：Baloo 2（圆润童趣）</li>
+      <li>正文：Comic Neue（易读友好）</li>
+      <li>备选：系统默认圆体</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>Claymorphism 效果参数</h3>
+<div class="mockup">
+  <div class="mockup-header">设计 token 示例</div>
+  <div class="mockup-body">
+    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <div style="
+        background: #F8FAFC;
+        border-radius: 16px;
+        padding: 20px 32px;
+        box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -4px -4px 12px rgba(255,255,255,0.8);
+        font-family: 'Baloo 2', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+      ">岛屿按钮</div>
+      <div style="
+        background: linear-gradient(135deg, #3B82F6, #2563EB);
+        border-radius: 24px;
+        padding: 16px 32px;
+        box-shadow: 6px 6px 12px rgba(0,0,0,0.15), -3px -3px 8px rgba(255,255,255,0.5);
+        color: white;
+        font-family: 'Baloo 2', sans-serif;
+        font-weight: 600;
+      ">确认按钮</div>
+      <div style="
+        background: #F8FAFC;
+        border-radius: 12px;
+        padding: 16px 24px;
+        box-shadow: inset 4px 4px 8px rgba(0,0,0,0.05), inset -2px -2px 6px rgba(255,255,255,0.8);
+        font-family: 'Comic Neue', sans-serif;
+      ">输入框</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>无障碍设计</h3>
+<ul>
+  <li>所有岛屿除颜色外，添加独特 SVG 图案/纹理（圆形=普通、三角形=Boss、星星=隐藏）</li>
+  <li>高对比度模式开关（存储在 localStorage）</li>
+  <li>支持 prefers-reduced-motion</li>
+  <li>所有按钮 aria-label 标注</li>
+  <li>颜色对比度 ≥ 4.5:1</li>
+</ul>
+</div>
+
+<p class="label" style="margin-top: 24px">点击确认继续查看组件设计</p>
+<div class="options" style="margin-top: 16px">
+  <div class="option" data-choice="ok" onclick="toggleSelect(this)">
+    <div class="letter">✓</div>
+    <div class="content">
+      <h4>确认，继续</h4>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGameStore } from '../../store/gameStore'
-import { getAreasByOcean } from '../../data/areas'
+import { getAreasByOcean, getAreaById } from '../../data/areas'
 import { AreaNode } from './AreaNode'
 import { Portal } from './Portal'
+import { ConfirmDialog } from './ConfirmDialog'
+import { DangerConfirmDialog } from './DangerConfirmDialog'
 
 export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
@@ -17,6 +19,11 @@ export default function ExplorationMap() {
   const generatePortals = useGameStore((state) => state.generatePortals)
   const explorationDispatch = useGameStore((state) => state.explorationDispatch)
 
+  // Confirm dialogs state
+  const [showAreaConfirm, setShowAreaConfirm] = useState(false)
+  const [pendingAreaId, setPendingAreaId] = useState<string | null>(null)
+  const [showExitConfirm, setShowExitConfirm] = useState(false)
+
   // P0-1: Extract magic number to named constant
   const HIDDEN_EVENT_PROBABILITY = 0.2
 
@@ -25,12 +32,43 @@ export default function ExplorationMap() {
 
   // 处理区域点击
   const handleAreaClick = (areaId: string) => {
-    selectArea(areaId)
+    const area = getAreaById(areaId)
+    if (!area) return
+
+    if (area.type === 'boss') {
+      setPendingAreaId(areaId)
+      setShowAreaConfirm(true)
+    } else {
+      selectArea(areaId)
+    }
   }
 
   // 处理传送门点击
   const handlePortalClick = (portal: any) => {
     explorationDispatch({ type: 'SELECT_PORTAL', portal })
+  }
+
+  // 区域确认对话框处理
+  const handleAreaConfirm = () => {
+    if (pendingAreaId) {
+      selectArea(pendingAreaId)
+    }
+    setShowAreaConfirm(false)
+    setPendingAreaId(null)
+  }
+
+  const handleAreaCancel = () => {
+    setShowAreaConfirm(false)
+    setPendingAreaId(null)
+  }
+
+  const handleExitClick = () => {
+    setShowExitConfirm(true)
+  }
+
+  const handleExitConfirm = () => {
+    explorationDispatch({ type: 'RESET_EXPLORATION' })
+    useGameStore.getState().dispatch({ type: 'RESET_GAME' } as any)
   }
 
   // 模拟移动动画完成
@@ -247,8 +285,7 @@ export default function ExplorationMap() {
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
         <button
           onClick={() => {
-            explorationDispatch({ type: 'RESET_EXPLORATION' })
-            useGameStore.getState().dispatch({ type: 'RESET_GAME' } as any)
+            handleExitClick()
           }}
           style={{
             padding: '8px 16px',
@@ -262,6 +299,29 @@ export default function ExplorationMap() {
           返回标题
         </button>
       </div>
+
+      {/* 区域确认对话框 */}
+      <ConfirmDialog
+        isOpen={showAreaConfirm}
+        title="确定要去这个岛屿吗？"
+        message={`你要去「${getAreaById(pendingAreaId || '')?.name}」探索，可能会遇到怪物哦！`}
+        icon="island"
+        confirmText="要去！出发"
+        cancelText="不去！取消"
+        onConfirm={handleAreaConfirm}
+        onCancel={handleAreaCancel}
+      />
+
+      {/* 退出确认对话框 */}
+      <DangerConfirmDialog
+        isOpen={showExitConfirm}
+        title="确定要退出游戏吗？"
+        message="你的进度会自动保存，但当前战斗会结束哦！"
+        confirmText="确定退出"
+        cancelText="取消"
+        onConfirm={handleExitConfirm}
+        onCancel={() => setShowExitConfirm(false)}
+      />
     </div>
   )
 }
