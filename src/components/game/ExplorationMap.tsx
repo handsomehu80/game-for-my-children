@@ -100,7 +100,7 @@ export default function ExplorationMap() {
     }
 
     explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
-  }, [areas, explorationDispatch])
+  }, [exploration, areas, explorationDispatch])
 
   // 战斗阶段 - 触发实际战斗
   useEffect(() => {
@@ -112,7 +112,7 @@ export default function ExplorationMap() {
       // 战斗逻辑需要在 battle phase 处理
       console.log('Battle started in area:', latestExplorationRef.current.currentArea, 'monster:', area.monsterId)
     }
-  }, [areas])
+  }, [exploration, areas])
 
   // 战斗胜利后生成传送门
   useEffect(() => {
@@ -120,7 +120,7 @@ export default function ExplorationMap() {
       // Key drop is now handled inside generatePortals (P1-2 guaranteed system)
       generatePortals()
     }
-  }, [explorationDispatch, generatePortals])
+  }, [exploration, explorationDispatch, generatePortals])
 
   // 宝箱开启
   useEffect(() => {
@@ -128,7 +128,7 @@ export default function ExplorationMap() {
       const treasures = [{ id: 'treasure_1', name: '金币 x10', type: 'consumable' as const }]
       explorationDispatch({ type: 'OPEN_TREASURE', treasures })
     }
-  }, [explorationDispatch])
+  }, [exploration, explorationDispatch])
 
   // 手动触发战斗胜利（用于测试）
   const handleBattleWin = () => {
