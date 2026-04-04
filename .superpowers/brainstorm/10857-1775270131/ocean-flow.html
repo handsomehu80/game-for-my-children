@@ -1,0 +1,127 @@
+<h2>🌊 海洋探索动画流程</h2>
+<p class="subtitle">船只沿路径点移动 → 进入岛屿 → 触发战斗</p>
+
+<div class="section">
+<h3>当前流程 vs 目标流程</h3>
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">❌ 当前（无动画）</div>
+    <div class="mockup-body" style="background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 20px; border-radius: 12px; min-height: 200px;">
+      <div style="display: flex; justify-content: center; align-items: center; height: 150px;">
+        <div style="color: white; text-align: center;">
+          <div style="font-size: 48px;">🗺️</div>
+          <p style="margin: 8px 0;">点击岛屿</p>
+          <p style="opacity: 0.6;">直接跳转到题目</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">✅ 目标（有动画）</div>
+    <div class="mockup-body" style="background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 20px; border-radius: 12px; min-height: 200px; position: relative;">
+      <!-- 海洋波浪背景 -->
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; border-radius: 12px;">
+        <div style="
+          position: absolute;
+          width: 200%;
+          height: 100%;
+          background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255,255,255,0.03) 10px,
+            rgba(255,255,255,0.03) 20px
+          );
+          animation: waveMove 3s linear infinite;
+        "></div>
+      </div>
+      <!-- 岛屿 -->
+      <div style="position: absolute; bottom: 20px; right: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 12px; box-shadow: 4px 4px 8px rgba(0,0,0,0.3);"></div>
+      <!-- 船只（移动中） -->
+      <div id="ship-animation" style="
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        font-size: 32px;
+        animation: shipMove 3s ease-in-out infinite;
+      ">⛵</div>
+      <!-- 路径点 -->
+      <div style="position: absolute; top: 30%; left: 30%; width: 12px; height: 12px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+      <div style="position: absolute; top: 40%; left: 50%; width: 12px; height: 12px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+      <div style="position: absolute; top: 55%; left: 70%; width: 12px; height: 12px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+      <p style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-size: 12px; margin: 0;">船只沿路径点航行</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<style>
+@keyframes waveMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes shipMove {
+  0% { top: 50%; left: 20%; }
+  25% { top: 30%; left: 30%; }
+  50% { top: 40%; left: 50%; }
+  75% { top: 55%; left: 70%; }
+  100% { top: 50%; left: 20%; }
+}
+</style>
+
+<div class="section">
+<h3>动画阶段说明</h3>
+<div class="options">
+  <div class="option" data-choice="phase1" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h4>船只移动动画</h4>
+      <p>玩家点击岛屿 → 船只沿路径点移动到岛屿 → 播放2-3秒</p>
+    </div>
+  </div>
+  <div class="option" data-choice="phase2" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h4>遭遇动画</h4>
+      <p>船只到达后 → 显示海盗/怪物出现动画 → 播放1-2秒</p>
+    </div>
+  </div>
+  <div class="option" data-choice="phase3" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h4>战斗开始</h4>
+      <p>动画完成后 → 淡入题目界面 → 进入答题环节</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>动画风格选择</h3>
+<div class="options">
+  <div class="option" data-choice="cartoon" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h4>卡通风格</h4>
+      <p>夸张的动作、弹性效果、颜色鲜艳</p>
+    </div>
+  </div>
+  <div class="option" data-choice="minecraft" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h4>方块像素风</h4>
+      <p>复古像素风格、简单几何形状</p>
+    </div>
+  </div>
+  <div class="option" data-choice="paper" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h4>剪纸/卡通风</h4>
+      <p>扁平化、柔和阴影、大航海时代感</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<p class="label" style="margin-top: 24px">点击选择后继续</p>

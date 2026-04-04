@@ -192,7 +192,6 @@ export default function ExplorationMap() {
       )}
 
       <div className="exploration-map" style={{ position: 'relative', width: '700px', margin: '0 auto', padding: '20px' }}>
-    <div className="exploration-map" style={{ position: 'relative', width: '700px', margin: '0 auto', padding: '20px' }}>
       <h2 style={{ textAlign: 'center' }}>🗺️ {exploration.currentOcean === 'east' ? '东大洋' : exploration.currentOcean} 探索地图</h2>
 
       {/* 玩家状态 */}

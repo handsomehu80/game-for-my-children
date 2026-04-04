@@ -1,0 +1,154 @@
+<h2>⚔️ 战斗前动画 - 卡通风格</h2>
+<p class="subtitle">船只到达岛屿后，显示海盗/怪物攻击动画</p>
+
+<div class="section">
+<h3>动画效果预览</h3>
+<div class="mockup">
+  <div class="mockup-header">卡通风格 - 怪物出现动画</div>
+  <div class="mockup-body" style="
+    background: linear-gradient(180deg, #87CEEB 0%, #1E3A5F 100%);
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+  ">
+    <!-- 岛屿 -->
+    <div style="
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 80px;
+      background: linear-gradient(135deg, #8B4513, #654321);
+      border-radius: 50% 50% 30% 30%;
+    ">
+      <!-- 树木 -->
+      <div style="position: absolute; bottom: 40px; left: 30px; width: 25px; height: 45px; background: linear-gradient(180deg, #228B22, #006400); border-radius: 50% 50% 20% 20%;"></div>
+      <div style="position: absolute; bottom: 45px; left: 70px; width: 20px; height: 35px; background: linear-gradient(180deg, #32CD32, #228B22); border-radius: 50% 50% 20% 20%;"></div>
+    </div>
+
+    <!-- 怪物（从岛屿后面跳出） -->
+    <div style="
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 64px;
+      animation: monsterJump 1.5s ease-in-out infinite;
+      filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
+    ">
+      👹
+    </div>
+
+    <!-- 怪物影子 -->
+    <div style="
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 15px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      animation: shadowPulse 1.5s ease-in-out infinite;
+    "></div>
+
+    <!-- 特效 - 烟雾 -->
+    <div style="position: absolute; bottom: 60px; left: 35%; font-size: 24px; animation: smokePuff 1s ease-out infinite;">💨</div>
+    <div style="position: absolute; bottom: 70px; left: 60%; font-size: 20px; animation: smokePuff 1s ease-out infinite 0.3s;">💨</div>
+
+    <!-- 船只（已到达） -->
+    <div style="
+      position: absolute;
+      bottom: 100px;
+      left: 20%;
+      font-size: 48px;
+      animation: shipRock 2s ease-in-out infinite;
+    ">⛵</div>
+
+    <!-- 震动效果 -->
+    <div style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: #FF4444;
+      font-weight: bold;
+      font-family: 'Baloo 2', cursive;
+      animation: shakeText 0.5s ease-in-out infinite;
+    ">⚡ 遭遇怪物！</div>
+
+    <!-- 震动滤镜 -->
+    <style>
+      @keyframes shakeScreen {
+        0%, 100% { transform: translateX(-50%) rotate(0deg); }
+        25% { transform: translateX(-50%) rotate(-3deg); }
+        75% { transform: translateX(-50%) rotate(3deg); }
+      }
+      @keyframes shakeText {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.1); }
+      }
+    </style>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>动画序列</h3>
+<div class="options">
+  <div class="option" data-choice="shake" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h4>震动效果</h4>
+      <p>屏幕轻微震动 + 怪物跳出来</p>
+    </div>
+  </div>
+  <div class="option" data-choice="appear" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h4>烟雾效果</h4>
+      <p>怪物出现时有烟雾爆炸特效</p>
+    </div>
+  </div>
+  <div class="option" data-choice="both" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h4>组合效果</h4>
+      <p>震动 + 烟雾 + 弹跳动画</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>怪物类型</h3>
+<div class="options">
+  <div class="option" data-choice="monster" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h4>👹 怪物</h4>
+      <p>普通怪物，大眼睛、可爱又可怕</p>
+    </div>
+  </div>
+  <div class="option" data-choice="pirate" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h4>🏴‍☠️ 海盗</h4>
+      <p>海盗船长，骷髅旗、眼罩</p>
+    </div>
+  </div>
+  <div class="option" data-choice="kraken" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h4>🦑 海怪</h4>
+      <p>大章鱼/乌贼，触手缠绕</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<p class="label" style="margin-top: 16px">请选择动画效果和怪物类型</p>
