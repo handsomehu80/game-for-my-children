@@ -4,6 +4,7 @@ import WorldMap from './WorldMap'
 import Battle from './Battle/Battle'
 import Result from './Result'
 import ExplorationMap from './ExplorationMap'
+import { AccessibilityToggle } from './AccessibilityToggle'
 
 export default function Game() {
   const gamePhase = useGameStore((state) => state.gamePhase)
@@ -15,22 +16,55 @@ export default function Game() {
 
   switch (gamePhase) {
     case 'title':
-      return <TitleScreen />
+      return (
+        <>
+          <AccessibilityToggle />
+          <TitleScreen />
+        </>
+      )
     case 'world_map':
       return (
-        <div>
-          <WorldMap onEnterOcean={handleEnterExploration} />
-        </div>
+        <>
+          <AccessibilityToggle />
+          <div>
+            <WorldMap onEnterOcean={handleEnterExploration} />
+          </div>
+        </>
       )
     case 'exploration':
-      return <ExplorationMap />
+      return (
+        <>
+          <AccessibilityToggle />
+          <ExplorationMap />
+        </>
+      )
     case 'battle':
-      return <Battle />
+      return (
+        <>
+          <AccessibilityToggle />
+          <Battle />
+        </>
+      )
     case 'result':
-      return <Result />
+      return (
+        <>
+          <AccessibilityToggle />
+          <Result />
+        </>
+      )
     case 'game_over':
-      return <TitleScreen />
+      return (
+        <>
+          <AccessibilityToggle />
+          <TitleScreen />
+        </>
+      )
     default:
-      return <TitleScreen />
+      return (
+        <>
+          <AccessibilityToggle />
+          <TitleScreen />
+        </>
+      )
   }
 }
