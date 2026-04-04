@@ -161,6 +161,8 @@ export type GameAction =
 // 探索 Phase
 export type ExplorationPhase =
   | 'exploring'        // 选择目的地
+  | 'sailing'          // 航行中
+  | 'arrived'          // 已到达
   | 'moving'           // 移动动画
   | 'encounter'        // 遭遇判定
   | 'battle'           // 战斗中
@@ -246,6 +248,9 @@ export interface ExplorationState {
 export type ExplorationAction =
   | { type: 'START_EXPLORATION'; oceanId: string }
   | { type: 'SELECT_AREA'; areaId: string }
+  | { type: 'START_SAILING'; targetAreaId: string }
+  | { type: 'SAILING_COMPLETE' }
+  | { type: 'ARRIVED' }
   | { type: 'MOVE_COMPLETE' }
   | { type: 'ENCOUNTER_RESULT'; result: 'battle' | 'treasure' | 'hidden_event' }
   | { type: 'BATTLE_WIN'; areaId: string }

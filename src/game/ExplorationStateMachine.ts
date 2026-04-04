@@ -61,10 +61,30 @@ export function explorationTransition(
           }
           return {
             ...state,
-            phase: 'moving',
+            phase: 'sailing',
             currentArea: action.areaId,
           }
         }
+        default:
+          return state
+      }
+
+    case 'sailing':
+      switch (action.type) {
+        case 'SAILING_COMPLETE':
+          return { ...state, phase: 'arrived' as ExplorationPhase }
+        case 'RESET_EXPLORATION':
+          return initialExplorationState
+        default:
+          return state
+      }
+
+    case 'arrived':
+      switch (action.type) {
+        case 'ARRIVED':
+          return { ...state, phase: 'moving' as ExplorationPhase }
+        case 'RESET_EXPLORATION':
+          return initialExplorationState
         default:
           return state
       }
