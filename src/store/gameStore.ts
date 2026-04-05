@@ -280,45 +280,79 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
 
     const areas = getAreasByOcean(state.exploration.currentOcean!)
-    const unexploredAreas = areas.filter(
-      (a) => !state.exploration!.defeatedMiniBosses.includes(a.id) && a.id !== currentArea.id
-    )
-    const completedAreas = areas.filter((a) =>
-      state.exploration!.defeatedMiniBosses.includes(a.id)
+    // 2. 在完成一个岛屿任务后出现的传送门一定要有没有完成的关联区域，已经完成的区域不要多次重复出现
+    const incompleteAreas = areas.filter(
+      (a) => !state.exploration!.defeatedMiniBosses.includes(a.id) && a.id !== currentArea.id && a.type !== 'boss'
     )
 
     // 生成2-3个传送门
     const portalCount = rng.chance(0.5) ? 3 : 2
     const portals: Portal[] = []
 
-    // 至少1个通向未完成区域
-    if (unexploredAreas.length > 0) {
-      const target = rng.pick(unexploredAreas)
-      if (target) {
+    // 3. 打败完boss后出现传送门要能传送到新的区域
+    if (currentArea.type === 'boss') {
+      // Boss战后，传送门通向新大洋
+      const otherOceans = ['west', 'southHot', 'northIce', 'mysterious'].filter(
+        (oid) => oid !== state.exploration!.currentOcean
+      )
+      // 随机选择1-2个新大洋
+      const oceanCount = Math.min(rng.chance(0.5) ? 2 : 1, otherOceans.length)
+      for (let i = 0; i < oceanCount && portals.length < portalCount; i++) {
+        const oceanId = otherOceans[i]
+        if (oceanId) {
+          portals.push({
+            id: `portal_${timestamp}_${portals.length}`,
+            targetAreaId: oceanId,  // 使用oceanId作为目标表示新大洋入口
+            type: 'ocean_portal',  // 新类型：跨大洋传送门
+          })
+        }
+      }
+      // 如果没有其他大洋，生成通往已完成区域的传送门作为备选
+      if (portals.length === 0) {
+        const completedAreas = areas.filter((a) =>
+          state.exploration!.defeatedMiniBosses.includes(a.id)
+        )
+        while (portals.length < portalCount && completedAreas.length > 0) {
+          const target = rng.pick(completedAreas)
+          if (!target) break
+          const idx = completedAreas.indexOf(target)
+          if (idx > -1) completedAreas.splice(idx, 1)
+          portals.push({
+            id: `portal_${timestamp}_${portals.length}`,
+            targetAreaId: target.id,
+            type: target.type === 'hidden' ? 'hidden' : 'normal',
+          })
+        }
+      }
+    } else {
+      // 普通岛屿战后，传送门只通向未完成的关联区域
+      // 至少1个通向未完成区域
+      if (incompleteAreas.length > 0) {
+        const target = rng.pick(incompleteAreas)
+        if (target) {
+          portals.push({
+            id: `portal_${timestamp}_0`,
+            targetAreaId: target.id,
+            type: target.type === 'hidden' ? 'hidden' : 'normal',
+          })
+        }
+      }
+
+      // 如果未完成区域不足，补充更多未完成区域（不去已完成区域）
+      const remainingIncomplete = incompleteAreas.filter(
+        (a) => !portals.some((p) => p.targetAreaId === a.id)
+      )
+      while (portals.length < portalCount && remainingIncomplete.length > 0) {
+        const target = rng.pick(remainingIncomplete)
+        if (!target) break
+        const idx = remainingIncomplete.indexOf(target)
+        if (idx > -1) remainingIncomplete.splice(idx, 1)
         portals.push({
-          id: `portal_${timestamp}_0`,
+          id: `portal_${timestamp}_${portals.length}`,
           targetAreaId: target.id,
-          type: 'normal',
+          type: target.type === 'hidden' ? 'hidden' : 'normal',
         })
       }
-    }
-
-    // 其余随机
-    const availableTargets = [...unexploredAreas, ...completedAreas].filter(
-      (a) => !portals.some((p) => p.targetAreaId === a.id)
-    )
-
-    while (portals.length < portalCount && availableTargets.length > 0) {
-      const target = rng.pick(availableTargets)
-      if (!target) break
-      // Remove the picked target from availableTargets
-      const idx = availableTargets.indexOf(target)
-      if (idx > -1) availableTargets.splice(idx, 1)
-      portals.push({
-        id: `portal_${timestamp}_${portals.length}`,
-        targetAreaId: target.id,
-        type: target.type === 'hidden' ? 'hidden' : 'normal',
-      })
     }
 
     get().explorationDispatch({ type: 'GENERATE_PORTALS', portals, seed })

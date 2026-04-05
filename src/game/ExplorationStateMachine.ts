@@ -59,6 +59,10 @@ export function explorationTransition(
           if (area.requiredKeys > 0 && !state.unlockedAreas.includes(area.id)) {
             return { ...state, phase: 'error', lastError: `Area ${action.areaId} requires keys` }
           }
+          // 1. 打败所有9个岛屿后才能和boss战斗
+          if (area.type === 'boss' && state.defeatedMiniBosses.length < 9) {
+            return { ...state, phase: 'error', lastError: `Defeat all 9 islands before challenging the boss (${state.defeatedMiniBosses.length}/9)` }
+          }
           return {
             ...state,
             phase: 'sailing',
@@ -222,6 +226,24 @@ export function explorationTransition(
     case 'portal_appear':
       switch (action.type) {
         case 'SELECT_PORTAL':
+          // 3. 打败完boss后出现传送门要能传送到新的区域
+          if (action.portal.type === 'ocean_portal') {
+            // 跨大洋传送门：切换到新大洋并重置探索状态
+            return {
+              ...state,
+              phase: 'exploring',
+              currentOcean: action.portal.targetAreaId as any,  // targetAreaId 是 oceanId
+              currentArea: null,
+              visitedAreas: [],
+              defeatedMiniBosses: [],
+              // 保留钥匙和已解锁区域
+              collectedKeys: state.collectedKeys,
+              collectedItems: state.collectedItems,
+              unlockedAreas: state.unlockedAreas,
+              availablePortals: [],
+              portalSeed: null,
+            }
+          }
           return { ...state, phase: 'moving', currentArea: action.portal.targetAreaId }
         case 'SELECT_AREA':
           // 允许在 portal_appear 阶段选择新区域开始航行

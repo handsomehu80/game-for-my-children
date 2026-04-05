@@ -6,8 +6,49 @@ interface PortalProps {
   onClick: (portal: PortalType) => void
 }
 
+// 大洋名称映射
+const oceanNames: Record<string, string> = {
+  west: '西洋',
+  southHot: '南热洋',
+  northIce: '北冰洋',
+  mysterious: '神秘洋',
+}
+
 export function Portal({ portal, onClick }: PortalProps) {
   const targetArea = getAreaById(portal.targetAreaId)
+
+  // 跨大洋传送门不查找区域
+  if (portal.type === 'ocean_portal') {
+    const oceanName = oceanNames[portal.targetAreaId] || portal.targetAreaId
+    return (
+      <div
+        onClick={() => onClick(portal)}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '16px',
+          background: 'linear-gradient(135deg, #ff6b6b, #c0392b)',
+          borderRadius: '12px',
+          cursor: 'pointer',
+          minWidth: '100px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          transition: 'transform 0.2s',
+          border: '2px solid gold',
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+      >
+        <span style={{ fontSize: '32px' }}>🚀</span>
+        <span style={{ color: 'white', fontSize: '12px', marginTop: '8px' }}>
+          跨洋传送
+        </span>
+        <span style={{ color: '#ffd700', fontSize: '10px', marginTop: '4px' }}>
+          → {oceanName}
+        </span>
+      </div>
+    )
+  }
 
   if (!targetArea) return null
 
