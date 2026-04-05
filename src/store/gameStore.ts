@@ -338,46 +338,88 @@ export const useGameStore = create<GameStore>((set, get) => ({
           })
         }
       } else {
-        // 普通岛屿/隐藏区域/宝箱完成后：
-        // 传送门只通向当前岛屿相邻的未完成岛屿
-        const connectedAreas = currentArea.connections
-          .map(connId => areas.find(a => a.id === connId))
-          .filter(a => a && !state.exploration!.defeatedMiniBosses.includes(a!.id) && a!.type !== 'boss') as Area[]
+        // === 新可达性算法 ===
+        // 计算所有可达的未完成岛屿
+        const reachableAreas: Set<string> = new Set()
 
-        // 宝藏和隐藏岛屿有随机概率不出现（30%概率被跳过）
-        const eligibleAreas = connectedAreas.filter(a => {
-          if (a.type === 'treasure' || a.type === 'hidden') {
-            return rng.chance(0.7)  // 70%概率出现
+        // 1. 首先添加同类型下一阶岛屿
+        const sameTypeNext = areas.find(a =>
+          a.knowledgeArea === currentArea.knowledgeArea &&
+          a.difficulty === currentArea.difficulty + 1 &&
+          !state.exploration!.defeatedMiniBosses.includes(a.id) &&
+          a.type !== 'boss'
+        )
+        if (sameTypeNext) {
+          reachableAreas.add(sameTypeNext.id)
+        }
+
+        // 2. 处理相邻岛屿的可达性
+        for (const connId of currentArea.connections) {
+          const connArea = areas.find(a => a.id === connId)
+          if (!connArea || state.exploration!.defeatedMiniBosses.includes(connId) || connArea.type === 'boss') {
+            continue
           }
-          return true  // 普通岛屿必定出现
+
+          // 检查相邻岛屿是否是更低难度
+          const isLowerDifficulty = connArea.difficulty < currentArea.difficulty
+
+          if (isLowerDifficulty) {
+            // 如果相邻是更低难度且未完成，只保留这个连接
+            reachableAreas.add(connId)
+          } else if (connArea.difficulty === currentArea.difficulty) {
+            // 如果相邻是同级难度，检查其下方连接是否都已完成
+            const connLowerConnections = connArea.connections
+              .map(id => areas.find(a => a.id === id))
+              .filter(a => a && a.difficulty < connArea.difficulty)
+
+            const allLowerCompleted = connLowerConnections.every(a =>
+              state.exploration!.defeatedMiniBosses.includes(a!.id)
+            )
+
+            if (allLowerCompleted) {
+              // 下方都已完成，打开这个同级相邻岛屿
+              reachableAreas.add(connId)
+            } else {
+              // 下方未完成，只保留最低难度的连接
+              const lowestDifficulty = connLowerConnections
+                .filter(a => !state.exploration!.defeatedMiniBosses.includes(a!.id))
+                .sort((a, b) => (a!.difficulty || 0) - (b!.difficulty || 0))[0]
+              if (lowestDifficulty) {
+                reachableAreas.add(lowestDifficulty.id)
+              }
+            }
+          }
+        }
+
+        // 3. 宝藏和隐藏岛屿随机增加（30%概率不出现）
+        const hiddenAndTreasureAreas = areas.filter(a =>
+          (a.type === 'hidden' || a.type === 'treasure') &&
+          !state.exploration!.defeatedMiniBosses.includes(a.id)
+        )
+        hiddenAndTreasureAreas.forEach(a => {
+          if (rng.chance(0.7)) {  // 70%概率出现
+            reachableAreas.add(a.id)
+          }
         })
 
-        if (eligibleAreas.length > 0) {
-          // 随机选择1个作为传送门目标
-          const target = rng.pick(eligibleAreas)
+        // 4. 从可达岛屿中选择传送门目标
+        const reachableAreaList = Array.from(reachableAreas)
+          .map(id => areas.find(a => a.id === id))
+          .filter(a => a) as Area[]
+
+        // 随机打乱顺序
+        const shuffled = [...reachableAreaList].sort(() => rng.next() - 0.5)
+
+        // 选择最多portalCount个传送门
+        for (let i = 0; i < Math.min(portalCount, shuffled.length); i++) {
+          const target = shuffled[i]
           if (target) {
             portals.push({
-              id: `portal_${timestamp}_0`,
+              id: `portal_${timestamp}_${portals.length}`,
               targetAreaId: target.id,
               type: target.type === 'hidden' ? 'hidden' : target.type === 'treasure' ? 'treasure' : 'normal',
             })
           }
-        }
-
-        // 如果有更多相邻未完成区域，补充更多传送门（随机补充，最多portalCount个）
-        const remainingAreas = eligibleAreas.filter(
-          (a) => !portals.some((p) => p.targetAreaId === a.id)
-        )
-        while (portals.length < portalCount && remainingAreas.length > 0) {
-          const target = rng.pick(remainingAreas)
-          if (!target) break
-          const idx = remainingAreas.indexOf(target)
-          if (idx > -1) remainingAreas.splice(idx, 1)
-          portals.push({
-            id: `portal_${timestamp}_${portals.length}`,
-            targetAreaId: target.id,
-            type: target.type === 'hidden' ? 'hidden' : target.type === 'treasure' ? 'treasure' : 'normal',
-          })
         }
       }
     }
