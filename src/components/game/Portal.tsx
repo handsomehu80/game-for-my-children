@@ -59,6 +59,8 @@ export function Portal({ portal, onClick }: PortalProps) {
         return 'linear-gradient(135deg, #9b59b6, #6c3483)'
       case 'event':
         return 'linear-gradient(135deg, #f39c12, #d68910)'
+      case 'treasure':
+        return 'linear-gradient(135deg, #eab308, #ca8a04)'
       default:
         return 'linear-gradient(135deg, #00d9ff, #0097b2)'
     }
@@ -82,9 +84,11 @@ export function Portal({ portal, onClick }: PortalProps) {
       onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
       onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
     >
-      <span style={{ fontSize: '32px' }}>🌀</span>
+      <span style={{ fontSize: '32px' }}>
+        {portal.type === 'hidden' ? '🏝️' : portal.type === 'treasure' ? '📦' : portal.type === 'event' ? '🎁' : '🌀'}
+      </span>
       <span style={{ color: 'white', fontSize: '12px', marginTop: '8px' }}>
-        {portal.type === 'hidden' ? '隐藏区域' : portal.type === 'event' ? '随机事件' : '传送'}
+        {portal.type === 'hidden' ? '隐藏区域' : portal.type === 'event' ? '随机事件' : portal.type === 'treasure' ? '宝藏区域' : '传送'}
       </span>
       <span style={{ color: '#ffd700', fontSize: '10px', marginTop: '4px' }}>
         → {targetArea.name}

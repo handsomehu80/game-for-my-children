@@ -344,31 +344,39 @@ export const useGameStore = create<GameStore>((set, get) => ({
           .map(connId => areas.find(a => a.id === connId))
           .filter(a => a && !state.exploration!.defeatedMiniBosses.includes(a!.id) && a!.type !== 'boss') as Area[]
 
-        if (connectedAreas.length > 0) {
-          // 至少1个通向相邻的未完成区域
-          const target = rng.pick(connectedAreas)
+        // 宝藏和隐藏岛屿有随机概率不出现（30%概率被跳过）
+        const eligibleAreas = connectedAreas.filter(a => {
+          if (a.type === 'treasure' || a.type === 'hidden') {
+            return rng.chance(0.7)  // 70%概率出现
+          }
+          return true  // 普通岛屿必定出现
+        })
+
+        if (eligibleAreas.length > 0) {
+          // 随机选择1个作为传送门目标
+          const target = rng.pick(eligibleAreas)
           if (target) {
             portals.push({
               id: `portal_${timestamp}_0`,
               targetAreaId: target.id,
-              type: target.type === 'hidden' ? 'hidden' : 'normal',
+              type: target.type === 'hidden' ? 'hidden' : target.type === 'treasure' ? 'treasure' : 'normal',
             })
           }
         }
 
-        // 如果相邻未完成区域不足，补充其他未完成区域（从connections的连接中扩展）
-        const remainingConnected = connectedAreas.filter(
+        // 如果有更多相邻未完成区域，补充更多传送门（随机补充，最多portalCount个）
+        const remainingAreas = eligibleAreas.filter(
           (a) => !portals.some((p) => p.targetAreaId === a.id)
         )
-        while (portals.length < portalCount && remainingConnected.length > 0) {
-          const target = rng.pick(remainingConnected)
+        while (portals.length < portalCount && remainingAreas.length > 0) {
+          const target = rng.pick(remainingAreas)
           if (!target) break
-          const idx = remainingConnected.indexOf(target)
-          if (idx > -1) remainingConnected.splice(idx, 1)
+          const idx = remainingAreas.indexOf(target)
+          if (idx > -1) remainingAreas.splice(idx, 1)
           portals.push({
             id: `portal_${timestamp}_${portals.length}`,
             targetAreaId: target.id,
-            type: target.type === 'hidden' ? 'hidden' : 'normal',
+            type: target.type === 'hidden' ? 'hidden' : target.type === 'treasure' ? 'treasure' : 'normal',
           })
         }
       }

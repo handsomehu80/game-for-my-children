@@ -196,7 +196,7 @@ export interface Area {
 export interface Portal {
   id: string
   targetAreaId: string
-  type: 'normal' | 'hidden' | 'event' | 'ocean_portal'
+  type: 'normal' | 'hidden' | 'event' | 'ocean_portal' | 'treasure'
 }
 
 // 传送门配置
