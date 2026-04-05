@@ -31,5 +31,45 @@
 **决策**: 保留状态定义但标记为预留，不做修改
 
 ## 修复后验证
-- [ ] npm run build 通过
-- [ ] npm test 通过 (124 tests)
+- [x] npm run build 通过
+- [x] npm test 通过 (124 tests)
+
+## 修复提交
+- Commit: `39f3b23`
+- Files changed: 7 files, +59/-24 lines
+
+### 修复详情
+
+#### P0-1: 移除重复 Action Type 定义
+```typescript
+// Before (duplicate):
+| { type: 'RESET_VICTORY_COUNTER' }
+| { type: 'INCREMENT_VICTORY_COUNTER' }
+| { type: 'RESET_VICTORY_COUNTER' }  // 重复
+| { type: 'INCREMENT_VICTORY_COUNTER' }  // 重复
+
+// After (fixed):
+| { type: 'RESET_VICTORY_COUNTER' }
+| { type: 'INCREMENT_VICTORY_COUNTER' }
+```
+
+#### P0-2: UNLOCK_AREA 检查是否已解锁
+```typescript
+case 'UNLOCK_AREA':
+  // 如果区域已经解锁，不消耗钥匙
+  if (state.unlockedAreas.includes(action.areaId)) {
+    return state
+  }
+  // ...
+```
+
+#### P1-1: handleBattleWin 遵循状态机流程
+```typescript
+// 移除了 generatePortals() 的直接调用
+// useEffect 现在使用 exploration 直接状态而非 ref：
+useEffect(() => {
+  if (exploration?.phase === 'victory') {
+    generatePortals()
+  }
+}, [exploration, generatePortals])
+```
