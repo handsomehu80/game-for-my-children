@@ -73,8 +73,6 @@ export function explorationTransition(
       switch (action.type) {
         case 'SAILING_COMPLETE':
           return { ...state, phase: 'arrived' as ExplorationPhase }
-        case 'RESET_EXPLORATION':
-          return initialExplorationState
         default:
           return state
       }
@@ -83,8 +81,6 @@ export function explorationTransition(
       switch (action.type) {
         case 'ARRIVED':
           return { ...state, phase: 'moving' as ExplorationPhase }
-        case 'RESET_EXPLORATION':
-          return initialExplorationState
         default:
           return state
       }
@@ -227,6 +223,9 @@ export function explorationTransition(
       switch (action.type) {
         case 'SELECT_PORTAL':
           return { ...state, phase: 'moving', currentArea: action.portal.targetAreaId }
+        case 'SELECT_AREA':
+          // 允许在 portal_appear 阶段选择新区域开始航行
+          return { ...state, phase: 'sailing', currentArea: action.areaId }
         case 'UNLOCK_AREA':
           // P1-4: Validate key count before unlocking
           if (state.collectedKeys < 1) {
@@ -263,6 +262,22 @@ export function explorationTransition(
 
     case 'error':
       switch (action.type) {
+        case 'SELECT_AREA': {
+          // 允许从错误状态选择新区域开始航行
+          const area = getAreaById(action.areaId)
+          if (!area) {
+            return { ...state, lastError: `Area ${action.areaId} not found` }
+          }
+          if (area.requiredKeys > 0 && !state.unlockedAreas.includes(area.id)) {
+            return { ...state, lastError: `Area ${action.areaId} requires keys` }
+          }
+          return {
+            ...state,
+            phase: 'sailing',
+            currentArea: action.areaId,
+            lastError: null,  // 清除错误状态
+          }
+        }
         case 'ROLLBACK_TO_SAVEPOINT':
           // 回滚到上一个存档点
           if (state.lastSavepoint) {
