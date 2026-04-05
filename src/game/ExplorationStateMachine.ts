@@ -187,8 +187,13 @@ export function explorationTransition(
     case 'hidden_area':
       // 隐藏区域战斗后同普通战斗
       switch (action.type) {
-        case 'BATTLE_WIN':
-          return { ...state, phase: 'portal_appear' }
+        case 'BATTLE_WIN': {
+          // 添加到已击败列表
+          const newDefeated = state.defeatedMiniBosses.includes(action.areaId)
+            ? state.defeatedMiniBosses
+            : [...state.defeatedMiniBosses, action.areaId]
+          return { ...state, phase: 'portal_appear', defeatedMiniBosses: newDefeated }
+        }
         case 'BATTLE_LOSE':
           return { ...state, phase: 'error', lastError: 'Hidden area battle lost' }
         default:
@@ -266,8 +271,13 @@ export function explorationTransition(
 
     case 'boss_appearing':
       switch (action.type) {
-        case 'BATTLE_WIN':
-          return { ...state, phase: 'area_complete' }
+        case 'BATTLE_WIN': {
+          // 添加boss到已击败列表
+          const newDefeated = state.defeatedMiniBosses.includes(action.areaId)
+            ? state.defeatedMiniBosses
+            : [...state.defeatedMiniBosses, action.areaId]
+          return { ...state, phase: 'area_complete', defeatedMiniBosses: newDefeated }
+        }
         case 'BATTLE_LOSE':
           return { ...state, phase: 'error', lastError: 'Boss battle lost' }
         default:
