@@ -289,26 +289,26 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const portalCount = rng.chance(0.5) ? 3 : 2
     const portals: Portal[] = []
 
-    // 3. 打败完boss后出现传送门要能传送到新的区域
+    // 3. 打败完boss后出现传送门要能传送到新的区域（按顺序）
     if (currentArea.type === 'boss') {
-      // Boss战后，传送门通向新大洋
-      const otherOceans = ['west', 'southHot', 'northIce', 'mysterious'].filter(
-        (oid) => oid !== state.exploration!.currentOcean
-      )
-      // 随机选择1-2个新大洋
-      const oceanCount = Math.min(rng.chance(0.5) ? 2 : 1, otherOceans.length)
-      for (let i = 0; i < oceanCount && portals.length < portalCount; i++) {
-        const oceanId = otherOceans[i]
-        if (oceanId) {
-          portals.push({
-            id: `portal_${timestamp}_${portals.length}`,
-            targetAreaId: oceanId,  // 使用oceanId作为目标表示新大洋入口
-            type: 'ocean_portal',  // 新类型：跨大洋传送门
-          })
-        }
+      // 大洋顺序：东洋 → 西洋 → 南热洋 → 北冰洋 → 神秘洋
+      const oceanSequence: string[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
+      const currentOceanId = state.exploration!.currentOcean ?? 'east'
+      const currentIndex = oceanSequence.indexOf(currentOceanId)
+      const nextOceanId = currentIndex >= 0 && currentIndex < oceanSequence.length - 1
+        ? oceanSequence[currentIndex + 1]
+        : undefined
+
+      if (nextOceanId) {
+        // 下一个大洋的传送门
+        portals.push({
+          id: `portal_${timestamp}_0`,
+          targetAreaId: nextOceanId,
+          type: 'ocean_portal',
+        })
       }
-      // 如果没有其他大洋，生成通往已完成区域的传送门作为备选
-      if (portals.length === 0) {
+      // 如果没有更多大洋，生成通往已完成区域的传送门作为备选
+      if (!nextOceanId) {
         const completedAreas = areas.filter((a) =>
           state.exploration!.defeatedMiniBosses.includes(a.id)
         )

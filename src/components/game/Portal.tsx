@@ -6,8 +6,9 @@ interface PortalProps {
   onClick: (portal: PortalType) => void
 }
 
-// 大洋名称映射
+// 大洋名称映射（按顺序）
 const oceanNames: Record<string, string> = {
+  east: '东大洋',
   west: '西洋',
   southHot: '南热洋',
   northIce: '北冰洋',
