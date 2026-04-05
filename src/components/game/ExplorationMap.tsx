@@ -159,11 +159,12 @@ export default function ExplorationMap() {
 
   // 战斗胜利后生成传送门
   useEffect(() => {
-    if (latestExplorationRef.current?.phase === 'victory') {
+    // P1-1: 直接使用 exploration 而不是 ref，确保读取最新状态
+    if (exploration?.phase === 'victory') {
       // Key drop is now handled inside generatePortals (P1-2 guaranteed system)
       generatePortals()
     }
-  }, [exploration, explorationDispatch, generatePortals])
+  }, [exploration, generatePortals])
 
   // 宝箱开启
   useEffect(() => {
@@ -182,8 +183,7 @@ export default function ExplorationMap() {
       // P1-2: Increment victory counter BEFORE BATTLE_WIN so generatePortals sees updated value
       explorationDispatch({ type: 'INCREMENT_VICTORY_COUNTER' })
       explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
-      // 直接调用 generatePortals 确保在 victory phase 时生成传送门
-      generatePortals()
+      // P1-1: generatePortals 由 useEffect 在 phase === 'victory' 时自动触发，不再直接调用
     }
   }
 

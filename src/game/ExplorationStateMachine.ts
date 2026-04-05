@@ -285,14 +285,16 @@ export function explorationTransition(
           return { ...state, phase: 'sailing', currentArea: action.areaId }
         case 'UNLOCK_AREA':
           // P1-4: Validate key count before unlocking
+          // 如果区域已经解锁，不消耗钥匙
+          if (state.unlockedAreas.includes(action.areaId)) {
+            return state
+          }
           if (state.collectedKeys < 1) {
             return { ...state, phase: 'error', lastError: 'Not enough keys to unlock area' }
           }
           return {
             ...state,
-            unlockedAreas: state.unlockedAreas.includes(action.areaId)
-              ? state.unlockedAreas
-              : [...state.unlockedAreas, action.areaId],
+            unlockedAreas: [...state.unlockedAreas, action.areaId],
             collectedKeys: state.collectedKeys - 1,
           }
         case 'ADD_REACHABLE_AREAS': {
