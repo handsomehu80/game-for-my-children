@@ -1,6 +1,5 @@
 import { useGameStore } from '../../store/gameStore'
-import { getAreaById, getDifficultyStars } from '../../data/areas'
-import { IslandIcon } from './IslandIcon'
+import { getAreaById, getDifficultyStars, isAreaReachable } from '../../data/areas'
 import { useAccessibility } from '../../hooks/useAccessibility'
 
 interface AreaNodeProps {
@@ -15,18 +14,30 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
 
   if (!area) return null
 
-  const isUnlocked = area.requiredKeys === 0 || exploration?.unlockedAreas.includes(areaId)
+  // 检查岛屿是否可达
+  const reachability = exploration
+    ? isAreaReachable(
+        areaId,
+        exploration.currentArea,
+        exploration.defeatedMiniBosses,
+        exploration.visitedAreas
+      )
+    : { reachable: false }
+
+  // 隐藏岛屿需要钥匙
+  const hasRequiredKeys = area.requiredKeys === 0 || exploration?.unlockedAreas.includes(areaId)
+  const isReachable = reachability.reachable && hasRequiredKeys
+
   const isDefeated = exploration?.defeatedMiniBosses.includes(areaId)
   const isCurrent = exploration?.currentArea === areaId
 
-  // 未解锁区域隐藏（探索式隐藏）
-  if (!isUnlocked && !isDefeated) {
-    return null
-  }
-
   const handleClick = () => {
-    if (isUnlocked && onClick) {
+    console.log('AreaNode handleClick:', areaId, 'isReachable:', isReachable, 'reason:', reachability.reason)
+    if (isReachable && onClick) {
       onClick(areaId)
+    } else {
+      // 显示不可访问提示
+      alert(reachability.reason || '该岛屿暂时无法访问')
     }
   }
 
@@ -46,22 +57,29 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
   }
 
   // 根据区域类型渲染不同样式 - Claymorphism with border-radius: 16px, double shadow
+  // 位置使用0-10的网格坐标，映射到容器百分比位置
   const getNodeStyle = () => {
+    // 容器假设为800x600，位置映射
+    const containerWidth = 800
+    const containerHeight = 600
+    const left = (area.position.x / 10) * (containerWidth - 80) + 40
+    const top = (area.position.z / 10) * (containerHeight - 80) + 40
+
     const base = {
       position: 'absolute' as const,
-      left: `${area.position.x * 60 + 150}px`,
-      top: `${area.position.z * 60 + 80}px`,
-      width: '70px',
-      height: '70px',
+      left: `${left}px`,
+      top: `${top}px`,
+      width: '80px',
+      height: '80px',
       borderRadius: '16px',
       display: 'flex',
       flexDirection: 'column' as const,
       alignItems: 'center',
       justifyContent: 'center',
-      cursor: isUnlocked ? 'pointer' : 'not-allowed',
-      transition: 'transform 0.2s',
-      opacity: isDefeated && !isCurrent ? 0.6 : 1,
-      contain: 'layout style paint',
+      cursor: isReachable ? 'pointer' : 'not-allowed',
+      transition: 'transform 0.2s, opacity 0.3s',
+      opacity: isDefeated && !isCurrent ? 0.5 : (!isReachable ? 0.4 : 1),  // 已击败或不可达都变灰
+      zIndex: 10,
     }
 
     switch (area.type) {
@@ -115,9 +133,9 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
         }`}
         aria-label={`${area.name}, 难度 ${getDifficultyStars(area.difficulty)}${
           area.type === 'hidden' ? ', 需要钥匙' : ''
-        }${isDefeated ? ', 已击败' : ''}${!isUnlocked ? ', 未解锁' : ''}`}
+        }${isDefeated ? ', 已击败' : ''}${!isReachable && !isDefeated ? ', 不可达' : ''}`}
         role="button"
-        tabIndex={isUnlocked ? 0 : -1}
+        tabIndex={isReachable ? 0 : -1}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault()
@@ -125,7 +143,13 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
           }
         }}
       >
-        <IslandIcon type={area.type} size={24} />
+        {/* 岛屿emoji图标 */}
+        <span style={{ fontSize: '28px', lineHeight: 1 }}>
+          {area.type === 'boss' ? '🦑' :
+           area.type === 'hidden' ? '🏝️' :
+           area.type === 'treasure' ? '📦' :
+           '🏝️'}
+        </span>
 
         <span style={{ color: 'white', fontSize: '9px', marginTop: '4px', textAlign: 'center' }}>
           {area.name.length > 6 ? area.name.slice(0, 5) + '...' : area.name}
@@ -141,8 +165,8 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
           </span>
         )}
 
-        {!isUnlocked && (
-          <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '14px' }} role="img" aria-label="未解锁">
+        {!isReachable && !isDefeated && (
+          <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '14px' }} role="img" aria-label="不可达">
             🔒
           </span>
         )}

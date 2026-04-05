@@ -1,8 +1,9 @@
 import { Area } from '../../game/types'
 
 // 东大洋区域布局 (13个区域)
+// 岛屿位置在1000x600的画布上分布，使用0-10的网格坐标转换为像素
 export const eastAreas: Area[] = [
-  // 数学区域 (3个难度)
+  // 数学区域 - 左侧链条 (从下到上)
   {
     id: 'east_math_1',
     oceanId: 'east',
@@ -10,7 +11,7 @@ export const eastAreas: Area[] = [
     name: '数学迷宫 - 入门',
     difficulty: 1,
     type: 'normal',
-    position: { x: -2, z: 0 },
+    position: { x: 1, z: 1 },
     requiredKeys: 0,
     monsterId: 'math_slime_1',
     connections: ['east_chinese_1', 'east_english_1'],
@@ -22,7 +23,7 @@ export const eastAreas: Area[] = [
     name: '数学迷宫 - 进阶',
     difficulty: 2,
     type: 'normal',
-    position: { x: -3, z: 1 },
+    position: { x: 1, z: 3 },
     requiredKeys: 0,
     monsterId: 'math_slime_2',
     connections: ['east_math_1', 'east_chinese_2'],
@@ -34,13 +35,13 @@ export const eastAreas: Area[] = [
     name: '数学迷宫 - 挑战',
     difficulty: 3,
     type: 'normal',
-    position: { x: -4, z: 2 },
+    position: { x: 1, z: 5 },
     requiredKeys: 0,
     monsterId: 'math_slime_3',
     connections: ['east_math_2', 'east_boss'],
   },
 
-  // 语文区域 (3个难度)
+  // 语文区域 - 中间链条 (从下到上)
   {
     id: 'east_chinese_1',
     oceanId: 'east',
@@ -48,7 +49,7 @@ export const eastAreas: Area[] = [
     name: '文字森林 - 入门',
     difficulty: 1,
     type: 'normal',
-    position: { x: 0, z: -1 },
+    position: { x: 5, z: 1 },
     requiredKeys: 0,
     monsterId: 'chinese_slime_1',
     connections: ['east_math_1', 'east_english_1'],
@@ -60,7 +61,7 @@ export const eastAreas: Area[] = [
     name: '文字森林 - 进阶',
     difficulty: 2,
     type: 'normal',
-    position: { x: 0, z: 1 },
+    position: { x: 5, z: 3 },
     requiredKeys: 0,
     monsterId: 'chinese_slime_2',
     connections: ['east_chinese_1', 'east_english_2'],
@@ -72,13 +73,13 @@ export const eastAreas: Area[] = [
     name: '文字森林 - 挑战',
     difficulty: 3,
     type: 'normal',
-    position: { x: 0, z: 2 },
+    position: { x: 5, z: 5 },
     requiredKeys: 0,
     monsterId: 'chinese_slime_3',
     connections: ['east_chinese_2', 'east_boss'],
   },
 
-  // 英语区域 (3个难度)
+  // 英语区域 - 右侧链条 (从下到上)
   {
     id: 'east_english_1',
     oceanId: 'east',
@@ -86,7 +87,7 @@ export const eastAreas: Area[] = [
     name: '单词海洋 - 入门',
     difficulty: 1,
     type: 'normal',
-    position: { x: 2, z: 0 },
+    position: { x: 9, z: 1 },
     requiredKeys: 0,
     monsterId: 'english_slime_1',
     connections: ['east_math_1', 'east_chinese_1'],
@@ -98,7 +99,7 @@ export const eastAreas: Area[] = [
     name: '单词海洋 - 进阶',
     difficulty: 2,
     type: 'normal',
-    position: { x: 3, z: 1 },
+    position: { x: 9, z: 3 },
     requiredKeys: 0,
     monsterId: 'english_slime_2',
     connections: ['east_english_1', 'east_chinese_2'],
@@ -110,17 +111,13 @@ export const eastAreas: Area[] = [
     name: '单词海洋 - 挑战',
     difficulty: 3,
     type: 'normal',
-    position: { x: 4, z: 2 },
+    position: { x: 9, z: 5 },
     requiredKeys: 0,
     monsterId: 'english_slime_3',
     connections: ['east_english_2', 'east_boss'],
   },
 
-  // 隐藏区域 (需要钥匙)
-  // P1-4 解锁规则:
-  // 1. 收集至少1把钥匙
-  // 2. 在传送门界面选择"解锁隐藏岛屿"
-  // 3. 解锁后，该区域变为永久可访问（不再需要钥匙）
+  // 隐藏区域 (需要钥匙) - 分散在角落
   {
     id: 'east_hidden_A',
     oceanId: 'east',
@@ -128,7 +125,7 @@ export const eastAreas: Area[] = [
     name: '秘密宝藏室 A',
     difficulty: 2,
     type: 'hidden',
-    position: { x: -1, z: -1 },
+    position: { x: 3, z: 0 },
     requiredKeys: 1,
     monsterId: 'treasure_guardian',
     connections: ['east_math_1'],
@@ -140,13 +137,13 @@ export const eastAreas: Area[] = [
     name: '秘密宝藏室 B',
     difficulty: 2,
     type: 'hidden',
-    position: { x: 1, z: -1 },
+    position: { x: 7, z: 0 },
     requiredKeys: 1,
     monsterId: 'treasure_guardian',
     connections: ['east_chinese_1'],
   },
 
-  // 宝箱区域
+  // 宝箱区域 - 分散放置
   {
     id: 'east_treasure_1',
     oceanId: 'east',
@@ -154,12 +151,12 @@ export const eastAreas: Area[] = [
     name: '奖励宝箱',
     difficulty: 1,
     type: 'treasure',
-    position: { x: -2, z: 2 },
+    position: { x: 3, z: 7 },
     requiredKeys: 0,
     connections: ['east_math_2'],
   },
 
-  // 大Boss区域
+  // 大Boss区域 - 顶部中央
   {
     id: 'east_boss',
     oceanId: 'east',
@@ -167,7 +164,7 @@ export const eastAreas: Area[] = [
     name: '东大洋守护者',
     difficulty: 3,
     type: 'boss',
-    position: { x: 0, z: 3 },
+    position: { x: 5, z: 8 },
     requiredKeys: 0,
     monsterId: 'jellyfish_king',
     connections: ['east_math_3', 'east_chinese_3', 'east_english_3'],
@@ -200,4 +197,79 @@ export function getAreaById(areaId: string): Area | undefined {
 // 获取区域的难度标签
 export function getDifficultyStars(difficulty: 1 | 2 | 3): string {
   return '⭐'.repeat(difficulty)
+}
+
+// 检查区域是否可达（基于当前进度）
+export function isAreaReachable(
+  areaId: string,
+  currentAreaId: string | null,
+  defeatedMiniBosses: string[],
+  visitedAreas: string[]
+): { reachable: boolean; reason?: string } {
+  const area = getAreaById(areaId)
+  if (!area) return { reachable: false, reason: '区域不存在' }
+
+  // Boss岛屿需要9个岛屿完成后才能访问
+  if (area.type === 'boss') {
+    if (defeatedMiniBosses.length < 9) {
+      return { reachable: false, reason: `需要打败9个岛屿才能挑战Boss (${defeatedMiniBosses.length}/9)` }
+    }
+    return { reachable: true }
+  }
+
+  // 已击败的岛屿可以直接访问
+  if (defeatedMiniBosses.includes(areaId)) {
+    return { reachable: true }
+  }
+
+  // 如果是当前所在岛屿，可以访问
+  if (currentAreaId === areaId) {
+    return { reachable: true }
+  }
+
+  // 首次进入大洋时，所有难度1的普通岛屿都可访问
+  if (defeatedMiniBosses.length === 0 && !visitedAreas.some(v => v !== currentAreaId)) {
+    if (area.type === 'normal' && area.difficulty === 1) {
+      return { reachable: true }
+    }
+    return { reachable: false, reason: '请先完成初始岛屿' }
+  }
+
+  // 获取当前区域
+  const currentArea = currentAreaId ? getAreaById(currentAreaId) : null
+  if (!currentArea) {
+    return { reachable: false, reason: '当前区域未知' }
+  }
+
+  // 检查是否是同类型下一阶岛屿
+  if (area.knowledgeArea === currentArea.knowledgeArea &&
+      area.difficulty === currentArea.difficulty + 1) {
+    return { reachable: true }
+  }
+
+  // 检查是否是当前岛屿的直接连接
+  if (currentArea.connections.includes(areaId)) {
+    // 如果目标是更低难度，直接可达
+    if (area.difficulty < currentArea.difficulty) {
+      return { reachable: true }
+    }
+
+    // 如果是同级难度，检查其下方连接是否都已完成
+    if (area.difficulty === currentArea.difficulty) {
+      const areaConnections = area.connections
+        .map(id => getAreaById(id))
+        .filter(a => a) as Area[]
+
+      const lowerConnections = areaConnections.filter(a => a && a.difficulty < area.difficulty)
+      const allLowerCompleted = lowerConnections.every(a =>
+        defeatedMiniBosses.includes(a!.id)
+      )
+
+      if (allLowerCompleted) {
+        return { reachable: true }
+      }
+    }
+  }
+
+  return { reachable: false, reason: '请先完成前置岛屿' }
 }
