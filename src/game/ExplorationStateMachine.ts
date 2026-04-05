@@ -271,13 +271,10 @@ export function explorationTransition(
 
     case 'boss_appearing':
       switch (action.type) {
-        case 'BATTLE_WIN': {
-          // 添加boss到已击败列表
-          const newDefeated = state.defeatedMiniBosses.includes(action.areaId)
-            ? state.defeatedMiniBosses
-            : [...state.defeatedMiniBosses, action.areaId]
-          return { ...state, phase: 'area_complete', defeatedMiniBosses: newDefeated }
-        }
+        case 'BATTLE_WIN':
+          // Boss战胜利不需要添加到defeatedMiniBosses，因为Boss是独立存在的
+          // 打败9个普通岛屿后才能挑战Boss，Boss战胜利后传送门通向新大洋
+          return { ...state, phase: 'area_complete' }
         case 'BATTLE_LOSE':
           return { ...state, phase: 'error', lastError: 'Boss battle lost' }
         default:
