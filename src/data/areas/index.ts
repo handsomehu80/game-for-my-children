@@ -4,6 +4,7 @@ import { Area } from '../../game/types'
 // 岛屿位置在1000x600的画布上分布，使用0-10的网格坐标转换为像素
 export const eastAreas: Area[] = [
   // 数学区域 - 左侧链条 (从下到上)
+  // 连接规则：同级之间互联，向上一链
   {
     id: 'east_math_1',
     oceanId: 'east',
@@ -14,7 +15,7 @@ export const eastAreas: Area[] = [
     position: { x: 1, z: 1 },
     requiredKeys: 0,
     monsterId: 'math_slime_1',
-    connections: ['east_chinese_1', 'east_english_1'],
+    connections: ['east_chinese_1', 'east_english_1', 'east_math_2'],  // 同级互联 + 向上一链
   },
   {
     id: 'east_math_2',
@@ -26,7 +27,7 @@ export const eastAreas: Area[] = [
     position: { x: 1, z: 3 },
     requiredKeys: 0,
     monsterId: 'math_slime_2',
-    connections: ['east_math_1', 'east_chinese_2'],
+    connections: ['east_math_1', 'east_math_3'],  // 下一链 + 上一链
   },
   {
     id: 'east_math_3',
@@ -38,7 +39,7 @@ export const eastAreas: Area[] = [
     position: { x: 1, z: 5 },
     requiredKeys: 0,
     monsterId: 'math_slime_3',
-    connections: ['east_math_2', 'east_boss'],
+    connections: ['east_math_2', 'east_boss'],  // 下一链 + Boss
   },
 
   // 语文区域 - 中间链条 (从下到上)
@@ -52,7 +53,7 @@ export const eastAreas: Area[] = [
     position: { x: 5, z: 1 },
     requiredKeys: 0,
     monsterId: 'chinese_slime_1',
-    connections: ['east_math_1', 'east_english_1'],
+    connections: ['east_math_1', 'east_english_1', 'east_chinese_2'],  // 同级互联 + 向上一链
   },
   {
     id: 'east_chinese_2',
@@ -64,7 +65,7 @@ export const eastAreas: Area[] = [
     position: { x: 5, z: 3 },
     requiredKeys: 0,
     monsterId: 'chinese_slime_2',
-    connections: ['east_chinese_1', 'east_english_2'],
+    connections: ['east_chinese_1', 'east_chinese_3'],  // 下一链 + 上一链
   },
   {
     id: 'east_chinese_3',
@@ -76,7 +77,7 @@ export const eastAreas: Area[] = [
     position: { x: 5, z: 5 },
     requiredKeys: 0,
     monsterId: 'chinese_slime_3',
-    connections: ['east_chinese_2', 'east_boss'],
+    connections: ['east_chinese_2', 'east_boss'],  // 下一链 + Boss
   },
 
   // 英语区域 - 右侧链条 (从下到上)
@@ -90,7 +91,7 @@ export const eastAreas: Area[] = [
     position: { x: 9, z: 1 },
     requiredKeys: 0,
     monsterId: 'english_slime_1',
-    connections: ['east_math_1', 'east_chinese_1'],
+    connections: ['east_chinese_1', 'east_english_2'],  // 向下一链 (不是 math_1) + 向上一链
   },
   {
     id: 'east_english_2',
@@ -102,7 +103,7 @@ export const eastAreas: Area[] = [
     position: { x: 9, z: 3 },
     requiredKeys: 0,
     monsterId: 'english_slime_2',
-    connections: ['east_english_1', 'east_chinese_2'],
+    connections: ['east_english_1', 'east_english_3'],  // 下一链 + 上一链
   },
   {
     id: 'east_english_3',
@@ -114,7 +115,7 @@ export const eastAreas: Area[] = [
     position: { x: 9, z: 5 },
     requiredKeys: 0,
     monsterId: 'english_slime_3',
-    connections: ['east_english_2', 'east_boss'],
+    connections: ['east_english_2', 'east_boss'],  // 下一链 + Boss
   },
 
   // 隐藏区域 (需要钥匙) - 分散在角落
