@@ -99,10 +99,11 @@ interface ExplorationState {
   phase: ExplorationPhase
   currentOcean: string | null
   currentArea: string | null
-  defeatedMiniBosses: string[]      // 已完成岛屿
+  visitedAreas: string[]             // 已访问岛屿
+  defeatedMiniBosses: string[]       // 已完成岛屿
   unlockedAreas: string[]            // 已解锁区域（消耗钥匙后）
   collectedKeys: number              // 持有钥匙数量
-  availablePortals: Portal[]         // 当前可选传送门
+  availablePortals: Portal[]        // 当前可选传送门
 }
 ```
 
