@@ -10,6 +10,11 @@ import OceanSailingScene from './OceanSailingScene'
 export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
 
+  // 调试：监控 phase 变化
+  useEffect(() => {
+    console.log('🔔 exploration.phase changed to:', exploration?.phase)
+  }, [exploration?.phase])
+
   // P0-3: Use ref to prevent stale closures in useEffect hooks
   const latestExplorationRef = useRef(exploration)
   useEffect(() => {
@@ -37,15 +42,13 @@ export default function ExplorationMap() {
 
   // 处理区域点击
   const handleAreaClick = (areaId: string) => {
+    console.log('handleAreaClick called with:', areaId)
     const area = getAreaById(areaId)
     if (!area) return
 
-    if (area.type === 'boss') {
-      setPendingAreaId(areaId)
-      setShowAreaConfirm(true)
-    } else {
-      selectArea(areaId)
-    }
+    // 所有岛屿都显示确认对话框
+    setPendingAreaId(areaId)
+    setShowAreaConfirm(true)
   }
 
   // 处理传送门点击
@@ -70,11 +73,14 @@ export default function ExplorationMap() {
   }
 
   const handleSailingArrived = () => {
+    console.log('handleSailingArrived called')
     setIsSailing(false)
     setSailingTarget(null)
     explorationDispatch({ type: 'SAILING_COMPLETE' })
+    console.log('After SAILING_COMPLETE, phase should be arrived')
     // Small delay then transition to moving
     setTimeout(() => {
+      console.log('Dispatching ARRIVED')
       explorationDispatch({ type: 'ARRIVED' })
     }, 300)
   }
@@ -95,19 +101,33 @@ export default function ExplorationMap() {
 
   // 模拟移动动画完成
   useEffect(() => {
+    console.log('moving useEffect triggered, phase:', latestExplorationRef.current?.phase)
     if (latestExplorationRef.current?.phase === 'moving') {
+      console.log('Setting timer for MOVE_COMPLETE')
       const timer = setTimeout(() => {
+        console.log('Dispatching MOVE_COMPLETE')
         explorationDispatch({ type: 'MOVE_COMPLETE' })
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [exploration, explorationDispatch])
+    // sailing 阶段：启动航行动画
+    if (latestExplorationRef.current?.phase === 'sailing' && isSailing) {
+      // OceanSailingScene 已经显示，等待动画完成
+    }
+  }, [exploration, explorationDispatch, isSailing])
 
   // 模拟遭遇判定
   useEffect(() => {
-    if (!latestExplorationRef.current || latestExplorationRef.current.phase !== 'encounter') return
+    console.log('DEBUG encounter useEffect: phase =', latestExplorationRef.current?.phase)
+    if (!latestExplorationRef.current || latestExplorationRef.current.phase !== 'encounter') {
+      console.log('DEBUG encounter useEffect: returning early, phase is not encounter')
+      return
+    }
     const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
-    if (!area) return
+    if (!area) {
+      console.log('DEBUG encounter useEffect: area not found')
+      return
+    }
 
     let result: 'battle' | 'treasure' | 'hidden_event'
     if (area.type === 'treasure') {
@@ -121,6 +141,7 @@ export default function ExplorationMap() {
       result = 'battle'
     }
 
+    console.log('DEBUG encounter useEffect: dispatching ENCOUNTER_RESULT with result =', result)
     explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
   }, [exploration, areas, explorationDispatch])
 
@@ -154,18 +175,24 @@ export default function ExplorationMap() {
 
   // 手动触发战斗胜利（用于测试）
   const handleBattleWin = () => {
-    // P0-3: Only dispatch if in battle phase
-    if (exploration?.phase === 'battle' && exploration?.currentArea) {
+    console.log('handleBattleWin called, current phase:', exploration?.phase)
+    // P0-3: Only dispatch if in battle or hidden_area phase
+    if ((exploration?.phase === 'battle' || exploration?.phase === 'hidden_area') && exploration?.currentArea) {
+      console.log('Dispatching BATTLE_WIN')
       // P1-2: Increment victory counter BEFORE BATTLE_WIN so generatePortals sees updated value
       explorationDispatch({ type: 'INCREMENT_VICTORY_COUNTER' })
       explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
+      // 直接调用 generatePortals 确保在 victory phase 时生成传送门
+      generatePortals()
     }
   }
 
   // 手动触发战斗失败（用于测试）
   const handleBattleLose = () => {
-    // P0-3: Only dispatch if in battle phase
-    if (exploration?.phase === 'battle') {
+    console.log('handleBattleLose called, current phase:', exploration?.phase)
+    // P0-3: Only dispatch if in battle or hidden_area phase
+    if (exploration?.phase === 'battle' || exploration?.phase === 'hidden_area') {
+      console.log('Dispatching BATTLE_LOSE')
       explorationDispatch({ type: 'BATTLE_LOSE' })
     }
   }
@@ -191,31 +218,186 @@ export default function ExplorationMap() {
         />
       )}
 
-      <div className="exploration-map" style={{ position: 'relative', width: '700px', margin: '0 auto', padding: '20px' }}>
-      <h2 style={{ textAlign: 'center' }}>🗺️ {exploration.currentOcean === 'east' ? '东大洋' : exploration.currentOcean} 探索地图</h2>
+      {/* 全屏海洋背景 */}
+      <style>
+        {`
+          @keyframes waveMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+          }
+          @keyframes waveFloat {
+            0%, 100% { transform: translateY(0px) translateX(0); }
+            25% { transform: translateY(-5px) translateX(2px); }
+            50% { transform: translateY(-10px) translateX(0); }
+            75% { transform: translateY(-5px) translateX(-2px); }
+          }
+          @keyframes shimmer {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.4; }
+          }
+          @keyframes cloudDrift {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+          }
+          .ocean-fullscreen {
+            background: linear-gradient(180deg,
+              #87CEEB 0%,
+              #4A90B8 15%,
+              #2980B9 30%,
+              #1E6F9F 50%,
+              #154360 70%,
+              #0D2D4A 100%);
+            background-size: 400% 400%;
+            animation: waveMove 12s ease-in-out infinite;
+            min-height: 100vh;
+          }
+          .wave-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+            animation: waveFloat 4s ease-in-out infinite;
+            pointer-events: none;
+          }
+          .wave-line {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg,
+              transparent 0%,
+              rgba(255,255,255,0.6) 10%,
+              rgba(255,255,255,0.8) 30%,
+              rgba(255,255,255,0.6) 50%,
+              rgba(255,255,255,0.8) 70%,
+              rgba(255,255,255,0.6) 90%,
+              transparent 100%
+            );
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+          }
+          .wave-foam {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: repeating-linear-gradient(90deg,
+              transparent,
+              transparent 20px,
+              rgba(255,255,255,0.3) 20px,
+              rgba(255,255,255,0.3) 40px
+            );
+            animation: shimmer 2s ease-in-out infinite;
+            pointer-events: none;
+          }
+          .cloud-float {
+            position: absolute;
+            top: 30px;
+            font-size: 48px;
+            opacity: 0.6;
+            animation: cloudDrift 20s linear infinite;
+            pointer-events: none;
+          }
+          .sun-glow {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, rgba(255,165,0,0.4) 40%, transparent 70%);
+            border-radius: 50%;
+            animation: shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+          }
+          @keyframes sailingBob {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+          }
+        `}
+      </style>
+
+      <div className="ocean-fullscreen" style={{ position: 'relative', width: '100%', minHeight: '100vh', padding: '20px', boxSizing: 'border-box' }}>
+        {/* 装饰元素 */}
+        <div className="sun-glow" />
+        <div className="cloud-float" style={{ left: '-50px' }}>☁️</div>
+        <div className="cloud-float" style={{ left: '-150px', animationDelay: '-7s', fontSize: '36px' }}>☁️</div>
+        <div className="cloud-float" style={{ left: '-250px', animationDelay: '-14s', fontSize: '42px' }}>☁️</div>
+
+      <h2 style={{ textAlign: 'center', color: 'white', textShadow: '2px 2px 4px rgba(0,0,0,0.5)', marginBottom: '20px' }}>
+        🗺️ {exploration.currentOcean === 'east' ? '东大洋' : exploration.currentOcean} 探索地图
+      </h2>
 
       {/* 玩家状态 */}
-      <div className="player-status" style={{ display: 'flex', gap: '16px', marginBottom: '16px', justifyContent: 'center' }}>
-        <div>🔑 钥匙: {exploration.collectedKeys}</div>
-        <div>⚔️ 已击败: {exploration.defeatedMiniBosses.length} / 9</div>
+      <div className="player-status" style={{
+        display: 'flex',
+        gap: '24px',
+        marginBottom: '20px',
+        justifyContent: 'center',
+        background: 'rgba(0,0,0,0.3)',
+        padding: '12px 24px',
+        borderRadius: '20px',
+        backdropFilter: 'blur(10px)'
+      }}>
+        <div style={{ color: 'white', fontSize: '18px' }}>🔑 钥匙: {exploration.collectedKeys}</div>
+        <div style={{ color: 'white', fontSize: '18px' }}>⚔️ 已击败: {exploration.defeatedMiniBosses.length} / 9</div>
       </div>
 
-      {/* 地图区域 - 扩大容器确保所有区域可见 */}
+      {/* 地图区域 - 全屏容器 */}
       <div
         style={{
           position: 'relative',
           width: '100%',
-          height: '500px',
-          background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
-          borderRadius: '12px',
+          height: '600px',
+          borderRadius: '16px',
           overflow: 'hidden',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+          border: '3px solid rgba(255,255,255,0.2)',
+          background: 'linear-gradient(180deg, rgba(30,100,150,0.3) 0%, rgba(20,60,100,0.5) 100%)',
         }}
       >
+        {/* 波浪效果层 */}
+        <div className="wave-overlay" />
+        <div className="wave-line" />
+        <div className="wave-foam" />
+
+        {/* 船只指示器 - 显示在当前选择的岛屿位置 */}
+        {exploration.currentArea && (
+          (() => {
+            const currentAreaData = areas.find(a => a.id === exploration.currentArea)
+            if (!currentAreaData) return null
+            const containerWidth = 800
+            const containerHeight = 600
+            const shipX = (currentAreaData.position.x / 10) * (containerWidth - 80) + 40 - 10
+            const shipY = (currentAreaData.position.z / 10) * (containerHeight - 80) + 40 - 60
+            return (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: `${shipX}px`,
+                  top: `${shipY}px`,
+                  fontSize: '40px',
+                  zIndex: 100,
+                  filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))',
+                  animation: 'sailingBob 2s ease-in-out infinite',
+                }}
+              >
+                ⛵
+              </div>
+            )
+          })()
+        )}
+
+        {/* 所有岛屿 */}
         {areas.map((area) => (
           <AreaNode key={area.id} areaId={area.id} onClick={handleAreaClick} />
         ))}
 
-        {/* 连接线 - 使用与 AreaNode 一致的偏移量计算 */}
+        {/* 连接线 - 只显示到已揭示岛屿的连接 */}
         <svg
           style={{
             position: 'absolute',
@@ -230,15 +412,31 @@ export default function ExplorationMap() {
             area.connections.map((connId) => {
               const target = areas.find((a) => a.id === connId)
               if (!target) return null
+
+              // 只显示到已揭示岛屿的连线
+              const targetRevealed = exploration?.defeatedMiniBosses.includes(connId) ||
+                target.type === 'treasure' ||
+                target.difficulty === 1 ||
+                (target.type === 'boss' && exploration?.defeatedMiniBosses.length >= 9)
+              if (!targetRevealed) return null
+
+              // 位置计算：与 AreaNode 保持一致
+              const containerWidth = 800
+              const containerHeight = 600
+              const x1 = (area.position.x / 10) * (containerWidth - 80) + 80
+              const y1 = (area.position.z / 10) * (containerHeight - 80) + 80
+              const x2 = (target.position.x / 10) * (containerWidth - 80) + 80
+              const y2 = (target.position.z / 10) * (containerHeight - 80) + 80
               return (
                 <line
                   key={`${area.id}-${connId}`}
-                  x1={area.position.x * 60 + 185}
-                  y1={area.position.z * 60 + 115}
-                  x2={target.position.x * 60 + 185}
-                  y2={target.position.z * 60 + 115}
-                  stroke="rgba(255,255,255,0.2)"
-                  strokeWidth="2"
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="rgba(255,255,255,0.3)"
+                  strokeWidth="3"
+                  strokeDasharray="8,4"
                 />
               )
             })
@@ -247,13 +445,16 @@ export default function ExplorationMap() {
       </div>
 
       {/* 当前状态提示 */}
-      <div className="phase-indicator" style={{ marginTop: '16px', textAlign: 'center' }}>
-        {exploration.phase === 'exploring' && <span>选择要探索的区域</span>}
-        {exploration.phase === 'sailing' && <span>⛵ 航行中...</span>}
-        {exploration.phase === 'arrived' && <span>🏝️ 到达！</span>}
+      <div className="phase-indicator" style={{ marginTop: '16px', textAlign: 'center', background: 'rgba(0,255,0,0.3)', padding: '10px', borderRadius: '10px' }}>
+        <strong>DEBUG: phase = "{exploration.phase}"</strong>
+        {exploration.phase === 'battle' && <span style={{background: 'red', color: 'white', padding: '5px 10px', borderRadius: '5px'}}>应该显示战斗按钮！</span>}
+        {exploration.phase === 'exploring' && <span> - 选择要探索的区域</span>}
+        {exploration.phase === 'sailing' && <span> - ⛵ 航行中...</span>}
+        {exploration.phase === 'arrived' && <span> - 🏝️ 到达！</span>}
         {exploration.phase === 'moving' && <span>移动中...</span>}
         {exploration.phase === 'encounter' && <span>遭遇判定中...</span>}
-        {exploration.phase === 'battle' && <span>战斗开始！</span>}
+        {exploration.phase === 'battle' && <span>⚔️ 战斗开始！</span>}
+        {exploration.phase === 'hidden_area' && <span>🔮 隐藏事件触发！</span>}
         {exploration.phase === 'treasure' && <span>发现宝箱！</span>}
         {exploration.phase === 'victory' && <span>🎉 战斗胜利！</span>}
         {exploration.phase === 'portal_appear' && <span>选择传送门</span>}
@@ -261,10 +462,14 @@ export default function ExplorationMap() {
         {exploration.phase === 'rollback' && <span style={{ color: 'orange' }}>回滚中...</span>}
       </div>
 
-      {/* 战斗测试按钮 - 当在 battle phase 时显示 */}
-      {exploration.phase === 'battle' && (
-        <div style={{ marginTop: '16px', textAlign: 'center' }}>
-          <p style={{ marginBottom: '8px' }}>当前区域: {areas.find(a => a.id === exploration.currentArea)?.name}</p>
+      {/* 战斗测试按钮 - 当在 battle 或 hidden_area phase 时显示 */}
+      {(() => {
+        console.log('JSX evaluation: exploration.phase =', exploration.phase, 'condition =', exploration.phase === 'battle' || exploration.phase === 'hidden_area')
+        return (exploration.phase === 'battle' || exploration.phase === 'hidden_area')
+      })() && (
+        <div style={{ marginTop: '16px', textAlign: 'center', background: 'rgba(255,0,0,0.8)', padding: '20px', borderRadius: '10px' }}>
+          <h3 style={{ color: 'white', margin: '0 0 10px 0' }}>⚔️ 战斗阶段 ⚔️</h3>
+          <p style={{ marginBottom: '8px', color: 'white' }}>当前区域: {areas.find(a => a.id === exploration.currentArea)?.name}</p>
           <button
             onClick={handleBattleWin}
             style={{
@@ -307,6 +512,110 @@ export default function ExplorationMap() {
               <Portal key={portal.id} portal={portal} onClick={handlePortalClick} />
             ))}
           </div>
+        </div>
+      )}
+
+      {/* 战斗测试按钮 - 独立渲染确保可见 */}
+      {exploration.phase === 'battle' && (
+        <div style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'red',
+          color: 'white',
+          padding: '40px',
+          borderRadius: '20px',
+          zIndex: 9999,
+          fontSize: '24px',
+          boxShadow: '0 0 50px rgba(255,0,0,0.5)'
+        }}>
+          <h2>🎮 BATTLE PHASE 🎮</h2>
+          <p>当前区域: {exploration.currentArea}</p>
+          <button
+            onClick={handleBattleWin}
+            style={{
+              padding: '15px 30px',
+              margin: '10px',
+              background: 'linear-gradient(135deg, #00ff88, #00cc66)',
+              border: 'none',
+              borderRadius: '10px',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '18px'
+            }}
+          >
+            模拟战斗胜利
+          </button>
+          <button
+            onClick={handleBattleLose}
+            style={{
+              padding: '15px 30px',
+              margin: '10px',
+              background: 'linear-gradient(135deg, #ff6b6b, #c92a2a)',
+              border: 'none',
+              borderRadius: '10px',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '18px'
+            }}
+          >
+            模拟战斗失败
+          </button>
+        </div>
+      )}
+
+      {/* hidden_area 战斗按钮 */}
+      {exploration.phase === 'hidden_area' && (
+        <div style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'purple',
+          color: 'white',
+          padding: '40px',
+          borderRadius: '20px',
+          zIndex: 9999,
+          fontSize: '24px',
+          boxShadow: '0 0 50px rgba(128,0,128,0.5)'
+        }}>
+          <h2>🔮 HIDDEN EVENT 🔮</h2>
+          <p>当前区域: {exploration.currentArea}</p>
+          <button
+            onClick={handleBattleWin}
+            style={{
+              padding: '15px 30px',
+              margin: '10px',
+              background: 'linear-gradient(135deg, #00ff88, #00cc66)',
+              border: 'none',
+              borderRadius: '10px',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '18px'
+            }}
+          >
+            模拟战斗胜利
+          </button>
+          <button
+            onClick={handleBattleLose}
+            style={{
+              padding: '15px 30px',
+              margin: '10px',
+              background: 'linear-gradient(135deg, #ff6b6b, #c92a2a)',
+              border: 'none',
+              borderRadius: '10px',
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '18px'
+            }}
+          >
+            模拟战斗失败
+          </button>
         </div>
       )}
 
