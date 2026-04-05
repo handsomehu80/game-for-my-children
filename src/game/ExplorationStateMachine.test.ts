@@ -194,6 +194,7 @@ describe('ExplorationStateMachine', () => {
             visitedAreas: ['east_math_1'],
             defeatedMiniBosses: [],
             unlockedAreas: ['east_math_1', 'east_hidden_A'],
+            reachableAreas: [],
             collectedKeys: 1,
             collectedItems: [],
           },

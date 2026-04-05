@@ -199,23 +199,15 @@ export function getDifficultyStars(difficulty: 1 | 2 | 3): string {
   return '⭐'.repeat(difficulty)
 }
 
-// 检查区域是否可达（基于当前进度）
+// 检查区域是否可达（基于累积的可达区域列表）
 export function isAreaReachable(
   areaId: string,
   currentAreaId: string | null,
   defeatedMiniBosses: string[],
-  visitedAreas: string[]
+  reachableAreas: string[]
 ): { reachable: boolean; reason?: string } {
   const area = getAreaById(areaId)
   if (!area) return { reachable: false, reason: '区域不存在' }
-
-  // Boss岛屿需要9个岛屿完成后才能访问
-  if (area.type === 'boss') {
-    if (defeatedMiniBosses.length < 9) {
-      return { reachable: false, reason: `需要打败9个岛屿才能挑战Boss (${defeatedMiniBosses.length}/9)` }
-    }
-    return { reachable: true }
-  }
 
   // 已击败的岛屿可以直接访问
   if (defeatedMiniBosses.includes(areaId)) {
@@ -227,48 +219,17 @@ export function isAreaReachable(
     return { reachable: true }
   }
 
-  // 首次进入大洋时，所有难度1的普通岛屿都可访问
-  if (defeatedMiniBosses.length === 0 && !visitedAreas.some(v => v !== currentAreaId)) {
-    if (area.type === 'normal' && area.difficulty === 1) {
-      return { reachable: true }
+  // Boss岛屿需要9个岛屿完成后才能访问
+  if (area.type === 'boss') {
+    if (defeatedMiniBosses.length < 9) {
+      return { reachable: false, reason: `需要打败9个岛屿才能挑战Boss (${defeatedMiniBosses.length}/9)` }
     }
-    return { reachable: false, reason: '请先完成初始岛屿' }
-  }
-
-  // 获取当前区域
-  const currentArea = currentAreaId ? getAreaById(currentAreaId) : null
-  if (!currentArea) {
-    return { reachable: false, reason: '当前区域未知' }
-  }
-
-  // 检查是否是同类型下一阶岛屿
-  if (area.knowledgeArea === currentArea.knowledgeArea &&
-      area.difficulty === currentArea.difficulty + 1) {
     return { reachable: true }
   }
 
-  // 检查是否是当前岛屿的直接连接
-  if (currentArea.connections.includes(areaId)) {
-    // 如果目标是更低难度，直接可达
-    if (area.difficulty < currentArea.difficulty) {
-      return { reachable: true }
-    }
-
-    // 如果是同级难度，检查其下方连接是否都已完成
-    if (area.difficulty === currentArea.difficulty) {
-      const areaConnections = area.connections
-        .map(id => getAreaById(id))
-        .filter(a => a) as Area[]
-
-      const lowerConnections = areaConnections.filter(a => a && a.difficulty < area.difficulty)
-      const allLowerCompleted = lowerConnections.every(a =>
-        defeatedMiniBosses.includes(a!.id)
-      )
-
-      if (allLowerCompleted) {
-        return { reachable: true }
-      }
-    }
+  // 在可达区域列表中的岛屿可以直接访问（累积增长）
+  if (reachableAreas.includes(areaId)) {
+    return { reachable: true }
   }
 
   return { reachable: false, reason: '请先完成前置岛屿' }

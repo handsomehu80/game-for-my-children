@@ -9,6 +9,7 @@ export const initialExplorationState: ExplorationState = {
   visitedAreas: [],
   defeatedMiniBosses: [],
   unlockedAreas: [],
+  reachableAreas: [],  // 可达区域列表（累积增长）
   collectedKeys: 0,
   collectedItems: [],
   availablePortals: [],
@@ -121,7 +122,19 @@ export function explorationTransition(
           const newDefeated = state.defeatedMiniBosses.includes(action.areaId)
             ? state.defeatedMiniBosses
             : [...state.defeatedMiniBosses, action.areaId]
-          // 创建存档点
+
+          // 获取当前岛屿的连接岛屿，添加为可达区域
+          const currentArea = getAreaById(action.areaId)
+          const newReachable = currentArea
+            ? currentArea.connections.filter(id => {
+                const area = getAreaById(id)
+                // 只添加未完成的非boss岛屿
+                return area && !newDefeated.includes(id) && area.type !== 'boss'
+              })
+            : []
+          const finalReachable = [...state.reachableAreas, ...newReachable.filter(id => !state.reachableAreas.includes(id))]
+
+          // 创建存档点（包含可达区域）
           const savepoint: Savepoint = {
             type: 'battle_win',
             createdAt: Date.now(),
@@ -129,6 +142,7 @@ export function explorationTransition(
               visitedAreas: newVisited,
               defeatedMiniBosses: newDefeated,
               unlockedAreas: state.unlockedAreas,
+              reachableAreas: finalReachable,
               collectedKeys: state.collectedKeys,
               collectedItems: state.collectedItems,
             },
@@ -138,6 +152,8 @@ export function explorationTransition(
             phase: 'victory',
             visitedAreas: newVisited,
             defeatedMiniBosses: newDefeated,
+            // 添加新的可达区域（只增不减）
+            reachableAreas: finalReachable,
             savepoints: [...state.savepoints, savepoint],
             lastSavepoint: savepoint,
             battleFailedAttempts: 0,  // 重置重试计数
@@ -192,7 +208,20 @@ export function explorationTransition(
           const newDefeated = state.defeatedMiniBosses.includes(action.areaId)
             ? state.defeatedMiniBosses
             : [...state.defeatedMiniBosses, action.areaId]
-          return { ...state, phase: 'portal_appear', defeatedMiniBosses: newDefeated }
+          // 获取当前岛屿的连接岛屿，添加为可达区域
+          const currentArea = getAreaById(action.areaId)
+          const newReachable = currentArea
+            ? currentArea.connections.filter(id => {
+                const area = getAreaById(id)
+                return area && !newDefeated.includes(id) && area.type !== 'boss'
+              })
+            : []
+          return {
+            ...state,
+            phase: 'portal_appear',
+            defeatedMiniBosses: newDefeated,
+            reachableAreas: [...state.reachableAreas, ...newReachable.filter(id => !state.reachableAreas.includes(id))],
+          }
         }
         case 'BATTLE_LOSE':
           return { ...state, phase: 'error', lastError: 'Hidden area battle lost' }
@@ -214,6 +243,7 @@ export function explorationTransition(
               visitedAreas: state.visitedAreas,
               defeatedMiniBosses: state.defeatedMiniBosses,
               unlockedAreas: state.unlockedAreas,
+              reachableAreas: state.reachableAreas,
               collectedKeys: state.collectedKeys,
               collectedItems: state.collectedItems,
             },
@@ -265,6 +295,15 @@ export function explorationTransition(
               : [...state.unlockedAreas, action.areaId],
             collectedKeys: state.collectedKeys - 1,
           }
+        case 'ADD_REACHABLE_AREAS': {
+          // 添加新的可达区域（只增不减）
+          const newReachable = action.areaIds.filter(id => !state.reachableAreas.includes(id))
+          if (newReachable.length === 0) return state
+          return {
+            ...state,
+            reachableAreas: [...state.reachableAreas, ...newReachable],
+          }
+        }
         default:
           return state
       }

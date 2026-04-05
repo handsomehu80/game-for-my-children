@@ -11,11 +11,12 @@ interface OceanSailingSceneProps {
 
 export default function OceanSailingScene({
   isActive,
-  startPosition,
-  endPosition,
+  startPosition: _startPosition,
+  endPosition: _endPosition,
   onArrived,
   isReducedMotion = false,
 }: OceanSailingSceneProps) {
+  // _startPosition and _endPosition reserved for future path customization
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

@@ -20,7 +20,7 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
         areaId,
         exploration.currentArea,
         exploration.defeatedMiniBosses,
-        exploration.visitedAreas
+        exploration.reachableAreas
       )
     : { reachable: false }
 

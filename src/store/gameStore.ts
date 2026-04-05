@@ -212,11 +212,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   // 开始探索
   startExploration: (oceanId) => {
+    // 获取该大洋的所有岛屿
+    const areas = getAreasByOcean(oceanId)
+    // 初始化可达区域：所有难度1的普通岛屿
+    const initialReachable = areas
+      .filter(a => a.type === 'normal' && a.difficulty === 1)
+      .map(a => a.id)
+
     set({
       exploration: {
         ...initialExplorationState,
         phase: 'exploring',
         currentOcean: oceanId,
+        reachableAreas: initialReachable,
       },
       gamePhase: 'exploration',
     })

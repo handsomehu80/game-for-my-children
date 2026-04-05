@@ -217,6 +217,7 @@ export interface Savepoint {
     visitedAreas: string[]
     defeatedMiniBosses: string[]
     unlockedAreas: string[]
+    reachableAreas: string[]  // 可达区域列表
     collectedKeys: number
     collectedItems: Item[]
   }
@@ -230,6 +231,7 @@ export interface ExplorationState {
   visitedAreas: string[]           // 已访问区域
   defeatedMiniBosses: string[]     // 已击败小boss
   unlockedAreas: string[]          // 已解锁区域（使用钥匙后）
+  reachableAreas: string[]         // 可达区域列表（累积增长）
   collectedKeys: number            // 收集的钥匙数量
   collectedItems: Item[]           // 收集的物品
   availablePortals: Portal[]        // 当前可选传送门
@@ -258,6 +260,7 @@ export type ExplorationAction =
   | { type: 'OPEN_TREASURE'; treasures: Item[] }
   | { type: 'RECEIVE_KEY'; count: number }
   | { type: 'UNLOCK_AREA'; areaId: string }
+  | { type: 'ADD_REACHABLE_AREAS'; areaIds: string[] }  // 添加可达区域
   | { type: 'GENERATE_PORTALS'; portals: Portal[]; seed: number }
   | { type: 'SELECT_PORTAL'; portal: Portal }
   | { type: 'BOSS_APPEAR' }
@@ -266,5 +269,7 @@ export type ExplorationAction =
   | { type: 'EXPLORATION_ERROR'; error: string }
   | { type: 'ROLLBACK_TO_SAVEPOINT' }
   | { type: 'RESET_EXPLORATION' }
+  | { type: 'RESET_VICTORY_COUNTER' }
+  | { type: 'INCREMENT_VICTORY_COUNTER' }
   | { type: 'RESET_VICTORY_COUNTER' }  // P1-2: Reset victory counter after key drop
   | { type: 'INCREMENT_VICTORY_COUNTER' }  // P1-2: Increment victory counter
