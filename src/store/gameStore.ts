@@ -6,6 +6,7 @@ import type {
   ExplorationState,
   ExplorationAction,
   Portal,
+  Area,
 } from '../game/types'
 import {
   initialExplorationState,
@@ -280,10 +281,6 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
 
     const areas = getAreasByOcean(state.exploration.currentOcean!)
-    // 2. 在完成一个岛屿任务后出现的传送门一定要有没有完成的关联区域，已经完成的区域不要多次重复出现
-    const incompleteAreas = areas.filter(
-      (a) => !state.exploration!.defeatedMiniBosses.includes(a.id) && a.id !== currentArea.id && a.type !== 'boss'
-    )
 
     // 生成2-3个传送门
     const portalCount = rng.chance(0.5) ? 3 : 2
@@ -325,33 +322,55 @@ export const useGameStore = create<GameStore>((set, get) => ({
         }
       }
     } else {
-      // 普通岛屿战后，传送门只通向未完成的关联区域
-      // 至少1个通向未完成区域
-      if (incompleteAreas.length > 0) {
-        const target = rng.pick(incompleteAreas)
-        if (target) {
+      // 1. 首次进入大洋时，传送门通向第一个岛屿
+      // 判断是否是首次进入（没有任何岛屿完成且没有访问过任何岛屿）
+      const isFirstEntry = state.exploration!.defeatedMiniBosses.length === 0 &&
+        !state.exploration!.visitedAreas.some(v => v !== currentArea.id)
+
+      if (isFirstEntry) {
+        // 首次进入：传送门通向第一个入门的普通岛屿
+        const firstIsland = areas.find((a) => a.type === 'normal' && a.difficulty === 1)
+        if (firstIsland) {
           portals.push({
             id: `portal_${timestamp}_0`,
+            targetAreaId: firstIsland.id,
+            type: 'normal',
+          })
+        }
+      } else {
+        // 普通岛屿/隐藏区域/宝箱完成后：
+        // 传送门只通向当前岛屿相邻的未完成岛屿
+        const connectedAreas = currentArea.connections
+          .map(connId => areas.find(a => a.id === connId))
+          .filter(a => a && !state.exploration!.defeatedMiniBosses.includes(a!.id) && a!.type !== 'boss') as Area[]
+
+        if (connectedAreas.length > 0) {
+          // 至少1个通向相邻的未完成区域
+          const target = rng.pick(connectedAreas)
+          if (target) {
+            portals.push({
+              id: `portal_${timestamp}_0`,
+              targetAreaId: target.id,
+              type: target.type === 'hidden' ? 'hidden' : 'normal',
+            })
+          }
+        }
+
+        // 如果相邻未完成区域不足，补充其他未完成区域（从connections的连接中扩展）
+        const remainingConnected = connectedAreas.filter(
+          (a) => !portals.some((p) => p.targetAreaId === a.id)
+        )
+        while (portals.length < portalCount && remainingConnected.length > 0) {
+          const target = rng.pick(remainingConnected)
+          if (!target) break
+          const idx = remainingConnected.indexOf(target)
+          if (idx > -1) remainingConnected.splice(idx, 1)
+          portals.push({
+            id: `portal_${timestamp}_${portals.length}`,
             targetAreaId: target.id,
             type: target.type === 'hidden' ? 'hidden' : 'normal',
           })
         }
-      }
-
-      // 如果未完成区域不足，补充更多未完成区域（不去已完成区域）
-      const remainingIncomplete = incompleteAreas.filter(
-        (a) => !portals.some((p) => p.targetAreaId === a.id)
-      )
-      while (portals.length < portalCount && remainingIncomplete.length > 0) {
-        const target = rng.pick(remainingIncomplete)
-        if (!target) break
-        const idx = remainingIncomplete.indexOf(target)
-        if (idx > -1) remainingIncomplete.splice(idx, 1)
-        portals.push({
-          id: `portal_${timestamp}_${portals.length}`,
-          targetAreaId: target.id,
-          type: target.type === 'hidden' ? 'hidden' : 'normal',
-        })
       }
     }
 
