@@ -322,6 +322,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
           targetAreaId: nextOceanId,
           type: 'ocean_portal',
         })
+      } else {
+        // 最终Boss：显示通往已完成岛屿的传送门作为备选
+        const completedAreas = areas.filter(a =>
+          state.exploration!.defeatedMiniBosses.includes(a.id)
+        )
+        completedAreas.forEach(area => {
+          portals.push({
+            id: `portal_${timestamp}_${portals.length}`,
+            targetAreaId: area.id,
+            type: area.type === 'hidden' ? 'hidden' : 'normal',
+          })
+        })
       }
     } else if (state.exploration.collectedKeys > 0) {
       // 持有钥匙 → 70% 通往已解锁的钥匙岛屿
