@@ -344,37 +344,26 @@ export const useGameStore = create<GameStore>((set, get) => ({
         })
       }
     } else {
-      // 宝藏岛屿 - 不需要钥匙，30% 概率出现
+      // 宝藏岛屿 - 30% 概率出现
       const treasureIslands = areas.filter(a =>
-        a.type === 'treasure' &&
-        !state.exploration!.defeatedMiniBosses.includes(a.id)
+        a.type === 'treasure' && !state.exploration!.defeatedMiniBosses.includes(a.id)
       )
       if (treasureIslands.length > 0 && rng.chance(0.3)) {
-        const treasureTarget = rng.pick(treasureIslands)
-        if (treasureTarget) {
-          portals.push({
-            id: `portal_${timestamp}_0`,
-            targetAreaId: treasureTarget.id,
-            type: 'treasure',
-          })
+        const target = rng.pick(treasureIslands)
+        if (target) {
+          portals.push({ id: `portal_${timestamp}_0`, targetAreaId: target.id, type: 'treasure' })
         }
       }
 
-      // 隐藏岛屿 - 需要钥匙，70% 概率出现
+      // 隐藏岛屿 - 持有钥匙时 50% 概率出现
       if (state.exploration.collectedKeys > 0) {
         const hiddenIslands = areas.filter(a =>
-          a.type === 'hidden' &&
-          a.requiredKeys > 0 &&
-          !state.exploration!.defeatedMiniBosses.includes(a.id)
+          a.type === 'hidden' && !state.exploration!.defeatedMiniBosses.includes(a.id)
         )
-        if (hiddenIslands.length > 0 && rng.chance(0.7)) {
-          const hiddenTarget = rng.pick(hiddenIslands)
-          if (hiddenTarget) {
-            portals.push({
-              id: `portal_${timestamp}_${portals.length}`,
-              targetAreaId: hiddenTarget.id,
-              type: 'hidden',
-            })
+        if (hiddenIslands.length > 0 && rng.chance(0.5)) {
+          const target = rng.pick(hiddenIslands)
+          if (target) {
+            portals.push({ id: `portal_${timestamp}_${portals.length}`, targetAreaId: target.id, type: 'hidden' })
           }
         }
       }
