@@ -271,3 +271,4 @@ export type ExplorationAction =
   | { type: 'RESET_EXPLORATION' }
   | { type: 'RESET_VICTORY_COUNTER' }  // P1-2: Reset victory counter after key drop
   | { type: 'INCREMENT_VICTORY_COUNTER' }  // P1-2: Increment victory counter
+  | { type: 'CLOSE_PORTAL' }  // Close portal and return to exploring

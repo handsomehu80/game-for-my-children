@@ -260,6 +260,8 @@ export function explorationTransition(
 
     case 'portal_appear':
       switch (action.type) {
+        case 'CLOSE_PORTAL':
+          return { ...state, phase: 'exploring' as ExplorationPhase, availablePortals: [] }
         case 'SELECT_PORTAL':
           // 3. 打败完boss后出现传送门要能传送到新的区域
           if (action.portal.type === 'ocean_portal') {
@@ -397,7 +399,7 @@ export function getAvailableActions(state: ExplorationState): ExplorationAction[
     case 'victory':
       return ['GENERATE_PORTALS', 'RECEIVE_KEY']
     case 'portal_appear':
-      return ['SELECT_PORTAL', 'UNLOCK_AREA']
+      return ['SELECT_PORTAL', 'UNLOCK_AREA', 'CLOSE_PORTAL']
     case 'error':
       return ['ROLLBACK_TO_SAVEPOINT', 'RESET_EXPLORATION']
     default:
