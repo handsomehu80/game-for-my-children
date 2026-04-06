@@ -55,7 +55,10 @@ if (area.type === 'boss') {
       return area.difficulty === 1 && area.type === 'normal'
     }
     const currentAreaObj = getAreaById(exploration.currentArea)
-    return currentAreaObj?.connections.includes(areaId) ?? false
+    // Check if area is in current island's connections OR in reachableAreas (accumulated)
+    const isInConnections = currentAreaObj?.connections.includes(areaId) ?? false
+    const isInReachable = exploration?.reachableAreas.includes(areaId) ?? false
+    return isInConnections || isInReachable
   }
 
   // isLocked: true if the area requires keys to unlock
