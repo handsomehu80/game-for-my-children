@@ -46,7 +46,10 @@ export default function ExplorationMap() {
     const area = getAreaById(areaId)
     if (!area) return false
     if (exploration?.defeatedMiniBosses.includes(areaId)) return false
-    if (area.type === 'boss') return false  // Boss needs 9 islands completed
+    // Boss needs 9 islands completed before becoming clickable
+if (area.type === 'boss') {
+  return (exploration?.defeatedMiniBosses.length ?? 0) >= 9
+}
     const currentAreaObj = exploration?.currentArea ? getAreaById(exploration.currentArea) : null
     return currentAreaObj?.connections.includes(areaId) ?? false
   }
