@@ -273,12 +273,27 @@ export function explorationTransition(
               currentArea: null,
               visitedAreas: [],
               defeatedMiniBosses: [],
+              reachableAreas: [],  // 新大洋的可达区域也要重置
               // 保留钥匙和已解锁区域
               collectedKeys: state.collectedKeys,
               collectedItems: state.collectedItems,
               unlockedAreas: state.unlockedAreas,
               availablePortals: [],
               portalSeed: null,
+            }
+          }
+          // 通往隐藏/宝藏岛屿的传送门：如果需要钥匙则自动解锁
+          if ((action.portal.type === 'hidden' || action.portal.type === 'treasure') && state.collectedKeys > 0) {
+            // 自动解锁该岛屿并消耗钥匙
+            return {
+              ...state,
+              phase: 'moving',
+              currentArea: action.portal.targetAreaId,
+              unlockedAreas: state.unlockedAreas.includes(action.portal.targetAreaId)
+                ? state.unlockedAreas
+                : [...state.unlockedAreas, action.portal.targetAreaId],
+              collectedKeys: state.collectedKeys - 1,
+              availablePortals: [],
             }
           }
           return { ...state, phase: 'moving', currentArea: action.portal.targetAreaId }

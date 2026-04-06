@@ -344,12 +344,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
         })
       }
     } else if (state.exploration.collectedKeys > 0) {
-      // 持有钥匙 → 70% 通往已解锁的钥匙岛屿
+      // 持有钥匙 → 70% 通往需要钥匙的隐藏/宝藏岛屿
+      // 注意：不再检查 unlockedAreas，因为解锁会在 SELECT_PORTAL 时处理
       const keyIslands = areas.filter(a =>
         a.requiredKeys > 0 &&
-        state.exploration!.unlockedAreas.includes(a.id) &&  // 必须已解锁
         !state.exploration!.defeatedMiniBosses.includes(a.id) &&
-        (a.type === 'hidden' || a.type === 'treasure')  // 只包括隐藏/宝藏类型
+        (a.type === 'hidden' || a.type === 'treasure')
       )
       if (keyIslands.length > 0 && rng.chance(0.7)) {
         const target = rng.pick(keyIslands)
