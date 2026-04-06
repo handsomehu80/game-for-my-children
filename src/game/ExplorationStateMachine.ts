@@ -315,7 +315,8 @@ export function explorationTransition(
         case 'BATTLE_WIN':
           // Boss战胜利不需要添加到defeatedMiniBosses，因为Boss是独立存在的
           // 打败9个普通岛屿后才能挑战Boss，Boss战胜利后传送门通向新大洋
-          return { ...state, phase: 'area_complete' }
+          // 改为victory阶段以触发generatePortals()生成通往新大洋的传送门
+          return { ...state, phase: 'victory' }
         case 'BATTLE_LOSE':
           return { ...state, phase: 'error', lastError: 'Boss battle lost' }
         default:

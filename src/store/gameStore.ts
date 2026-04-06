@@ -6,7 +6,6 @@ import type {
   ExplorationState,
   ExplorationAction,
   Portal,
-  Area,
 } from '../game/types'
 import {
   initialExplorationState,
@@ -340,7 +339,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       const keyIslands = areas.filter(a =>
         a.requiredKeys > 0 &&
         state.exploration!.unlockedAreas.includes(a.id) &&  // 必须已解锁
-        !state.exploration!.defeatedMiniBosses.includes(a.id)
+        !state.exploration!.defeatedMiniBosses.includes(a.id) &&
+        (a.type === 'hidden' || a.type === 'treasure')  // 只包括隐藏/宝藏类型
       )
       if (keyIslands.length > 0 && rng.chance(0.7)) {
         const target = rng.pick(keyIslands)
@@ -348,7 +348,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
           portals.push({
             id: `portal_${timestamp}_0`,
             targetAreaId: target.id,
-            type: target.type,
+            type: target.type === 'treasure' ? 'treasure' : 'hidden',
           })
         }
       }
