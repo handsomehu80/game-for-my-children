@@ -282,9 +282,17 @@ export function explorationTransition(
               portalSeed: null,
             }
           }
-          // 通往隐藏/宝藏岛屿的传送门：如果需要钥匙则自动解锁
-          if ((action.portal.type === 'hidden' || action.portal.type === 'treasure') && state.collectedKeys > 0) {
-            // 自动解锁该岛屿并消耗钥匙
+          // 宝藏岛屿：不需要钥匙，直接进入
+          if (action.portal.type === 'treasure') {
+            return {
+              ...state,
+              phase: 'moving',
+              currentArea: action.portal.targetAreaId,
+              availablePortals: [],
+            }
+          }
+          // 隐藏岛屿：需要钥匙，消耗钥匙并解锁
+          if (action.portal.type === 'hidden' && state.collectedKeys > 0) {
             return {
               ...state,
               phase: 'moving',
@@ -295,6 +303,10 @@ export function explorationTransition(
               collectedKeys: state.collectedKeys - 1,
               availablePortals: [],
             }
+          }
+          // 如果没有钥匙但试图进入隐藏岛屿，报错
+          if (action.portal.type === 'hidden' && state.collectedKeys <= 0) {
+            return { ...state, phase: 'error', lastError: 'Not enough keys to enter hidden area' }
           }
           return { ...state, phase: 'moving', currentArea: action.portal.targetAreaId }
         case 'SELECT_AREA':
