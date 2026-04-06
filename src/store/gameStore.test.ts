@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { useGameStore } from './gameStore'
 import { explorationTransition, initialExplorationState } from '../game/ExplorationStateMachine'
 import { eastAreas } from '../data/areas'
+import type { ExplorationState } from '../game/types'
 
 describe('Game Store', () => {
   beforeEach(() => {
@@ -375,8 +376,7 @@ describe('Game Store', () => {
     it('击败mysterious_boss（最后一个）- 显示通往已完成岛屿的传送门', () => {
       // 这个测试模拟最终Boss情况
       // 由于mysterious在当前实现中没有岛屿数据，我们测试west ocean的boss
-      const { startExploration, explorationDispatch, generatePortals } = useGameStore.getState()
-      startExploration('west')
+      useGameStore.getState().startExploration('west')
 
       // West ocean没有定义岛屿，所以我们测试：当nextOcean为undefined时
       // 代码逻辑会显示已完成岛屿的传送门作为备选
