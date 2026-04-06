@@ -254,15 +254,44 @@ export const useGameStore = create<GameStore>((set, get) => ({
   // 生成传送门
   generatePortals: () => {
     const state = get()
-    if (!state.exploration || !state.exploration.currentArea) return
+    if (!state.exploration || !state.exploration.currentOcean) return
 
-    const currentArea = getAreaById(state.exploration.currentArea)
-    if (!currentArea) return
+    const areas = getAreasByOcean(state.exploration.currentOcean!)
+    const portals: Portal[] = []
 
     // P1-5: Use seeded random for reproducible portal generation
     const timestamp = Date.now()
-    const seed = generatePortalSeed(state.exploration.currentOcean!, timestamp)
+    const seed = generatePortalSeed(state.exploration.currentOcean, timestamp)
     const rng = new SeededRandom(seed)
+
+    // 首次进入大洋条件: defeatedMiniBosses.length === 0 && visitedAreas.length <= 1
+    // 首次进入时 currentArea 可能为 null，需要单独处理
+    const isFirstEntry = state.exploration.defeatedMiniBosses.length === 0 &&
+      state.exploration.visitedAreas.length <= 1
+
+    // 大洋顺序: east → west → southHot → northIce → mysterious
+    const oceanSequence: string[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
+
+    if (isFirstEntry) {
+      // 首次进入大洋 → 100% 通往入门岛屿
+      const firstIsland = areas.find(a => a.type === 'normal' && a.difficulty === 1)
+      if (firstIsland) {
+        portals.push({
+          id: `portal_${timestamp}_0`,
+          targetAreaId: firstIsland.id,
+          type: 'normal',
+        })
+      }
+      // 首次进入时不需要生成钥匙，直接返回传送门
+      get().explorationDispatch({ type: 'GENERATE_PORTALS', portals, seed })
+      return
+    }
+
+    // 后续逻辑需要 currentArea
+    if (!state.exploration.currentArea) return
+
+    const currentArea = getAreaById(state.exploration.currentArea)
+    if (!currentArea) return
 
     // P1-2: Guaranteed key drop - every 5 victories = 1 key
     const newConsecutiveVictories = state.exploration.consecutiveVictoriesWithoutKey + 1
@@ -287,27 +316,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       get().explorationDispatch({ type: 'RECEIVE_KEY', count: keyDrop })
     }
 
-    const areas = getAreasByOcean(state.exploration.currentOcean!)
-    const portals: Portal[] = []
-
-    // 首次进入大洋条件: defeatedMiniBosses.length === 0 && visitedAreas.length <= 1
-    const isFirstEntry = state.exploration.defeatedMiniBosses.length === 0 &&
-      state.exploration.visitedAreas.length <= 1
-
-    // 大洋顺序: east → west → southHot → northIce → mysterious
-    const oceanSequence: string[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
-
-    if (isFirstEntry) {
-      // 首次进入大洋 → 100% 通往入门岛屿
-      const firstIsland = areas.find(a => a.type === 'normal' && a.difficulty === 1)
-      if (firstIsland) {
-        portals.push({
-          id: `portal_${timestamp}_0`,
-          targetAreaId: firstIsland.id,
-          type: 'normal',
-        })
-      }
-    } else if (currentArea.type === 'boss') {
+    if (currentArea.type === 'boss') {
       // Boss胜利 → 100% 通往新大洋
       const currentOceanId = state.exploration.currentOcean ?? 'east'
       const currentIndex = oceanSequence.indexOf(currentOceanId)

@@ -27,7 +27,8 @@
       "Bash(node -e \":*)",
       "Bash(rm -rf node_modules/.vite)",
       "Bash(rm -rf /tmp/vitest*)",
-      "Bash(bash /Users/xihualiu/.claude/plugins/cache/superpowers-marketplace/superpowers/5.0.5/skills/brainstorming/scripts/stop-server.sh \"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/10857-1775270131\")"
+      "Bash(bash /Users/xihualiu/.claude/plugins/cache/superpowers-marketplace/superpowers/5.0.5/skills/brainstorming/scripts/stop-server.sh \"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/10857-1775270131\")",
+      "Bash(gh repo:*)"
     ]
   }
 }
