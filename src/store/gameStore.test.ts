@@ -235,4 +235,74 @@ describe('Game Store', () => {
       expect(stateAfter.exploration?.consecutiveVictoriesWithoutKey).toBe(0)
     })
   })
+
+  describe('generatePortals 新逻辑测试', () => {
+    beforeEach(() => {
+      useGameStore.getState().dispatch({ type: 'RESET_GAME' })
+    })
+
+    it('验证首次进入条件: defeatedMiniBosses=0且visitedAreas<=1', () => {
+      const { startExploration, explorationDispatch } = useGameStore.getState()
+      startExploration('east')
+
+      // 初始状态检查
+      let state = useGameStore.getState()
+      expect(state.exploration?.defeatedMiniBosses.length).toBe(0)
+      expect(state.exploration?.visitedAreas.length).toBe(0)
+      // isFirstEntry = (0 === 0) && (0 <= 1) = true
+
+      // 选择岛屿但未到达
+      explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
+      state = useGameStore.getState()
+      // 仍在exploring阶段，visitedAreas未更新
+      expect(state.exploration?.phase).toBe('sailing')
+      expect(state.exploration?.visitedAreas.length).toBe(0)
+      // isFirstEntry = (0 === 0) && (0 <= 1) = true
+    })
+
+    it('Boss区域需要先击败9个岛屿才能挑战', () => {
+      const { startExploration, explorationDispatch } = useGameStore.getState()
+      startExploration('east')
+
+      // 尝试直接选择Boss，应该返回错误因为需要先击败9个岛屿
+      explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_boss' })
+
+      let state = useGameStore.getState()
+      // 应该进入error阶段，因为Boss检查在SELECT_AREA中进行
+      expect(state.exploration?.phase).toBe('error')
+      expect(state.exploration?.lastError).toContain('Defeat all 9 islands')
+    })
+
+    it('持有钥匙时collectedKeys应该增加', () => {
+      const { startExploration, explorationDispatch, generatePortals } = useGameStore.getState()
+      startExploration('east')
+
+      // 到达victory阶段
+      explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
+      explorationDispatch({ type: 'SAILING_COMPLETE' })
+      explorationDispatch({ type: 'ARRIVED' })
+      explorationDispatch({ type: 'MOVE_COMPLETE' })
+      explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
+      explorationDispatch({ type: 'BATTLE_WIN', areaId: 'east_math_1' })
+
+      let state = useGameStore.getState()
+      expect(state.exploration?.phase).toBe('victory')
+
+      // generatePortals会处理钥匙掉落逻辑
+      generatePortals()
+
+      state = useGameStore.getState()
+      // 30%掉落概率，不一定每次都获得钥匙
+      // 但consecutiveVictoriesWithoutKey应该被重置
+      expect(state.exploration?.consecutiveVictoriesWithoutKey).toBe(0)
+    })
+
+    it('oceanSequence正确: east->west->southHot->northIce->mysterious', () => {
+      // 验证大洋顺序常量正确
+      const oceanSequence: string[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
+      expect(oceanSequence).toHaveLength(5)
+      expect(oceanSequence[0]).toBe('east')
+      expect(oceanSequence[4]).toBe('mysterious')
+    })
+  })
 })

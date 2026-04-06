@@ -289,148 +289,59 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
 
     const areas = getAreasByOcean(state.exploration.currentOcean!)
-
-    // 生成2-3个传送门
-    const portalCount = rng.chance(0.5) ? 3 : 2
     const portals: Portal[] = []
 
-    // 3. 打败完boss后出现传送门要能传送到新的区域（按顺序）
-    if (currentArea.type === 'boss') {
-      // 大洋顺序：东洋 → 西洋 → 南热洋 → 北冰洋 → 神秘洋
-      const oceanSequence: string[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
-      const currentOceanId = state.exploration!.currentOcean ?? 'east'
+    // 首次进入大洋条件: defeatedMiniBosses.length === 0 && visitedAreas.length <= 1
+    const isFirstEntry = state.exploration.defeatedMiniBosses.length === 0 &&
+      state.exploration.visitedAreas.length <= 1
+
+    // 大洋顺序: east → west → southHot → northIce → mysterious
+    const oceanSequence: string[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
+
+    if (isFirstEntry) {
+      // 首次进入大洋 → 100% 通往入门岛屿
+      const firstIsland = areas.find(a => a.type === 'normal' && a.difficulty === 1)
+      if (firstIsland) {
+        portals.push({
+          id: `portal_${timestamp}_0`,
+          targetAreaId: firstIsland.id,
+          type: 'normal',
+        })
+      }
+    } else if (currentArea.type === 'boss') {
+      // Boss胜利 → 100% 通往新大洋
+      const currentOceanId = state.exploration.currentOcean ?? 'east'
       const currentIndex = oceanSequence.indexOf(currentOceanId)
       const nextOceanId = currentIndex >= 0 && currentIndex < oceanSequence.length - 1
         ? oceanSequence[currentIndex + 1]
         : undefined
 
       if (nextOceanId) {
-        // 下一个大洋的传送门
         portals.push({
           id: `portal_${timestamp}_0`,
           targetAreaId: nextOceanId,
           type: 'ocean_portal',
         })
       }
-      // 如果没有更多大洋，生成通往已完成区域的传送门作为备选
-      if (!nextOceanId) {
-        const completedAreas = areas.filter((a) =>
-          state.exploration!.defeatedMiniBosses.includes(a.id)
-        )
-        while (portals.length < portalCount && completedAreas.length > 0) {
-          const target = rng.pick(completedAreas)
-          if (!target) break
-          const idx = completedAreas.indexOf(target)
-          if (idx > -1) completedAreas.splice(idx, 1)
-          portals.push({
-            id: `portal_${timestamp}_${portals.length}`,
-            targetAreaId: target.id,
-            type: target.type === 'hidden' ? 'hidden' : 'normal',
-          })
-        }
-      }
-    } else {
-      // 1. 首次进入大洋时，传送门通向第一个岛屿
-      // 判断是否是首次进入（没有任何岛屿完成且没有访问过任何岛屿）
-      const isFirstEntry = state.exploration!.defeatedMiniBosses.length === 0 &&
-        !state.exploration!.visitedAreas.some(v => v !== currentArea.id)
-
-      if (isFirstEntry) {
-        // 首次进入：传送门通向第一个入门的普通岛屿
-        const firstIsland = areas.find((a) => a.type === 'normal' && a.difficulty === 1)
-        if (firstIsland) {
+    } else if (state.exploration.collectedKeys > 0) {
+      // 持有钥匙 → 70% 通往已解锁的钥匙岛屿
+      const keyIslands = areas.filter(a =>
+        a.requiredKeys > 0 &&
+        state.exploration!.unlockedAreas.includes(a.id) &&  // 必须已解锁
+        !state.exploration!.defeatedMiniBosses.includes(a.id)
+      )
+      if (keyIslands.length > 0 && rng.chance(0.7)) {
+        const target = rng.pick(keyIslands)
+        if (target) {
           portals.push({
             id: `portal_${timestamp}_0`,
-            targetAreaId: firstIsland.id,
-            type: 'normal',
+            targetAreaId: target.id,
+            type: target.type,
           })
-        }
-      } else {
-        // === 新可达性算法 ===
-        // 计算所有可达的未完成岛屿
-        const reachableAreas: Set<string> = new Set()
-
-        // 1. 首先添加同类型下一阶岛屿
-        const sameTypeNext = areas.find(a =>
-          a.knowledgeArea === currentArea.knowledgeArea &&
-          a.difficulty === currentArea.difficulty + 1 &&
-          !state.exploration!.defeatedMiniBosses.includes(a.id) &&
-          a.type !== 'boss'
-        )
-        if (sameTypeNext) {
-          reachableAreas.add(sameTypeNext.id)
-        }
-
-        // 2. 处理相邻岛屿的可达性
-        for (const connId of currentArea.connections) {
-          const connArea = areas.find(a => a.id === connId)
-          if (!connArea || state.exploration!.defeatedMiniBosses.includes(connId) || connArea.type === 'boss') {
-            continue
-          }
-
-          // 检查相邻岛屿是否是更低难度
-          const isLowerDifficulty = connArea.difficulty < currentArea.difficulty
-
-          if (isLowerDifficulty) {
-            // 如果相邻是更低难度且未完成，只保留这个连接
-            reachableAreas.add(connId)
-          } else if (connArea.difficulty === currentArea.difficulty) {
-            // 如果相邻是同级难度，检查其下方连接是否都已完成
-            const connLowerConnections = connArea.connections
-              .map(id => areas.find(a => a.id === id))
-              .filter(a => a && a.difficulty < connArea.difficulty)
-
-            const allLowerCompleted = connLowerConnections.every(a =>
-              state.exploration!.defeatedMiniBosses.includes(a!.id)
-            )
-
-            if (allLowerCompleted) {
-              // 下方都已完成，打开这个同级相邻岛屿
-              reachableAreas.add(connId)
-            } else {
-              // 下方未完成，只保留最低难度的连接
-              const lowestDifficulty = connLowerConnections
-                .filter(a => !state.exploration!.defeatedMiniBosses.includes(a!.id))
-                .sort((a, b) => (a!.difficulty || 0) - (b!.difficulty || 0))[0]
-              if (lowestDifficulty) {
-                reachableAreas.add(lowestDifficulty.id)
-              }
-            }
-          }
-        }
-
-        // 3. 宝藏和隐藏岛屿随机增加（30%概率不出现）
-        const hiddenAndTreasureAreas = areas.filter(a =>
-          (a.type === 'hidden' || a.type === 'treasure') &&
-          !state.exploration!.defeatedMiniBosses.includes(a.id)
-        )
-        hiddenAndTreasureAreas.forEach(a => {
-          if (rng.chance(0.7)) {  // 70%概率出现
-            reachableAreas.add(a.id)
-          }
-        })
-
-        // 4. 从可达岛屿中选择传送门目标
-        const reachableAreaList = Array.from(reachableAreas)
-          .map(id => areas.find(a => a.id === id))
-          .filter(a => a) as Area[]
-
-        // 随机打乱顺序
-        const shuffled = [...reachableAreaList].sort(() => rng.next() - 0.5)
-
-        // 选择最多portalCount个传送门
-        for (let i = 0; i < Math.min(portalCount, shuffled.length); i++) {
-          const target = shuffled[i]
-          if (target) {
-            portals.push({
-              id: `portal_${timestamp}_${portals.length}`,
-              targetAreaId: target.id,
-              type: target.type === 'hidden' ? 'hidden' : target.type === 'treasure' ? 'treasure' : 'normal',
-            })
-          }
         }
       }
     }
+    // 否则不显示传送门，玩家通过地图连接访问岛屿
 
     get().explorationDispatch({ type: 'GENERATE_PORTALS', portals, seed })
   },
