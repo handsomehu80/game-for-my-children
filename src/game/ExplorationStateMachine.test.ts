@@ -372,4 +372,148 @@ describe('ExplorationStateMachine', () => {
       expect(result.unlockedAreas).not.toContain('east_hidden_A')
     })
   })
+
+  describe('CLOSE_PORTAL action', () => {
+    it('CLOSE_PORTAL应返回exploring阶段并清空availablePortals', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'portal_appear' as const,
+        availablePortals: [
+          { id: 'p1', targetAreaId: 'east_math_1', type: 'normal' },
+          { id: 'p2', targetAreaId: 'east_hidden_A', type: 'hidden' },
+        ],
+        portalSeed: 12345,
+      }
+      const result = explorationTransition(state, { type: 'CLOSE_PORTAL' })
+      expect(result.phase).toBe('exploring')
+      expect(result.availablePortals).toEqual([])
+      // portalSeed is retained (not cleared) - only availablePortals is cleared
+      expect(result.portalSeed).toBe(12345)
+    })
+
+    it('CLOSE_PORTAL应保留其他状态不变', () => {
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        phase: 'portal_appear' as const,
+        currentOcean: 'east',
+        visitedAreas: ['east_math_1', 'east_math_2'],
+        defeatedMiniBosses: ['east_math_1', 'east_math_2'],
+        collectedKeys: 2,
+        unlockedAreas: ['east_hidden_A'],
+        availablePortals: [{ id: 'p1', targetAreaId: 'east_hidden_B', type: 'hidden' }],
+        portalSeed: 12345,
+      }
+      const result = explorationTransition(state, { type: 'CLOSE_PORTAL' })
+      expect(result.currentOcean).toBe('east')
+      expect(result.visitedAreas).toEqual(['east_math_1', 'east_math_2'])
+      expect(result.defeatedMiniBosses).toEqual(['east_math_1', 'east_math_2'])
+      expect(result.collectedKeys).toBe(2)
+      expect(result.unlockedAreas).toEqual(['east_hidden_A'])
+      expect(result.availablePortals).toEqual([])
+    })
+  })
+
+  describe('地图连接测试 (Map Connection - isAreaReachable)', () => {
+    // 导入isAreaReachable函数 - 需要从areas模块测试
+    // 这里测试状态转换如何更新reachableAreas
+
+    it('击败math_1后，reachableAreas应包含math_2, chinese_1, english_1', () => {
+      // 根据areas数据，east_math_1的connections是:
+      // ['east_chinese_1', 'east_english_1', 'east_math_2']
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        currentOcean: 'east',
+        phase: 'battle' as const,
+        currentArea: 'east_math_1',
+        visitedAreas: [],
+        defeatedMiniBosses: [],
+        reachableAreas: ['east_math_1'], // 初始可达
+      }
+
+      const result = explorationTransition(state, {
+        type: 'BATTLE_WIN',
+        areaId: 'east_math_1',
+      })
+
+      // math_1的connections是['east_chinese_1', 'east_english_1', 'east_math_2']
+      // 这些应该被添加到reachableAreas
+      expect(result.reachableAreas).toContain('east_math_2')
+      expect(result.reachableAreas).toContain('east_chinese_1')
+      expect(result.reachableAreas).toContain('east_english_1')
+    })
+
+    it('击败chinese_2后，reachableAreas应包含chinese_3, math_2, english_2', () => {
+      // east_chinese_2的connections是:
+      // ['east_math_2', 'east_english_2', 'east_chinese_1', 'east_chinese_3']
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        currentOcean: 'east',
+        phase: 'battle' as const,
+        currentArea: 'east_chinese_2',
+        visitedAreas: [],
+        defeatedMiniBosses: [],
+        // math_2, english_2, chinese_1, chinese_3都可能是可达的
+        reachableAreas: ['east_chinese_2'],
+      }
+
+      const result = explorationTransition(state, {
+        type: 'BATTLE_WIN',
+        areaId: 'east_chinese_2',
+      })
+
+      // chinese_2的connections包含math_2, english_2, chinese_3
+      expect(result.reachableAreas).toContain('east_math_2')
+      expect(result.reachableAreas).toContain('east_english_2')
+      expect(result.reachableAreas).toContain('east_chinese_3')
+    })
+
+    it('reachableAreas只添加未完成的非boss岛屿', () => {
+      // 验证BATTLE_WIN不会添加已经defeated的岛屿或boss岛屿
+      const state: ExplorationState = {
+        ...initialExplorationState,
+        currentOcean: 'east',
+        phase: 'battle' as const,
+        currentArea: 'east_math_1',
+        defeatedMiniBosses: ['east_math_2'], // math_2已被击败
+        reachableAreas: ['east_math_1'],
+      }
+
+      const result = explorationTransition(state, {
+        type: 'BATTLE_WIN',
+        areaId: 'east_math_1',
+      })
+
+      // math_1的connections包含math_2，但math_2已被击败，不应添加
+      expect(result.reachableAreas).not.toContain('east_math_2')
+      // boss也不应添加
+      expect(result.reachableAreas).not.toContain('east_boss')
+    })
+
+    it('reachableAreas累积增长，不会减少', () => {
+      // 击败math_1
+      let state: ExplorationState = {
+        ...initialExplorationState,
+        currentOcean: 'east',
+        phase: 'battle' as const,
+        currentArea: 'east_math_1',
+        defeatedMiniBosses: [],
+        reachableAreas: ['east_math_1'],
+      }
+      state = explorationTransition(state, { type: 'BATTLE_WIN', areaId: 'east_math_1' })
+      const afterMath1 = state.reachableAreas
+
+      // 击败chinese_1
+      state = {
+        ...state,
+        phase: 'battle' as const,
+        currentArea: 'east_chinese_1',
+      }
+      state = explorationTransition(state, { type: 'BATTLE_WIN', areaId: 'east_chinese_1' })
+
+      // reachableAreas应该包含之前的所有岛屿加上新的
+      expect(state.reachableAreas.length).toBeGreaterThanOrEqual(afterMath1.length)
+      expect(state.reachableAreas).toContain('east_math_1')
+      expect(state.reachableAreas).toContain('east_chinese_1')
+    })
+  })
 })
