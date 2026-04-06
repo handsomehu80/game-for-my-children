@@ -5,39 +5,59 @@ import { useAccessibility } from '../../hooks/useAccessibility'
 interface AreaNodeProps {
   areaId: string
   onClick?: (areaId: string) => void
+  isClickable?: boolean
+  isLocked?: boolean
 }
 
-export function AreaNode({ areaId, onClick }: AreaNodeProps) {
+export function AreaNode({ areaId, onClick, isClickable: propIsClickable, isLocked: propIsLocked }: AreaNodeProps) {
   const area = getAreaById(areaId)
   const exploration = useGameStore((state) => state.exploration)
   const { highContrast, isReducedMotion } = useAccessibility()
 
   if (!area) return null
 
-  // 检查岛屿是否可达
-  const reachability = exploration
-    ? isAreaReachable(
-        areaId,
-        exploration.currentArea,
-        exploration.defeatedMiniBosses,
-        exploration.reachableAreas
-      )
-    : { reachable: false }
-
-  // 隐藏岛屿需要钥匙
-  const hasRequiredKeys = area.requiredKeys === 0 || exploration?.unlockedAreas.includes(areaId)
-  const isReachable = reachability.reachable && hasRequiredKeys
-
+  // 检查岛屿是否可达 - 使用传入的 props 或回退到原有逻辑
+  // Task 2 Phase 2: 使用 isClickable && !isLocked 计算 isReachable
   const isDefeated = exploration?.defeatedMiniBosses.includes(areaId)
+
+  // 如果传入了 props，使用 props 计算 isReachable
+  // 否则回退到原有的 isAreaReachable 逻辑（保持向后兼容）
+  let isClickable = propIsClickable
+  let isLocked = propIsLocked
+  let isReachable: boolean
+
+  if (propIsClickable !== undefined && propIsLocked !== undefined) {
+    // 使用新的逻辑
+    isClickable = !isDefeated && propIsClickable
+    isLocked = propIsLocked
+    isReachable = isClickable && !isLocked
+  } else {
+    // 回退到原有逻辑（保持向后兼容）
+    const reachability = exploration
+      ? isAreaReachable(
+          areaId,
+          exploration.currentArea,
+          exploration.defeatedMiniBosses,
+          exploration.reachableAreas
+        )
+      : { reachable: false }
+
+    const hasRequiredKeys = area.requiredKeys === 0 || (exploration?.unlockedAreas.includes(areaId) ?? false)
+    isClickable = reachability.reachable
+    isLocked = !hasRequiredKeys
+    isReachable = reachability.reachable && hasRequiredKeys
+  }
+
   const isCurrent = exploration?.currentArea === areaId
 
   const handleClick = () => {
-    console.log('AreaNode handleClick:', areaId, 'isReachable:', isReachable, 'reason:', reachability.reason)
+    console.log('AreaNode handleClick:', areaId, 'isReachable:', isReachable, 'isLocked:', isLocked)
     if (isReachable && onClick) {
       onClick(areaId)
+    } else if (isLocked) {
+      alert('该岛屿需要钥匙才能解锁！')
     } else {
-      // 显示不可访问提示
-      alert(reachability.reason || '该岛屿暂时无法访问')
+      alert('该岛屿暂时无法访问')
     }
   }
 
@@ -132,8 +152,8 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
           area.type === 'hidden' ? '需要钥匙' : ''
         }`}
         aria-label={`${area.name}, 难度 ${getDifficultyStars(area.difficulty)}${
-          area.type === 'hidden' ? ', 需要钥匙' : ''
-        }${isDefeated ? ', 已击败' : ''}${!isReachable && !isDefeated ? ', 不可达' : ''}`}
+          isLocked ? ', 锁定' : ''
+        }${isDefeated ? ', 已击败' : ''}${!isReachable && !isDefeated && !isLocked ? ', 不可达' : ''}`}
         role="button"
         tabIndex={isReachable ? 0 : -1}
         onKeyDown={(e) => {
@@ -165,7 +185,13 @@ export function AreaNode({ areaId, onClick }: AreaNodeProps) {
           </span>
         )}
 
-        {!isReachable && !isDefeated && (
+        {isLocked && !isDefeated && (
+          <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '14px' }} role="img" aria-label="需要钥匙">
+            🔑
+          </span>
+        )}
+
+        {!isReachable && !isDefeated && !isLocked && (
           <span style={{ position: 'absolute', top: '-8px', right: '-8px', fontSize: '14px' }} role="img" aria-label="不可达">
             🔒
           </span>

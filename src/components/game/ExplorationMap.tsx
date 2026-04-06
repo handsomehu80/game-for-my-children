@@ -40,6 +40,24 @@ export default function ExplorationMap() {
   // 获取当前大洋的区域
   const areas = exploration?.currentOcean ? getAreasByOcean(exploration.currentOcean) : []
 
+  // Task 2 Phase 2: Island clickability logic
+  // isClickable: true if the area can be clicked (available for exploration)
+  const isClickable = (areaId: string): boolean => {
+    const area = getAreaById(areaId)
+    if (!area) return false
+    if (exploration?.defeatedMiniBosses.includes(areaId)) return false
+    if (area.type === 'boss') return false  // Boss needs 9 islands completed
+    const currentAreaObj = exploration?.currentArea ? getAreaById(exploration.currentArea) : null
+    return currentAreaObj?.connections.includes(areaId) ?? false
+  }
+
+  // isLocked: true if the area requires keys to unlock
+  const isLocked = (areaId: string): boolean => {
+    const area = getAreaById(areaId)
+    if (!area) return false
+    return area.requiredKeys > 0 && !exploration?.unlockedAreas.includes(areaId)
+  }
+
   // 处理区域点击
   const handleAreaClick = (areaId: string) => {
     console.log('handleAreaClick called with:', areaId)
@@ -394,7 +412,13 @@ export default function ExplorationMap() {
 
         {/* 所有岛屿 */}
         {areas.map((area) => (
-          <AreaNode key={area.id} areaId={area.id} onClick={handleAreaClick} />
+          <AreaNode
+            key={area.id}
+            areaId={area.id}
+            onClick={handleAreaClick}
+            isClickable={isClickable(area.id)}
+            isLocked={isLocked(area.id)}
+          />
         ))}
 
         {/* 连接线 - 只显示到已揭示岛屿的连接 */}
