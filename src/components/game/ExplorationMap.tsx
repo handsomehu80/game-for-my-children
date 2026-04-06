@@ -50,7 +50,11 @@ export default function ExplorationMap() {
 if (area.type === 'boss') {
   return (exploration?.defeatedMiniBosses.length ?? 0) >= 9
 }
-    const currentAreaObj = exploration?.currentArea ? getAreaById(exploration.currentArea) : null
+    // If no current area (first entry to ocean), difficulty-1 normal islands are clickable
+    if (!exploration?.currentArea) {
+      return area.difficulty === 1 && area.type === 'normal'
+    }
+    const currentAreaObj = getAreaById(exploration.currentArea)
     return currentAreaObj?.connections.includes(areaId) ?? false
   }
 
