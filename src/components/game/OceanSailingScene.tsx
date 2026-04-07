@@ -18,16 +18,25 @@ interface OceanSailingSceneProps {
 }
 
 /**
+ * Determine animation style based on island type.
+ * Boss islands use cinematic style, normal islands use minimal style.
+ */
+export function getAnimationStyle(areaId: string): 'minimal' | 'cinematic' {
+  if (areaId.includes('boss')) return 'cinematic'
+  return 'minimal'
+}
+
+/**
  * Generate fixed 10 stars using SeededRandom for reproducible positions.
  * Stars are positioned in the upper half (y: 0-50%) with random sizes and twinkle delays.
  */
-function generateStars(seed: number): Star[] {
+export function generateStars(seed: number): Star[] {
   const rng = new SeededRandom(seed)
   const stars: Star[] = []
 
   for (let i = 0; i < 10; i++) {
     stars.push({
-      x: rng.nextInt(0, 100), // 0-100%
+      x: rng.nextInt(0, 99), // 0-99%
       y: rng.nextInt(0, 50), // 0-50%
       size: rng.nextInt(2, 3), // 2-3px
       twinkleDelay: rng.nextInt(0, 2000), // 0-2000ms
@@ -330,7 +339,7 @@ export default function OceanSailingScene({
 
   return (
     <div
-      className="ocean-sailing-scene"
+      className={`ocean-sailing-scene ${style}-scene`}
       style={{
         position: 'fixed',
         top: 0,

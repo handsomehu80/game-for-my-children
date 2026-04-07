@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import OceanSailingScene from '../../src/components/game/OceanSailingScene'
+import OceanSailingScene, { generateStars, getAnimationStyle } from '../../src/components/game/OceanSailingScene'
 
 describe('OceanSailingScene', () => {
   it('renders minimal style with gradient background', () => {
@@ -139,5 +139,59 @@ describe('OceanSailingScene', () => {
 
     const container = document.querySelector('.ocean-sailing-scene')
     expect(container).not.toBeNull()
+  })
+})
+
+describe('OceanSailingScene - generateStars', () => {
+  it('generates exactly 10 stars', () => {
+    const stars = generateStars(12345)
+    expect(stars.length).toBe(10)
+  })
+
+  it('generates deterministic stars for same seed', () => {
+    const stars1 = generateStars(12345)
+    const stars2 = generateStars(12345)
+    expect(stars1).toEqual(stars2)
+  })
+
+  it('generates stars within upper half of screen (y < 50%)', () => {
+    const stars = generateStars(12345)
+    stars.forEach(star => {
+      expect(star.y).toBeLessThan(50)
+    })
+  })
+
+  it('generates stars within screen width (x < 100%)', () => {
+    const stars = generateStars(12345)
+    stars.forEach(star => {
+      expect(star.x).toBeLessThan(100)
+      expect(star.x).toBeGreaterThanOrEqual(0)
+    })
+  })
+})
+
+describe('OceanSailingScene - getAnimationStyle', () => {
+  it('applies cinematic style for boss islands', () => {
+    expect(getAnimationStyle('east_boss')).toBe('cinematic')
+    expect(getAnimationStyle('west_boss')).toBe('cinematic')
+  })
+
+  it('applies minimal style for normal islands', () => {
+    expect(getAnimationStyle('east_math_1')).toBe('minimal')
+    expect(getAnimationStyle('east_chinese_2')).toBe('minimal')
+  })
+})
+
+describe('OceanSailingScene - prefers-reduced-motion', () => {
+  it('handles reduced motion preference', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        isReducedMotion={true}
+        onArrived={() => {}}
+      />
+    )
+    expect(container.querySelector('.minimal-scene')).toBeTruthy()
   })
 })
