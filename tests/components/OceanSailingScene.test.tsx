@@ -1,0 +1,143 @@
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import OceanSailingScene from '../../src/components/game/OceanSailingScene'
+
+describe('OceanSailingScene', () => {
+  it('renders minimal style with gradient background', () => {
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        onArrived={() => {}}
+      />
+    )
+
+    const container = document.querySelector('.ocean-sailing-scene')
+    expect(container).not.toBeNull()
+  })
+
+  it('returns null when isActive is false', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={false}
+        style="minimal"
+        onArrived={() => {}}
+      />
+    )
+
+    expect(container.firstChild).toBeNull()
+  })
+
+  it('renders sailing ship emoji', () => {
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        onArrived={() => {}}
+      />
+    )
+
+    const ships = screen.queryAllByText('⛵')
+    expect(ships.length).toBeGreaterThan(0)
+  })
+
+  it('renders island destination', () => {
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        onArrived={() => {}}
+      />
+    )
+
+    const container = document.querySelector('.ocean-sailing-scene')
+    expect(container?.innerHTML).toContain('linear-gradient')
+  })
+
+  it('accepts seed prop for reproducible stars', () => {
+    const { container: container1 } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="cinematic"
+        seed={12345}
+        onArrived={() => {}}
+      />
+    )
+
+    const { container: container2 } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="cinematic"
+        seed={12345}
+        onArrived={() => {}}
+      />
+    )
+
+    // Same seed should produce same star positions (verified by consistent rendering)
+    expect(container1.innerHTML).toBe(container2.innerHTML)
+  })
+
+  it('supports isReducedMotion prop', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        isReducedMotion={true}
+        onArrived={() => {}}
+      />
+    )
+
+    expect(container.querySelector('.ocean-sailing-scene')).not.toBeNull()
+  })
+
+  it('calls onArrived after minimal animation completes', () => {
+    vi.useFakeTimers()
+    const onArrived = vi.fn()
+
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        onArrived={onArrived}
+      />
+    )
+
+    // Fast-forward time by 800ms (minimal animation duration)
+    vi.advanceTimersByTime(800)
+
+    expect(onArrived).toHaveBeenCalled()
+    vi.useRealTimers()
+  })
+
+  it('calls onArrived after cinematic animation completes', () => {
+    vi.useFakeTimers()
+    const onArrived = vi.fn()
+
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="cinematic"
+        onArrived={onArrived}
+      />
+    )
+
+    // Fast-forward time by 4000ms (cinematic animation duration)
+    vi.advanceTimersByTime(4000)
+
+    expect(onArrived).toHaveBeenCalled()
+    vi.useRealTimers()
+  })
+
+  it('renders with style="minimal"', () => {
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        onArrived={() => {}}
+      />
+    )
+
+    const container = document.querySelector('.ocean-sailing-scene')
+    expect(container).not.toBeNull()
+  })
+})

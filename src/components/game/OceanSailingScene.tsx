@@ -1,121 +1,80 @@
 // src/components/game/OceanSailingScene.tsx
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo } from 'react'
+import { SeededRandom } from '../../game/utils/seededRandom'
+
+interface Star {
+  x: number
+  y: number
+  size: number
+  twinkleDelay: number
+}
 
 interface OceanSailingSceneProps {
   isActive: boolean
-  startPosition: { x: number; y: number }
-  endPosition: { x: number; y: number }
+  style: 'minimal' | 'cinematic'
+  seed?: number
   onArrived: () => void
   isReducedMotion?: boolean
 }
 
-export default function OceanSailingScene({
-  isActive,
-  startPosition: _startPosition,
-  endPosition: _endPosition,
-  onArrived,
-  isReducedMotion = false,
-}: OceanSailingSceneProps) {
-  // _startPosition and _endPosition reserved for future path customization
-  const containerRef = useRef<HTMLDivElement>(null)
+/**
+ * Generate fixed 10 stars using SeededRandom for reproducible positions.
+ * Stars are positioned in the upper half (y: 0-50%) with random sizes and twinkle delays.
+ */
+function generateStars(seed: number): Star[] {
+  const rng = new SeededRandom(seed)
+  const stars: Star[] = []
 
-  useEffect(() => {
-    if (!isActive) return
+  for (let i = 0; i < 10; i++) {
+    stars.push({
+      x: rng.nextInt(0, 100), // 0-100%
+      y: rng.nextInt(0, 50), // 0-50%
+      size: rng.nextInt(2, 3), // 2-3px
+      twinkleDelay: rng.nextInt(0, 2000), // 0-2000ms
+    })
+  }
 
-    // 动画持续时间：3秒
-    const timer = setTimeout(() => {
-      onArrived()
-    }, 3000)
+  return stars
+}
 
-    return () => clearTimeout(timer)
-  }, [isActive, onArrived])
-
-  if (!isActive) return null
+/**
+ * Render minimal style sailing animation.
+ * Used for normal islands - 0.8s duration with simple gradient background.
+ */
+function renderMinimalStyle(isReducedMotion: boolean): JSX.Element {
+  const animationDuration = '0.8s'
 
   return (
-    <div
-      ref={containerRef}
-      className="ocean-sailing-scene"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'linear-gradient(180deg, #87CEEB 0%, #1E3A5F 50%, #0C2340 100%)',
-        zIndex: 1000,
-        overflow: 'hidden',
-      }}
-    >
-      {/* CSS 动画样式 */}
+    <>
+      {/* CSS 动画样式 - Minimal */}
       <style>
         {`
-          @keyframes waveSlide {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+          @keyframes minimalSail {
+            0% { opacity: 0; transform: translateX(-20px); }
+            20% { opacity: 1; }
+            100% { opacity: 1; transform: translateX(0); }
           }
-          @keyframes cloudFloat {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(20px); }
-          }
-          @keyframes sailBoat {
-            0% { left: 15%; bottom: 35%; }
-            50% { left: 50%; bottom: 40%; }
-            100% { left: 70%; bottom: 35%; }
-          }
-          @keyframes shipRock {
-            0%, 100% { transform: rotate(-2deg); }
-            50% { transform: rotate(2deg); }
-          }
-          .sailing-ship {
-            animation: sailBoat 3s ease-in-out forwards, shipRock 2s ease-in-out infinite;
-          }
-          .wave-layer {
-            animation: waveSlide 3s linear infinite;
-          }
-          .cloud {
-            animation: cloudFloat 6s ease-in-out infinite;
+          .minimal-ship {
+            position: absolute;
+            left: 10%;
+            bottom: 30%;
+            animation: minimalSail ${animationDuration} ease-out forwards;
           }
           ${isReducedMotion ? `
-            .sailing-ship { animation: none; left: 70%; bottom: 35%; }
-            .wave-layer { animation: none; }
-            .cloud { animation: none; }
+            .minimal-ship { animation: none; opacity: 1; }
           ` : ''}
         `}
       </style>
 
-      {/* 太阳 */}
+      {/* 渐变背景 - 白天风格 */}
       <div
         style={{
           position: 'absolute',
-          top: '30px',
-          right: '80px',
-          width: '50px',
-          height: '50px',
-          background: 'radial-gradient(circle, #FFD700, #FFA500)',
-          borderRadius: '50%',
-          boxShadow: '0 0 40px rgba(255,215,0,0.6)',
-        }}
-      />
-
-      {/* 云朵 */}
-      <div className="cloud" style={{ position: 'absolute', top: '40px', left: '10%', fontSize: '36px', opacity: 0.7 }}>
-        ☁️
-      </div>
-      <div className="cloud" style={{ position: 'absolute', top: '60px', right: '15%', fontSize: '28px', opacity: 0.5, animationDelay: '1s' }}>
-        ☁️
-      </div>
-
-      {/* 海洋波浪层 */}
-      <div
-        className="wave-layer"
-        style={{
-          position: 'absolute',
-          bottom: '30%',
+          top: 0,
           left: 0,
           right: 0,
-          height: '30px',
-          background: 'repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255,255,255,0.1) 30px, rgba(255,255,255,0.1) 60px)',
+          bottom: 0,
+          background: 'linear-gradient(180deg, #87CEEB 0%, #4A90B8 100%)',
         }}
       />
 
@@ -167,11 +126,10 @@ export default function OceanSailingScene({
         />
       </div>
 
-      {/* 航行中的船只 */}
+      {/* 航行中的帆船 */}
       <div
-        className="sailing-ship"
+        className="minimal-ship"
         style={{
-          position: 'absolute',
           fontSize: '64px',
           filter: 'drop-shadow(4px 4px 6px rgba(0,0,0,0.3))',
           zIndex: 10,
@@ -179,18 +137,6 @@ export default function OceanSailingScene({
       >
         ⛵
       </div>
-
-      {/* 路径点轨迹 */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '32%',
-          left: '12%',
-          width: '60%',
-          height: '4px',
-          borderBottom: '2px dashed rgba(255,255,255,0.2)',
-        }}
-      />
 
       {/* 状态文字 */}
       <div
@@ -209,6 +155,196 @@ export default function OceanSailingScene({
       >
         ⛵ 航行中...
       </div>
+    </>
+  )
+}
+
+/**
+ * Render cinematic style sailing animation.
+ * Used for Boss islands - 4s duration with night sky, stars, moonlight, and cinematic black bars.
+ */
+function renderCinematicStyle(stars: Star[], isReducedMotion: boolean): JSX.Element {
+  const animationDuration = '4s'
+
+  return (
+    <>
+      {/* CSS 动画样式 - Cinematic */}
+      <style>
+        {`
+          @keyframes cinematicSail {
+            0% { left: 5%; bottom: 30%; opacity: 0; }
+            10% { opacity: 1; }
+            50% { left: 40%; bottom: 35%; }
+            90% { opacity: 1; }
+            100% { left: 75%; bottom: 35%; opacity: 0.8; }
+          }
+          @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+          }
+          .cinematic-ship {
+            position: absolute;
+            left: 5%;
+            bottom: 30%;
+            animation: cinematicSail ${animationDuration} ease-in-out forwards;
+          }
+          .star {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            animation: starTwinkle 2s ease-in-out infinite;
+          }
+          ${isReducedMotion ? `
+            .cinematic-ship { animation: none; left: 75%; bottom: 35%; opacity: 0.8; }
+            .star { animation: none; }
+          ` : ''}
+        `}
+      </style>
+
+      {/* 深蓝渐变背景 - 夜间风格 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+        }}
+      />
+
+      {/* 星空 */}
+      {stars.map((star, index) => (
+        <div
+          key={index}
+          className="star"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            animationDelay: `${star.twinkleDelay}ms`,
+          }}
+        />
+      ))}
+
+      {/* 月光 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '60px',
+          width: '60px',
+          height: '60px',
+          background: 'radial-gradient(circle, #f5f5dc 0%, #fffacd 50%, transparent 70%)',
+          borderRadius: '50%',
+          boxShadow: '0 0 60px 20px rgba(255, 250, 205, 0.4)',
+        }}
+      />
+
+      {/* 岛屿剪影 */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '25%',
+          right: '10%',
+          width: '120px',
+          height: '100px',
+          background: '#0a0a15',
+          borderRadius: '50% 50% 40% 40%',
+          filter: 'blur(1px)',
+        }}
+      />
+
+      {/* 航行中的帆船 */}
+      <div
+        className="cinematic-ship"
+        style={{
+          fontSize: '64px',
+          filter: 'drop-shadow(4px 4px 10px rgba(0,0,0,0.5))',
+          zIndex: 10,
+        }}
+      >
+        ⛵
+      </div>
+
+      {/* 电影黑边 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          border: '8px solid rgba(0,0,0,0.8)',
+          pointerEvents: 'none',
+          zIndex: 100,
+        }}
+      />
+
+      {/* 状态文字 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'rgba(0,0,0,0.7)',
+          padding: '12px 24px',
+          borderRadius: '20px',
+          color: 'white',
+          fontFamily: "'Baloo 2', cursive",
+          fontSize: '20px',
+          zIndex: 101,
+        }}
+      >
+        ⛵ 航行中...
+      </div>
+    </>
+  )
+}
+
+export default function OceanSailingScene({
+  isActive,
+  style,
+  seed = Date.now(),
+  onArrived,
+  isReducedMotion = false,
+}: OceanSailingSceneProps) {
+  // Generate stars once when seed changes (memoized)
+  const stars = useMemo(() => generateStars(seed), [seed])
+
+  useEffect(() => {
+    if (!isActive) return
+
+    // Animation duration based on style
+    const duration = style === 'minimal' ? 800 : 4000
+    const timer = setTimeout(() => {
+      onArrived()
+    }, duration)
+
+    return () => clearTimeout(timer)
+  }, [isActive, style, onArrived])
+
+  if (!isActive) return null
+
+  return (
+    <div
+      className="ocean-sailing-scene"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1000,
+        overflow: 'hidden',
+      }}
+    >
+      {style === 'minimal'
+        ? renderMinimalStyle(isReducedMotion)
+        : renderCinematicStyle(stars, isReducedMotion)
+      }
     </div>
   )
 }
