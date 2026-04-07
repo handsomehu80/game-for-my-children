@@ -7,12 +7,29 @@ import { ConfirmDialog } from './ConfirmDialog'
 import { DangerConfirmDialog } from './DangerConfirmDialog'
 import OceanSailingScene from './OceanSailingScene'
 
+// 生成确定性 seed (基于 areaId)
+function generateSailingSeed(areaId: string): number {
+  let hash = 0
+  for (let i = 0; i < areaId.length; i++) {
+    const char = areaId.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+  }
+  return Math.abs(hash)
+}
+
+// 根据岛屿类型选择动画风格
+function getAnimationStyle(areaId: string): 'minimal' | 'cinematic' {
+  const area = getAreaById(areaId)
+  if (area?.type === 'boss') return 'cinematic'
+  return 'minimal'
+}
+
 export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
 
-  // 调试：监控 phase 变化
+  // 监控状态变化用于调试
   useEffect(() => {
-    console.log('🔔 exploration.phase changed to:', exploration?.phase)
+    // console.log('exploration changed:', exploration?.phase)
   }, [exploration?.phase])
 
   // P0-3: Use ref to prevent stale closures in useEffect hooks
@@ -32,7 +49,6 @@ export default function ExplorationMap() {
 
   // Sailing state
   const [isSailing, setIsSailing] = useState(false)
-  const [sailingTarget, setSailingTarget] = useState<{x: number, y: number} | null>(null)
 
   // P0-1: Extract magic number to named constant
   const HIDDEN_EVENT_PROBABILITY = 0.2
@@ -54,11 +70,15 @@ if (area.type === 'boss') {
     if (!exploration?.currentArea) {
       return area.difficulty === 1 && area.type === 'normal'
     }
-    const currentAreaObj = getAreaById(exploration.currentArea)
-    // Check if area is in current island's connections OR in reachableAreas (accumulated)
-    const isInConnections = currentAreaObj?.connections.includes(areaId) ?? false
-    const isInReachable = exploration?.reachableAreas.includes(areaId) ?? false
-    return isInConnections || isInReachable
+    // During exploring and error phases, use reachableAreas to determine clickability.
+    // This ensures islands only become clickable AFTER battle is won (via BATTLE_WIN updates reachableAreas).
+    // During error phase (after battle loss), player should still be able to select reachable islands.
+    if (exploration.phase === 'exploring' || exploration.phase === 'error') {
+      const isInReachable = exploration?.reachableAreas.includes(areaId) ?? false
+      return isInReachable
+    }
+    // During other phases (sailing, battle, etc.), don't allow clicking new islands
+    return false
   }
 
   // isLocked: true if the area requires keys to unlock
@@ -90,7 +110,6 @@ if (area.type === 'boss') {
       const area = getAreaById(pendingAreaId)
       if (area) {
         // Start sailing animation
-        setSailingTarget({ x: area.position.x, y: area.position.z })
         setIsSailing(true)
         // Note: The actual state transition to 'sailing' happens via selectArea below
         selectArea(pendingAreaId)
@@ -103,7 +122,6 @@ if (area.type === 'boss') {
   const handleSailingArrived = () => {
     console.log('handleSailingArrived called')
     setIsSailing(false)
-    setSailingTarget(null)
     explorationDispatch({ type: 'SAILING_COMPLETE' })
     console.log('After SAILING_COMPLETE, phase should be arrived')
     // Small delay then transition to moving
@@ -204,14 +222,11 @@ if (area.type === 'boss') {
 
   // 手动触发战斗胜利（用于测试）
   const handleBattleWin = () => {
-    console.log('handleBattleWin called, current phase:', exploration?.phase)
     // P0-3: Only dispatch if in battle or hidden_area phase
     if ((exploration?.phase === 'battle' || exploration?.phase === 'hidden_area') && exploration?.currentArea) {
-      console.log('Dispatching BATTLE_WIN')
       // P1-2: Increment victory counter BEFORE BATTLE_WIN so generatePortals sees updated value
       explorationDispatch({ type: 'INCREMENT_VICTORY_COUNTER' })
       explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
-      // P1-1: generatePortals 由 useEffect 在 phase === 'victory' 时自动触发，不再直接调用
     }
   }
 
@@ -236,11 +251,11 @@ if (area.type === 'boss') {
   return (
     <>
       {/* Sailing Animation Scene */}
-      {isSailing && sailingTarget && (
+      {isSailing && (
         <OceanSailingScene
           isActive={isSailing}
-          startPosition={{ x: 0, y: 0 }}
-          endPosition={sailingTarget}
+          style={getAnimationStyle(pendingAreaId || '')}
+          seed={generateSailingSeed(pendingAreaId || '')}
           onArrived={handleSailingArrived}
           isReducedMotion={false}
         />
@@ -537,15 +552,19 @@ if (area.type === 'boss') {
         </div>
       )}
 
-      {/* 传送门选择 */}
-      {exploration.phase === 'portal_appear' && exploration.availablePortals.length > 0 && (
+      {/* 传送门选择 - 无论是否有传送门，都要显示返回按钮 */}
+      {exploration.phase === 'portal_appear' && (
         <div className="portal-selection" style={{ marginTop: '16px' }}>
-          <h3 style={{ textAlign: 'center' }}>选择传送门</h3>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {exploration.availablePortals.map((portal) => (
-              <Portal key={portal.id} portal={portal} onClick={handlePortalClick} />
-            ))}
-          </div>
+          {exploration.availablePortals.length > 0 && (
+            <>
+              <h3 style={{ textAlign: 'center' }}>选择传送门</h3>
+              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                {exploration.availablePortals.map((portal) => (
+                  <Portal key={portal.id} portal={portal} onClick={handlePortalClick} />
+                ))}
+              </div>
+            </>
+          )}
           <div style={{ textAlign: 'center', marginTop: '16px' }}>
             <button
               onClick={() => explorationDispatch({ type: 'CLOSE_PORTAL' })}
@@ -559,7 +578,7 @@ if (area.type === 'boss') {
                 fontSize: '16px',
               }}
             >
-              关闭传送门，返回地图
+              {exploration.availablePortals.length > 0 ? '关闭传送门，返回地图' : '返回地图'}
             </button>
           </div>
         </div>
