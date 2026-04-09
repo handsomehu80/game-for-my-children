@@ -428,8 +428,8 @@ button:active {
 }
 
 .hp-fill.animating {
-  animation: hpShake 0.4s ease-out;
-  transition: width 0.5s ease;
+  animation: hpShake 300ms ease-out;
+  transition: width 250ms ease-out;
 }
 
 /* 伤害数字弹跳 */
@@ -446,7 +446,7 @@ button:active {
   font-weight: bold;
   color: #ff4444;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  animation: damageBounce 1s ease-out forwards;
+  animation: damageBounce 800ms ease-out forwards;
   pointer-events: none;
   z-index: 10;
 }
@@ -470,7 +470,7 @@ button:active {
 .option-btn.correct {
   background: linear-gradient(135deg, #00ff88, #00cc66) !important;
   border-color: #00ff88 !important;
-  animation: correctPulse 0.6s ease-out;
+  animation: correctPulse 300ms ease-out;
 }
 
 /* 星星弹跳 */
@@ -501,20 +501,16 @@ button:active {
 /* 错误摇晃 */
 @keyframes wrongShake {
   0%, 100% { transform: translateX(0); }
-  10% { transform: translateX(-10px) rotate(-2deg); }
-  20% { transform: translateX(10px) rotate(2deg); }
-  30% { transform: translateX(-10px) rotate(-2deg); }
-  40% { transform: translateX(10px) rotate(2deg); }
-  50% { transform: translateX(-5px) rotate(-1deg); }
-  60% { transform: translateX(5px) rotate(1deg); }
-  70% { transform: translateX(-3px) rotate(0deg); }
-  80% { transform: translateX(3px) rotate(0deg); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
 }
 
 .option-btn.wrong {
   background: linear-gradient(135deg, #ff4444, #cc0000) !important;
   border-color: #ff4444 !important;
-  animation: wrongShake 0.6s ease-out;
+  animation: wrongShake 300ms ease-out;
 }
 
 /* 屏幕红色闪烁 */
@@ -524,7 +520,7 @@ button:active {
 }
 
 .battle-screen.red-flash {
-  animation: screenRedFlash 0.8s ease-out;
+  animation: screenRedFlash 300ms ease-out 2;
 }
 
 /* 怪物受击抖动 */

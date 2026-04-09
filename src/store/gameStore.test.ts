@@ -412,7 +412,6 @@ describe('Game Store', () => {
             { id: 'p1', targetAreaId: 'east_math_1', type: 'normal' as const },
           ],
           portalSeed: 12345,
-          portalReturnArea: null,
           failedAttempts: {},
           lastError: null,
           savepoints: [],
