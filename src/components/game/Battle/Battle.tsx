@@ -9,6 +9,7 @@ import WrongFeedback from './WrongFeedback'
 export default function Battle() {
   const battle = useGameStore((state) => state.battle)
   const gamePhase = useGameStore((state) => state.gamePhase)
+  const explorationBattle = useGameStore((state) => state.explorationBattle)
   const dispatch = useGameStore((state) => state.dispatch)
 
   // Animation states
@@ -23,7 +24,8 @@ export default function Battle() {
   const [playerHit, setPlayerHit] = useState(false)
 
   const prevHpRef = useRef<{ player: number; monster: number }>({ player: 0, monster: 0 })
-  const hasTransitionedRef = useRef(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hasEnabledRef = useRef(false)
 
   // Redirect if no battle
   useEffect(() => {
@@ -34,24 +36,29 @@ export default function Battle() {
 
   // Phase transition: showing_question -> answering (gives player time to read)
   useEffect(() => {
-    if (battle && battle.phase === 'showing_question' && !hasTransitionedRef.current) {
-      hasTransitionedRef.current = true
-      const timer = setTimeout(() => {
+    if (!battle) return
+
+    // Only set timer if phase is showing_question and timer not already set
+    if (battle.phase === 'showing_question' && !timerRef.current) {
+      timerRef.current = setTimeout(() => {
         dispatch({ type: 'ENABLE_ANSWERING' })
-      }, 1000) // 1 second to read question
-      return () => clearTimeout(timer)
+      }, 1000)
     }
-    // Reset transition flag when leaving showing_question phase
-    if (battle && battle.phase !== 'showing_question') {
-      hasTransitionedRef.current = false
-    }
-    // Clear selected answer when entering showing_question (new question)
-    if (battle && battle.phase === 'showing_question' && selectedAnswer !== null) {
+
+    if (battle.phase === 'showing_question' && selectedAnswer !== null) {
       setSelectedAnswer(null)
       setCorrectAnswerIndex(null)
     }
-    return () => {}
-  }, [battle?.phase, battle, dispatch])
+
+    // Reset flag and timer when leaving showing_question
+    if (battle.phase !== 'showing_question') {
+      hasEnabledRef.current = false
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+        timerRef.current = null
+      }
+    }
+  }, [battle?.phase, battle, dispatch, selectedAnswer])
 
   // Track HP changes for animations - using functional updates to avoid stale closure
   useEffect(() => {
@@ -86,6 +93,35 @@ export default function Battle() {
     prevHpRef.current = { player: player.hp, monster: monster.hp }
   }, [battle?.phase, battle?.player?.hp, battle?.monster?.hp, battle])
 
+  // After damage animation completes, transition to next state
+  useEffect(() => {
+    if (!battle) return
+    if (battle.phase !== 'animating_damage') return
+
+    // After animation completes (800ms), check if battle is over or get next question
+    const timer = setTimeout(() => {
+      // Read current state from store to avoid stale closure
+      const currentBattle = useGameStore.getState().battle
+      if (!currentBattle) return
+
+      if (currentBattle.phase === 'victory' || currentBattle.phase === 'defeat') return
+
+      if (currentBattle.monster.hp <= 0) {
+        dispatch({ type: 'END_BATTLE', victory: true })
+        return
+      }
+
+      if (currentBattle.player.hp <= 0) {
+        dispatch({ type: 'END_BATTLE', victory: false })
+        return
+      }
+
+      dispatch({ type: 'NEXT_QUESTION' })
+    }, 850)
+
+    return () => clearTimeout(timer)
+  }, [battle?.phase, battle?.monster?.hp, battle?.player?.hp, battle, dispatch])
+
   if (!battle) return null
 
   const { player, monster, currentQuestion, phase, battleLog } = battle
@@ -97,7 +133,6 @@ export default function Battle() {
 
   const handleAnswer = (answerIndex: number) => {
     if (!isAnswering) return
-    // Find correct answer index for highlighting after feedback
     const correctIdx = currentQuestion?.options.findIndex(opt => opt.isCorrect) ?? null
     setCorrectAnswerIndex(correctIdx)
     setSelectedAnswer(answerIndex)
@@ -119,7 +154,10 @@ export default function Battle() {
   }, [phase, selectedAnswer, currentQuestion])
 
   const handleContinue = () => {
-    if (isVictory) {
+    if (explorationBattle) {
+      // Exploration battle - return to exploration map
+      dispatch({ type: 'END_EXPLORATION_BATTLE', victory: isVictory })
+    } else if (isVictory) {
       dispatch({ type: 'COMPLETE_OCEAN' })
     } else {
       dispatch({ type: 'RESET_GAME' })

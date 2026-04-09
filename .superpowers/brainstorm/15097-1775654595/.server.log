@@ -1,0 +1,12 @@
+{"type":"server-started","port":64243,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:64243","screen_dir":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595"}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/visual-style.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      冒险卡通风格 🎨\n      鲜艳色彩、圆角按钮、卡通怪物、弹跳动画\n      \n        适合6-12岁儿童\n        HP条：渐变色 + 脉动效果\n        伤害数字：弹跳飞出 + 放大缩小\n        正确反馈：✨星星✨闪烁","choice":"adventure","id":null,"timestamp":1775654814762}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/hp-animation.html"}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/damage-number.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      弹跳飞出 ⭐推荐\n      数字从下方弹跳弹出，然后向上飘散消失\n      \n        负数从怪物头顶弹出\n        先放大后缩小\n        向上飘动并逐渐消失\n        卡通风味十足","choice":"bounce","id":null,"timestamp":1775655056314}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/correct-feedback.html"}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/wrong-feedback.html"}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/battle-result.html"}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/battle-layout.html"}
+{"type":"screen-added","file":"/Users/xihualiu/code/game for my children/.superpowers/brainstorm/15097-1775654595/approach.html"}
+{"type":"server-stopped","reason":"idle timeout"}

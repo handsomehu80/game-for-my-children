@@ -1,0 +1,46 @@
+<h2>答错时的错误反馈</h2>
+<p class="subtitle">选择错误答案后的视觉反馈 + 玩家 HP 扣减动画</p>
+
+<div class="options">
+  <div class="option" data-choice="shake" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>摇晃 + 红色闪烁 ⭐推荐</h3>
+      <p>选项摇晃，屏幕边缘红色闪烁</p>
+      <ul>
+        <li>错误选项左右摇晃</li>
+        <li>屏幕边缘红色闪烁</li>
+        <li>显示正确答案</li>
+        <li>玩家 HP 震动减少</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="option" data-choice="cross" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>红色叉号 ✗</h3>
+      <p>选项显示红色叉号，简洁警告</p>
+      <ul>
+        <li>按钮变红并显示 ✗</li>
+        <li>配合 HP 震动扣减</li>
+        <li>更直接的错误提示</li>
+        <li>视觉上更强烈</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="option" data-choice="faded" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>变灰暗淡</h3>
+      <p>错误选项变灰，正确答案高亮</p>
+      <ul>
+        <li>错误选项变灰色</li>
+        <li>正确答案绿色高亮</li>
+        <li>HP 减少动画</li>
+        <li>更温和的反馈</li>
+      </ul>
+    </div>
+  </div>
+</div>

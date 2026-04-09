@@ -1,0 +1,85 @@
+<h2>战斗主界面布局</h2>
+<p class="subtitle">HP 显示区、怪物区、问题区的排列方式</p>
+
+<div class="split">
+  <div class="mockup">
+    <div style="padding: 10px; background: #f5f5f5; border-radius: 8px; font-size: 12px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <div style="background: #333; color: white; padding: 5px 15px; border-radius: 20px;">👹 怪物名 HP</div>
+        <div style="background: #0066cc; color: white; padding: 5px 15px; border-radius: 20px;">玩家 HP 👤</div>
+      </div>
+      <div style="background: linear-gradient(180deg, #87CEEB, #4A90B8); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+        <span style="font-size: 48px;">👹</span>
+      </div>
+      <div style="background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div style="font-weight: bold; margin-bottom: 8px;">问题：2 + 3 = ?</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <button style="padding: 8px; background: #e0e0e0; border-radius: 8px; border: none;">A. 4</button>
+          <button style="padding: 8px; background: #4CAF50; color: white; border-radius: 8px; border: none;">B. 5 ✓</button>
+          <button style="padding: 8px; background: #e0e0e0; border-radius: 8px; border: none;">C. 6</button>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; font-size: 11px; color: #666; margin-top: 5px;">A. 垂直堆叠</p>
+  </div>
+
+  <div class="mockup">
+    <div style="padding: 10px; background: #f5f5f5; border-radius: 8px; font-size: 12px;">
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <div style="background: linear-gradient(180deg, #87CEEB, #4A90B8); width: 80px; height: 80px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+          <span style="font-size: 36px;">👹</span>
+        </div>
+        <div style="flex: 1;">
+          <div style="color: #333; font-weight: bold;">👹 怪物名</div>
+          <div style="background: #333; height: 12px; border-radius: 6px; margin: 5px 0;"></div>
+          <div style="color: #666; font-size: 11px;">HP: 80/100</div>
+        </div>
+        <div style="text-align: right;">
+          <div style="color: #0066cc; font-weight: bold;">玩家</div>
+          <div style="background: #0066cc; height: 12px; border-radius: 6px; margin: 5px 0;"></div>
+          <div style="color: #666; font-size: 11px;">HP: 50/50</div>
+        </div>
+      </div>
+      <div style="background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div style="font-weight: bold; margin-bottom: 8px;">问题：2 + 3 = ?</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+          <button style="padding: 8px; background: #e0e0e0; border-radius: 8px; border: none;">A. 4</button>
+          <button style="padding: 8px; background: #4CAF50; color: white; border-radius: 8px; border: none;">B. 5</button>
+          <button style="padding: 8px; background: #e0e0e0; border-radius: 8px; border: none;">C. 6</button>
+          <button style="padding: 8px; background: #e0e0e0; border-radius: 8px; border: none;">D. 7</button>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; font-size: 11px; color: #666; margin-top: 5px;">B. 左右对比</p>
+  </div>
+</div>
+
+<div class="options" style="margin-top: 15px;">
+  <div class="option" data-choice="vertical" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>垂直堆叠 ⭐推荐</h3>
+      <p>怪物在上、问题在下，清晰阅读顺序</p>
+      <ul>
+        <li>顶部：怪物 + HP</li>
+        <li>中部：怪物 emoji 大图</li>
+        <li>底部：问题 + 选项</li>
+        <li>适合移动端单手操作</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="option" data-choice="horizontal" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>左右对比</h3>
+      <p>怪物左、玩家右，HP 对战形式</p>
+      <ul>
+        <li>左侧：怪物 + HP</li>
+        <li>右侧：玩家 + HP</li>
+        <li>中间：问题</li>
+        <li>强调对战感</li>
+      </ul>
+    </div>
+  </div>
+</div>

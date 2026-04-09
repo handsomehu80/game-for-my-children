@@ -142,18 +142,21 @@ export interface GameState {
   battle: BattleState | null
   totalScore: number
   exploration: ExplorationState | null
+  // Track if battle originated from exploration for proper routing after battle ends
+  explorationBattle: { areaId: string; monsterId: string } | null
 }
 
 // 游戏动作
 export type GameAction =
   | { type: 'START_GAME'; players: Player[] }
   | { type: 'SELECT_OCEAN'; ocean: string }
-  | { type: 'START_BATTLE'; monster: Monster; question: Question }
+  | { type: 'START_BATTLE'; monster: Monster; question: Question; explorationContext?: { areaId: string; monsterId: string } }
   | { type: 'ANSWER_QUESTION'; answerIndex: number }
   | { type: 'NEXT_QUESTION' }
   | { type: 'ENABLE_ANSWERING' }
   | { type: 'END_BATTLE'; victory: boolean }
   | { type: 'COMPLETE_OCEAN' }
+  | { type: 'END_EXPLORATION_BATTLE'; victory: boolean }
   | { type: 'GAME_OVER' }
   | { type: 'RESET_GAME' }
 

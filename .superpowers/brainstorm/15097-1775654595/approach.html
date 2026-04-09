@@ -1,0 +1,87 @@
+<h2>Battle UI 动画系统实现方案</h2>
+<p class="subtitle>基于已选风格：冒险卡通 + 左右对战布局</p>
+
+<h3>核心方案选择</h3>
+
+<div class="options">
+  <div class="option" data-choice="css-only" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>纯 CSS 动画 ⭐推荐</h3>
+      <p>全部使用 CSS @keyframes 实现动画</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优点</h4>
+          <ul>
+            <li>性能好，GPU 加速</li>
+            <li>代码简洁，易维护</li>
+            <li>不需要额外依赖</li>
+            <li>与现有项目风格一致</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>缺点</h4>
+          <ul>
+            <li>复杂序列动画需要协调</li>
+            <li>需要仔细管理动画 state</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="framer" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Framer Motion</h3>
+      <p>使用 React 动画库实现</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优点</h4>
+          <ul>
+            <li>声明式 API，直观</li>
+            <li>复杂序列动画容易</li>
+            <li>内置手势支持</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>缺点</h4>
+          <ul>
+            <li>增加依赖 (50kb+)</li>
+            <li>学习成本</li>
+            <li>可能过度设计</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="canvas" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Canvas/SVG 动画</h3>
+      <p>使用 Canvas 或 SVG 实现粒子效果</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优点</h4>
+          <ul>
+            <li>粒子效果强大</li>
+            <li>适合复杂视觉效果</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>缺点</h4>
+          <ul>
+            <li>需要管理 Canvas context</li>
+            <li>与 React 结合需要 ref</li>
+            <li>过度复杂</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+  <p style="margin: 0; color: #856404;"><strong>💡 推荐方案 A</strong>：项目已有 CSS 动画基础（如航行动画），保持一致性，且儿童游戏不需要复杂粒子效果。</p>
+</div>

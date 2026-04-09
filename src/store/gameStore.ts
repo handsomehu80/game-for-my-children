@@ -30,6 +30,7 @@ const initialState: GameState = {
   battle: null,
   totalScore: 0,
   exploration: null,
+  explorationBattle: null,
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -63,6 +64,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           battleLog: [],
           activeSkills: [],
         },
+        // Keep exploration state intact so we can return after battle
+        explorationBattle: action.explorationContext ?? null,
       }
 
     case 'ANSWER_QUESTION': {
@@ -100,7 +103,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             monster: { ...state.battle.monster, hp: newMonsterHp },
             comboCount: newCombo,
             battleLog: newBattleLog,
-            phase: isVictory ? 'victory' : state.battle.phase,
+            phase: isVictory ? 'victory' : 'animating_damage',
           },
         }
       } else {
@@ -113,7 +116,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             player: { ...state.battle.player, hp: newPlayerHp },
             comboCount: 0,
             battleLog: newBattleLog,
-            phase: isDefeat ? 'defeat' : state.battle.phase,
+            phase: isDefeat ? 'defeat' : 'animating_damage',
           },
         }
       }
@@ -141,7 +144,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         battle: {
           ...state.battle,
-          phase: 'answering',
+          phase: 'answering' as BattlePhase,
         },
       }
     }
@@ -174,6 +177,56 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         gamePhase: 'world_map',
         battle: null,
         exploration: null,
+      }
+    }
+
+    case 'END_EXPLORATION_BATTLE': {
+      if (!state.exploration || !state.explorationBattle) {
+        // No exploration context, fallback to RESET_GAME
+        return { ...initialState, gamePhase: 'game_over' }
+      }
+
+      const { areaId } = state.explorationBattle
+      const exploration = state.exploration
+
+      if (action.victory) {
+        // Increment victory counter and dispatch BATTLE_WIN
+        const updatedExploration = explorationTransition(exploration, { type: 'INCREMENT_VICTORY_COUNTER' })
+        const finalExploration = explorationTransition(updatedExploration, { type: 'BATTLE_WIN', areaId })
+
+        // Generate portals after victory
+        const portalSeed = generatePortalSeed(exploration.currentOcean || 'east', Date.now())
+        const rng = new SeededRandom(portalSeed)
+        const availablePortals: Portal[] = rng.next() < 0.3
+          ? (['east_boss', 'west_boss', 'south_boss', 'north_boss', 'mysterious_boss']
+              .filter(id => {
+                const bossArea = getAreaById(id)
+                return bossArea && finalExploration.defeatedMiniBosses.includes(id)
+              })
+              .map(id => ({ id, targetAreaId: id, type: 'ocean_portal' as const }))
+              .slice(0, 2))
+          : []
+
+        return {
+          ...state,
+          gamePhase: 'exploration',
+          battle: null,
+          exploration: {
+            ...finalExploration,
+            availablePortals,
+          },
+          explorationBattle: null,
+        }
+      } else {
+        // Defeat - dispatch BATTLE_LOSE
+        const updatedExploration = explorationTransition(exploration, { type: 'BATTLE_LOSE' })
+        return {
+          ...state,
+          gamePhase: 'exploration',
+          battle: null,
+          exploration: updatedExploration,
+          explorationBattle: null,
+        }
       }
     }
 

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useGameStore } from '../../store/gameStore'
 import { getAreasByOcean, getAreaById } from '../../data/areas'
+import { monstersData } from '../../data/monsters'
+import { getRandomQuestion } from '../../game/QuestionSelector'
 import { AreaNode } from './AreaNode'
 import { Portal } from './Portal'
 import { ConfirmDialog } from './ConfirmDialog'
@@ -37,6 +39,9 @@ export default function ExplorationMap() {
   useEffect(() => {
     latestExplorationRef.current = exploration
   }, [exploration])
+
+  // Guard to prevent START_BATTLE from being dispatched multiple times
+  const battleStartedRef = useRef(false)
 
   const selectArea = useGameStore((state) => state.selectArea)
   const generatePortals = useGameStore((state) => state.generatePortals)
@@ -123,10 +128,8 @@ if (area.type === 'boss') {
     console.log('handleSailingArrived called')
     setIsSailing(false)
     explorationDispatch({ type: 'SAILING_COMPLETE' })
-    console.log('After SAILING_COMPLETE, phase should be arrived')
     // Small delay then transition to moving
     setTimeout(() => {
-      console.log('Dispatching ARRIVED')
       explorationDispatch({ type: 'ARRIVED' })
     }, 300)
   }
@@ -147,11 +150,8 @@ if (area.type === 'boss') {
 
   // 模拟移动动画完成
   useEffect(() => {
-    console.log('moving useEffect triggered, phase:', latestExplorationRef.current?.phase)
     if (latestExplorationRef.current?.phase === 'moving') {
-      console.log('Setting timer for MOVE_COMPLETE')
       const timer = setTimeout(() => {
-        console.log('Dispatching MOVE_COMPLETE')
         explorationDispatch({ type: 'MOVE_COMPLETE' })
       }, 1000)
       return () => clearTimeout(timer)
@@ -164,16 +164,11 @@ if (area.type === 'boss') {
 
   // 模拟遭遇判定
   useEffect(() => {
-    console.log('DEBUG encounter useEffect: phase =', latestExplorationRef.current?.phase)
     if (!latestExplorationRef.current || latestExplorationRef.current.phase !== 'encounter') {
-      console.log('DEBUG encounter useEffect: returning early, phase is not encounter')
       return
     }
     const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
-    if (!area) {
-      console.log('DEBUG encounter useEffect: area not found')
-      return
-    }
+    if (!area) return
 
     let result: 'battle' | 'treasure' | 'hidden_event'
     if (area.type === 'treasure') {
@@ -187,20 +182,34 @@ if (area.type === 'boss') {
       result = 'battle'
     }
 
-    console.log('DEBUG encounter useEffect: dispatching ENCOUNTER_RESULT with result =', result)
     explorationDispatch({ type: 'ENCOUNTER_RESULT', result })
   }, [exploration, areas, explorationDispatch])
 
-  // 战斗阶段 - 触发实际战斗
+  // 战斗阶段 - 触发实际战斗（只执行一次）
   useEffect(() => {
-    if (latestExplorationRef.current && latestExplorationRef.current.phase === 'battle' && latestExplorationRef.current.currentArea) {
-      const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
-      if (!area || !area.monsterId) return
+    if (battleStartedRef.current) return
+    if (latestExplorationRef.current?.phase !== 'battle') return
+    if (!latestExplorationRef.current?.currentArea) return
 
-      // 这里应该触发实际战斗，但目前只是记录状态
-      // 战斗逻辑需要在 battle phase 处理
-      console.log('Battle started in area:', latestExplorationRef.current.currentArea, 'monster:', area.monsterId)
-    }
+    const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
+    if (!area || !area.monsterId) return
+
+    const monster = monstersData[area.monsterId]
+    if (!monster) return
+
+    const question = getRandomQuestion({
+      oceanId: latestExplorationRef.current.currentOcean || 'east',
+      difficulty: area.difficulty ?? null,
+    })
+    if (!question) return
+
+    battleStartedRef.current = true
+    useGameStore.getState().dispatch({
+      type: 'START_BATTLE',
+      monster,
+      question,
+      explorationContext: { areaId: area.id, monsterId: area.monsterId },
+    })
   }, [exploration, areas])
 
   // 战斗胜利后生成传送门
@@ -219,26 +228,6 @@ if (area.type === 'boss') {
       explorationDispatch({ type: 'OPEN_TREASURE', treasures })
     }
   }, [exploration, explorationDispatch])
-
-  // 手动触发战斗胜利（用于测试）
-  const handleBattleWin = () => {
-    // P0-3: Only dispatch if in battle or hidden_area phase
-    if ((exploration?.phase === 'battle' || exploration?.phase === 'hidden_area') && exploration?.currentArea) {
-      // P1-2: Increment victory counter BEFORE BATTLE_WIN so generatePortals sees updated value
-      explorationDispatch({ type: 'INCREMENT_VICTORY_COUNTER' })
-      explorationDispatch({ type: 'BATTLE_WIN', areaId: exploration.currentArea })
-    }
-  }
-
-  // 手动触发战斗失败（用于测试）
-  const handleBattleLose = () => {
-    console.log('handleBattleLose called, current phase:', exploration?.phase)
-    // P0-3: Only dispatch if in battle or hidden_area phase
-    if (exploration?.phase === 'battle' || exploration?.phase === 'hidden_area') {
-      console.log('Dispatching BATTLE_LOSE')
-      explorationDispatch({ type: 'BATTLE_LOSE' })
-    }
-  }
 
   if (!exploration) {
     return (
@@ -511,47 +500,6 @@ if (area.type === 'boss') {
         {exploration.phase === 'rollback' && <span style={{ color: 'orange' }}>回滚中...</span>}
       </div>
 
-      {/* 战斗测试按钮 - 当在 battle 或 hidden_area phase 时显示 */}
-      {(() => {
-        console.log('JSX evaluation: exploration.phase =', exploration.phase, 'condition =', exploration.phase === 'battle' || exploration.phase === 'hidden_area')
-        return (exploration.phase === 'battle' || exploration.phase === 'hidden_area')
-      })() && (
-        <div style={{ marginTop: '16px', textAlign: 'center', background: 'rgba(255,0,0,0.8)', padding: '20px', borderRadius: '10px' }}>
-          <h3 style={{ color: 'white', margin: '0 0 10px 0' }}>⚔️ 战斗阶段 ⚔️</h3>
-          <p style={{ marginBottom: '8px', color: 'white' }}>当前区域: {areas.find(a => a.id === exploration.currentArea)?.name}</p>
-          <button
-            onClick={handleBattleWin}
-            style={{
-              padding: '10px 20px',
-              margin: '0 8px',
-              background: 'linear-gradient(135deg, #00ff88, #00cc66)',
-              border: 'none',
-              borderRadius: '8px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-            }}
-          >
-            模拟战斗胜利
-          </button>
-          <button
-            onClick={handleBattleLose}
-            style={{
-              padding: '10px 20px',
-              margin: '0 8px',
-              background: 'linear-gradient(135deg, #ff6b6b, #c92a2a)',
-              border: 'none',
-              borderRadius: '8px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-            }}
-          >
-            模拟战斗失败
-          </button>
-        </div>
-      )}
-
       {/* 传送门选择 - 无论是否有传送门，都要显示返回按钮 */}
       {exploration.phase === 'portal_appear' && (
         <div className="portal-selection" style={{ marginTop: '16px' }}>
@@ -581,110 +529,6 @@ if (area.type === 'boss') {
               {exploration.availablePortals.length > 0 ? '关闭传送门，返回地图' : '返回地图'}
             </button>
           </div>
-        </div>
-      )}
-
-      {/* 战斗测试按钮 - 独立渲染确保可见 */}
-      {exploration.phase === 'battle' && (
-        <div style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          background: 'red',
-          color: 'white',
-          padding: '40px',
-          borderRadius: '20px',
-          zIndex: 9999,
-          fontSize: '24px',
-          boxShadow: '0 0 50px rgba(255,0,0,0.5)'
-        }}>
-          <h2>🎮 BATTLE PHASE 🎮</h2>
-          <p>当前区域: {exploration.currentArea}</p>
-          <button
-            onClick={handleBattleWin}
-            style={{
-              padding: '15px 30px',
-              margin: '10px',
-              background: 'linear-gradient(135deg, #00ff88, #00cc66)',
-              border: 'none',
-              borderRadius: '10px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '18px'
-            }}
-          >
-            模拟战斗胜利
-          </button>
-          <button
-            onClick={handleBattleLose}
-            style={{
-              padding: '15px 30px',
-              margin: '10px',
-              background: 'linear-gradient(135deg, #ff6b6b, #c92a2a)',
-              border: 'none',
-              borderRadius: '10px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '18px'
-            }}
-          >
-            模拟战斗失败
-          </button>
-        </div>
-      )}
-
-      {/* hidden_area 战斗按钮 */}
-      {exploration.phase === 'hidden_area' && (
-        <div style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          background: 'purple',
-          color: 'white',
-          padding: '40px',
-          borderRadius: '20px',
-          zIndex: 9999,
-          fontSize: '24px',
-          boxShadow: '0 0 50px rgba(128,0,128,0.5)'
-        }}>
-          <h2>🔮 HIDDEN EVENT 🔮</h2>
-          <p>当前区域: {exploration.currentArea}</p>
-          <button
-            onClick={handleBattleWin}
-            style={{
-              padding: '15px 30px',
-              margin: '10px',
-              background: 'linear-gradient(135deg, #00ff88, #00cc66)',
-              border: 'none',
-              borderRadius: '10px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '18px'
-            }}
-          >
-            模拟战斗胜利
-          </button>
-          <button
-            onClick={handleBattleLose}
-            style={{
-              padding: '15px 30px',
-              margin: '10px',
-              background: 'linear-gradient(135deg, #ff6b6b, #c92a2a)',
-              border: 'none',
-              borderRadius: '10px',
-              color: 'white',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '18px'
-            }}
-          >
-            模拟战斗失败
-          </button>
         </div>
       )}
 

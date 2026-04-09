@@ -1,0 +1,43 @@
+<h2>HP 动画表现方式</h2>
+<p class="subtitle">答错时 HP 减少动画、答对时怪物扣血动画</p>
+
+<div class="options">
+  <div class="option" data-choice="smooth" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>平滑减少 ⭐推荐</h3>
+      <p>HP 条宽度逐渐过渡，数字滚动变化</p>
+      <ul>
+        <li>HP 条宽度在 500ms 内平滑过渡</li>
+        <li>数字从当前值逐渐倒数到目标值</li>
+        <li>视觉上流畅，不突兀</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="option" data-choice="shake" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>震动减少</h3>
+      <p>HP 条先震动一下，然后快速减少</p>
+      <ul>
+        <li>扣血前整体屏幕/HP条震动</li>
+        <li>然后 HP 快速减少</li>
+        <li>强调打击感和紧张感</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="option" data-choice="instant" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>闪烁减少</h3>
+      <p>HP 条闪烁几下，然后变为新值</p>
+      <ul>
+        <li>HP 数字快速闪烁3-5次</li>
+        <li>然后变为新值</li>
+        <li>介于平滑和震动之间</li>
+      </ul>
+    </div>
+  </div>
+</div>
