@@ -1,19 +1,65 @@
+// src/components/game/Battle/Battle.tsx
 import { useGameStore } from '../../../store/gameStore'
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import type { QuestionOption, BattleLogEntry } from '../../../game/types'
+import DamageNumber from './DamageNumber'
+import CorrectFeedback from './CorrectFeedback'
+import WrongFeedback from './WrongFeedback'
 
 export default function Battle() {
   const battle = useGameStore((state) => state.battle)
   const gamePhase = useGameStore((state) => state.gamePhase)
   const dispatch = useGameStore((state) => state.dispatch)
 
+  // Animation states
+  const [showDamageNumber, setShowDamageNumber] = useState(false)
+  const [damageValue, setDamageValue] = useState(0)
+  const [damageTarget, setDamageTarget] = useState<'monster' | 'player'>('monster')
+  const [showCorrectFeedback, setShowCorrectFeedback] = useState(false)
+  const [showWrongFeedback, setShowWrongFeedback] = useState(false)
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [monsterHit, setMonsterHit] = useState(false)
+  const [playerHit, setPlayerHit] = useState(false)
+
+  const prevHpRef = useRef<{ player: number; monster: number }>({ player: 0, monster: 0 })
+
   // Redirect if no battle
   useEffect(() => {
     if (!battle && gamePhase === 'battle') {
-      // Battle not initialized - redirect to world map
       dispatch({ type: 'RESET_GAME' })
     }
   }, [battle, gamePhase, dispatch])
+
+  // Track HP changes for animations
+  useEffect(() => {
+    if (battle && battle.phase === 'animating_damage') {
+      const { player, monster } = battle
+      if (prevHpRef.current.monster !== monster.hp) {
+        // Monster took damage
+        const damage = prevHpRef.current.monster - monster.hp
+        if (damage > 0) {
+          setDamageValue(damage)
+          setDamageTarget('monster')
+          setShowDamageNumber(true)
+          setMonsterHit(true)
+          setTimeout(() => setMonsterHit(false), 300)
+          setTimeout(() => setShowDamageNumber(false), 800)
+        }
+      } else if (prevHpRef.current.player !== player.hp) {
+        // Player took damage
+        const damage = prevHpRef.current.player - player.hp
+        if (damage > 0) {
+          setDamageValue(damage)
+          setDamageTarget('player')
+          setShowDamageNumber(true)
+          setPlayerHit(true)
+          setTimeout(() => setPlayerHit(false), 300)
+          setTimeout(() => setShowDamageNumber(false), 800)
+        }
+      }
+      prevHpRef.current = { player: player.hp, monster: monster.hp }
+    }
+  }, [battle?.phase, battle?.player?.hp, battle?.monster?.hp])
 
   if (!battle) return null
 
@@ -26,49 +72,88 @@ export default function Battle() {
 
   const handleAnswer = (answerIndex: number) => {
     if (!isAnswering) return
+    setSelectedAnswer(answerIndex)
     dispatch({ type: 'ANSWER_QUESTION', answerIndex })
   }
+
+  // Show feedback after answering
+  useEffect(() => {
+    if (phase === 'animating_damage' && selectedAnswer !== null) {
+      const isCorrect = currentQuestion?.options[selectedAnswer]?.isCorrect
+      if (isCorrect) {
+        setShowCorrectFeedback(true)
+        setTimeout(() => setShowCorrectFeedback(false), 500)
+      } else {
+        setShowWrongFeedback(true)
+        setTimeout(() => setShowWrongFeedback(false), 600)
+      }
+    }
+  }, [phase, selectedAnswer, currentQuestion])
 
   const handleContinue = () => {
     if (isVictory) {
       dispatch({ type: 'COMPLETE_OCEAN' })
     } else {
-      // Restart battle or go back
       dispatch({ type: 'RESET_GAME' })
     }
   }
 
+  const getOptionClass = (index: number): string => {
+    const classes = ['option-btn']
+    if (selectedAnswer === index) {
+      if (showCorrectFeedback) classes.push('correct')
+      if (showWrongFeedback) classes.push('wrong')
+    }
+    return classes.join(' ')
+  }
+
   return (
-    <div className="battle-screen">
+    <div className={`battle-screen ${showWrongFeedback ? 'red-flash' : ''}`}>
       <div className="battle-header">
         <h2>⚔️ 战斗开始 ⚔️</h2>
       </div>
 
       <div className="battle-arena">
         {/* Monster Section */}
-        <div className="monster-section">
+        <div className={`monster-section ${monsterHit ? 'hit' : ''}`}>
           <h3>{monster.name}</h3>
+          <div style={{ fontSize: '64px', textAlign: 'center', margin: '10px 0' }}>
+            {monster.sprite || '👹'}
+          </div>
           <div className="hp-bar">
             <div
-              className="hp-fill monster"
+              className={`hp-fill monster ${isAnimating && damageTarget === 'monster' ? 'animating' : ''}`}
               style={{ width: `${(monster.hp / monster.maxHp) * 100}%` }}
             />
           </div>
           <p>HP: {monster.hp} / {monster.maxHp}</p>
+
+          {/* Damage Number */}
+          {showDamageNumber && damageTarget === 'monster' && (
+            <DamageNumber value={damageValue} target="monster" />
+          )}
         </div>
 
         <div className="vs">VS</div>
 
         {/* Player Section */}
-        <div className="player-section">
+        <div className={`player-section ${playerHit ? 'hit' : ''}`}>
           <h3>{player.name}</h3>
+          <div style={{ fontSize: '64px', textAlign: 'center', margin: '10px 0' }}>
+            🧒
+          </div>
           <div className="hp-bar">
             <div
-              className="hp-fill player"
+              className={`hp-fill player ${isAnimating && damageTarget === 'player' ? 'animating' : ''}`}
               style={{ width: `${(player.hp / player.maxHp) * 100}%` }}
             />
           </div>
           <p>HP: {player.hp} / {player.maxHp}</p>
+
+          {/* Damage Number */}
+          {showDamageNumber && damageTarget === 'player' && (
+            <DamageNumber value={damageValue} target="player" />
+          )}
         </div>
       </div>
 
@@ -81,7 +166,7 @@ export default function Battle() {
             {currentQuestion.options.map((option: QuestionOption, index: number) => (
               <button
                 key={index}
-                className="option-btn"
+                className={getOptionClass(index)}
                 onClick={() => handleAnswer(index)}
                 disabled={!isAnswering || isAnimating}
               >
@@ -89,22 +174,33 @@ export default function Battle() {
               </button>
             ))}
           </div>
+
+          {/* Correct Feedback Stars */}
+          {showCorrectFeedback && <CorrectFeedback />}
         </div>
       )}
 
+      {/* Wrong Feedback */}
+      {showWrongFeedback && <WrongFeedback />}
+
       {/* Battle Result Overlay */}
       {(isVictory || isDefeat) && (
-        <div className="battle-result-overlay">
-          <h2>{isVictory ? '🎉 胜利！' : '💀 失败...'}</h2>
-          <button onClick={handleContinue}>
-            {isVictory ? '继续' : '重新挑战'}
-          </button>
+        <div className={`battle-result-overlay ${isVictory ? 'victory' : 'defeat'}`}>
+          <div className="battle-result-content">
+            <h2>{isVictory ? '🎉 太棒了！🎉' : '💀 再试一次！💀'}</h2>
+            <button
+              className={`continue-btn ${isVictory ? 'victory' : 'defeat'}`}
+              onClick={handleContinue}
+            >
+              {isVictory ? '继续' : '重新挑战'}
+            </button>
+          </div>
         </div>
       )}
 
       {/* Battle Log */}
       <div className="battle-log">
-        {battleLog.slice(-5).map((entry: BattleLogEntry, index: number) => (
+        {battleLog.slice(-3).map((entry: BattleLogEntry, index: number) => (
           <p key={index} className={`log-entry ${entry.type}`}>
             {entry.message}
           </p>
