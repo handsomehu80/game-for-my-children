@@ -151,6 +151,7 @@ export type GameAction =
   | { type: 'START_BATTLE'; monster: Monster; question: Question }
   | { type: 'ANSWER_QUESTION'; answerIndex: number }
   | { type: 'NEXT_QUESTION' }
+  | { type: 'ENABLE_ANSWERING' }
   | { type: 'END_BATTLE'; victory: boolean }
   | { type: 'COMPLETE_OCEAN' }
   | { type: 'GAME_OVER' }

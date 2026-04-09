@@ -2,6 +2,7 @@ import { useGameStore } from '../../store/gameStore'
 import TitleScreen from './TitleScreen'
 import WorldMap from './WorldMap'
 import Battle from './Battle/Battle'
+import ErrorBoundary from './Battle/ErrorBoundary'
 import Result from './Result'
 import ExplorationMap from './ExplorationMap'
 import { AccessibilityToggle } from './AccessibilityToggle'
@@ -42,7 +43,9 @@ export default function Game() {
       return (
         <>
           <AccessibilityToggle />
-          <Battle />
+          <ErrorBoundary>
+            <Battle />
+          </ErrorBoundary>
         </>
       )
     case 'result':

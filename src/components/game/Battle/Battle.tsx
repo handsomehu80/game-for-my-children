@@ -18,10 +18,12 @@ export default function Battle() {
   const [showCorrectFeedback, setShowCorrectFeedback] = useState(false)
   const [showWrongFeedback, setShowWrongFeedback] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(null)
   const [monsterHit, setMonsterHit] = useState(false)
   const [playerHit, setPlayerHit] = useState(false)
 
   const prevHpRef = useRef<{ player: number; monster: number }>({ player: 0, monster: 0 })
+  const hasTransitionedRef = useRef(false)
 
   // Redirect if no battle
   useEffect(() => {
@@ -30,36 +32,59 @@ export default function Battle() {
     }
   }, [battle, gamePhase, dispatch])
 
-  // Track HP changes for animations
+  // Phase transition: showing_question -> answering (gives player time to read)
   useEffect(() => {
-    if (battle && battle.phase === 'animating_damage') {
-      const { player, monster } = battle
-      if (prevHpRef.current.monster !== monster.hp) {
-        // Monster took damage
-        const damage = prevHpRef.current.monster - monster.hp
-        if (damage > 0) {
-          setDamageValue(damage)
-          setDamageTarget('monster')
-          setShowDamageNumber(true)
-          setMonsterHit(true)
-          setTimeout(() => setMonsterHit(false), 300)
-          setTimeout(() => setShowDamageNumber(false), 800)
-        }
-      } else if (prevHpRef.current.player !== player.hp) {
-        // Player took damage
-        const damage = prevHpRef.current.player - player.hp
-        if (damage > 0) {
-          setDamageValue(damage)
-          setDamageTarget('player')
-          setShowDamageNumber(true)
-          setPlayerHit(true)
-          setTimeout(() => setPlayerHit(false), 300)
-          setTimeout(() => setShowDamageNumber(false), 800)
-        }
-      }
-      prevHpRef.current = { player: player.hp, monster: monster.hp }
+    if (battle && battle.phase === 'showing_question' && !hasTransitionedRef.current) {
+      hasTransitionedRef.current = true
+      const timer = setTimeout(() => {
+        dispatch({ type: 'ENABLE_ANSWERING' })
+      }, 1000) // 1 second to read question
+      return () => clearTimeout(timer)
     }
-  }, [battle?.phase, battle?.player?.hp, battle?.monster?.hp])
+    // Reset transition flag when leaving showing_question phase
+    if (battle && battle.phase !== 'showing_question') {
+      hasTransitionedRef.current = false
+    }
+    // Clear selected answer when entering showing_question (new question)
+    if (battle && battle.phase === 'showing_question' && selectedAnswer !== null) {
+      setSelectedAnswer(null)
+      setCorrectAnswerIndex(null)
+    }
+    return () => {}
+  }, [battle?.phase, battle, dispatch])
+
+  // Track HP changes for animations - using functional updates to avoid stale closure
+  useEffect(() => {
+    if (!battle) return
+
+    const { player, monster } = battle
+    const prevHp = prevHpRef.current
+
+    // Only process damage if we're in animating_damage phase and HP actually changed
+    if (battle.phase === 'animating_damage') {
+      const monsterDamage = prevHp.monster - monster.hp
+      const playerDamage = prevHp.player - player.hp
+
+      if (monsterDamage > 0) {
+        setDamageValue(() => monsterDamage)
+        setDamageTarget('monster')
+        setShowDamageNumber(true)
+        setMonsterHit(true)
+        setTimeout(() => setMonsterHit(false), 300)
+        setTimeout(() => setShowDamageNumber(false), 800)
+      } else if (playerDamage > 0) {
+        setDamageValue(() => playerDamage)
+        setDamageTarget('player')
+        setShowDamageNumber(true)
+        setPlayerHit(true)
+        setTimeout(() => setPlayerHit(false), 300)
+        setTimeout(() => setShowDamageNumber(false), 800)
+      }
+    }
+
+    // Update ref after processing
+    prevHpRef.current = { player: player.hp, monster: monster.hp }
+  }, [battle?.phase, battle?.player?.hp, battle?.monster?.hp, battle])
 
   if (!battle) return null
 
@@ -72,6 +97,9 @@ export default function Battle() {
 
   const handleAnswer = (answerIndex: number) => {
     if (!isAnswering) return
+    // Find correct answer index for highlighting after feedback
+    const correctIdx = currentQuestion?.options.findIndex(opt => opt.isCorrect) ?? null
+    setCorrectAnswerIndex(correctIdx)
     setSelectedAnswer(answerIndex)
     dispatch({ type: 'ANSWER_QUESTION', answerIndex })
   }
@@ -103,6 +131,10 @@ export default function Battle() {
     if (selectedAnswer === index) {
       if (showCorrectFeedback) classes.push('correct')
       if (showWrongFeedback) classes.push('wrong')
+    }
+    // Highlight correct answer when wrong answer is selected
+    if (showWrongFeedback && index === correctAnswerIndex) {
+      classes.push('correct')
     }
     return classes.join(' ')
   }

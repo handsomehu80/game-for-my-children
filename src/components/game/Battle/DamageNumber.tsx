@@ -11,19 +11,7 @@ export default function DamageNumber({ value, target }: DamageNumberProps) {
   return (
     <div
       className="damage-number"
-      style={{
-        position: 'absolute',
-        top: '20%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        fontSize: '36px',
-        fontWeight: 'bold',
-        color,
-        textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-        animation: 'damageBounce 800ms ease-out forwards',
-        pointerEvents: 'none',
-        zIndex: 10,
-      }}
+      style={{ color }}
     >
       -{value}
     </div>

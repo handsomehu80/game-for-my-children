@@ -135,6 +135,17 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
     }
 
+    case 'ENABLE_ANSWERING': {
+      if (!state.battle) return state
+      return {
+        ...state,
+        battle: {
+          ...state.battle,
+          phase: 'answering',
+        },
+      }
+    }
+
     // 注意: Phase 1 ANSWER_QUESTION 只支持单选题 (answerIndex: number)
     // Phase 3 将扩展为支持多选题 (answerIndices: number[]) 和 fill 类型
 

@@ -535,6 +535,11 @@ button:active {
   animation: monsterHit 0.4s ease-out;
 }
 
+/* 玩家受击抖动 */
+.player-section.hit {
+  animation: monsterHit 0.4s ease-out;
+}
+
 /* 结算浮层滑入 */
 @keyframes resultSlideIn {
   0% { transform: scale(0.5); opacity: 0; }
