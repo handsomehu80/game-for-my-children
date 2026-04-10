@@ -55,7 +55,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
 
     case 'START_BATTLE':
-      const battlePlayers = action.players // [玩家1] 或 [玩家1, 玩家2]
+      // 兼容旧版：players 参数可能不存在
+      const battlePlayers = action.players ?? [
+        { id: 'player1', name: state.players[0]?.name ?? '玩家', grade: state.selectedGrade }
+      ]
 
       return {
         ...state,
