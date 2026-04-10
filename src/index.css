@@ -771,3 +771,44 @@ button:active {
   color: white;
   font-weight: 500;
 }
+
+/* ========================================
+   Current Turn Indicator
+   ======================================== */
+
+.current-turn-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 24px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+  border: 2px solid #3b82f6;
+  border-radius: 24px;
+  animation: turnPulse 2s ease-in-out infinite;
+}
+
+@keyframes turnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+}
+
+.current-turn-indicator .turn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.current-turn-indicator .turn-label {
+  color: #94a3b8;
+  font-weight: normal;
+}
+
+.current-turn-indicator .grade-badge {
+  padding: 2px 8px;
+  background: #3b82f6;
+  border-radius: 4px;
+  font-size: 12px;
+}
