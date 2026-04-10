@@ -5,6 +5,10 @@ import type { QuestionOption, BattleLogEntry } from '../../../game/types'
 import DamageNumber from './DamageNumber'
 import CorrectFeedback from './CorrectFeedback'
 import WrongFeedback from './WrongFeedback'
+import { isMultiplayer } from '../../../utils/gameHelpers'
+import { TeamHPBar } from './TeamHPBar'
+import { PlayerStatus } from './PlayerStatus'
+import { CurrentTurnIndicator } from './CurrentTurnIndicator'
 
 export default function Battle() {
   const battle = useGameStore((state) => state.battle)
@@ -124,7 +128,7 @@ export default function Battle() {
 
   if (!battle) return null
 
-  const { player, monster, currentQuestion, phase, battleLog } = battle
+  const { player, monster, currentQuestion, phase, battleLog, players, currentPlayerIndex, teamHP, maxTeamHP } = battle
   const isAnswering = phase === 'answering'
   const isAnimating = phase === 'animating_damage'
   const isVictory = phase === 'victory'
@@ -203,6 +207,22 @@ export default function Battle() {
             <DamageNumber value={damageValue} target="monster" />
           )}
         </div>
+
+        {/* Team HP Bar - shows shared HP for both players */}
+        <TeamHPBar current={teamHP} max={maxTeamHP} />
+
+        {/* Current Turn Indicator - multiplayer only */}
+        {isMultiplayer(players) && players[currentPlayerIndex] && (
+          <CurrentTurnIndicator
+            player={players[currentPlayerIndex]}
+            playerIndex={currentPlayerIndex}
+          />
+        )}
+
+        {/* Player Status - multiplayer only */}
+        {isMultiplayer(players) && (
+          <PlayerStatus players={players} currentIndex={currentPlayerIndex} />
+        )}
 
         <div className="vs">VS</div>
 
