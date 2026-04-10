@@ -17,6 +17,15 @@ export interface Player {
   hp: number
   maxHp: number
   comboCount: number
+  grade: number  // 年级 (1-9)
+}
+
+// 战斗中的玩家（独立于GameState.players）
+export interface BattlePlayer {
+  id: string
+  name: string
+  grade: number  // 年级 (1-9)
+  avatar?: string
 }
 
 // 怪物
@@ -52,6 +61,7 @@ export interface Question {
   category: 'math' | 'chinese' | 'english' | 'science' | 'general'
   options: QuestionOption[]
   imageUrl?: string
+  grade?: number  // 年级 (1-9), 用于按年级选题
 }
 
 // 海洋区域
@@ -83,13 +93,19 @@ export interface ActiveSkill {
 // 战斗状态
 export interface BattleState {
   phase: BattlePhase
-  player: Player
+  player: Player  // 当前玩家（保持兼容）
   monster: Monster
   currentQuestion: Question | null
   comboCount: number
   isPlayerTurn: boolean
   battleLog: BattleLogEntry[]
   activeSkills: ActiveSkill[]
+
+  // === 新增字段 ===
+  players: BattlePlayer[]        // 参战玩家列表 [玩家1] 或 [玩家1, 玩家2]
+  currentPlayerIndex: number     // 当前应答题的玩家索引：0=玩家1, 1=玩家2
+  teamHP: number                // 队伍共享HP
+  maxTeamHP: number             // 最大HP
 }
 
 // 技能效果
@@ -144,13 +160,16 @@ export interface GameState {
   exploration: ExplorationState | null
   // Track if battle originated from exploration for proper routing after battle ends
   explorationBattle: { areaId: string; monsterId: string } | null
+  // 选中的年级和科目
+  selectedGrade: number
+  selectedSubject: 'chinese' | 'math' | 'english' | 'science'
 }
 
 // 游戏动作
 export type GameAction =
-  | { type: 'START_GAME'; players: Player[] }
+  | { type: 'START_GAME'; players: Player[]; grade?: number; subject?: 'chinese' | 'math' | 'english' | 'science' }
   | { type: 'SELECT_OCEAN'; ocean: string }
-  | { type: 'START_BATTLE'; monster: Monster; question: Question; explorationContext?: { areaId: string; monsterId: string } }
+  | { type: 'START_BATTLE'; monster: Monster; question: Question; players: BattlePlayer[]; explorationContext?: { areaId: string; monsterId: string } }
   | { type: 'ANSWER_QUESTION'; answerIndex: number }
   | { type: 'NEXT_QUESTION' }
   | { type: 'ENABLE_ANSWERING' }
