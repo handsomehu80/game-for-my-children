@@ -12,7 +12,7 @@ import {
   explorationTransition,
 } from '../game/ExplorationStateMachine'
 import { getAreasByOcean, getAreaById } from '../data/areas'
-import { getRandomQuestion } from '../game/QuestionSelector'
+import { getQuestionForBattle } from '../game/QuestionSelector'
 import { SeededRandom, generatePortalSeed } from '../game/utils/seededRandom'
 
 // ==================== 探索相关 reducer ====================
@@ -31,6 +31,8 @@ const initialState: GameState = {
   totalScore: 0,
   exploration: null,
   explorationBattle: null,
+  selectedGrade: 1,
+  selectedSubject: 'math',
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -41,6 +43,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         players: action.players,
         gamePhase: 'world_map',
         currentOcean: 'east',
+        selectedGrade: action.grade ?? state.selectedGrade,
+        selectedSubject: action.subject ?? state.selectedSubject,
       }
 
     case 'SELECT_OCEAN':
@@ -51,12 +55,18 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
 
     case 'START_BATTLE':
+      const battlePlayers = action.players // [玩家1] 或 [玩家1, 玩家2]
+
       return {
         ...state,
         gamePhase: 'battle',
         battle: {
           phase: 'showing_question' as BattlePhase,
           player: state.players[0],
+          players: battlePlayers,
+          currentPlayerIndex: 0, // 玩家1先答
+          teamHP: 100, // 队伍共享HP
+          maxTeamHP: 100, // 最大HP
           monster: action.monster,
           currentQuestion: action.question,
           comboCount: 0,
@@ -64,56 +74,59 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           battleLog: [],
           activeSkills: [],
         },
-        // Keep exploration state intact so we can return after battle
         explorationBattle: action.explorationContext ?? null,
       }
 
     case 'ANSWER_QUESTION': {
-      // P0-5: Enhanced null/undefined handling
       if (!state.battle) return state
       if (!state.battle.currentQuestion) return state
       if (!state.battle.currentQuestion.options) return state
 
       const question = state.battle.currentQuestion
-      // P0-5: Guard against empty options
       const validAnswerCount = question.options.length
       if (validAnswerCount === 0) return state
 
-      // P0-1: Explicit boundary check
       const answerIndex = Math.min(Math.max(0, action.answerIndex), validAnswerCount - 1)
       const isCorrect = question.options[answerIndex]?.isCorrect ?? false
+
+      // 获取当前玩家名称
+      const currentPlayerName = state.battle.players.length >= 2
+        ? state.battle.players[state.battle.currentPlayerIndex]?.name ?? '玩家'
+        : state.battle.player?.name ?? '玩家'
 
       const newBattleLog = [
         ...state.battle.battleLog,
         {
           type: (isCorrect ? 'correct' : 'wrong') as 'correct' | 'wrong',
-          message: isCorrect ? '回答正确！' : '回答错误！',
+          message: isCorrect
+            ? `${currentPlayerName} 回答正确！`
+            : `${currentPlayerName} 回答错误！`,
           timestamp: Date.now(),
         },
       ]
 
       if (isCorrect) {
         const newMonsterHp = Math.max(0, state.battle.monster.hp - 20)
-        const newCombo = state.battle.comboCount + 1
         const isVictory = newMonsterHp === 0
         return {
           ...state,
           battle: {
             ...state.battle,
             monster: { ...state.battle.monster, hp: newMonsterHp },
-            comboCount: newCombo,
+            comboCount: state.battle.comboCount + 1,
             battleLog: newBattleLog,
             phase: isVictory ? 'victory' : 'animating_damage',
           },
         }
       } else {
-        const newPlayerHp = Math.max(0, state.battle.player.hp - 10)
-        const isDefeat = newPlayerHp === 0
+        // 答错：扣队伍HP（单人/双人通用）
+        const newTeamHP = Math.max(0, state.battle.teamHP - 10)
+        const isDefeat = newTeamHP === 0
         return {
           ...state,
           battle: {
             ...state.battle,
-            player: { ...state.battle.player, hp: newPlayerHp },
+            teamHP: newTeamHP,
             comboCount: 0,
             battleLog: newBattleLog,
             phase: isDefeat ? 'defeat' : 'animating_damage',
@@ -125,13 +138,42 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case 'NEXT_QUESTION': {
       if (!state.battle || !state.currentOcean) return state
 
-      const question = getRandomQuestion({ oceanId: state.currentOcean })
-      if (!question) return state // No more questions available
+      const { players, currentPlayerIndex } = state.battle
+
+      // 计算下一个玩家索引
+      // 单人模式：保持0
+      // 双人模式：0→1, 1→0
+      const nextPlayerIndex = players.length >= 2
+        ? 1 - currentPlayerIndex
+        : 0
+
+      const nextPlayer = players[nextPlayerIndex]
+
+      // 确定科目
+      let subject = state.selectedSubject
+      if (state.exploration?.currentArea) {
+        const area = getAreaById(state.exploration.currentArea)
+        if (area && area.knowledgeArea !== 'comprehensive') {
+          subject = area.knowledgeArea as 'math' | 'chinese' | 'english'
+        }
+      }
+
+      // 选题（按下一个玩家的年级）
+      const question = getQuestionForBattle({
+        oceanId: state.currentOcean,
+        battle: { ...state.battle, currentPlayerIndex: nextPlayerIndex },
+        subject,
+        selectedGrade: state.selectedGrade,
+      })
+
+      if (!question) return state
 
       return {
         ...state,
         battle: {
           ...state.battle,
+          currentPlayerIndex: nextPlayerIndex,
+          player: nextPlayer ? { ...state.battle.player, ...nextPlayer } : state.battle.player,
           currentQuestion: question,
           phase: 'showing_question',
         },
