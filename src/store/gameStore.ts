@@ -6,7 +6,10 @@ import type {
   ExplorationState,
   ExplorationAction,
   Portal,
+  SaveSlot,
+  SaveSlotInfo,
 } from '../game/types'
+import { safeSetItem, safeGetItem } from '../utils/storage'
 import {
   initialExplorationState,
   explorationTransition,
@@ -21,7 +24,7 @@ function explorationReducer(state: ExplorationState, action: ExplorationAction):
   return explorationTransition(state, action)
 }
 
-const initialState: GameState = {
+const initialState: GameState & { currentSaveSlot: number } = {
   gamePhase: 'title',
   currentOcean: null,
   players: [],
@@ -33,6 +36,7 @@ const initialState: GameState = {
   explorationBattle: null,
   selectedGrade: 1,
   selectedSubject: 'math',
+  currentSaveSlot: 0,
 }
 
 function gameReducer(state: GameState, action: GameAction): GameState {
@@ -59,15 +63,25 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const battlePlayers = action.players ?? [
         { id: 'player1', name: state.players[0]?.name ?? '玩家', grade: state.selectedGrade }
       ]
+      // 多人模式时可以使用 action.currentPlayerIndex 指定先手玩家
+      const initialPlayerIndex = action.currentPlayerIndex ?? 0
+      const initialBattlePlayer = battlePlayers[initialPlayerIndex] ?? battlePlayers[0]
+      // 将 BattlePlayer 转换为 Player（用于兼容旧版 battle.player）
+      const initialPlayer = {
+        ...initialBattlePlayer,
+        hp: 100,
+        maxHp: 100,
+        comboCount: 0,
+      }
 
       return {
         ...state,
         gamePhase: 'battle',
         battle: {
           phase: 'showing_question' as BattlePhase,
-          player: state.players[0],
+          player: initialPlayer,
           players: battlePlayers,
-          currentPlayerIndex: 0, // 玩家1先答
+          currentPlayerIndex: initialPlayerIndex,
           teamHP: 100, // 队伍共享HP
           maxTeamHP: 100, // 最大HP
           monster: action.monster,
@@ -76,6 +90,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           isPlayerTurn: true,
           battleLog: [],
           activeSkills: [],
+          // 初始化已使用的问题ID列表，包含当前题目
+          usedQuestionIds: action.question ? [action.question.id] : [],
         },
         explorationBattle: action.explorationContext ?? null,
       }
@@ -141,7 +157,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case 'NEXT_QUESTION': {
       if (!state.battle || !state.currentOcean) return state
 
-      const { players, currentPlayerIndex } = state.battle
+      const { players, currentPlayerIndex, usedQuestionIds } = state.battle
 
       // 计算下一个玩家索引
       // 单人模式：保持0
@@ -161,12 +177,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         }
       }
 
-      // 选题（按下一个玩家的年级）
+      // 选题（按下一个玩家的年级），排除已使用的问题
       const question = getQuestionForBattle({
         oceanId: state.currentOcean,
         battle: { ...state.battle, currentPlayerIndex: nextPlayerIndex },
         subject,
         selectedGrade: state.selectedGrade,
+        excludeIds: usedQuestionIds,
       })
 
       if (!question) return state
@@ -179,6 +196,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           player: nextPlayer ? { ...state.battle.player, ...nextPlayer } : state.battle.player,
           currentQuestion: question,
           phase: 'showing_question',
+          // 添加新问题到已使用列表
+          usedQuestionIds: [...usedQuestionIds, question.id],
         },
       }
     }
@@ -292,6 +311,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 // ==================== Store Interface ====================
 
 interface GameStore extends GameState {
+  currentSaveSlot: number
   dispatch: (action: GameAction) => void
   // 探索相关方法
   explorationDispatch: (action: ExplorationAction) => void
@@ -301,6 +321,12 @@ interface GameStore extends GameState {
   receiveKey: (count: number) => void
   unlockArea: (areaId: string) => void
   checkDifficultyDowngrade: () => void
+  // Save/Load methods
+  saveGame: (slotIndex: number) => void
+  loadGame: (slotIndex: number) => boolean
+  deleteSave: (slotIndex: number) => void
+  getSaveSlotInfo: () => SaveSlotInfo[]
+  hasSavedGames: () => boolean
 }
 
 // ==================== 创建 Store ====================
@@ -507,5 +533,136 @@ export const useGameStore = create<GameStore>((set, get) => ({
       console.log('Should downgrade difficulty for area:', state.exploration.currentArea)
       // TODO: 实现降级逻辑
     }
+  },
+
+  // ==================== Save/Load Methods ====================
+
+  saveGame: (slotIndex) => {
+    const state = get()
+    if (!state.exploration) return
+
+    const slot: SaveSlot = {
+      slotIndex,
+      gameState: {
+        currentOcean: state.currentOcean,
+        players: state.players,
+        selectedGrade: state.selectedGrade,
+        selectedSubject: state.selectedSubject,
+        totalScore: state.totalScore,
+      },
+      explorationState: {
+        currentOcean: state.exploration.currentOcean,
+        currentArea: state.exploration.currentArea,
+        visitedAreas: state.exploration.visitedAreas,
+        defeatedMiniBosses: state.exploration.defeatedMiniBosses,
+        unlockedAreas: state.exploration.unlockedAreas,
+        reachableAreas: state.exploration.reachableAreas,
+        collectedKeys: state.exploration.collectedKeys,
+        collectedItems: state.exploration.collectedItems,
+        consecutiveVictoriesWithoutKey: state.exploration.consecutiveVictoriesWithoutKey,
+      },
+      globalProgress: {
+        unlockedOceans: state.unlockedOceans,
+        completedOceans: state.completedOceans,
+      },
+      savedAt: Date.now(),
+      version: 1,
+    }
+
+    safeSetItem('save_' + slotIndex, JSON.stringify(slot))
+    set({ currentSaveSlot: slotIndex })
+  },
+
+  loadGame: (slotIndex) => {
+    const data = safeGetItem('save_' + slotIndex)
+    if (!data) return false
+
+    try {
+      const slot: SaveSlot = JSON.parse(data)
+
+      // Validate required fields
+      if (slot.version !== 1) return false
+      if (!slot.gameState || !slot.explorationState || !slot.globalProgress) return false
+
+      const { gameState, explorationState, globalProgress } = slot
+
+      // Determine game phase based on currentArea
+      const gamePhase = explorationState.currentArea === null ? 'world_map' : 'exploration'
+
+      // Reset players HP to maxHp
+      const playersWithRestoredHP = gameState.players.map(p => ({ ...p, hp: p.maxHp }))
+
+      set({
+        currentOcean: gameState.currentOcean,
+        players: playersWithRestoredHP,
+        selectedGrade: gameState.selectedGrade,
+        selectedSubject: gameState.selectedSubject,
+        totalScore: gameState.totalScore,
+        unlockedOceans: globalProgress.unlockedOceans,
+        completedOceans: globalProgress.completedOceans,
+        battle: null,
+        explorationBattle: null,
+        gamePhase,
+        exploration: {
+          phase: 'exploring',
+          currentOcean: explorationState.currentOcean,
+          currentArea: explorationState.currentArea,
+          visitedAreas: explorationState.visitedAreas,
+          defeatedMiniBosses: explorationState.defeatedMiniBosses,
+          unlockedAreas: explorationState.unlockedAreas,
+          reachableAreas: explorationState.reachableAreas,
+          collectedKeys: explorationState.collectedKeys,
+          collectedItems: explorationState.collectedItems,
+          availablePortals: [],
+          portalSeed: null,
+          failedAttempts: {},
+          lastError: null,
+          savepoints: [],
+          lastSavepoint: null,
+          battleFailedAttempts: 0,
+          consecutiveVictoriesWithoutKey: explorationState.consecutiveVictoriesWithoutKey,
+        },
+        currentSaveSlot: slotIndex,
+      })
+
+      return true
+    } catch (e) {
+      console.error('Failed to load save:', e)
+      return false
+    }
+  },
+
+  deleteSave: (slotIndex) => {
+    localStorage.removeItem('ocean_game_save_' + slotIndex)
+  },
+
+  getSaveSlotInfo: () => {
+    const slots: SaveSlotInfo[] = []
+
+    for (let i = 0; i < 3; i++) {
+      const data = safeGetItem('save_' + i)
+      if (data) {
+        try {
+          const slot: SaveSlot = JSON.parse(data)
+          slots.push({
+            slotIndex: i,
+            occupied: true,
+            savedAt: slot.savedAt,
+            currentOcean: slot.explorationState.currentOcean ?? undefined,
+            defeatedCount: slot.explorationState.defeatedMiniBosses.length,
+          })
+        } catch {
+          slots.push({ slotIndex: i, occupied: false })
+        }
+      } else {
+        slots.push({ slotIndex: i, occupied: false })
+      }
+    }
+
+    return slots
+  },
+
+  hasSavedGames: () => {
+    return get().getSaveSlotInfo().some(s => s.occupied)
   },
 }))
