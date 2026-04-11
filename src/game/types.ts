@@ -106,6 +106,7 @@ export interface BattleState {
   currentPlayerIndex: number     // 当前应答题的玩家索引：0=玩家1, 1=玩家2
   teamHP: number                // 队伍共享HP
   maxTeamHP: number             // 最大HP
+  usedQuestionIds: string[]     // 本次战斗中已使用的问题ID（避免重复）
 }
 
 // 技能效果
@@ -169,7 +170,7 @@ export interface GameState {
 export type GameAction =
   | { type: 'START_GAME'; players: Player[]; grade?: number; subject?: 'chinese' | 'math' | 'english' | 'science' }
   | { type: 'SELECT_OCEAN'; ocean: string }
-  | { type: 'START_BATTLE'; monster: Monster; question: Question; players: BattlePlayer[]; explorationContext?: { areaId: string; monsterId: string } }
+  | { type: 'START_BATTLE'; monster: Monster; question: Question; players: BattlePlayer[]; currentPlayerIndex?: number; explorationContext?: { areaId: string; monsterId: string } }
   | { type: 'ANSWER_QUESTION'; answerIndex: number }
   | { type: 'NEXT_QUESTION' }
   | { type: 'ENABLE_ANSWERING' }
@@ -295,3 +296,48 @@ export type ExplorationAction =
   | { type: 'RESET_VICTORY_COUNTER' }  // P1-2: Reset victory counter after key drop
   | { type: 'INCREMENT_VICTORY_COUNTER' }  // P1-2: Increment victory counter
   | { type: 'CLOSE_PORTAL' }  // Close portal and return to exploring
+
+// ==================== Save System Types ====================
+
+export interface SaveSlot {
+  slotIndex: number
+  gameState: {
+    currentOcean: string | null
+    players: Player[]
+    selectedGrade: number
+    selectedSubject: 'chinese' | 'math' | 'english' | 'science'
+    totalScore: number
+  }
+  explorationState: {
+    currentOcean: string | null
+    currentArea: string | null
+    visitedAreas: string[]
+    defeatedMiniBosses: string[]
+    unlockedAreas: string[]
+    reachableAreas: string[]
+    collectedKeys: number
+    collectedItems: Item[]
+    consecutiveVictoriesWithoutKey: number
+  }
+  globalProgress: {
+    unlockedOceans: string[]
+    completedOceans: string[]
+  }
+  savedAt: number
+  version: number
+}
+
+export interface SaveSlotInfo {
+  slotIndex: number
+  occupied: boolean
+  savedAt?: number
+  currentOcean?: string
+  defeatedCount?: number  // Number of defeatedMiniBosses (mini-boss islands defeated)
+}
+
+// Save action types
+export type SaveAction =
+  | { type: 'SAVE_GAME'; slotIndex: number }
+  | { type: 'LOAD_GAME'; slotIndex: number }
+  | { type: 'DELETE_SAVE'; slotIndex: number }
+  | { type: 'SELECT_SAVE_SLOT'; slotIndex: number }
