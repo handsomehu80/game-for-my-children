@@ -560,6 +560,174 @@ describe('Save System', () => {
     })
   })
 
+  describe('loadGame gamePhase determination', () => {
+    it('should set gamePhase to exploration when currentArea is non-null', () => {
+      const { loadGame, dispatch, startExploration } = useGameStore.getState()
+
+      // Set up minimal game state
+      dispatch({
+        type: 'START_GAME',
+        players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
+      })
+      startExploration('east')
+
+      // Manually set up exploration state with currentArea non-null
+      useGameStore.setState({
+        exploration: {
+          ...useGameStore.getState().exploration!,
+          currentArea: 'east_math_1',
+          visitedAreas: ['east_math_1'],
+        },
+        currentSaveSlot: 0,
+      })
+
+      // Save game
+      const { saveGame } = useGameStore.getState()
+      saveGame(0)
+
+      // Reset store completely
+      useGameStore.setState({
+        gamePhase: 'title',
+        currentOcean: null,
+        players: [],
+        unlockedOceans: ['east'],
+        completedOceans: [],
+        battle: null,
+        totalScore: 0,
+        exploration: null,
+        explorationBattle: null,
+        selectedGrade: 1,
+        selectedSubject: 'math',
+        currentSaveSlot: -1,
+      })
+
+      // Load and verify gamePhase is exploration (not world_map)
+      loadGame(0)
+
+      const state = useGameStore.getState()
+      expect(state.gamePhase).toBe('exploration')
+      expect(state.exploration?.currentArea).toBe('east_math_1')
+    })
+  })
+
+  describe('UNLOCK_AREA auto-save', () => {
+    it('should trigger auto-save when unlockArea is called with sufficient keys', () => {
+      const { dispatch, startExploration, unlockArea } = useGameStore.getState()
+
+      // Set up game and exploration
+      dispatch({
+        type: 'START_GAME',
+        players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
+      })
+      startExploration('east')
+
+      // Set collectedKeys to 1 and phase to portal_appear (UNLOCK_AREA only processes in portal_appear phase)
+      useGameStore.setState({
+        exploration: {
+          ...useGameStore.getState().exploration!,
+          collectedKeys: 1,
+          phase: 'portal_appear' as const,
+        },
+        currentSaveSlot: 0,
+      })
+
+      // Clear any previous save
+      localStorageMock.removeItem('ocean_game_save_0')
+
+      // Call unlockArea on a hidden area that requires 1 key
+      unlockArea('east_hidden_A')
+
+      // Verify auto-save occurred
+      const storedData = localStorageMock.getItem('ocean_game_save_0')
+      expect(storedData).not.toBeNull()
+
+      // Verify the save contains the unlocked area
+      const parsed = JSON.parse(storedData!)
+      expect(parsed.explorationState.unlockedAreas).toContain('east_hidden_A')
+      expect(parsed.explorationState.collectedKeys).toBe(0) // Key was consumed
+    })
+
+    it('should not trigger auto-save when unlockArea is called without sufficient keys', () => {
+      const { dispatch, startExploration, unlockArea } = useGameStore.getState()
+
+      // Set up game and exploration
+      dispatch({
+        type: 'START_GAME',
+        players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
+      })
+      startExploration('east')
+
+      // Set collectedKeys to 0 (not enough) - phase doesn't matter since it returns early
+      useGameStore.setState({
+        exploration: {
+          ...useGameStore.getState().exploration!,
+          collectedKeys: 0,
+        },
+        currentSaveSlot: 0,
+      })
+
+      // Clear any previous save
+      localStorageMock.removeItem('ocean_game_save_0')
+
+      // Call unlockArea - should not save since no keys
+      unlockArea('east_hidden_A')
+
+      // Verify no auto-save occurred
+      const storedData = localStorageMock.getItem('ocean_game_save_0')
+      expect(storedData).toBeNull()
+    })
+  })
+
+  describe('key collection auto-save via generatePortals', () => {
+    it('should trigger auto-save when generatePortals causes key drop', () => {
+      const { dispatch, startExploration, explorationDispatch, generatePortals } = useGameStore.getState()
+
+      // Set up game and exploration
+      dispatch({
+        type: 'START_GAME',
+        players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
+      })
+      startExploration('east')
+
+      // Navigate to an area to build up visitedAreas (needed for generatePortals to not return early)
+      explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
+      explorationDispatch({ type: 'SAILING_COMPLETE' })
+      explorationDispatch({ type: 'ARRIVED' })
+      explorationDispatch({ type: 'MOVE_COMPLETE' })
+      explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
+
+      // Set up state for generatePortals to trigger key drop:
+      // - currentArea must be non-null (set to boss for guaranteed key drop)
+      // - phase must be 'victory' for RECEIVE_KEY to be processed
+      // - visitedAreas.length > 1 to bypass isFirstEntry early return
+      // - consecutiveVictoriesWithoutKey = 5 to trigger guaranteed key drop
+      useGameStore.setState({
+        exploration: {
+          ...useGameStore.getState().exploration!,
+          currentArea: 'east_boss',
+          phase: 'victory' as const,
+          visitedAreas: ['east_math_1', 'east_math_2'], // length > 1 to bypass isFirstEntry
+          consecutiveVictoriesWithoutKey: 5, // Trigger guaranteed key drop
+        },
+        currentSaveSlot: 0,
+      })
+
+      // Clear any previous save
+      localStorageMock.removeItem('ocean_game_save_0')
+
+      // Call generatePortals - should trigger auto-save due to key drop
+      generatePortals()
+
+      // Verify auto-save occurred
+      const storedData = localStorageMock.getItem('ocean_game_save_0')
+      expect(storedData).not.toBeNull()
+
+      // Verify the save shows key was collected
+      const parsed = JSON.parse(storedData!)
+      expect(parsed.explorationState.collectedKeys).toBeGreaterThan(0)
+    })
+  })
+
   describe('load resets transient state', () => {
     it('should reset availablePortals and portalSeed after load', () => {
       const { saveGame, loadGame, dispatch, startExploration, explorationDispatch } = useGameStore.getState()
