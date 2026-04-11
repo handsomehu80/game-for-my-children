@@ -311,6 +311,7 @@ interface GameStore extends GameState {
   unlockArea: (areaId: string) => void
   checkDifficultyDowngrade: () => void
   // Save/Load methods
+  autoSave: () => void
   saveGame: (slotIndex: number) => void
   loadGame: (slotIndex: number) => boolean
   deleteSave: (slotIndex: number) => void
@@ -366,10 +367,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         })
 
         // Auto-save after victory
-        const currentSlot = get().currentSaveSlot
-        if (currentSlot >= 0) {
-          get().saveGame(currentSlot)
-        }
+        get().autoSave()
       } else {
         // Defeat - dispatch BATTLE_LOSE
         const updatedExploration = explorationTransition(exploration, { type: 'BATTLE_LOSE' })
@@ -407,10 +405,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       })
 
       // Auto-save after ocean completion
-      const currentSlot = get().currentSaveSlot
-      if (currentSlot >= 0) {
-        get().saveGame(currentSlot)
-      }
+      get().autoSave()
       return
     }
 
@@ -532,10 +527,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (keyDrop > 0) {
       get().explorationDispatch({ type: 'RECEIVE_KEY', count: keyDrop })
       // Auto-save after key collection
-      const currentSlot = get().currentSaveSlot
-      if (currentSlot >= 0) {
-        get().saveGame(currentSlot)
-      }
+      get().autoSave()
     }
 
     if (currentArea.type === 'boss') {
@@ -608,10 +600,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
     get().explorationDispatch({ type: 'UNLOCK_AREA', areaId })
     // Auto-save after area unlock
-    const currentSlot = get().currentSaveSlot
-    if (currentSlot >= 0) {
-      get().saveGame(currentSlot)
-    }
+    get().autoSave()
   },
 
   // 检查是否需要降级难度
@@ -628,6 +617,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   // ==================== Save/Load Methods ====================
+
+  // Auto-save helper - eliminates duplicate auto-save logic
+  autoSave: () => {
+    const slot = get().currentSaveSlot
+    if (slot >= 0) get().saveGame(slot)
+  },
 
   saveGame: (slotIndex) => {
     const state = get()
