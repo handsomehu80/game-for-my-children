@@ -28,6 +28,7 @@ function getAnimationStyle(areaId: string): 'minimal' | 'cinematic' {
 
 export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
+  const players = useGameStore((state) => state.players)
 
   // 监控状态变化用于调试
   useEffect(() => {
@@ -95,7 +96,6 @@ if (area.type === 'boss') {
 
   // 处理区域点击
   const handleAreaClick = (areaId: string) => {
-    console.log('handleAreaClick called with:', areaId)
     const area = getAreaById(areaId)
     if (!area) return
 
@@ -111,13 +111,17 @@ if (area.type === 'boss') {
 
   // 区域确认对话框处理
   const handleAreaConfirm = () => {
+    console.log('[DEBUG] handleAreaConfirm called, pendingAreaId:', pendingAreaId)
     if (pendingAreaId) {
       const area = getAreaById(pendingAreaId)
+      console.log('[DEBUG] area found:', area?.name)
       if (area) {
         // Start sailing animation
         setIsSailing(true)
+        console.log('[DEBUG] setIsSailing(true) called')
         // Note: The actual state transition to 'sailing' happens via selectArea below
         selectArea(pendingAreaId)
+        console.log('[DEBUG] selectArea called')
       }
     }
     setShowAreaConfirm(false)
@@ -125,11 +129,12 @@ if (area.type === 'boss') {
   }
 
   const handleSailingArrived = () => {
-    console.log('handleSailingArrived called')
+    console.log('[DEBUG] handleSailingArrived called')
     setIsSailing(false)
     explorationDispatch({ type: 'SAILING_COMPLETE' })
     // Small delay then transition to moving
     setTimeout(() => {
+      console.log('[DEBUG] ARRIVED timeout fired')
       explorationDispatch({ type: 'ARRIVED' })
     }, 300)
   }
@@ -173,8 +178,8 @@ if (area.type === 'boss') {
     let result: 'battle' | 'treasure' | 'hidden_event'
     if (area.type === 'treasure') {
       result = 'treasure'
-    } else if (area.type === 'hidden') {
-      // P0-2: 隐藏区域跳过随机，直接触发战斗
+    } else if (area.type === 'hidden' || area.type === 'boss') {
+      // P0-2: 隐藏区域和Boss跳过随机，直接触发战斗
       result = 'battle'
     } else if (Math.random() < HIDDEN_EVENT_PROBABILITY) {
       result = 'hidden_event'
@@ -197,9 +202,19 @@ if (area.type === 'boss') {
     const monster = monstersData[area.monsterId]
     if (!monster) return
 
+    // 双人模式：随机选择先手玩家
+    // 单人模式：使用玩家1的年级
+    const isMultiplayerBattle = players.length >= 2
+    const firstPlayerIndex = isMultiplayerBattle
+      ? (Math.random() < 0.5 ? 0 : 1)
+      : 0
+    const playerGrade = players[firstPlayerIndex]?.grade ?? 1
+
     const question = getRandomQuestion({
       oceanId: latestExplorationRef.current.currentOcean || 'east',
       difficulty: area.difficulty ?? null,
+      grade: playerGrade,
+      subject: area.knowledgeArea === 'comprehensive' ? undefined : area.knowledgeArea as 'math' | 'chinese' | 'english',
     })
     if (!question) return
 
@@ -208,6 +223,8 @@ if (area.type === 'boss') {
       type: 'START_BATTLE',
       monster,
       question,
+      players: players.map(p => ({ id: p.id, name: p.name, grade: p.grade })),
+      currentPlayerIndex: firstPlayerIndex,
       explorationContext: { areaId: area.id, monsterId: area.monsterId },
     })
   }, [exploration, areas])

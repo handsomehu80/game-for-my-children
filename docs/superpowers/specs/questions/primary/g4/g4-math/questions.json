@@ -1,0 +1,733 @@
+{
+  "grade": 4,
+  "subject": "math",
+  "questions": [
+    {
+      "id": "g4_m_q_001",
+      "content": "380025 读作（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n1_002"
+      ],
+      "options": [
+        {
+          "text": "三十八万零二十五",
+          "isCorrect": false
+        },
+        {
+          "text": "三百八十万零二十五",
+          "isCorrect": true
+        },
+        {
+          "text": "三十万八千零二十五",
+          "isCorrect": false
+        },
+        {
+          "text": "三十八万二千零二十五",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_002",
+      "content": "比较大小：45000 □ 4.5万，□里应填（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n1_003"
+      ],
+      "options": [
+        {
+          "text": "<",
+          "isCorrect": false
+        },
+        {
+          "text": "无法比较",
+          "isCorrect": false
+        },
+        {
+          "text": ">",
+          "isCorrect": false
+        },
+        {
+          "text": "=",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_003",
+      "content": "一块长方形菜地，长是200米，宽是100米，这块地的面积是（ ）公顷。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n2_001",
+        "g4_n2_003"
+      ],
+      "options": [
+        {
+          "text": "0.2",
+          "isCorrect": false
+        },
+        {
+          "text": "200",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        },
+        {
+          "text": "2",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_004",
+      "content": "从一点出发，可以画（ ）条射线。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n3_001"
+      ],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "无数",
+          "isCorrect": true
+        },
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_005",
+      "content": "一个角是锐角，它的范围是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n3_004"
+      ],
+      "options": [
+        {
+          "text": "大于0°小于90°",
+          "isCorrect": true
+        },
+        {
+          "text": "等于90°",
+          "isCorrect": false
+        },
+        {
+          "text": "大于90°小于180°",
+          "isCorrect": false
+        },
+        {
+          "text": "等于180°",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_006",
+      "content": "125 × 48 =（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n4_001"
+      ],
+      "options": [
+        {
+          "text": "6000",
+          "isCorrect": true
+        },
+        {
+          "text": "7000",
+          "isCorrect": false
+        },
+        {
+          "text": "8000",
+          "isCorrect": false
+        },
+        {
+          "text": "5000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_007",
+      "content": "一个因数不变，另一个因数扩大到原来的3倍，积（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n4_002"
+      ],
+      "options": [
+        {
+          "text": "扩大到原来的9倍",
+          "isCorrect": false
+        },
+        {
+          "text": "不变",
+          "isCorrect": false
+        },
+        {
+          "text": "扩大到原来的3倍",
+          "isCorrect": true
+        },
+        {
+          "text": "缩小到原来的1/3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_008",
+      "content": "估算：42 × 58 的结果大约是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n4_003"
+      ],
+      "options": [
+        {
+          "text": "1800",
+          "isCorrect": false
+        },
+        {
+          "text": "3000",
+          "isCorrect": false
+        },
+        {
+          "text": "2400",
+          "isCorrect": true
+        },
+        {
+          "text": "2000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_009",
+      "content": "除数是两位数的除法：672 ÷ 24 =（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n5_001"
+      ],
+      "options": [
+        {
+          "text": "27",
+          "isCorrect": false
+        },
+        {
+          "text": "29",
+          "isCorrect": false
+        },
+        {
+          "text": "28",
+          "isCorrect": true
+        },
+        {
+          "text": "26",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_010",
+      "content": "试商时，把除数45看作50来试商，商可能（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n5_002"
+      ],
+      "options": [
+        {
+          "text": "偏大",
+          "isCorrect": false
+        },
+        {
+          "text": "正好",
+          "isCorrect": false
+        },
+        {
+          "text": "偏小",
+          "isCorrect": true
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_011",
+      "content": "平行四边形具有（ ）的特性。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_g1_003"
+      ],
+      "options": [
+        {
+          "text": "四个直角",
+          "isCorrect": false
+        },
+        {
+          "text": "只有一组对边平行",
+          "isCorrect": false
+        },
+        {
+          "text": "四条边相等",
+          "isCorrect": false
+        },
+        {
+          "text": "对边平行且相等",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_012",
+      "content": "梯形只有（ ）组对边平行。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_g1_002"
+      ],
+      "options": [
+        {
+          "text": "零",
+          "isCorrect": false
+        },
+        {
+          "text": "一",
+          "isCorrect": true
+        },
+        {
+          "text": "两",
+          "isCorrect": false
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_013",
+      "content": "在同一个平面内，两条直线的位置关系有（ ）种。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_g1_004"
+      ],
+      "options": [
+        {
+          "text": "三",
+          "isCorrect": false
+        },
+        {
+          "text": "四",
+          "isCorrect": false
+        },
+        {
+          "text": "一",
+          "isCorrect": false
+        },
+        {
+          "text": "两",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_014",
+      "content": "条形统计图的特点是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_s1_001"
+      ],
+      "options": [
+        {
+          "text": "能清楚地看出数据的分布情况",
+          "isCorrect": false
+        },
+        {
+          "text": "能清楚地看出部分与整体的关系",
+          "isCorrect": false
+        },
+        {
+          "text": "能清楚地看出数量的多少",
+          "isCorrect": true
+        },
+        {
+          "text": "能清楚地看出数量的变化趋势",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_015",
+      "content": "1平方千米 =（ ）平方米。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n2_002",
+        "g4_n2_003"
+      ],
+      "options": [
+        {
+          "text": "100000",
+          "isCorrect": false
+        },
+        {
+          "text": "10000",
+          "isCorrect": false
+        },
+        {
+          "text": "1000000",
+          "isCorrect": true
+        },
+        {
+          "text": "10000000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_016",
+      "content": "商的变化规律：被除数扩大到原来的2倍，除数不变，商（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n5_003"
+      ],
+      "options": [
+        {
+          "text": "缩小到原来的1/2",
+          "isCorrect": false
+        },
+        {
+          "text": "扩大到原来的2倍",
+          "isCorrect": true
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        },
+        {
+          "text": "不变",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_017",
+      "content": "两条直线相交成直角，这两条直线互相（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_g1_004"
+      ],
+      "options": [
+        {
+          "text": "平行",
+          "isCorrect": false
+        },
+        {
+          "text": "重合",
+          "isCorrect": false
+        },
+        {
+          "text": "相交",
+          "isCorrect": false
+        },
+        {
+          "text": "垂直",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_018",
+      "content": "一个数的近似数是5万，这个数最大可能是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n1_004"
+      ],
+      "options": [
+        {
+          "text": "59999",
+          "isCorrect": false
+        },
+        {
+          "text": "50000",
+          "isCorrect": false
+        },
+        {
+          "text": "54999",
+          "isCorrect": true
+        },
+        {
+          "text": "45000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_019",
+      "content": "用一副三角板可以画出的角是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n3_003"
+      ],
+      "options": [
+        {
+          "text": "55°",
+          "isCorrect": false
+        },
+        {
+          "text": "25°",
+          "isCorrect": false
+        },
+        {
+          "text": "35°",
+          "isCorrect": false
+        },
+        {
+          "text": "15°",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_020",
+      "content": "周角是（ ）度。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n3_004"
+      ],
+      "options": [
+        {
+          "text": "360",
+          "isCorrect": true
+        },
+        {
+          "text": "270",
+          "isCorrect": false
+        },
+        {
+          "text": "90",
+          "isCorrect": false
+        },
+        {
+          "text": "180",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_021",
+      "content": "积的变化规律：两个因数都扩大到原来的2倍，积（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n4_002"
+      ],
+      "options": [
+        {
+          "text": "扩大到原来的4倍",
+          "isCorrect": true
+        },
+        {
+          "text": "扩大到原来的2倍",
+          "isCorrect": false
+        },
+        {
+          "text": "扩大到原来的8倍",
+          "isCorrect": false
+        },
+        {
+          "text": "不变",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_022",
+      "content": "一个平行四边形的底是8厘米，高是5厘米，面积是（ ）平方厘米。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_g1_001"
+      ],
+      "options": [
+        {
+          "text": "80",
+          "isCorrect": false
+        },
+        {
+          "text": "13",
+          "isCorrect": false
+        },
+        {
+          "text": "40",
+          "isCorrect": true
+        },
+        {
+          "text": "26",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_023",
+      "content": "430 × 20 =（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n4_001"
+      ],
+      "options": [
+        {
+          "text": "8600",
+          "isCorrect": true
+        },
+        {
+          "text": "860",
+          "isCorrect": false
+        },
+        {
+          "text": "86",
+          "isCorrect": false
+        },
+        {
+          "text": "86000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_024",
+      "content": "统计表和条形统计图相比，条形统计图的特点是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_s1_002"
+      ],
+      "options": [
+        {
+          "text": "更直观形象",
+          "isCorrect": true
+        },
+        {
+          "text": "更容易计算",
+          "isCorrect": false
+        },
+        {
+          "text": "数据更详细",
+          "isCorrect": false
+        },
+        {
+          "text": "更精确",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_m_q_025",
+      "content": "把一个数改写成用\"万\"作单位的数，这个数（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_n1_005"
+      ],
+      "options": [
+        {
+          "text": "大小不变",
+          "isCorrect": true
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        },
+        {
+          "text": "变小了",
+          "isCorrect": false
+        },
+        {
+          "text": "变大了",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

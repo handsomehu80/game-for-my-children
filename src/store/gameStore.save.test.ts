@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useGameStore } from './gameStore'
-import type { SaveSlot, SaveSlotInfo } from '../game/types'
+import type { SaveSlot } from '../game/types'
 
 // ==================== localStorage Mock ====================
 
@@ -16,33 +16,12 @@ const localStorageMock = (() => {
   }
 })()
 
-// Replace global localStorage with mock
-Object.defineProperty(global, 'localStorage', {
+// Replace globalThis localStorage with mock
+Object.defineProperty(globalThis, 'localStorage', {
   value: localStorageMock,
   writable: true,
   configurable: true,
 })
-
-// ==================== Helper Functions ====================
-
-// Helper to set exploration state for save tests
-function setExplorationState() {
-  const { startExploration, explorationDispatch } = useGameStore.getState()
-  startExploration('east')
-
-  // Simulate visiting an area
-  explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
-  explorationDispatch({ type: 'SAILING_COMPLETE' })
-  explorationDispatch({ type: 'ARRIVED' })
-  explorationDispatch({ type: 'MOVE_COMPLETE' })
-  explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
-}
-
-// Helper to simulate battle victory
-function simulateBattleVictory() {
-  const { explorationDispatch } = useGameStore.getState()
-  explorationDispatch({ type: 'BATTLE_WIN', areaId: 'east_math_1' })
-}
 
 // ==================== Tests ====================
 

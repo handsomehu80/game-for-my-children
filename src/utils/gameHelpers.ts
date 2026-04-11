@@ -3,8 +3,8 @@ import type { BattlePlayer, BattleState } from '../game/types'
 /**
  * 判断是否为多人模式
  */
-export function isMultiplayer(players: BattlePlayer[]): boolean {
-  return players.length >= 2
+export function isMultiplayer(players: BattlePlayer[] | undefined): boolean {
+  return (players?.length ?? 0) >= 2
 }
 
 /**

@@ -1,0 +1,877 @@
+{
+  "grade": 7,
+  "subject": "math",
+  "questions": [
+    {
+      "id": "g7_m_q_001",
+      "content": "下列各数中，是正数的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_001"
+      ],
+      "options": [
+        {
+          "text": "-5",
+          "isCorrect": false
+        },
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "3.14",
+          "isCorrect": true
+        },
+        {
+          "text": "-0.5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_002",
+      "content": "数轴上，距离原点5个单位长度的点表示的数是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_005"
+      ],
+      "options": [
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "-5",
+          "isCorrect": false
+        },
+        {
+          "text": "5或-5",
+          "isCorrect": true
+        },
+        {
+          "text": "±5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_003",
+      "content": "-5的相反数是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_006"
+      ],
+      "options": [
+        {
+          "text": "5",
+          "isCorrect": true
+        },
+        {
+          "text": "-5",
+          "isCorrect": false
+        },
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "1/5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_004",
+      "content": "|−3|的值是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_007"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": true
+        },
+        {
+          "text": "-3",
+          "isCorrect": false
+        },
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "±3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_005",
+      "content": "比较大小：−2 _______ −3（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_008"
+      ],
+      "options": [
+        {
+          "text": ">",
+          "isCorrect": true
+        },
+        {
+          "text": "<",
+          "isCorrect": false
+        },
+        {
+          "text": "=",
+          "isCorrect": false
+        },
+        {
+          "text": "≤",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_006",
+      "content": "计算：(−2) + (−3) = （ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_009"
+      ],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "-1",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "-5",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_007",
+      "content": "计算：5 − (−3) = （ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_010"
+      ],
+      "options": [
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "-2",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": true
+        },
+        {
+          "text": "-8",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_008",
+      "content": "计算：(−2) × (−3) = （ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_011"
+      ],
+      "options": [
+        {
+          "text": "-6",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "-5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_009",
+      "content": "计算：(−12) ÷ (−3) = （ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_012"
+      ],
+      "options": [
+        {
+          "text": "-4",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "-9",
+          "isCorrect": false
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_010",
+      "content": "计算：(−2)³ = （ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_013"
+      ],
+      "options": [
+        {
+          "text": "-6",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "-8",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_011",
+      "content": "用字母表示\"a的3倍减5\"，正确的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_001"
+      ],
+      "options": [
+        {
+          "text": "3a - 5",
+          "isCorrect": true
+        },
+        {
+          "text": "a3 - 5",
+          "isCorrect": false
+        },
+        {
+          "text": "3(a - 5)",
+          "isCorrect": false
+        },
+        {
+          "text": "3 + a - 5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_012",
+      "content": "下列是单项式的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_002"
+      ],
+      "options": [
+        {
+          "text": "a + b",
+          "isCorrect": false
+        },
+        {
+          "text": "3x²y",
+          "isCorrect": true
+        },
+        {
+          "text": "x - 1",
+          "isCorrect": false
+        },
+        {
+          "text": "2x + 3y",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_013",
+      "content": "下列是多项式的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_003"
+      ],
+      "options": [
+        {
+          "text": "2x",
+          "isCorrect": false
+        },
+        {
+          "text": "3x² + 2x - 1",
+          "isCorrect": true
+        },
+        {
+          "text": "-5xy²",
+          "isCorrect": false
+        },
+        {
+          "text": "7",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_014",
+      "content": "计算：2x + 3x = （ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_004"
+      ],
+      "options": [
+        {
+          "text": "5x",
+          "isCorrect": true
+        },
+        {
+          "text": "5x²",
+          "isCorrect": false
+        },
+        {
+          "text": "6x",
+          "isCorrect": false
+        },
+        {
+          "text": "6x²",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_015",
+      "content": "计算：a³ × a² = （ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_005"
+      ],
+      "options": [
+        {
+          "text": "a⁵",
+          "isCorrect": true
+        },
+        {
+          "text": "a⁶",
+          "isCorrect": false
+        },
+        {
+          "text": "2a⁵",
+          "isCorrect": false
+        },
+        {
+          "text": "a",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_016",
+      "content": "计算：(a²)³ = （ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_005"
+      ],
+      "options": [
+        {
+          "text": "a⁵",
+          "isCorrect": false
+        },
+        {
+          "text": "a⁶",
+          "isCorrect": true
+        },
+        {
+          "text": "a⁸",
+          "isCorrect": false
+        },
+        {
+          "text": "2a⁶",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_017",
+      "content": "下列可以用平方差公式计算的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_007"
+      ],
+      "options": [
+        {
+          "text": "(a + b)(a - b)",
+          "isCorrect": true
+        },
+        {
+          "text": "(a + b)(a + b)",
+          "isCorrect": false
+        },
+        {
+          "text": "(a - b)(a - b)",
+          "isCorrect": false
+        },
+        {
+          "text": "(a + 2)(a - 2)",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_018",
+      "content": "方程2x + 3 = 7的解是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n3_001",
+        "g7_n3_004"
+      ],
+      "options": [
+        {
+          "text": "x = 1",
+          "isCorrect": false
+        },
+        {
+          "text": "x = 2",
+          "isCorrect": true
+        },
+        {
+          "text": "x = 3",
+          "isCorrect": false
+        },
+        {
+          "text": "x = 4",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_019",
+      "content": "下列是一元一次方程的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n3_002"
+      ],
+      "options": [
+        {
+          "text": "x² + 1 = 5",
+          "isCorrect": false
+        },
+        {
+          "text": "x + y = 3",
+          "isCorrect": false
+        },
+        {
+          "text": "2x + 1 = 5",
+          "isCorrect": false
+        },
+        {
+          "text": "3x - 2 > 1",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_020",
+      "content": "等式两边同时乘以同一个数，等式仍然成立，这体现的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n3_003"
+      ],
+      "options": [
+        {
+          "text": "等式性质1",
+          "isCorrect": false
+        },
+        {
+          "text": "等式性质2",
+          "isCorrect": true
+        },
+        {
+          "text": "不等式性质",
+          "isCorrect": false
+        },
+        {
+          "text": "分配律",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_021",
+      "content": "正方体有（ ）个面。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_001"
+      ],
+      "options": [
+        {
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": true
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "12",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_022",
+      "content": "下列图形中，能折成正方体的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_002"
+      ],
+      "options": [
+        {
+          "text": "田字形",
+          "isCorrect": false
+        },
+        {
+          "text": "凹字形",
+          "isCorrect": false
+        },
+        {
+          "text": "十字形",
+          "isCorrect": false
+        },
+        {
+          "text": "一字形",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_023",
+      "content": "从正面看一个圆柱，看到的形状是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_003"
+      ],
+      "options": [
+        {
+          "text": "圆形",
+          "isCorrect": false
+        },
+        {
+          "text": "长方形",
+          "isCorrect": true
+        },
+        {
+          "text": "正方形",
+          "isCorrect": false
+        },
+        {
+          "text": "梯形",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_024",
+      "content": "射线有（ ）个端点。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_004"
+      ],
+      "options": [
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "1",
+          "isCorrect": true
+        },
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "无数",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_025",
+      "content": "一个周角等于（ ）度。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_005"
+      ],
+      "options": [
+        {
+          "text": "90",
+          "isCorrect": false
+        },
+        {
+          "text": "180",
+          "isCorrect": false
+        },
+        {
+          "text": "270",
+          "isCorrect": false
+        },
+        {
+          "text": "360",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_026",
+      "content": "若∠A = 30°，∠B = 60°，则∠A与∠B的关系是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_006"
+      ],
+      "options": [
+        {
+          "text": "∠A = ∠B",
+          "isCorrect": false
+        },
+        {
+          "text": "∠A是∠B的补角",
+          "isCorrect": false
+        },
+        {
+          "text": "∠A是∠B的余角",
+          "isCorrect": true
+        },
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_027",
+      "content": "若∠1 = 70°，∠1的余角是（ ）度。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_g1_007"
+      ],
+      "options": [
+        {
+          "text": "70",
+          "isCorrect": false
+        },
+        {
+          "text": "110",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": true
+        },
+        {
+          "text": "90",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_028",
+      "content": "有理数包括（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n1_004"
+      ],
+      "options": [
+        {
+          "text": "所有负数",
+          "isCorrect": false
+        },
+        {
+          "text": "所有正数",
+          "isCorrect": false
+        },
+        {
+          "text": "所有整数和分数",
+          "isCorrect": true
+        },
+        {
+          "text": "所有自然数",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_029",
+      "content": "计算：2³ × 2² = （ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_005"
+      ],
+      "options": [
+        {
+          "text": "2⁵",
+          "isCorrect": true
+        },
+        {
+          "text": "2⁶",
+          "isCorrect": false
+        },
+        {
+          "text": "4⁵",
+          "isCorrect": false
+        },
+        {
+          "text": "4⁶",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_m_q_030",
+      "content": "用平方差公式计算 (x+3)(x-3) = （ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_n2_007"
+      ],
+      "options": [
+        {
+          "text": "x² - 9",
+          "isCorrect": true
+        },
+        {
+          "text": "x² + 9",
+          "isCorrect": false
+        },
+        {
+          "text": "x² - 6x + 9",
+          "isCorrect": false
+        },
+        {
+          "text": "x² + 6x + 9",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

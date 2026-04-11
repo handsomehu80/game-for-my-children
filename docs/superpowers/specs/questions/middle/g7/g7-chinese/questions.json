@@ -1,0 +1,632 @@
+{
+  "grade": 7,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g7_c_q_001",
+      "content": "下列词语中，属于同义词的一项是（ ）。",
+      "knowledgePoints": [
+        "g7_c1_001"
+      ],
+      "options": [
+        {
+          "text": "鼓励—怂恿",
+          "isCorrect": false
+        },
+        {
+          "text": "著名—闻名",
+          "isCorrect": true
+        },
+        {
+          "text": "突然—渐渐",
+          "isCorrect": false
+        },
+        {
+          "text": "高兴—悲伤",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_002",
+      "content": "词语\"赴汤蹈火\"的感情色彩是（ ）。",
+      "knowledgePoints": [
+        "g7_c1_002"
+      ],
+      "options": [
+        {
+          "text": "贬义",
+          "isCorrect": false
+        },
+        {
+          "text": "褒义",
+          "isCorrect": true
+        },
+        {
+          "text": "中性",
+          "isCorrect": false
+        },
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_003",
+      "content": "《观沧海》中\"日月之行，若出其中\"的修辞手法是（ ）。",
+      "knowledgePoints": [
+        "g7_c2_006",
+        "g7_c5_001"
+      ],
+      "options": [
+        {
+          "text": "比喻",
+          "isCorrect": false
+        },
+        {
+          "text": "拟人",
+          "isCorrect": false
+        },
+        {
+          "text": "夸张",
+          "isCorrect": true
+        },
+        {
+          "text": "对偶",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_004",
+      "content": "下列句子中，分号使用正确的是（ ）。",
+      "knowledgePoints": [
+        "g7_c1_004"
+      ],
+      "options": [
+        {
+          "text": "春天来了；花开了。",
+          "isCorrect": true
+        },
+        {
+          "text": "他很聪明；而且很努力。",
+          "isCorrect": false
+        },
+        {
+          "text": "因为下雨；所以延期。",
+          "isCorrect": false
+        },
+        {
+          "text": "我们唱歌；跳舞。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_005",
+      "content": "《论语》十二章中\"学而不思则罔\"的下一句是（ ）。",
+      "knowledgePoints": [
+        "g7_c5_006"
+      ],
+      "options": [
+        {
+          "text": "思而不学则殆",
+          "isCorrect": true
+        },
+        {
+          "text": "温故而知新",
+          "isCorrect": false
+        },
+        {
+          "text": "三人行必有我师",
+          "isCorrect": false
+        },
+        {
+          "text": "为人谋而不忠乎",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_006",
+      "content": "下列句子中使用了打比方说明方法的是（ ）。",
+      "knowledgePoints": [
+        "g7_c3_005"
+      ],
+      "options": [
+        {
+          "text": "桥长约50米，宽约10米。",
+          "isCorrect": false
+        },
+        {
+          "text": "赵州桥是世界闻名的石拱桥。",
+          "isCorrect": false
+        },
+        {
+          "text": "这座桥像一道彩虹横跨河上。",
+          "isCorrect": true
+        },
+        {
+          "text": "赵州桥始建于隋朝。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_007",
+      "content": "记叙文的六要素不包括（ ）。",
+      "knowledgePoints": [
+        "g7_c3_001"
+      ],
+      "options": [
+        {
+          "text": "时间",
+          "isCorrect": false
+        },
+        {
+          "text": "地点",
+          "isCorrect": false
+        },
+        {
+          "text": "议论",
+          "isCorrect": true
+        },
+        {
+          "text": "经过",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_008",
+      "content": "《次北固山下》中\"海日生残夜\"的下一句是（ ）。",
+      "knowledgePoints": [
+        "g7_c5_002"
+      ],
+      "options": [
+        {
+          "text": "江春入旧年",
+          "isCorrect": true
+        },
+        {
+          "text": "乡书何处达",
+          "isCorrect": false
+        },
+        {
+          "text": "归雁洛阳边",
+          "isCorrect": false
+        },
+        {
+          "text": "客路青山外",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_009",
+      "content": "下列句子中，引号表示直接引用的是（ ）。",
+      "knowledgePoints": [
+        "g7_c1_005"
+      ],
+      "options": [
+        {
+          "text": "他被称为\"学霸\"。",
+          "isCorrect": false
+        },
+        {
+          "text": "妈妈说：“该睡觉了。”",
+          "isCorrect": false
+        },
+        {
+          "text": "\"中国梦\"是每个人的梦。",
+          "isCorrect": false
+        },
+        {
+          "text": "他是一个\"聪明\"的人。",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_010",
+      "content": "环境描写在记叙文中的作用是（ ）。",
+      "knowledgePoints": [
+        "g7_c3_004"
+      ],
+      "options": [
+        {
+          "text": "推动情节发展",
+          "isCorrect": false
+        },
+        {
+          "text": "交代故事背景",
+          "isCorrect": false
+        },
+        {
+          "text": "突出人物性格",
+          "isCorrect": false
+        },
+        {
+          "text": "表达作者观点",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_011",
+      "content": "文言文《曹刿论战》中\"何以战\"的正确停顿是（ ）。",
+      "knowledgePoints": [
+        "g7_c2_007"
+      ],
+      "options": [
+        {
+          "text": "何/以战",
+          "isCorrect": false
+        },
+        {
+          "text": "何以/战",
+          "isCorrect": true
+        },
+        {
+          "text": "何以战/",
+          "isCorrect": false
+        },
+        {
+          "text": "何以战/",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_012",
+      "content": "《钱塘湖春行》中\"乱花渐欲迷人眼\"的下一句是（ ）。",
+      "knowledgePoints": [
+        "g7_c5_003"
+      ],
+      "options": [
+        {
+          "text": "水面初平云脚低",
+          "isCorrect": false
+        },
+        {
+          "text": "谁家新燕啄春泥",
+          "isCorrect": false
+        },
+        {
+          "text": "绿杨阴里白沙堤",
+          "isCorrect": true
+        },
+        {
+          "text": "几处早莺争暖树",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_013",
+      "content": "下列句子中，破折号表示解释说明的是（ ）。",
+      "knowledgePoints": [
+        "g7_c1_006"
+      ],
+      "options": [
+        {
+          "text": "我们取得了胜利——这是我们努力的结果。",
+          "isCorrect": false
+        },
+        {
+          "text": "他买了很多东西——书、笔、本子等。",
+          "isCorrect": true
+        },
+        {
+          "text": "那座山——我们的目标——就在前面。",
+          "isCorrect": false
+        },
+        {
+          "text": "我今天很不舒服——可能要生病了。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_014",
+      "content": "概括文章主要内容时，不需要考虑的是（ ）。",
+      "knowledgePoints": [
+        "g7_c2_001"
+      ],
+      "options": [
+        {
+          "text": "时间地点",
+          "isCorrect": false
+        },
+        {
+          "text": "人物事件",
+          "isCorrect": false
+        },
+        {
+          "text": "修辞手法",
+          "isCorrect": true
+        },
+        {
+          "text": "结果意义",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_015",
+      "content": "人称代词\"她\"在句子中充当（ ）。",
+      "knowledgePoints": [
+        "g7_c2_003"
+      ],
+      "options": [
+        {
+          "text": "主语",
+          "isCorrect": true
+        },
+        {
+          "text": "宾语",
+          "isCorrect": false
+        },
+        {
+          "text": "定语",
+          "isCorrect": false
+        },
+        {
+          "text": "状语",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_016",
+      "content": "《论语》中\"己所不欲，勿施于人\"的意思是（ ）。",
+      "knowledgePoints": [
+        "g7_c5_007"
+      ],
+      "options": [
+        {
+          "text": "要乐于助人",
+          "isCorrect": false
+        },
+        {
+          "text": "自己不愿意的，不要强加给别人",
+          "isCorrect": false
+        },
+        {
+          "text": "要严于律己",
+          "isCorrect": false
+        },
+        {
+          "text": "要宽以待人",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_017",
+      "content": "下列句子中，使用了排比修辞手法的是（ ）。",
+      "knowledgePoints": [
+        "g7_c2_006"
+      ],
+      "options": [
+        {
+          "text": "春天像刚落地的娃娃，从头到脚都是新的。",
+          "isCorrect": false
+        },
+        {
+          "text": "红的像火，粉的像霞，白的像雪。",
+          "isCorrect": true
+        },
+        {
+          "text": "下雨了，树叶沙沙作响。",
+          "isCorrect": false
+        },
+        {
+          "text": "他的字写得很好，像印刷的一样。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_018",
+      "content": "记叙文的写作顺序不包括（ ）。",
+      "knowledgePoints": [
+        "g7_c3_002"
+      ],
+      "options": [
+        {
+          "text": "时间顺序",
+          "isCorrect": false
+        },
+        {
+          "text": "空间顺序",
+          "isCorrect": false
+        },
+        {
+          "text": "逻辑顺序",
+          "isCorrect": true
+        },
+        {
+          "text": "事件顺序",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_019",
+      "content": "文言文\"温故而知新\"中\"故\"的意思是（ ）。",
+      "knowledgePoints": [
+        "g7_c2_008"
+      ],
+      "options": [
+        {
+          "text": "旧的",
+          "isCorrect": true
+        },
+        {
+          "text": "故事",
+          "isCorrect": false
+        },
+        {
+          "text": "所以",
+          "isCorrect": false
+        },
+        {
+          "text": "故意",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_020",
+      "content": "下列句子中，使用了举例子的说明方法的是（ ）。",
+      "knowledgePoints": [
+        "g7_c3_005"
+      ],
+      "options": [
+        {
+          "text": "这座桥很长，有50米。",
+          "isCorrect": false
+        },
+        {
+          "text": "比如赵州桥，就是典型的石拱桥。",
+          "isCorrect": true
+        },
+        {
+          "text": "桥是用石头建造的。",
+          "isCorrect": false
+        },
+        {
+          "text": "这座桥很坚固。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_021",
+      "content": "人物描写方法不包括（ ）。",
+      "knowledgePoints": [
+        "g7_c3_003"
+      ],
+      "options": [
+        {
+          "text": "语言描写",
+          "isCorrect": false
+        },
+        {
+          "text": "动作描写",
+          "isCorrect": false
+        },
+        {
+          "text": "环境描写",
+          "isCorrect": true
+        },
+        {
+          "text": "心理描写",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_022",
+      "content": "古诗《观沧海》的作者是（ ）。",
+      "knowledgePoints": [
+        "g7_c5_001"
+      ],
+      "options": [
+        {
+          "text": "曹操",
+          "isCorrect": true
+        },
+        {
+          "text": "曹植",
+          "isCorrect": false
+        },
+        {
+          "text": "曹丕",
+          "isCorrect": false
+        },
+        {
+          "text": "杜甫",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_023",
+      "content": "说明文语言的特点是（ ）。",
+      "knowledgePoints": [
+        "g7_c3_006"
+      ],
+      "options": [
+        {
+          "text": "生动形象",
+          "isCorrect": false
+        },
+        {
+          "text": "准确严谨",
+          "isCorrect": false
+        },
+        {
+          "text": "感情充沛",
+          "isCorrect": false
+        },
+        {
+          "text": "富有想象",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_024",
+      "content": "词语在语境中的含义，需要结合（ ）来理解。",
+      "knowledgePoints": [
+        "g7_c1_003"
+      ],
+      "options": [
+        {
+          "text": "字典解释",
+          "isCorrect": false
+        },
+        {
+          "text": "上下文",
+          "isCorrect": false
+        },
+        {
+          "text": "词的结构",
+          "isCorrect": false
+        },
+        {
+          "text": "字形分析",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_c_q_025",
+      "content": "《论语》十二章中\"吾日三省吾身\"的\"省\"读音是（ ）。",
+      "knowledgePoints": [
+        "g7_c5_006"
+      ],
+      "options": [
+        {
+          "text": "shěng",
+          "isCorrect": false
+        },
+        {
+          "text": "xǐng",
+          "isCorrect": true
+        },
+        {
+          "text": "xīng",
+          "isCorrect": false
+        },
+        {
+          "text": "shèng",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

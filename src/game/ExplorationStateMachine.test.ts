@@ -417,9 +417,11 @@ describe('ExplorationStateMachine', () => {
     // 导入isAreaReachable函数 - 需要从areas模块测试
     // 这里测试状态转换如何更新reachableAreas
 
-    it('击败math_1后，reachableAreas应包含math_2, chinese_1, english_1', () => {
+    it('击败math_1后，reachableAreas应只包含math_2（垂直向上）', () => {
       // 根据areas数据，east_math_1的connections是:
       // ['east_chinese_1', 'east_english_1', 'east_math_2']
+      // 但只有垂直向上（同学科，高难度）的岛屿应该被解锁
+      // 初始状态：所有难度1岛屿都已可达
       const state: ExplorationState = {
         ...initialExplorationState,
         currentOcean: 'east',
@@ -427,7 +429,8 @@ describe('ExplorationStateMachine', () => {
         currentArea: 'east_math_1',
         visitedAreas: [],
         defeatedMiniBosses: [],
-        reachableAreas: ['east_math_1'], // 初始可达
+        // 初始可达：所有难度1的普通岛屿
+        reachableAreas: ['east_math_1', 'east_chinese_1', 'east_english_1'],
       }
 
       const result = explorationTransition(state, {
@@ -435,16 +438,16 @@ describe('ExplorationStateMachine', () => {
         areaId: 'east_math_1',
       })
 
-      // math_1的connections是['east_chinese_1', 'east_english_1', 'east_math_2']
-      // 这些应该被添加到reachableAreas
+      // 垂直向上：math_1 -> math_2
       expect(result.reachableAreas).toContain('east_math_2')
-      expect(result.reachableAreas).toContain('east_chinese_1')
-      expect(result.reachableAreas).toContain('east_english_1')
+      // 横向连接不应添加（chinese_1和english_1在初始状态已可达）
+      // 不应重复添加已存在的岛屿
     })
 
-    it('击败chinese_2后，reachableAreas应包含chinese_3, math_2, english_2', () => {
+    it('击败chinese_2后，reachableAreas应只包含chinese_3（垂直向上）', () => {
       // east_chinese_2的connections是:
       // ['east_math_2', 'east_english_2', 'east_chinese_1', 'east_chinese_3']
+      // 但只有垂直向上（同学科，高难度）的岛屿应该被解锁
       const state: ExplorationState = {
         ...initialExplorationState,
         currentOcean: 'east',
@@ -452,7 +455,6 @@ describe('ExplorationStateMachine', () => {
         currentArea: 'east_chinese_2',
         visitedAreas: [],
         defeatedMiniBosses: [],
-        // math_2, english_2, chinese_1, chinese_3都可能是可达的
         reachableAreas: ['east_chinese_2'],
       }
 
@@ -461,10 +463,11 @@ describe('ExplorationStateMachine', () => {
         areaId: 'east_chinese_2',
       })
 
-      // chinese_2的connections包含math_2, english_2, chinese_3
-      expect(result.reachableAreas).toContain('east_math_2')
-      expect(result.reachableAreas).toContain('east_english_2')
+      // chinese_2的connections中，只有chinese_3是垂直向上（同学科，更高难度）
+      // math_2和english_2是横向连接，不应被解锁
       expect(result.reachableAreas).toContain('east_chinese_3')
+      expect(result.reachableAreas).not.toContain('east_math_2')
+      expect(result.reachableAreas).not.toContain('east_english_2')
     })
 
     it('reachableAreas只添加未完成的非boss岛屿', () => {
@@ -489,15 +492,16 @@ describe('ExplorationStateMachine', () => {
       expect(result.reachableAreas).not.toContain('east_boss')
     })
 
-    it('reachableAreas累积增长，不会减少', () => {
-      // 击败math_1
+    it('reachableAreas累积增长，击败岛屿只添加垂直向上的岛屿', () => {
+      // 初始状态：所有难度1岛屿都已可达
       let state: ExplorationState = {
         ...initialExplorationState,
         currentOcean: 'east',
         phase: 'battle' as const,
         currentArea: 'east_math_1',
         defeatedMiniBosses: [],
-        reachableAreas: ['east_math_1'],
+        // 初始可达：所有难度1的普通岛屿
+        reachableAreas: ['east_math_1', 'east_chinese_1', 'east_english_1'],
       }
       state = explorationTransition(state, { type: 'BATTLE_WIN', areaId: 'east_math_1' })
       const afterMath1 = state.reachableAreas
@@ -510,10 +514,14 @@ describe('ExplorationStateMachine', () => {
       }
       state = explorationTransition(state, { type: 'BATTLE_WIN', areaId: 'east_chinese_1' })
 
-      // reachableAreas应该包含之前的所有岛屿加上新的
+      // reachableAreas应该包含之前的所有岛屿加上新的垂直向上岛屿
       expect(state.reachableAreas.length).toBeGreaterThanOrEqual(afterMath1.length)
       expect(state.reachableAreas).toContain('east_math_1')
       expect(state.reachableAreas).toContain('east_chinese_1')
+      // 击败math_1后只添加math_2（垂直向上）
+      expect(state.reachableAreas).toContain('east_math_2')
+      // 击败chinese_1后只添加chinese_2（垂直向上）
+      expect(state.reachableAreas).toContain('east_chinese_2')
     })
   })
 })

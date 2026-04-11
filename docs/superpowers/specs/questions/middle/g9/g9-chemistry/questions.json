@@ -1,0 +1,681 @@
+{
+  "grade": 9,
+  "subject": "c",
+  "questions": [
+    {
+      "id": "g9_c_q_001",
+      "content": "溶液是由（ ）组成的。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "只有溶质",
+          "isCorrect": false
+        },
+        {
+          "text": "溶剂和水",
+          "isCorrect": false
+        },
+        {
+          "text": "溶质和水",
+          "isCorrect": false
+        },
+        {
+          "text": "溶质和溶剂",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_002",
+      "content": "下列物质中，属于酸的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "NaCl",
+          "isCorrect": false
+        },
+        {
+          "text": "H₂O",
+          "isCorrect": false
+        },
+        {
+          "text": "HCl",
+          "isCorrect": true
+        },
+        {
+          "text": "NaOH",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_003",
+      "content": "pH值小于7时，溶液呈（ ）性。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        },
+        {
+          "text": "酸",
+          "isCorrect": true
+        },
+        {
+          "text": "碱",
+          "isCorrect": false
+        },
+        {
+          "text": "中",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_004",
+      "content": "金属与酸反应生成（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "氢气和盐",
+          "isCorrect": true
+        },
+        {
+          "text": "氧气和盐",
+          "isCorrect": false
+        },
+        {
+          "text": "水和盐",
+          "isCorrect": false
+        },
+        {
+          "text": "二氧化碳和盐",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_005",
+      "content": "下列金属中，活动性最强的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "Cu",
+          "isCorrect": false
+        },
+        {
+          "text": "Ag",
+          "isCorrect": false
+        },
+        {
+          "text": "Fe",
+          "isCorrect": false
+        },
+        {
+          "text": "Mg",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_006",
+      "content": "复分解反应发生的条件是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "任何条件下都能发生",
+          "isCorrect": false
+        },
+        {
+          "text": "有氢气生成",
+          "isCorrect": false
+        },
+        {
+          "text": "有气体或水或沉淀生成",
+          "isCorrect": true
+        },
+        {
+          "text": "有氧气生成",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_007",
+      "content": "浓硫酸的特性不包括（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "挥发性",
+          "isCorrect": true
+        },
+        {
+          "text": "强氧化性",
+          "isCorrect": false
+        },
+        {
+          "text": "脱水性",
+          "isCorrect": false
+        },
+        {
+          "text": "吸水性",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_008",
+      "content": "氢氧化钠的俗称是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "烧碱",
+          "isCorrect": true
+        },
+        {
+          "text": "大理石",
+          "isCorrect": false
+        },
+        {
+          "text": "熟石灰",
+          "isCorrect": false
+        },
+        {
+          "text": "纯碱",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_009",
+      "content": "配制一定溶质质量分数的溶液，步骤是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "溶解、计算、称量",
+          "isCorrect": false
+        },
+        {
+          "text": "称量、计算、溶解",
+          "isCorrect": true
+        },
+        {
+          "text": "溶解、称量、计算",
+          "isCorrect": false
+        },
+        {
+          "text": "计算、称量、溶解",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_010",
+      "content": "化学肥料中，氮肥的主要作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "改良土壤",
+          "isCorrect": false
+        },
+        {
+          "text": "促进果实成熟",
+          "isCorrect": false
+        },
+        {
+          "text": "促进植物生长",
+          "isCorrect": true
+        },
+        {
+          "text": "增强抗病能力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_011",
+      "content": "中和反应是（ ）和（ ）反应生成盐和水。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "碱和盐",
+          "isCorrect": false
+        },
+        {
+          "text": "酸和碱",
+          "isCorrect": true
+        },
+        {
+          "text": "酸和盐",
+          "isCorrect": false
+        },
+        {
+          "text": "金属和酸",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_012",
+      "content": "下列盐中，属于碳酸盐的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "Na₂CO₃",
+          "isCorrect": true
+        },
+        {
+          "text": "NaCl",
+          "isCorrect": false
+        },
+        {
+          "text": "Na₂SO₄",
+          "isCorrect": false
+        },
+        {
+          "text": "NaNO₃",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_013",
+      "content": "铁生锈的条件是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "只与空气接触",
+          "isCorrect": false
+        },
+        {
+          "text": "与空气和水都不接触",
+          "isCorrect": false
+        },
+        {
+          "text": "只与水接触",
+          "isCorrect": false
+        },
+        {
+          "text": "与空气和水同时接触",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_014",
+      "content": "乙醇的化学式是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "C₂H₅COOH",
+          "isCorrect": false
+        },
+        {
+          "text": "CH₄",
+          "isCorrect": false
+        },
+        {
+          "text": "C₂H₅OH",
+          "isCorrect": true
+        },
+        {
+          "text": "CH₃OH",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_015",
+      "content": "人体需要的营养素中，氧化放能最多的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "糖类",
+          "isCorrect": false
+        },
+        {
+          "text": "油脂",
+          "isCorrect": true
+        },
+        {
+          "text": "蛋白质",
+          "isCorrect": false
+        },
+        {
+          "text": "维生素",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_016",
+      "content": "饱和溶液的特点是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "不能再溶解溶质",
+          "isCorrect": true
+        },
+        {
+          "text": "还能继续溶解溶质",
+          "isCorrect": false
+        },
+        {
+          "text": "是稀溶液",
+          "isCorrect": false
+        },
+        {
+          "text": "是浓溶液",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_017",
+      "content": "下列化合物中，属于有机物的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "CO₂",
+          "isCorrect": false
+        },
+        {
+          "text": "Na₂CO₃",
+          "isCorrect": false
+        },
+        {
+          "text": "CaCO₃",
+          "isCorrect": false
+        },
+        {
+          "text": "CH₄",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_018",
+      "content": "溶解度曲线上的点表示（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "溶液的质量",
+          "isCorrect": false
+        },
+        {
+          "text": "溶解度随温度的变化",
+          "isCorrect": false
+        },
+        {
+          "text": "该温度下的溶解度",
+          "isCorrect": true
+        },
+        {
+          "text": "任意温度下的溶解度",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_019",
+      "content": "酸的通性取决于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "酸根离子",
+          "isCorrect": false
+        },
+        {
+          "text": "氢离子",
+          "isCorrect": true
+        },
+        {
+          "text": "氧离子",
+          "isCorrect": false
+        },
+        {
+          "text": "金属离子",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_020",
+      "content": "下列物质中，能与盐酸反应生成沉淀的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "硝酸银溶液",
+          "isCorrect": true
+        },
+        {
+          "text": "氢氧化钠溶液",
+          "isCorrect": false
+        },
+        {
+          "text": "硫酸钠溶液",
+          "isCorrect": false
+        },
+        {
+          "text": "氯化钠溶液",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_021",
+      "content": "结晶的方法有蒸发结晶和（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "过滤",
+          "isCorrect": false
+        },
+        {
+          "text": "蒸馏",
+          "isCorrect": false
+        },
+        {
+          "text": "萃取",
+          "isCorrect": false
+        },
+        {
+          "text": "降温结晶",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_022",
+      "content": "合金的主要特性是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "硬度更大，熔点更高",
+          "isCorrect": false
+        },
+        {
+          "text": "硬度更小，熔点更低",
+          "isCorrect": false
+        },
+        {
+          "text": "硬度更大，熔点更低",
+          "isCorrect": true
+        },
+        {
+          "text": "硬度更小，熔点更高",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_023",
+      "content": "溶液稀释计算的关键是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "溶剂质量不变",
+          "isCorrect": false
+        },
+        {
+          "text": "溶质质量不变",
+          "isCorrect": true
+        },
+        {
+          "text": "溶液质量不变",
+          "isCorrect": false
+        },
+        {
+          "text": "体积不变",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_024",
+      "content": "氢氧化钙的俗称是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "熟石灰",
+          "isCorrect": true
+        },
+        {
+          "text": "生石灰",
+          "isCorrect": false
+        },
+        {
+          "text": "烧碱",
+          "isCorrect": false
+        },
+        {
+          "text": "石灰石",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_025",
+      "content": "甲烷燃烧的产物是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "c",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "一氧化碳和水",
+          "isCorrect": false
+        },
+        {
+          "text": "只有二氧化碳",
+          "isCorrect": false
+        },
+        {
+          "text": "碳和水",
+          "isCorrect": false
+        },
+        {
+          "text": "二氧化碳和水",
+          "isCorrect": true
+        }
+      ]
+    }
+  ]
+}

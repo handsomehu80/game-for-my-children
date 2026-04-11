@@ -1,0 +1,896 @@
+{
+  "grade": 2,
+  "subject": "math",
+  "questions": [
+    {
+      "id": "g2_q_009",
+      "content": "45 - 7 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_004"
+      ],
+      "options": [
+        {
+          "text": "35",
+          "isCorrect": false
+        },
+        {
+          "text": "37",
+          "isCorrect": true
+        },
+        {
+          "text": "38",
+          "isCorrect": false
+        },
+        {
+          "text": "39",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_015",
+      "content": "用三角尺画一个直角，下面的步骤正确的是（ ）。",
+      "type": "image",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_g1_004"
+      ],
+      "imageUrl": "/images/math/g2/draw_right_angle.svg",
+      "options": [
+        {
+          "text": "随便画",
+          "isCorrect": false
+        },
+        {
+          "text": "用三角尺的直角边画",
+          "isCorrect": false
+        },
+        {
+          "text": "用量角器画",
+          "isCorrect": true
+        },
+        {
+          "text": "用直尺画",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_003",
+      "content": "23 + 4 =（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_001"
+      ],
+      "options": [
+        {
+          "text": "26",
+          "isCorrect": false
+        },
+        {
+          "text": "27",
+          "isCorrect": false
+        },
+        {
+          "text": "28",
+          "isCorrect": false
+        },
+        {
+          "text": "25",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_002",
+      "content": "比45大的数是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n1_003"
+      ],
+      "options": [
+        {
+          "text": "43",
+          "isCorrect": true
+        },
+        {
+          "text": "45",
+          "isCorrect": false
+        },
+        {
+          "text": "47",
+          "isCorrect": false
+        },
+        {
+          "text": "44",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_008",
+      "content": "37 + 8 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_002"
+      ],
+      "options": [
+        {
+          "text": "43",
+          "isCorrect": true
+        },
+        {
+          "text": "44",
+          "isCorrect": false
+        },
+        {
+          "text": "45",
+          "isCorrect": false
+        },
+        {
+          "text": "46",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_028",
+      "content": "一根绳子长72米，剪成8米一段，可以剪（ ）段。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n4_001",
+        "g2_n4_003"
+      ],
+      "options": [
+        {
+          "text": "8",
+          "isCorrect": true
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "11",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_006",
+      "content": "把12个苹果平均分给3个小朋友，每人（ ）个。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n4_002"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": true
+        },
+        {
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_025",
+      "content": "3 × 7 + 5 =（ ）",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_004",
+        "g2_n2_009"
+      ],
+      "options": [
+        {
+          "text": "24",
+          "isCorrect": false
+        },
+        {
+          "text": "26",
+          "isCorrect": true
+        },
+        {
+          "text": "28",
+          "isCorrect": false
+        },
+        {
+          "text": "30",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_029",
+      "content": "有24个小朋友排成正方形队列，每边站（ ）人。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_004",
+        "g2_n4_002"
+      ],
+      "options": [
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "7",
+          "isCorrect": true
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_016",
+      "content": "8 × 4 + 6 =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_009",
+        "g2_n3_004"
+      ],
+      "options": [
+        {
+          "text": "36",
+          "isCorrect": false
+        },
+        {
+          "text": "38",
+          "isCorrect": false
+        },
+        {
+          "text": "40",
+          "isCorrect": false
+        },
+        {
+          "text": "42",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_019",
+      "content": "72 ÷ 8 =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n4_003",
+        "g2_n3_006"
+      ],
+      "options": [
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "9",
+          "isCorrect": true
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "7",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_018",
+      "content": "9 × 9 =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_003",
+        "g2_n3_006"
+      ],
+      "options": [
+        {
+          "text": "72",
+          "isCorrect": false
+        },
+        {
+          "text": "81",
+          "isCorrect": false
+        },
+        {
+          "text": "90",
+          "isCorrect": false
+        },
+        {
+          "text": "63",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_013",
+      "content": "下面哪个角是直角？",
+      "type": "image",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_g1_002"
+      ],
+      "imageUrl": "/images/math/g2/right_angle.svg",
+      "options": [
+        {
+          "text": "第一个",
+          "isCorrect": false
+        },
+        {
+          "text": "第二个（有直角标记）",
+          "isCorrect": false
+        },
+        {
+          "text": "第三个",
+          "isCorrect": false
+        },
+        {
+          "text": "第四个",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_021",
+      "content": "45 - 18 + 23 =（ ）",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_010"
+      ],
+      "options": [
+        {
+          "text": "46",
+          "isCorrect": false
+        },
+        {
+          "text": "48",
+          "isCorrect": true
+        },
+        {
+          "text": "50",
+          "isCorrect": false
+        },
+        {
+          "text": "52",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_023",
+      "content": "一个书包35元，一个文具盒比书包便宜18元。文具盒（ ）元。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_004",
+        "g2_n2_008"
+      ],
+      "options": [
+        {
+          "text": "16",
+          "isCorrect": false
+        },
+        {
+          "text": "17",
+          "isCorrect": false
+        },
+        {
+          "text": "18",
+          "isCorrect": true
+        },
+        {
+          "text": "15",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_027",
+      "content": "小红买了两本故事书，每本8元，付了20元，应找回（ ）元。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_001",
+        "g2_n2_004",
+        "g2_n2_010"
+      ],
+      "options": [
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_010",
+      "content": "7 × 8 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_003"
+      ],
+      "options": [
+        {
+          "text": "54",
+          "isCorrect": true
+        },
+        {
+          "text": "56",
+          "isCorrect": false
+        },
+        {
+          "text": "58",
+          "isCorrect": false
+        },
+        {
+          "text": "63",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_022",
+      "content": "二（1）班有45人，二（2）班比二（1）班多8人，二（2）班有（ ）人。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_002",
+        "g2_n2_006"
+      ],
+      "options": [
+        {
+          "text": "50",
+          "isCorrect": false
+        },
+        {
+          "text": "51",
+          "isCorrect": false
+        },
+        {
+          "text": "52",
+          "isCorrect": false
+        },
+        {
+          "text": "53",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_001",
+      "content": "35里面有（ ）个十和（ ）个一。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n1_005"
+      ],
+      "options": [
+        {
+          "text": "3,5",
+          "isCorrect": false
+        },
+        {
+          "text": "30,5",
+          "isCorrect": false
+        },
+        {
+          "text": "35,0",
+          "isCorrect": true
+        },
+        {
+          "text": "5,3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_012",
+      "content": "小明有25颗糖，小红有18颗糖，两人相差（ ）颗。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n1_003",
+        "g2_n2_007"
+      ],
+      "options": [
+        {
+          "text": "6",
+          "isCorrect": true
+        },
+        {
+          "text": "7",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_020",
+      "content": "小明有8颗糖，小红有6颗糖，小亮有5颗糖。三人一共有（ ）颗糖。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_009"
+      ],
+      "options": [
+        {
+          "text": "17",
+          "isCorrect": false
+        },
+        {
+          "text": "18",
+          "isCorrect": true
+        },
+        {
+          "text": "19",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_017",
+      "content": "56 - 28 =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_008"
+      ],
+      "options": [
+        {
+          "text": "26",
+          "isCorrect": false
+        },
+        {
+          "text": "28",
+          "isCorrect": false
+        },
+        {
+          "text": "32",
+          "isCorrect": true
+        },
+        {
+          "text": "38",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_005",
+      "content": "12 ÷ 3 =（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n4_001",
+        "g2_n4_003"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_004",
+      "content": "3 × 5 =（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_001",
+        "g2_n3_002"
+      ],
+      "options": [
+        {
+          "text": "12",
+          "isCorrect": true
+        },
+        {
+          "text": "15",
+          "isCorrect": false
+        },
+        {
+          "text": "18",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_026",
+      "content": "7 × 8 - 16 =（ ）",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n3_004",
+        "g2_n2_010"
+      ],
+      "options": [
+        {
+          "text": "36",
+          "isCorrect": false
+        },
+        {
+          "text": "38",
+          "isCorrect": false
+        },
+        {
+          "text": "40",
+          "isCorrect": false
+        },
+        {
+          "text": "42",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_011",
+      "content": "63 ÷ 9 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n4_003"
+      ],
+      "options": [
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "7",
+          "isCorrect": true
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_014",
+      "content": "45 + 23 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_005"
+      ],
+      "options": [
+        {
+          "text": "66",
+          "isCorrect": false
+        },
+        {
+          "text": "67",
+          "isCorrect": false
+        },
+        {
+          "text": "68",
+          "isCorrect": false
+        },
+        {
+          "text": "69",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g2_q_030",
+      "content": "妈妈买了18个苹果，吃了一些后还剩9个，吃了（ ）个。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_n2_003",
+        "g2_n2_004"
+      ],
+      "options": [
+        {
+          "text": "7",
+          "isCorrect": true
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_007",
+      "content": "下面图形中，哪个是角？",
+      "type": "image",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_g1_001"
+      ],
+      "imageUrl": "/images/math/g2/angle_or_not.svg",
+      "options": [
+        {
+          "text": "第一个",
+          "isCorrect": false
+        },
+        {
+          "text": "第二个",
+          "isCorrect": false
+        },
+        {
+          "text": "第三个",
+          "isCorrect": true
+        },
+        {
+          "text": "第四个",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g2_q_024",
+      "content": "观察下图，小芳看到的是（ ）。",
+      "type": "image",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 2,
+      "knowledgePoints": [
+        "g2_g2_001",
+        "g2_g2_002"
+      ],
+      "imageUrl": "/images/math/g2/view_cube.svg",
+      "options": [
+        {
+          "text": "正面",
+          "isCorrect": false
+        },
+        {
+          "text": "侧面",
+          "isCorrect": true
+        },
+        {
+          "text": "上面",
+          "isCorrect": false
+        },
+        {
+          "text": "下面",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

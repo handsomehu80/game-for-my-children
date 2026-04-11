@@ -60,9 +60,15 @@ export function explorationTransition(
           if (area.requiredKeys > 0 && !state.unlockedAreas.includes(area.id)) {
             return { ...state, phase: 'error', lastError: `Area ${action.areaId} requires keys` }
           }
-          // 1. 打败所有9个岛屿后才能和boss战斗
-          if (area.type === 'boss' && state.defeatedMiniBosses.length < 9) {
-            return { ...state, phase: 'error', lastError: `Defeat all 9 islands before challenging the boss (${state.defeatedMiniBosses.length}/9)` }
+          // 1. 打败所有9个normal岛屿后才能和boss战斗（隐藏和宝藏岛屿不计算在内）
+          if (area.type === 'boss') {
+            const defeatedNormalIslands = state.defeatedMiniBosses.filter(id => {
+              const a = getAreaById(id)
+              return a && a.type === 'normal'
+            })
+            if (defeatedNormalIslands.length < 9) {
+              return { ...state, phase: 'error', lastError: `Defeat all 9 islands before challenging the boss (${defeatedNormalIslands.length}/9)` }
+            }
           }
           return {
             ...state,
@@ -124,12 +130,17 @@ export function explorationTransition(
             : [...state.defeatedMiniBosses, action.areaId]
 
           // 获取当前岛屿的连接岛屿，添加为可达区域
+          // 只添加"向上"连接（同科目，高难度），不添加横向连接（同难度，不同科目）
           const currentArea = getAreaById(action.areaId)
           const newReachable = currentArea
             ? currentArea.connections.filter(id => {
                 const area = getAreaById(id)
-                // 只添加未完成的非boss岛屿
-                return area && !newDefeated.includes(id) && area.type !== 'boss'
+                if (!area || newDefeated.includes(id) || area.type === 'boss') return false
+                // 只添加同科目高难度的岛屿（垂直向上）
+                if (area.knowledgeArea === currentArea.knowledgeArea && area.difficulty > currentArea.difficulty) {
+                  return true
+                }
+                return false
               })
             : []
           const finalReachable = [...state.reachableAreas, ...newReachable.filter(id => !state.reachableAreas.includes(id))]

@@ -1,0 +1,877 @@
+{
+  "grade": 6,
+  "subject": "math",
+  "questions": [
+    {
+      "id": "g6_m_q_001",
+      "content": "分数 3/5 × 4 = ( )。",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_n1_001"
+      ],
+      "options": [
+        {
+          "text": "12/5",
+          "isCorrect": true
+        },
+        {
+          "text": "12/20",
+          "isCorrect": false
+        },
+        {
+          "text": "3/20",
+          "isCorrect": false
+        },
+        {
+          "text": "7/5",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_002",
+      "content": "分数 2/3 × 4/5 = ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n1_002"
+      ],
+      "options": [
+        {
+          "text": "6/8",
+          "isCorrect": false
+        },
+        {
+          "text": "8/3",
+          "isCorrect": false
+        },
+        {
+          "text": "6/15",
+          "isCorrect": false
+        },
+        {
+          "text": "8/15",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_003",
+      "content": "分数 3/4 ÷ 2 = ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n1_003"
+      ],
+      "options": [
+        {
+          "text": "6/4",
+          "isCorrect": false
+        },
+        {
+          "text": "3/8",
+          "isCorrect": true
+        },
+        {
+          "text": "3/4",
+          "isCorrect": false
+        },
+        {
+          "text": "3/2",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_004",
+      "content": "0.75 = ( )%。",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_n2_001"
+      ],
+      "options": [
+        {
+          "text": "750%",
+          "isCorrect": false
+        },
+        {
+          "text": "7.5%",
+          "isCorrect": false
+        },
+        {
+          "text": "75%",
+          "isCorrect": true
+        },
+        {
+          "text": "0.75%",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_005",
+      "content": "50% 的小数是 ( )。",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_n2_001"
+      ],
+      "options": [
+        {
+          "text": "50.0",
+          "isCorrect": false
+        },
+        {
+          "text": "0.5",
+          "isCorrect": true
+        },
+        {
+          "text": "5.0",
+          "isCorrect": false
+        },
+        {
+          "text": "0.05",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_006",
+      "content": "3 : 6 化简后是 ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n3_001"
+      ],
+      "options": [
+        {
+          "text": "1:2",
+          "isCorrect": true
+        },
+        {
+          "text": "1:3",
+          "isCorrect": false
+        },
+        {
+          "text": "2:3",
+          "isCorrect": false
+        },
+        {
+          "text": "3:2",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_007",
+      "content": "比例 3:4 = 9:x，x = ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n3_002"
+      ],
+      "options": [
+        {
+          "text": "9",
+          "isCorrect": false
+        },
+        {
+          "text": "16",
+          "isCorrect": false
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "12",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_008",
+      "content": "-5 的相反数是 ( )。",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_n4_001"
+      ],
+      "options": [
+        {
+          "text": "1/5",
+          "isCorrect": false
+        },
+        {
+          "text": "-5",
+          "isCorrect": false
+        },
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_009",
+      "content": "比较大小：-3 □ -5，□ 里应填 ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n4_002"
+      ],
+      "options": [
+        {
+          "text": "无法比较",
+          "isCorrect": false
+        },
+        {
+          "text": ">",
+          "isCorrect": true
+        },
+        {
+          "text": "<",
+          "isCorrect": false
+        },
+        {
+          "text": "=",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_010",
+      "content": "圆的半径是 3 cm，圆的周长是 ( ) cm。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_g1_002"
+      ],
+      "options": [
+        {
+          "text": "9π",
+          "isCorrect": true
+        },
+        {
+          "text": "6π",
+          "isCorrect": false
+        },
+        {
+          "text": "3π",
+          "isCorrect": false
+        },
+        {
+          "text": "6π",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_011",
+      "content": "圆的半径是 2 cm，圆的面积是 ( ) cm²。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_g1_003"
+      ],
+      "options": [
+        {
+          "text": "8π",
+          "isCorrect": false
+        },
+        {
+          "text": "2π",
+          "isCorrect": false
+        },
+        {
+          "text": "4π",
+          "isCorrect": true
+        },
+        {
+          "text": "16π",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_012",
+      "content": "圆柱的底面半径是 2 cm，高是 5 cm，体积是 ( ) cm³。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_g2_003"
+      ],
+      "options": [
+        {
+          "text": "10π",
+          "isCorrect": false
+        },
+        {
+          "text": "40π",
+          "isCorrect": false
+        },
+        {
+          "text": "20π",
+          "isCorrect": true
+        },
+        {
+          "text": "50π",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_013",
+      "content": "圆锥的底面半径是 3 cm，高是 4 cm，体积是 ( ) cm³。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_g2_005"
+      ],
+      "options": [
+        {
+          "text": "12π",
+          "isCorrect": true
+        },
+        {
+          "text": "36π",
+          "isCorrect": false
+        },
+        {
+          "text": "9π",
+          "isCorrect": false
+        },
+        {
+          "text": "24π",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_014",
+      "content": "扇形统计图能清楚表示 ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_s1_001"
+      ],
+      "options": [
+        {
+          "text": "时间趋势",
+          "isCorrect": false
+        },
+        {
+          "text": "数量变化",
+          "isCorrect": false
+        },
+        {
+          "text": "具体数量",
+          "isCorrect": false
+        },
+        {
+          "text": "部分与整体的关系",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_015",
+      "content": "一本书原价 20 元，打 8 折后是 ( ) 元。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n2_004"
+      ],
+      "options": [
+        {
+          "text": "18",
+          "isCorrect": false
+        },
+        {
+          "text": "16",
+          "isCorrect": true
+        },
+        {
+          "text": "14",
+          "isCorrect": false
+        },
+        {
+          "text": "12",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_016",
+      "content": "某商品原价 100 元，涨价 20% 后是 ( ) 元。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_n2_004"
+      ],
+      "options": [
+        {
+          "text": "110",
+          "isCorrect": false
+        },
+        {
+          "text": "125",
+          "isCorrect": false
+        },
+        {
+          "text": "120",
+          "isCorrect": true
+        },
+        {
+          "text": "80",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_017",
+      "content": "正方形的边长是 a，边长扩大 2 倍后面积是原来的 ( ) 倍。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_n3_003"
+      ],
+      "options": [
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "16",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_018",
+      "content": "路程一定，速度和时间成 ( ) 比例。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_n3_004"
+      ],
+      "options": [
+        {
+          "text": "不成",
+          "isCorrect": false
+        },
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        },
+        {
+          "text": "正",
+          "isCorrect": false
+        },
+        {
+          "text": "反",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_019",
+      "content": "在比例尺是 1:1000 的地图上，图上距离 3 cm 表示实际距离 ( ) m。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_n3_005"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "3000",
+          "isCorrect": false
+        },
+        {
+          "text": "30",
+          "isCorrect": true
+        },
+        {
+          "text": "300",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_020",
+      "content": "圆柱的底面直径是 4 cm，高是 6 cm，表面积是 ( ) cm²。",
+      "difficulty": 4,
+      "knowledgePoints": [
+        "g6_g2_002"
+      ],
+      "options": [
+        {
+          "text": "40π",
+          "isCorrect": false
+        },
+        {
+          "text": "32π",
+          "isCorrect": true
+        },
+        {
+          "text": "48π",
+          "isCorrect": false
+        },
+        {
+          "text": "56π",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_021",
+      "content": "圆环的外圆半径是 5 cm，内圆半径是 3 cm，面积是 ( ) cm²。",
+      "difficulty": 4,
+      "knowledgePoints": [
+        "g6_g1_004"
+      ],
+      "options": [
+        {
+          "text": "25π",
+          "isCorrect": false
+        },
+        {
+          "text": "34π",
+          "isCorrect": false
+        },
+        {
+          "text": "16π",
+          "isCorrect": true
+        },
+        {
+          "text": "9π",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_022",
+      "content": "计算：2/3 + 1/4 = ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n1_004"
+      ],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "3/7",
+          "isCorrect": false
+        },
+        {
+          "text": "11/12",
+          "isCorrect": true
+        },
+        {
+          "text": "3/12",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_023",
+      "content": "计算：5 - 2/3 = ( )。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n1_004"
+      ],
+      "options": [
+        {
+          "text": "13/3",
+          "isCorrect": true
+        },
+        {
+          "text": "4/3",
+          "isCorrect": false
+        },
+        {
+          "text": "15/3",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_024",
+      "content": "某班有学生 40 人，近视的有 12 人，近视率是 ( )%。",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_n2_004"
+      ],
+      "options": [
+        {
+          "text": "20%",
+          "isCorrect": false
+        },
+        {
+          "text": "30%",
+          "isCorrect": true
+        },
+        {
+          "text": "25%",
+          "isCorrect": false
+        },
+        {
+          "text": "35%",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_025",
+      "content": "一个数增加 20% 后是 60，这个数是 ( )。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_n2_004"
+      ],
+      "options": [
+        {
+          "text": "50",
+          "isCorrect": true
+        },
+        {
+          "text": "55",
+          "isCorrect": false
+        },
+        {
+          "text": "48",
+          "isCorrect": false
+        },
+        {
+          "text": "52",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_026",
+      "content": "数与形结合：观察数列 2，4，6，8，... 第 n 个数是 ( )。",
+      "difficulty": 4,
+      "knowledgePoints": [
+        "g6_m1_001"
+      ],
+      "options": [
+        {
+          "text": "2n+1",
+          "isCorrect": false
+        },
+        {
+          "text": "n+2",
+          "isCorrect": false
+        },
+        {
+          "text": "n²",
+          "isCorrect": false
+        },
+        {
+          "text": "2n",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_027",
+      "content": "圆柱与圆锥体积的关系：等底等高时，圆柱体积是圆锥体积的 ( ) 倍。",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_g2_003",
+        "g6_g2_005"
+      ],
+      "options": [
+        {
+          "text": "1/3",
+          "isCorrect": false
+        },
+        {
+          "text": "1/2",
+          "isCorrect": false
+        },
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_028",
+      "content": "一种商品先提价 10%，再降价 10%，现价是原价的 ( )%。",
+      "difficulty": 4,
+      "knowledgePoints": [
+        "g6_n2_004"
+      ],
+      "options": [
+        {
+          "text": "110%",
+          "isCorrect": false
+        },
+        {
+          "text": "99%",
+          "isCorrect": true
+        },
+        {
+          "text": "100%",
+          "isCorrect": false
+        },
+        {
+          "text": "101%",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_029",
+      "content": "负数 -2/3 在数轴上位于原点的 ( ) 边。",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_n4_003"
+      ],
+      "options": [
+        {
+          "text": "原点",
+          "isCorrect": false
+        },
+        {
+          "text": "左",
+          "isCorrect": true
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        },
+        {
+          "text": "右",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    },
+    {
+      "id": "g6_m_q_030",
+      "content": "用 a 表示长方形的长，b 表示宽，周长公式是 ( )。",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_m1_002"
+      ],
+      "options": [
+        {
+          "text": "a+b",
+          "isCorrect": false
+        },
+        {
+          "text": "a×b",
+          "isCorrect": false
+        },
+        {
+          "text": "2a+b",
+          "isCorrect": false
+        },
+        {
+          "text": "2(a+b)",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "math",
+      "grade": 6
+    }
+  ]
+}

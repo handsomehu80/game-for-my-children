@@ -1,0 +1,546 @@
+{
+  "grade": 9,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g9_e_q_001",
+      "content": "The student _____ won the first prize is my best friend.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "which",
+          "isCorrect": false
+        },
+        {
+          "text": "whom",
+          "isCorrect": false
+        },
+        {
+          "text": "that",
+          "isCorrect": false
+        },
+        {
+          "text": "who",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_002",
+      "content": "I don't know _____ he will come tomorrow.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "that",
+          "isCorrect": true
+        },
+        {
+          "text": "who",
+          "isCorrect": false
+        },
+        {
+          "text": "if",
+          "isCorrect": false
+        },
+        {
+          "text": "what",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_003",
+      "content": "The book _____ I bought yesterday is very interesting.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "which",
+          "isCorrect": true
+        },
+        {
+          "text": "who",
+          "isCorrect": false
+        },
+        {
+          "text": "whose",
+          "isCorrect": false
+        },
+        {
+          "text": "whom",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_004",
+      "content": "The passive voice of \"They build the house\" is _____.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "The house is built by them",
+          "isCorrect": true
+        },
+        {
+          "text": "The house was build by them",
+          "isCorrect": false
+        },
+        {
+          "text": "The house were built by them",
+          "isCorrect": false
+        },
+        {
+          "text": "The house are built by them",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_005",
+      "content": "If I _____ you, I would accept the offer.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "am",
+          "isCorrect": false
+        },
+        {
+          "text": "be",
+          "isCorrect": false
+        },
+        {
+          "text": "was",
+          "isCorrect": false
+        },
+        {
+          "text": "were",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_006",
+      "content": "_____ the rain stops, we will go to the park.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "If",
+          "isCorrect": true
+        },
+        {
+          "text": "Although",
+          "isCorrect": false
+        },
+        {
+          "text": "When",
+          "isCorrect": false
+        },
+        {
+          "text": "Because",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_007",
+      "content": "The letter _____ yesterday was very important.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "sentting",
+          "isCorrect": false
+        },
+        {
+          "text": "was sent",
+          "isCorrect": true
+        },
+        {
+          "text": "sent",
+          "isCorrect": false
+        },
+        {
+          "text": "is sent",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_008",
+      "content": "I have a book _____ cover is blue.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "whose",
+          "isCorrect": true
+        },
+        {
+          "text": "who",
+          "isCorrect": false
+        },
+        {
+          "text": "that",
+          "isCorrect": false
+        },
+        {
+          "text": "which",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_009",
+      "content": "_____ beautiful day it is today!",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "How",
+          "isCorrect": false
+        },
+        {
+          "text": "What",
+          "isCorrect": false
+        },
+        {
+          "text": "How a",
+          "isCorrect": false
+        },
+        {
+          "text": "What a",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_010",
+      "content": "He asked me where I _____.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "will live",
+          "isCorrect": false
+        },
+        {
+          "text": "living",
+          "isCorrect": false
+        },
+        {
+          "text": "lived",
+          "isCorrect": true
+        },
+        {
+          "text": "live",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_011",
+      "content": "There _____ a meeting next Monday.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "is going to have",
+          "isCorrect": false
+        },
+        {
+          "text": "is going to be",
+          "isCorrect": true
+        },
+        {
+          "text": "will have",
+          "isCorrect": false
+        },
+        {
+          "text": "are going to be",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_012",
+      "content": "The teacher told us that the earth _____ round the sun.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "moves",
+          "isCorrect": true
+        },
+        {
+          "text": "move",
+          "isCorrect": false
+        },
+        {
+          "text": "moving",
+          "isCorrect": false
+        },
+        {
+          "text": "moved",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_013",
+      "content": "_____ he is poor, he is happy.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "When",
+          "isCorrect": false
+        },
+        {
+          "text": "If",
+          "isCorrect": false
+        },
+        {
+          "text": "Because",
+          "isCorrect": false
+        },
+        {
+          "text": "Although",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_014",
+      "content": "I can't find my keys. I _____ them at home.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "can leave",
+          "isCorrect": false
+        },
+        {
+          "text": "may leave",
+          "isCorrect": false
+        },
+        {
+          "text": "may have left",
+          "isCorrect": true
+        },
+        {
+          "text": "must leave",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_015",
+      "content": "The music _____ by the famous band is worth listening to.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "was played",
+          "isCorrect": false
+        },
+        {
+          "text": "is played",
+          "isCorrect": true
+        },
+        {
+          "text": "plays",
+          "isCorrect": false
+        },
+        {
+          "text": "played",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_016",
+      "content": "I don't know _____ to do next.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "what",
+          "isCorrect": false
+        },
+        {
+          "text": "how",
+          "isCorrect": false
+        },
+        {
+          "text": "which",
+          "isCorrect": true
+        },
+        {
+          "text": "that",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_017",
+      "content": "The scientist _____ research is famous is from China.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "who",
+          "isCorrect": false
+        },
+        {
+          "text": "which",
+          "isCorrect": false
+        },
+        {
+          "text": "that",
+          "isCorrect": false
+        },
+        {
+          "text": "whose",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_018",
+      "content": "Only in this way _____ succeed.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "could you",
+          "isCorrect": true
+        },
+        {
+          "text": "you could",
+          "isCorrect": false
+        },
+        {
+          "text": "can you",
+          "isCorrect": false
+        },
+        {
+          "text": "you can",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_019",
+      "content": "He suggested that we _____ the meeting.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "should hold",
+          "isCorrect": false
+        },
+        {
+          "text": "holding",
+          "isCorrect": false
+        },
+        {
+          "text": "hold",
+          "isCorrect": true
+        },
+        {
+          "text": "held",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_e_q_020",
+      "content": "The problem is difficult, _____ it is not impossible.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "however",
+          "isCorrect": false
+        },
+        {
+          "text": "but",
+          "isCorrect": false
+        },
+        {
+          "text": "although",
+          "isCorrect": true
+        },
+        {
+          "text": "because",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

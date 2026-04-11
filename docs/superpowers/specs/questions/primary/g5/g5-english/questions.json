@@ -1,0 +1,597 @@
+{
+  "grade": 5,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g5_e_q_001",
+      "content": "How do you usually go to school? I usually go ______ bus.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_001",
+        "g5_e1_001"
+      ],
+      "options": [
+        {
+          "text": "by",
+          "isCorrect": true
+        },
+        {
+          "text": "on",
+          "isCorrect": false
+        },
+        {
+          "text": "in",
+          "isCorrect": false
+        },
+        {
+          "text": "with",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_002",
+      "content": "What does your father do? He is an ______.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_002",
+        "g5_e1_003"
+      ],
+      "options": [
+        {
+          "text": "teacher",
+          "isCorrect": false
+        },
+        {
+          "text": "engineer",
+          "isCorrect": true
+        },
+        {
+          "text": "driver",
+          "isCorrect": false
+        },
+        {
+          "text": "doctor",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_003",
+      "content": "What's the weather like today? It's ______.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_003",
+        "g5_e1_005"
+      ],
+      "options": [
+        {
+          "text": "spring",
+          "isCorrect": false
+        },
+        {
+          "text": "summer",
+          "isCorrect": false
+        },
+        {
+          "text": "rainy",
+          "isCorrect": true
+        },
+        {
+          "text": "Monday",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_004",
+      "content": "Which season is the hottest? It is ______.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_004",
+        "g5_e1_006"
+      ],
+      "options": [
+        {
+          "text": "spring",
+          "isCorrect": false
+        },
+        {
+          "text": "summer",
+          "isCorrect": true
+        },
+        {
+          "text": "autumn",
+          "isCorrect": false
+        },
+        {
+          "text": "winter",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_005",
+      "content": "Tom is ______. His brother is short.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_003",
+        "g5_e1_008"
+      ],
+      "options": [
+        {
+          "text": "tall",
+          "isCorrect": true
+        },
+        {
+          "text": "taller",
+          "isCorrect": false
+        },
+        {
+          "text": "tallest",
+          "isCorrect": false
+        },
+        {
+          "text": "more tall",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_006",
+      "content": "There ______ a red car in front of the house.",
+      "type": "single",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_006"
+      ],
+      "options": [
+        {
+          "text": "is",
+          "isCorrect": true
+        },
+        {
+          "text": "are",
+          "isCorrect": false
+        },
+        {
+          "text": "was",
+          "isCorrect": false
+        },
+        {
+          "text": "be",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_007",
+      "content": "My mother ______ English every day.",
+      "type": "single",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_001"
+      ],
+      "options": [
+        {
+          "text": "teach",
+          "isCorrect": false
+        },
+        {
+          "text": "teaches",
+          "isCorrect": true
+        },
+        {
+          "text": "teaching",
+          "isCorrect": false
+        },
+        {
+          "text": "taught",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_008",
+      "content": "He ______ like sports. He likes reading.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_002"
+      ],
+      "options": [
+        {
+          "text": "doesn't",
+          "isCorrect": true
+        },
+        {
+          "text": "don't",
+          "isCorrect": false
+        },
+        {
+          "text": "isn't",
+          "isCorrect": false
+        },
+        {
+          "text": "aren't",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_009",
+      "content": "The weather in summer is ______ than in winter.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_005",
+        "g5_e1_008"
+      ],
+      "options": [
+        {
+          "text": "hot",
+          "isCorrect": false
+        },
+        {
+          "text": "hotter",
+          "isCorrect": true
+        },
+        {
+          "text": "hottest",
+          "isCorrect": false
+        },
+        {
+          "text": "more hot",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_010",
+      "content": "There is going to ______ a football match tomorrow.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_007"
+      ],
+      "options": [
+        {
+          "text": "is",
+          "isCorrect": false
+        },
+        {
+          "text": "be",
+          "isCorrect": true
+        },
+        {
+          "text": "have",
+          "isCorrect": false
+        },
+        {
+          "text": "has",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_011",
+      "content": "The yellow light means ______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e1_002"
+      ],
+      "options": [
+        {
+          "text": "stop",
+          "isCorrect": false
+        },
+        {
+          "text": "wait",
+          "isCorrect": true
+        },
+        {
+          "text": "go",
+          "isCorrect": false
+        },
+        {
+          "text": "run",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_012",
+      "content": "Who is the ______ in our class? Tom is.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_006",
+        "g5_e3_005"
+      ],
+      "options": [
+        {
+          "text": "tall",
+          "isCorrect": false
+        },
+        {
+          "text": "taller",
+          "isCorrect": false
+        },
+        {
+          "text": "tallest",
+          "isCorrect": true
+        },
+        {
+          "text": "most tall",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_013",
+      "content": "A pilot ______ planes. That's his job.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e1_004",
+        "g5_e3_001"
+      ],
+      "options": [
+        {
+          "text": "drives",
+          "isCorrect": false
+        },
+        {
+          "text": "builds",
+          "isCorrect": false
+        },
+        {
+          "text": "flies",
+          "isCorrect": true
+        },
+        {
+          "text": "teaches",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_014",
+      "content": "Good! There are many ______ in the sky today.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e1_005"
+      ],
+      "options": [
+        {
+          "text": "clouds",
+          "isCorrect": true
+        },
+        {
+          "text": "sunny",
+          "isCorrect": false
+        },
+        {
+          "text": "rainy",
+          "isCorrect": false
+        },
+        {
+          "text": "wind",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_015",
+      "content": "Jim is 10 years old. Tom is 8 years old. Tom is ______ than Jim.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e2_005",
+        "g3_e3_003"
+      ],
+      "options": [
+        {
+          "text": "taller",
+          "isCorrect": false
+        },
+        {
+          "text": "younger",
+          "isCorrect": true
+        },
+        {
+          "text": "older",
+          "isCorrect": false
+        },
+        {
+          "text": "shorter",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_016",
+      "content": "I can see five ______ on the table.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_006"
+      ],
+      "options": [
+        {
+          "text": "book",
+          "isCorrect": false
+        },
+        {
+          "text": "apple",
+          "isCorrect": false
+        },
+        {
+          "text": "apples",
+          "isCorrect": true
+        },
+        {
+          "text": "water",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_017",
+      "content": "The four seasons are spring, summer, autumn and ______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e1_006"
+      ],
+      "options": [
+        {
+          "text": "winter",
+          "isCorrect": true
+        },
+        {
+          "text": "Monday",
+          "isCorrect": false
+        },
+        {
+          "text": "January",
+          "isCorrect": false
+        },
+        {
+          "text": "cloudy",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_018",
+      "content": "The green light means ______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e1_002"
+      ],
+      "options": [
+        {
+          "text": "stop",
+          "isCorrect": false
+        },
+        {
+          "text": "wait",
+          "isCorrect": false
+        },
+        {
+          "text": "go",
+          "isCorrect": true
+        },
+        {
+          "text": "run",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_019",
+      "content": "My sister reads books every day. She ______ books every day.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e1_003",
+        "g5_e1_004",
+        "g5_e3_001"
+      ],
+      "options": [
+        {
+          "text": "write",
+          "isCorrect": false
+        },
+        {
+          "text": "writes",
+          "isCorrect": false
+        },
+        {
+          "text": "reading",
+          "isCorrect": false
+        },
+        {
+          "text": "reads",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_e_q_020",
+      "content": "There ______ some water in the glass.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_e3_006"
+      ],
+      "options": [
+        {
+          "text": "is",
+          "isCorrect": true
+        },
+        {
+          "text": "are",
+          "isCorrect": false
+        },
+        {
+          "text": "am",
+          "isCorrect": false
+        },
+        {
+          "text": "be",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

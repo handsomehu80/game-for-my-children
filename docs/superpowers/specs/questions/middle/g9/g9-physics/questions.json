@@ -1,0 +1,681 @@
+{
+  "grade": 9,
+  "subject": "p",
+  "questions": [
+    {
+      "id": "g9_p_q_001",
+      "content": "电压的单位是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "欧姆",
+          "isCorrect": false
+        },
+        {
+          "text": "瓦特",
+          "isCorrect": false
+        },
+        {
+          "text": "伏特",
+          "isCorrect": true
+        },
+        {
+          "text": "安培",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_002",
+      "content": "决定电阻大小的因素不包括（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "长度",
+          "isCorrect": false
+        },
+        {
+          "text": "横截面积",
+          "isCorrect": false
+        },
+        {
+          "text": "材料",
+          "isCorrect": false
+        },
+        {
+          "text": "电压",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_003",
+      "content": "欧姆定律的公式是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "以上都不是",
+          "isCorrect": false
+        },
+        {
+          "text": "R=U/I",
+          "isCorrect": false
+        },
+        {
+          "text": "I=U/R",
+          "isCorrect": true
+        },
+        {
+          "text": "U=IR",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_004",
+      "content": "电功率的国际单位是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "瓦特",
+          "isCorrect": true
+        },
+        {
+          "text": "伏特",
+          "isCorrect": false
+        },
+        {
+          "text": "焦耳",
+          "isCorrect": false
+        },
+        {
+          "text": "欧姆",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_005",
+      "content": "地球周围存在的磁场叫做（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "引力场",
+          "isCorrect": false
+        },
+        {
+          "text": "地磁场",
+          "isCorrect": true
+        },
+        {
+          "text": "电磁场",
+          "isCorrect": false
+        },
+        {
+          "text": "磁场",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_006",
+      "content": "电磁铁的优点是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "磁性不可控",
+          "isCorrect": false
+        },
+        {
+          "text": "永远有磁性",
+          "isCorrect": false
+        },
+        {
+          "text": "磁性可控",
+          "isCorrect": true
+        },
+        {
+          "text": "不需要电流",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_007",
+      "content": "发电机的工作原理是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "电流的磁效应",
+          "isCorrect": false
+        },
+        {
+          "text": "磁场对电流的作用",
+          "isCorrect": false
+        },
+        {
+          "text": "摩擦起电",
+          "isCorrect": false
+        },
+        {
+          "text": "电磁感应",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_008",
+      "content": "我国家庭电路的电压是（ ）伏。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "110",
+          "isCorrect": false
+        },
+        {
+          "text": "380",
+          "isCorrect": false
+        },
+        {
+          "text": "36",
+          "isCorrect": false
+        },
+        {
+          "text": "220",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_009",
+      "content": "电压表应该（ ）在被测电路中。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "串联",
+          "isCorrect": false
+        },
+        {
+          "text": "并联",
+          "isCorrect": true
+        },
+        {
+          "text": "混联",
+          "isCorrect": false
+        },
+        {
+          "text": "任意连接",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_010",
+      "content": "滑动变阻器的工作原理是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "改变电阻丝长度",
+          "isCorrect": true
+        },
+        {
+          "text": "改变温度",
+          "isCorrect": false
+        },
+        {
+          "text": "改变电阻丝横截面积",
+          "isCorrect": false
+        },
+        {
+          "text": "改变电阻丝材料",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_011",
+      "content": "串联电路中，总电阻（ ）各电阻之和。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "等于",
+          "isCorrect": true
+        },
+        {
+          "text": "小于",
+          "isCorrect": false
+        },
+        {
+          "text": "无关",
+          "isCorrect": false
+        },
+        {
+          "text": "大于",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_012",
+      "content": "伏安法测电阻的原理是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "欧姆定律",
+          "isCorrect": true
+        },
+        {
+          "text": "楞次定律",
+          "isCorrect": false
+        },
+        {
+          "text": "法拉第定律",
+          "isCorrect": false
+        },
+        {
+          "text": "焦耳定律",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_013",
+      "content": "额定功率与实际功率的关系，正确的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "实际功率一定小于额定功率",
+          "isCorrect": false
+        },
+        {
+          "text": "两者总相等",
+          "isCorrect": false
+        },
+        {
+          "text": "实际功率可能大于额定功率",
+          "isCorrect": true
+        },
+        {
+          "text": "额定功率与实际功率无关",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_014",
+      "content": "电能转化为内能的过程叫做（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "电阻做功",
+          "isCorrect": false
+        },
+        {
+          "text": "电压做功",
+          "isCorrect": false
+        },
+        {
+          "text": "电功率",
+          "isCorrect": false
+        },
+        {
+          "text": "电流做功",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_015",
+      "content": "电磁波在真空中的传播速度是（ ）m/s。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "3×10⁶",
+          "isCorrect": false
+        },
+        {
+          "text": "3×10⁵",
+          "isCorrect": false
+        },
+        {
+          "text": "3×10⁷",
+          "isCorrect": false
+        },
+        {
+          "text": "3×10⁸",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_016",
+      "content": "通电螺线管对外相当于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "磁体",
+          "isCorrect": true
+        },
+        {
+          "text": "电阻",
+          "isCorrect": false
+        },
+        {
+          "text": "电容",
+          "isCorrect": false
+        },
+        {
+          "text": "电源",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_017",
+      "content": "电磁感应现象是（ ）发现的。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "奥斯特",
+          "isCorrect": false
+        },
+        {
+          "text": "欧姆",
+          "isCorrect": false
+        },
+        {
+          "text": "安培",
+          "isCorrect": false
+        },
+        {
+          "text": "法拉第",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_018",
+      "content": "磁感线的方向是从（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "与方向无关",
+          "isCorrect": false
+        },
+        {
+          "text": "不确定",
+          "isCorrect": false
+        },
+        {
+          "text": "S极到N极",
+          "isCorrect": false
+        },
+        {
+          "text": "N极到S极",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_019",
+      "content": "电功的公式W=UIt，适用于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "只适用于纯电阻电路",
+          "isCorrect": false
+        },
+        {
+          "text": "只适用于直流电路",
+          "isCorrect": false
+        },
+        {
+          "text": "只适用于交流电路",
+          "isCorrect": false
+        },
+        {
+          "text": "任何电路",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_020",
+      "content": "有两个电阻R1=2Ω，R2=3Ω，串联后的总电阻是（ ）Ω。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "2.5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_021",
+      "content": "电磁波的产生条件是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "没有电流",
+          "isCorrect": false
+        },
+        {
+          "text": "恒定电流",
+          "isCorrect": false
+        },
+        {
+          "text": "变化的电流",
+          "isCorrect": true
+        },
+        {
+          "text": "短路",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_022",
+      "content": "家庭电路中，用电器工作时电流做功，消耗的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "机械能",
+          "isCorrect": false
+        },
+        {
+          "text": "化学能",
+          "isCorrect": false
+        },
+        {
+          "text": "电能",
+          "isCorrect": true
+        },
+        {
+          "text": "核能",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_023",
+      "content": "电磁继电器的工作电压（ ）控制电压。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "高于",
+          "isCorrect": true
+        },
+        {
+          "text": "无关",
+          "isCorrect": false
+        },
+        {
+          "text": "低于",
+          "isCorrect": false
+        },
+        {
+          "text": "等于",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_024",
+      "content": "并联电路中，各支路两端电压（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "不相等",
+          "isCorrect": false
+        },
+        {
+          "text": "大于总电压",
+          "isCorrect": false
+        },
+        {
+          "text": "之和等于总电压",
+          "isCorrect": false
+        },
+        {
+          "text": "相等",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_p_q_025",
+      "content": "关于电热的计算，焦耳定律的表达式是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "p",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "Q=I²Rt",
+          "isCorrect": true
+        },
+        {
+          "text": "Q=UIt",
+          "isCorrect": false
+        },
+        {
+          "text": "Q=W",
+          "isCorrect": false
+        },
+        {
+          "text": "Q=Pt",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

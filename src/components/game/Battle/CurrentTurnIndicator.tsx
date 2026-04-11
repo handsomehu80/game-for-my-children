@@ -1,5 +1,4 @@
-import React from 'react'
-import type { BattlePlayer } from '../../game/types'
+import type { BattlePlayer } from '../../../game/types'
 
 interface CurrentTurnIndicatorProps {
   player: BattlePlayer

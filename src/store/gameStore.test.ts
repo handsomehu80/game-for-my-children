@@ -18,7 +18,7 @@ describe('Game Store', () => {
 
   it('should start game with players', () => {
     const { dispatch } = useGameStore.getState()
-    const players = [{ id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }]
+    const players = [{ id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }]
 
     dispatch({ type: 'START_GAME', players })
 
@@ -29,7 +29,7 @@ describe('Game Store', () => {
 
   it('should reduce monster HP on correct answer', () => {
     const { dispatch } = useGameStore.getState()
-    const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+    const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }
     const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
     const question = {
       id: 'q1',
@@ -45,7 +45,7 @@ describe('Game Store', () => {
     }
 
     dispatch({ type: 'START_GAME', players: [player] })
-    dispatch({ type: 'START_BATTLE', monster, question })
+    dispatch({ type: 'START_BATTLE', monster, question, players: [{ id: 'p1', name: 'Test', grade: 1 }] })
     dispatch({ type: 'ANSWER_QUESTION', answerIndex: 1 }) // correct answer
 
     const state = useGameStore.getState()
@@ -54,7 +54,7 @@ describe('Game Store', () => {
 
   it('should reduce player HP on wrong answer', () => {
     const { dispatch } = useGameStore.getState()
-    const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+    const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }
     const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
     const question = {
       id: 'q1',
@@ -70,18 +70,18 @@ describe('Game Store', () => {
     }
 
     dispatch({ type: 'START_GAME', players: [player] })
-    dispatch({ type: 'START_BATTLE', monster, question })
+    dispatch({ type: 'START_BATTLE', monster, question, players: [{ id: 'p1', name: 'Test', grade: 1 }] })
     dispatch({ type: 'ANSWER_QUESTION', answerIndex: 0 }) // wrong answer
 
     const state = useGameStore.getState()
-    expect(state.battle?.player.hp).toBe(90) // 100 - 10
+    expect(state.battle?.teamHP).toBe(90) // 100 - 10
     expect(state.battle?.comboCount).toBe(0) // combo reset
   })
 
   describe('ANSWER_QUESTION boundary', () => {
     it('should handle out-of-bounds answerIndex (100)', () => {
       const { dispatch } = useGameStore.getState()
-      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }
       const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
       const question = {
         id: 'q1',
@@ -97,19 +97,19 @@ describe('Game Store', () => {
       }
 
       dispatch({ type: 'START_GAME', players: [player] })
-      dispatch({ type: 'START_BATTLE', monster, question })
+      dispatch({ type: 'START_BATTLE', monster, question, players: [{ id: 'p1', name: 'Test', grade: 1 }] })
       // answerIndex 100 is out of bounds (only 3 options: 0, 1, 2)
       dispatch({ type: 'ANSWER_QUESTION', answerIndex: 100 })
 
       const state = useGameStore.getState()
-      // Should treat as wrong answer, reduce player HP
-      expect(state.battle?.player.hp).toBe(90)
+      // Should treat as wrong answer, reduce team HP
+      expect(state.battle?.teamHP).toBe(90)
       expect(state.battle?.comboCount).toBe(0)
     })
 
     it('should handle negative answerIndex (-1)', () => {
       const { dispatch } = useGameStore.getState()
-      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }
       const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
       const question = {
         id: 'q1',
@@ -125,13 +125,13 @@ describe('Game Store', () => {
       }
 
       dispatch({ type: 'START_GAME', players: [player] })
-      dispatch({ type: 'START_BATTLE', monster, question })
+      dispatch({ type: 'START_BATTLE', monster, question, players: [{ id: 'p1', name: 'Test', grade: 1 }] })
       // answerIndex -1 is negative (invalid)
       dispatch({ type: 'ANSWER_QUESTION', answerIndex: -1 })
 
       const state = useGameStore.getState()
-      // Should treat as wrong answer, reduce player HP
-      expect(state.battle?.player.hp).toBe(90)
+      // Should treat as wrong answer, reduce team HP
+      expect(state.battle?.teamHP).toBe(90)
       expect(state.battle?.comboCount).toBe(0)
     })
 
@@ -147,7 +147,7 @@ describe('Game Store', () => {
 
     it('should handle question with undefined options', () => {
       const { dispatch } = useGameStore.getState()
-      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }
       const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
       const question = {
         id: 'q1',
@@ -159,20 +159,20 @@ describe('Game Store', () => {
       }
 
       dispatch({ type: 'START_GAME', players: [player] })
-      dispatch({ type: 'START_BATTLE', monster, question })
+      dispatch({ type: 'START_BATTLE', monster, question, players: [{ id: 'p1', name: 'Test', grade: 1 }] })
       const stateBefore = useGameStore.getState()
       expect(stateBefore.battle?.currentQuestion?.options).toBeUndefined()
 
-      // Try to answer - should gracefully handle
+      // Try to answer - should gracefully handle (returns early due to undefined options)
       dispatch({ type: 'ANSWER_QUESTION', answerIndex: 0 })
       const stateAfter = useGameStore.getState()
-      // State should remain unchanged
-      expect(stateAfter.battle?.player.hp).toBe(100)
+      // State should remain unchanged since options is undefined
+      expect(stateAfter.battle?.teamHP).toBe(100)
     })
 
     it('should handle question with empty options', () => {
       const { dispatch } = useGameStore.getState()
-      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0 }
+      const player = { id: 'p1', name: 'Test', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }
       const monster = { id: 'm1', name: 'Slime', hp: 50, maxHp: 50, sprite: 'slime.png' }
       const question = {
         id: 'q1',
@@ -184,13 +184,13 @@ describe('Game Store', () => {
       }
 
       dispatch({ type: 'START_GAME', players: [player] })
-      dispatch({ type: 'START_BATTLE', monster, question })
+      dispatch({ type: 'START_BATTLE', monster, question, players: [{ id: 'p1', name: 'Test', grade: 1 }] })
 
-      // Try to answer - should gracefully handle
+      // Try to answer - should gracefully handle (returns early due to empty options)
       dispatch({ type: 'ANSWER_QUESTION', answerIndex: 0 })
       const state = useGameStore.getState()
       // State should remain unchanged since options is empty
-      expect(state.battle?.player.hp).toBe(100)
+      expect(state.battle?.teamHP).toBe(100)
     })
   })
 

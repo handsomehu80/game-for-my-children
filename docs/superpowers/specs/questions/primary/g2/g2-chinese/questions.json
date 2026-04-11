@@ -1,0 +1,381 @@
+{
+  "grade": 2,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g2_c_q_001",
+      "content": "下列词语中，两个字读音相同的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_002"],
+      "options": [
+        { "text": "山水", "isCorrect": false },
+        { "text": "大小", "isCorrect": true },
+        { "text": "人口", "isCorrect": false },
+        { "text": "天地", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_002",
+      "content": "\"学习\"的近义词是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_004"],
+      "options": [
+        { "text": "练习", "isCorrect": false },
+        { "text": "游戏", "isCorrect": false },
+        { "text": "运动", "isCorrect": false },
+        { "text": "读书", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_c_q_003",
+      "content": "句子末尾应该用句号的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c2_004"],
+      "options": [
+        { "text": "多么美丽的天空啊", "isCorrect": false },
+        { "text": "你怎么啦", "isCorrect": false },
+        { "text": "今天天气真好呀", "isCorrect": true },
+        { "text": "这是真的吗", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_004",
+      "content": "看图写话：图上有什么？（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c3_001"],
+      "options": [
+        { "text": "一个小朋友在踢足球", "isCorrect": false },
+        { "text": "一个小朋友在骑自行车", "isCorrect": false },
+        { "text": "一个小朋友在跑步", "isCorrect": false },
+        { "text": "一个小朋友在游泳", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_c_q_005",
+      "content": "背诵《春晓》，诗的第一句是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c4_001"],
+      "options": [
+        { "text": "花落知多少", "isCorrect": false },
+        { "text": "春眠不觉晓", "isCorrect": true },
+        { "text": "处处闻啼鸟", "isCorrect": false },
+        { "text": "夜来风雨声", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_006",
+      "content": "选词填空：（ ）快地跑。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_007"],
+      "options": [
+        { "text": "飞快", "isCorrect": true },
+        { "text": "很", "isCorrect": false },
+        { "text": "非常", "isCorrect": false },
+        { "text": "慢慢", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_007",
+      "content": "一（ ）苹果。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_008"],
+      "options": [
+        { "text": "颗", "isCorrect": false },
+        { "text": "条", "isCorrect": false },
+        { "text": "只", "isCorrect": false },
+        { "text": "个", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_c_q_008",
+      "content": "下列词语中，意思相反的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_005"],
+      "options": [
+        { "text": "高-大", "isCorrect": false },
+        { "text": "红-绿", "isCorrect": false },
+        { "text": "左-前", "isCorrect": false },
+        { "text": "长-短", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_c_q_009",
+      "content": "\"看\"字用部首查字法应查（ ）部。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_001"],
+      "options": [
+        { "text": "目", "isCorrect": true },
+        { "text": "手", "isCorrect": false },
+        { "text": "口", "isCorrect": false },
+        { "text": "十", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_010",
+      "content": "照样子写句子：例句是\"小鱼在水里游。\"，模仿句子是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c3_004"],
+      "options": [
+        { "text": "小鸟", "isCorrect": false },
+        { "text": "飞小鸟在树上", "isCorrect": false },
+        { "text": "小鸟在树上", "isCorrect": false },
+        { "text": "小鸟在树上飞", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_c_q_011",
+      "content": "多音字\"长\"的读音和意思，正确的一项是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_003"],
+      "options": [
+        { "text": "zhǎng（长大）", "isCorrect": false },
+        { "text": "cáng（收藏）", "isCorrect": false },
+        { "text": "cháng（很长）", "isCorrect": true },
+        { "text": "zhàng（长大）", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_012",
+      "content": "课文《黄山奇石》的中心句是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c2_001"],
+      "options": [
+        { "text": "猴子观海", "isCorrect": false },
+        { "text": "黄山风景区景色优美", "isCorrect": true },
+        { "text": "仙人指路", "isCorrect": false },
+        { "text": "金鸡叫天都", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_013",
+      "content": "\"温暖\"的近义词是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_004"],
+      "options": [
+        { "text": "暖和", "isCorrect": true },
+        { "text": "炎热", "isCorrect": false },
+        { "text": "凉爽", "isCorrect": false },
+        { "text": "寒冷", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_014",
+      "content": "句子中应填什么词：同学们（ ）教室里读书。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_006"],
+      "options": [
+        { "text": "在", "isCorrect": true },
+        { "text": "对", "isCorrect": false },
+        { "text": "和", "isCorrect": false },
+        { "text": "很", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_015",
+      "content": "选择正确的量词：一（ ）房子。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_008"],
+      "options": [
+        { "text": "个", "isCorrect": false },
+        { "text": "座", "isCorrect": true },
+        { "text": "条", "isCorrect": false },
+        { "text": "张", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_016",
+      "content": "《所见》这首诗中，牧童在干什么？（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c4_002"],
+      "options": [
+        { "text": "放牛", "isCorrect": false },
+        { "text": "骑牛", "isCorrect": false },
+        { "text": "捕蝉", "isCorrect": true },
+        { "text": "钓鱼", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_017",
+      "content": "形近字辨析：\"晴\"和\"睛\"的不同是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_001"],
+      "options": [
+        { "text": "偏旁不同", "isCorrect": true },
+        { "text": "笔画不同", "isCorrect": false },
+        { "text": "结构不同", "isCorrect": false },
+        { "text": "读音不同", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_018",
+      "content": "句子结尾应该用问号的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c2_005"],
+      "options": [
+        { "text": "天要下雨了", "isCorrect": false },
+        { "text": "你叫什么名字", "isCorrect": true },
+        { "text": "我很高兴", "isCorrect": false },
+        { "text": "春天来了", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_019",
+      "content": "把句子写具体：\"小鱼游。\"应该写成（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c3_005"],
+      "options": [
+        { "text": "小鱼游来游去", "isCorrect": false },
+        { "text": "小鱼在河里游", "isCorrect": true },
+        { "text": "小鱼游走了", "isCorrect": false },
+        { "text": "河里有小鱼", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_020",
+      "content": "体会词语感情：\"兴奋\"在句子\"小明兴奋地跳了起来。\"中的感情是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c2_003"],
+      "options": [
+        { "text": "高兴", "isCorrect": true },
+        { "text": "难过", "isCorrect": false },
+        { "text": "害怕", "isCorrect": false },
+        { "text": "生气", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_021",
+      "content": "句子中应该用什么标点：\"这里的风景真美啊（ ）\"",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c2_006"],
+      "options": [
+        { "text": "！", "isCorrect": true },
+        { "text": "。", "isCorrect": false },
+        { "text": "？", "isCorrect": false },
+        { "text": "，", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_022",
+      "content": "理解课文《小蝌蚪找妈妈》主要内容：小蝌蚪找到了（ ）做妈妈。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c2_002"],
+      "options": [
+        { "text": "乌龟", "isCorrect": false },
+        { "text": "青蛙", "isCorrect": true },
+        { "text": "鲤鱼", "isCorrect": false },
+        { "text": "鸭子", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_023",
+      "content": "多音字\"行\"的读音：\"行人\"中读（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c1_003"],
+      "options": [
+        { "text": "háng", "isCorrect": false },
+        { "text": "xíng", "isCorrect": true },
+        { "text": "xìng", "isCorrect": false },
+        { "text": "héng", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_024",
+      "content": "看图写话排序：下面哪个顺序是正确的？（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c3_002"],
+      "options": [
+        { "text": "浇水→开花→种花→发芽", "isCorrect": false },
+        { "text": "开花→种花→浇水→发芽", "isCorrect": false },
+        { "text": "种花→发芽→浇水→开花", "isCorrect": true },
+        { "text": "发芽→种花→开花→浇水", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_c_q_025",
+      "content": "《小池》描写的是哪个季节的景色？（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 2,
+      "knowledgePoints": ["g2_c4_003", "g2_c4_004"],
+      "options": [
+        { "text": "夏天", "isCorrect": false },
+        { "text": "秋天", "isCorrect": false },
+        { "text": "春天", "isCorrect": true },
+        { "text": "冬天", "isCorrect": false }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,876 @@
+{
+  "grade": 5,
+  "subject": "math",
+  "questions": [
+    {
+      "id": "g5_m_q_001",
+      "content": "0.5表示（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_001"
+      ],
+      "options": [
+        {
+          "text": "五分之一",
+          "isCorrect": false
+        },
+        {
+          "text": "十分之五",
+          "isCorrect": true
+        },
+        {
+          "text": "一百分之五",
+          "isCorrect": false
+        },
+        {
+          "text": "千分之五",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_002",
+      "content": "比较0.78和0.87的大小，正确的结果是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_002"
+      ],
+      "options": [
+        {
+          "text": "0.78 > 0.87",
+          "isCorrect": false
+        },
+        {
+          "text": "0.78 = 0.87",
+          "isCorrect": false
+        },
+        {
+          "text": "0.78 < 0.87",
+          "isCorrect": true
+        },
+        {
+          "text": "无法比较",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_003",
+      "content": "3.256的小数点向右移动两位后是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_004"
+      ],
+      "options": [
+        {
+          "text": "32.56",
+          "isCorrect": false
+        },
+        {
+          "text": "325.6",
+          "isCorrect": true
+        },
+        {
+          "text": "0.03256",
+          "isCorrect": false
+        },
+        {
+          "text": "0.3256",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_004",
+      "content": "一个平行四边形的底是8厘米，高是5厘米，它的面积是（ ）平方厘米。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g1_001"
+      ],
+      "options": [
+        {
+          "text": "40",
+          "isCorrect": true
+        },
+        {
+          "text": "26",
+          "isCorrect": false
+        },
+        {
+          "text": "13",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_005",
+      "content": "一个三角形的底是6厘米，高是4厘米，它的面积是（ ）平方厘米。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g1_002"
+      ],
+      "options": [
+        {
+          "text": "24",
+          "isCorrect": false
+        },
+        {
+          "text": "12",
+          "isCorrect": true
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "48",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_006",
+      "content": "一个梯形的上底是3厘米，下底是7厘米，高是4厘米，面积为（ ）平方厘米。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g1_003"
+      ],
+      "options": [
+        {
+          "text": "40",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "14",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_007",
+      "content": "8的因数有（ ）个。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n3_001"
+      ],
+      "options": [
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_008",
+      "content": "一个数既是3的倍数又是5的倍数，这个数最小是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n3_006"
+      ],
+      "options": [
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "15",
+          "isCorrect": true
+        },
+        {
+          "text": "30",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_009",
+      "content": "用字母表示\"a的3倍加5\"，正确的结果是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n4_001"
+      ],
+      "options": [
+        {
+          "text": "3a + 5",
+          "isCorrect": false
+        },
+        {
+          "text": "a3 + 5",
+          "isCorrect": false
+        },
+        {
+          "text": "3 + a5",
+          "isCorrect": false
+        },
+        {
+          "text": "5 + 3a",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_010",
+      "content": "解方程x - 6 = 14，x的值是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n4_002"
+      ],
+      "options": [
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "text": "14",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_011",
+      "content": "0.78 + 0.22 =（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_005"
+      ],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "0.90",
+          "isCorrect": false
+        },
+        {
+          "text": "0.100",
+          "isCorrect": true
+        },
+        {
+          "text": "1.00",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_012",
+      "content": "2.5 × 4 =（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_005"
+      ],
+      "options": [
+        {
+          "text": "10",
+          "isCorrect": true
+        },
+        {
+          "text": "8.5",
+          "isCorrect": false
+        },
+        {
+          "text": "6.5",
+          "isCorrect": false
+        },
+        {
+          "text": "100",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_013",
+      "content": "2.5 ÷ 0.5 =（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_006"
+      ],
+      "options": [
+        {
+          "text": "0.5",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": true
+        },
+        {
+          "text": "0.2",
+          "isCorrect": false
+        },
+        {
+          "text": "0.125",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_014",
+      "content": "12和18的最大公因数是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n3_005"
+      ],
+      "options": [
+        {
+          "text": "2",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": true
+        },
+        {
+          "text": "36",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_015",
+      "content": "下列分数中，最接近1的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n2_004"
+      ],
+      "options": [
+        {
+          "text": "四分之三",
+          "isCorrect": false
+        },
+        {
+          "text": "八分之七",
+          "isCorrect": true
+        },
+        {
+          "text": "二分之一",
+          "isCorrect": false
+        },
+        {
+          "text": "三分之二",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_016",
+      "content": "3/4 + 1/4 =（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n2_004"
+      ],
+      "options": [
+        {
+          "text": "4/8",
+          "isCorrect": false
+        },
+        {
+          "text": "1",
+          "isCorrect": true
+        },
+        {
+          "text": "4/4",
+          "isCorrect": false
+        },
+        {
+          "text": "1/2",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_017",
+      "content": "一个正方体的棱长是3厘米，它的表面积是（ ）平方厘米。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g2_002"
+      ],
+      "options": [
+        {
+          "text": "27",
+          "isCorrect": false
+        },
+        {
+          "text": "54",
+          "isCorrect": false
+        },
+        {
+          "text": "81",
+          "isCorrect": true
+        },
+        {
+          "text": "18",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_018",
+      "content": "一个长方体的长、宽、高分别是5厘米、4厘米、3厘米，它的体积是（ ）立方厘米。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g2_003"
+      ],
+      "options": [
+        {
+          "text": "60",
+          "isCorrect": true
+        },
+        {
+          "text": "47",
+          "isCorrect": false
+        },
+        {
+          "text": "12",
+          "isCorrect": false
+        },
+        {
+          "text": "94",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_019",
+      "content": "既是质数又是偶数的数是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n3_003"
+      ],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_020",
+      "content": "盒子里有5个红球和3个黄球，任意摸一个球，摸到红球的可能性是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_s2_001"
+      ],
+      "options": [
+        {
+          "text": "八分之三",
+          "isCorrect": false
+        },
+        {
+          "text": "八分之五",
+          "isCorrect": true
+        },
+        {
+          "text": "五分之三",
+          "isCorrect": false
+        },
+        {
+          "text": "二分之一",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_021",
+      "content": "鸡兔同笼问题：共有8个头，26只脚，鸡有（ ）只。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_m1_001"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_022",
+      "content": "下列哪个数是3的倍数？（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n3_002"
+      ],
+      "options": [
+        {
+          "text": "17",
+          "isCorrect": false
+        },
+        {
+          "text": "23",
+          "isCorrect": false
+        },
+        {
+          "text": "45",
+          "isCorrect": true
+        },
+        {
+          "text": "58",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_023",
+      "content": "0.125化为分数是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n1_007"
+      ],
+      "options": [
+        {
+          "text": "八分之一",
+          "isCorrect": true
+        },
+        {
+          "text": "四分之一",
+          "isCorrect": false
+        },
+        {
+          "text": "二分之一",
+          "isCorrect": false
+        },
+        {
+          "text": "八分之二",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_024",
+      "content": "把3/5化为小数是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n2_001"
+      ],
+      "options": [
+        {
+          "text": "0.6",
+          "isCorrect": true
+        },
+        {
+          "text": "0.5",
+          "isCorrect": false
+        },
+        {
+          "text": "0.3",
+          "isCorrect": false
+        },
+        {
+          "text": "0.8",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_025",
+      "content": "一本故事书，小明第一天看了全书的1/4，第二天看了剩下的1/3，还剩全书的（ ）没看。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n2_007"
+      ],
+      "options": [
+        {
+          "text": "二分之一",
+          "isCorrect": false
+        },
+        {
+          "text": "三分之一",
+          "isCorrect": false
+        },
+        {
+          "text": "四分之一",
+          "isCorrect": true
+        },
+        {
+          "text": "三分之二",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_026",
+      "content": "某班级男生有20人，女生比男生少1/5，女生有（ ）人。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_n2_007"
+      ],
+      "options": [
+        {
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "text": "24",
+          "isCorrect": false
+        },
+        {
+          "text": "25",
+          "isCorrect": false
+        },
+        {
+          "text": "16",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_027",
+      "content": "一个长方形的长是8米，宽是5米，它的周长是（ ）米。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g1_001"
+      ],
+      "options": [
+        {
+          "text": "26",
+          "isCorrect": true
+        },
+        {
+          "text": "40",
+          "isCorrect": false
+        },
+        {
+          "text": "13",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_028",
+      "content": "找规律：2，5，11，23，（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_m1_003"
+      ],
+      "options": [
+        {
+          "text": "45",
+          "isCorrect": false
+        },
+        {
+          "text": "46",
+          "isCorrect": true
+        },
+        {
+          "text": "47",
+          "isCorrect": false
+        },
+        {
+          "text": "48",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_029",
+      "content": "1升=（ ）毫升。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_g2_004"
+      ],
+      "options": [
+        {
+          "text": "100",
+          "isCorrect": false
+        },
+        {
+          "text": "1000",
+          "isCorrect": true
+        },
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "10000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_m_q_030",
+      "content": "用乘法计算1+2+3+4+5+6+7+8+9，10×9÷2=45，这里运用了（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_m1_004"
+      ],
+      "options": [
+        {
+          "text": "加法结合律",
+          "isCorrect": false
+        },
+        {
+          "text": "乘法交换律",
+          "isCorrect": false
+        },
+        {
+          "text": "等差数列求和",
+          "isCorrect": true
+        },
+        {
+          "text": "乘法分配律",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

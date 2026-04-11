@@ -1,0 +1,816 @@
+{
+  "grade": 9,
+  "subject": "n",
+  "questions": [
+    {
+      "id": "g9_n_q_001",
+      "content": "二次函数y=x²的图像开口方向是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "向下",
+          "isCorrect": false
+        },
+        {
+          "text": "向左",
+          "isCorrect": false
+        },
+        {
+          "text": "向右",
+          "isCorrect": false
+        },
+        {
+          "text": "向上",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_002",
+      "content": "二次函数y=ax²+bx+c中，a>0时，图像开口向（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "右",
+          "isCorrect": false
+        },
+        {
+          "text": "下",
+          "isCorrect": false
+        },
+        {
+          "text": "上",
+          "isCorrect": true
+        },
+        {
+          "text": "左",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_003",
+      "content": "圆心到直线的距离等于半径时，直线与圆的位置关系是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "相离",
+          "isCorrect": false
+        },
+        {
+          "text": "相切",
+          "isCorrect": true
+        },
+        {
+          "text": "相交",
+          "isCorrect": false
+        },
+        {
+          "text": "内含",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_004",
+      "content": "相似三角形的对应边成比例，它们的对应角（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "相等",
+          "isCorrect": true
+        },
+        {
+          "text": "互补",
+          "isCorrect": false
+        },
+        {
+          "text": "没有关系",
+          "isCorrect": false
+        },
+        {
+          "text": "互余",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_005",
+      "content": "sin30°的值是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "√2/2",
+          "isCorrect": false
+        },
+        {
+          "text": "√3/2",
+          "isCorrect": false
+        },
+        {
+          "text": "1/2",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_006",
+      "content": "垂直于弦的直径（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "垂直于弦",
+          "isCorrect": true
+        },
+        {
+          "text": "以上都不对",
+          "isCorrect": false
+        },
+        {
+          "text": "平分弦",
+          "isCorrect": false
+        },
+        {
+          "text": "平行于弦",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_007",
+      "content": "二次函数y=2x²的顶点坐标是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "(1,1)",
+          "isCorrect": false
+        },
+        {
+          "text": "(0,0)",
+          "isCorrect": true
+        },
+        {
+          "text": "(1,0)",
+          "isCorrect": false
+        },
+        {
+          "text": "(0,1)",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_008",
+      "content": "在同圆中，圆心角相等，所对的弧（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "相等",
+          "isCorrect": true
+        },
+        {
+          "text": "互补",
+          "isCorrect": false
+        },
+        {
+          "text": "互余",
+          "isCorrect": false
+        },
+        {
+          "text": "没有关系",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_009",
+      "content": "tan45°的值是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "√3",
+          "isCorrect": false
+        },
+        {
+          "text": "∞",
+          "isCorrect": false
+        },
+        {
+          "text": "1",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_010",
+      "content": "平行线分线段成比例定理适用于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "任意三角形",
+          "isCorrect": true
+        },
+        {
+          "text": "等腰三角形",
+          "isCorrect": false
+        },
+        {
+          "text": "相似三角形",
+          "isCorrect": false
+        },
+        {
+          "text": "直角三角形",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_011",
+      "content": "圆锥的底面半径为r，母线长为l，则侧面积是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "πr²l",
+          "isCorrect": false
+        },
+        {
+          "text": "πrl",
+          "isCorrect": true
+        },
+        {
+          "text": "πr²",
+          "isCorrect": false
+        },
+        {
+          "text": "2πrl",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_012",
+      "content": "二次函数与x轴没有交点时，判别式Δ（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "<0",
+          "isCorrect": true
+        },
+        {
+          "text": "=0",
+          "isCorrect": false
+        },
+        {
+          "text": ">0",
+          "isCorrect": false
+        },
+        {
+          "text": "≥0",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_013",
+      "content": "正多边形的外角和是（ ）度。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "180",
+          "isCorrect": false
+        },
+        {
+          "text": "540",
+          "isCorrect": false
+        },
+        {
+          "text": "720",
+          "isCorrect": false
+        },
+        {
+          "text": "360",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_014",
+      "content": "相似三角形判定定理不包括（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "两边成比例且夹角相等",
+          "isCorrect": true
+        },
+        {
+          "text": "两角相等",
+          "isCorrect": false
+        },
+        {
+          "text": "三边相等",
+          "isCorrect": false
+        },
+        {
+          "text": "三边成比例",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_015",
+      "content": "半径为R的圆，周长是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "2πR²",
+          "isCorrect": false
+        },
+        {
+          "text": "2πR",
+          "isCorrect": true
+        },
+        {
+          "text": "πR",
+          "isCorrect": false
+        },
+        {
+          "text": "πR²",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_016",
+      "content": "二次函数y=(x-1)²+2的顶点坐标是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "(1,2)",
+          "isCorrect": true
+        },
+        {
+          "text": "(-1,-2)",
+          "isCorrect": false
+        },
+        {
+          "text": "(1,-2)",
+          "isCorrect": false
+        },
+        {
+          "text": "(-1,2)",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_017",
+      "content": "圆周角定理：同弧所对的圆周角（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "互补",
+          "isCorrect": false
+        },
+        {
+          "text": "是圆心角的一半",
+          "isCorrect": false
+        },
+        {
+          "text": "互余",
+          "isCorrect": false
+        },
+        {
+          "text": "相等",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_018",
+      "content": "cos60°的值是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "√3/2",
+          "isCorrect": false
+        },
+        {
+          "text": "1/2",
+          "isCorrect": true
+        },
+        {
+          "text": "√3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_019",
+      "content": "点与圆的位置关系取决于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "点的坐标",
+          "isCorrect": false
+        },
+        {
+          "text": "点到圆心的距离与半径的比较",
+          "isCorrect": true
+        },
+        {
+          "text": "圆的形状",
+          "isCorrect": false
+        },
+        {
+          "text": "圆的大小",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_020",
+      "content": "弧长公式适用于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "圆心角所对的弧",
+          "isCorrect": false
+        },
+        {
+          "text": "椭圆弧",
+          "isCorrect": false
+        },
+        {
+          "text": "半圆",
+          "isCorrect": true
+        },
+        {
+          "text": "任何弧",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_021",
+      "content": "二次函数应用题中求最大值的方法是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "直接开平方法",
+          "isCorrect": false
+        },
+        {
+          "text": "因式分解法",
+          "isCorrect": false
+        },
+        {
+          "text": "公式法",
+          "isCorrect": false
+        },
+        {
+          "text": "配方法",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_022",
+      "content": "扇形面积公式是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "S=lr",
+          "isCorrect": true
+        },
+        {
+          "text": "S=πr²",
+          "isCorrect": false
+        },
+        {
+          "text": "S=nπr²/360",
+          "isCorrect": false
+        },
+        {
+          "text": "S=2πr",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_023",
+      "content": "解直角三角形需要已知（ ）个条件。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_024",
+      "content": "两圆相切时，圆心距（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "等于两半径之和",
+          "isCorrect": false
+        },
+        {
+          "text": "大于两半径之和",
+          "isCorrect": false
+        },
+        {
+          "text": "等于两半径之差",
+          "isCorrect": true
+        },
+        {
+          "text": "小于两半径之差",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_025",
+      "content": "三角函数中，正弦函数的自变量是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "边长",
+          "isCorrect": false
+        },
+        {
+          "text": "面积",
+          "isCorrect": false
+        },
+        {
+          "text": "周长",
+          "isCorrect": false
+        },
+        {
+          "text": "角度",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_026",
+      "content": "相似三角形面积比等于相似比的（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "平方根",
+          "isCorrect": true
+        },
+        {
+          "text": "倒数",
+          "isCorrect": false
+        },
+        {
+          "text": "平方",
+          "isCorrect": false
+        },
+        {
+          "text": "立方",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_027",
+      "content": "二次函数y=ax²+bx+c的图像与y轴的交点坐标是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "(0,a)",
+          "isCorrect": false
+        },
+        {
+          "text": "(0,c)",
+          "isCorrect": true
+        },
+        {
+          "text": "(0,b)",
+          "isCorrect": false
+        },
+        {
+          "text": "(c,0)",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_028",
+      "content": "切线的性质：切线垂直于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "半径",
+          "isCorrect": false
+        },
+        {
+          "text": "弦",
+          "isCorrect": false
+        },
+        {
+          "text": "弧",
+          "isCorrect": true
+        },
+        {
+          "text": "直径",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_029",
+      "content": "已知二次函数的对称轴为x=1，且经过原点，则函数表达式可能是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "y=x²+1",
+          "isCorrect": false
+        },
+        {
+          "text": "y=(x+1)²",
+          "isCorrect": false
+        },
+        {
+          "text": "y=(x-1)²",
+          "isCorrect": false
+        },
+        {
+          "text": "y=x(x-2)",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_n_q_030",
+      "content": "三角函数的应用主要体现在（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "n",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "坐标变换",
+          "isCorrect": true
+        },
+        {
+          "text": "函数图像",
+          "isCorrect": false
+        },
+        {
+          "text": "测量高度和距离",
+          "isCorrect": false
+        },
+        {
+          "text": "计算面积",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

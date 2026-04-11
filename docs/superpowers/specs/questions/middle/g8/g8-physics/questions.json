@@ -1,0 +1,631 @@
+{
+  "grade": 8,
+  "subject": "physics",
+  "questions": [
+    {
+      "id": "g8_p_q_001",
+      "content": "力的作用效果是（ ）。",
+      "knowledgePoints": [
+        "g8_p1_001"
+      ],
+      "options": [
+        {
+          "text": "仅改变物体的位置",
+          "isCorrect": false
+        },
+        {
+          "text": "改变物体的形状或运动状态",
+          "isCorrect": true
+        },
+        {
+          "text": "改变物体的运动状态",
+          "isCorrect": false
+        },
+        {
+          "text": "改变物体的形状",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_002",
+      "content": "关于摩擦力，下列说法正确的是（ ）。",
+      "knowledgePoints": [
+        "g8_p1_002"
+      ],
+      "options": [
+        {
+          "text": "摩擦力一定阻碍物体运动",
+          "isCorrect": false
+        },
+        {
+          "text": "摩擦力一定是阻力",
+          "isCorrect": false
+        },
+        {
+          "text": "摩擦力的方向与物体运动方向相反",
+          "isCorrect": true
+        },
+        {
+          "text": "只有运动的物体才受摩擦力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_003",
+      "content": "压强的公式是（ ）。",
+      "knowledgePoints": [
+        "g8_p2_001"
+      ],
+      "options": [
+        {
+          "text": "P=V/S",
+          "isCorrect": false
+        },
+        {
+          "text": "P=F×S",
+          "isCorrect": false
+        },
+        {
+          "text": "P=S/F",
+          "isCorrect": false
+        },
+        {
+          "text": "P=F/S",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_004",
+      "content": "增大压强的方法是（ ）。",
+      "knowledgePoints": [
+        "g8_p2_002"
+      ],
+      "options": [
+        {
+          "text": "同时减小压力和受力面积",
+          "isCorrect": false
+        },
+        {
+          "text": "增大压力或减小受力面积",
+          "isCorrect": true
+        },
+        {
+          "text": "减小压力或增大受力面积",
+          "isCorrect": false
+        },
+        {
+          "text": "同时增大压力和受力面积",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_005",
+      "content": "液体压强的特点是（ ）。",
+      "knowledgePoints": [
+        "g8_p2_003"
+      ],
+      "options": [
+        {
+          "text": "液体压强与液体密度无关",
+          "isCorrect": false
+        },
+        {
+          "text": "液体内部向各个方向压强相等",
+          "isCorrect": false
+        },
+        {
+          "text": "液体压强随深度增加而增大",
+          "isCorrect": true
+        },
+        {
+          "text": "液体压强与深度无关",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_006",
+      "content": "大气压随高度增加而（ ）。",
+      "knowledgePoints": [
+        "g8_p2_004"
+      ],
+      "options": [
+        {
+          "text": "先增大后减小",
+          "isCorrect": false
+        },
+        {
+          "text": "减小",
+          "isCorrect": true
+        },
+        {
+          "text": "增大",
+          "isCorrect": false
+        },
+        {
+          "text": "不变",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_007",
+      "content": "浮力产生的原因是（ ）。",
+      "knowledgePoints": [
+        "g8_p3_001"
+      ],
+      "options": [
+        {
+          "text": "液体对物体的支持力",
+          "isCorrect": false
+        },
+        {
+          "text": "物体上下表面压力差",
+          "isCorrect": true
+        },
+        {
+          "text": "物体的质量",
+          "isCorrect": false
+        },
+        {
+          "text": "物体受到的重力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_008",
+      "content": "阿基米德原理的表达式是（ ）。",
+      "knowledgePoints": [
+        "g8_p3_002"
+      ],
+      "options": [
+        {
+          "text": "F浮=ρ液V排g",
+          "isCorrect": false
+        },
+        {
+          "text": "F浮=ρ物gV排",
+          "isCorrect": false
+        },
+        {
+          "text": "F浮=ρ液gV排",
+          "isCorrect": true
+        },
+        {
+          "text": "F浮=m物g",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_009",
+      "content": "物体在液体中的沉浮条件：当浮力大于重力时，物体（ ）。",
+      "knowledgePoints": [
+        "g8_p3_003"
+      ],
+      "options": [
+        {
+          "text": "悬浮",
+          "isCorrect": false
+        },
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        },
+        {
+          "text": "下沉",
+          "isCorrect": false
+        },
+        {
+          "text": "上浮",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_010",
+      "content": "功的计算公式是（ ）。",
+      "knowledgePoints": [
+        "g8_p4_001"
+      ],
+      "options": [
+        {
+          "text": "W=F-S",
+          "isCorrect": false
+        },
+        {
+          "text": "W=F/S",
+          "isCorrect": false
+        },
+        {
+          "text": "W=F+S",
+          "isCorrect": false
+        },
+        {
+          "text": "W=F×S",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_011",
+      "content": "功率是描述（ ）的物理量。",
+      "knowledgePoints": [
+        "g8_p4_002"
+      ],
+      "options": [
+        {
+          "text": "做功快慢",
+          "isCorrect": true
+        },
+        {
+          "text": "做功方向",
+          "isCorrect": false
+        },
+        {
+          "text": "做功多少",
+          "isCorrect": false
+        },
+        {
+          "text": "做功效率",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_012",
+      "content": "杠杆的平衡条件是（ ）。",
+      "knowledgePoints": [
+        "g8_p5_001"
+      ],
+      "options": [
+        {
+          "text": "动力+动力臂=阻力+阻力臂",
+          "isCorrect": false
+        },
+        {
+          "text": "动力-阻力=动力臂-阻力臂",
+          "isCorrect": false
+        },
+        {
+          "text": "动力/动力臂=阻力/阻力臂",
+          "isCorrect": false
+        },
+        {
+          "text": "动力×动力臂=阻力×阻力臂",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_013",
+      "content": "定滑轮的特点是（ ）。",
+      "knowledgePoints": [
+        "g8_p5_002"
+      ],
+      "options": [
+        {
+          "text": "能省一半力",
+          "isCorrect": false
+        },
+        {
+          "text": "能省力",
+          "isCorrect": false
+        },
+        {
+          "text": "既省力又省距离",
+          "isCorrect": false
+        },
+        {
+          "text": "能改变力的方向",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_014",
+      "content": "动滑轮的特点是（ ）。",
+      "knowledgePoints": [
+        "g8_p5_003"
+      ],
+      "options": [
+        {
+          "text": "能同时省力和改变方向",
+          "isCorrect": false
+        },
+        {
+          "text": "既费力又费距离",
+          "isCorrect": false
+        },
+        {
+          "text": "能改变力的方向",
+          "isCorrect": false
+        },
+        {
+          "text": "能省一半力",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_015",
+      "content": "机械效率总是小于1的原因是（ ）。",
+      "knowledgePoints": [
+        "g8_p5_004"
+      ],
+      "options": [
+        {
+          "text": "摩擦力太大",
+          "isCorrect": false
+        },
+        {
+          "text": "机械自重太大",
+          "isCorrect": false
+        },
+        {
+          "text": "有用功小于总功",
+          "isCorrect": false
+        },
+        {
+          "text": "存在额外功",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_016",
+      "content": "动能的大小与物体的（ ）有关。",
+      "knowledgePoints": [
+        "g8_p4_003"
+      ],
+      "options": [
+        {
+          "text": "质量和高度",
+          "isCorrect": false
+        },
+        {
+          "text": "速度和高度",
+          "isCorrect": false
+        },
+        {
+          "text": "质量和速度",
+          "isCorrect": true
+        },
+        {
+          "text": "仅与质量有关",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_017",
+      "content": "重力势能的大小与物体的（ ）有关。",
+      "knowledgePoints": [
+        "g8_p4_004"
+      ],
+      "options": [
+        {
+          "text": "仅与高度有关",
+          "isCorrect": false
+        },
+        {
+          "text": "速度和高度",
+          "isCorrect": false
+        },
+        {
+          "text": "质量和速度",
+          "isCorrect": false
+        },
+        {
+          "text": "质量和高度",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_018",
+      "content": "一个物体在光滑水平面上做匀速直线运动，它（ ）。",
+      "knowledgePoints": [
+        "g8_p1_003"
+      ],
+      "options": [
+        {
+          "text": "不受摩擦力",
+          "isCorrect": false
+        },
+        {
+          "text": "不受任何力",
+          "isCorrect": true
+        },
+        {
+          "text": "受到平衡力作用",
+          "isCorrect": false
+        },
+        {
+          "text": "合力一定为零",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_019",
+      "content": "物体在流体中受到的浮力与（ ）有关。",
+      "knowledgePoints": [
+        "g8_p3_002"
+      ],
+      "options": [
+        {
+          "text": "液体密度和排开液体体积",
+          "isCorrect": true
+        },
+        {
+          "text": "物体体积和物体质量",
+          "isCorrect": false
+        },
+        {
+          "text": "物体密度和物体质量",
+          "isCorrect": false
+        },
+        {
+          "text": "液体密度和物体体积",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_020",
+      "content": "用定滑轮提起重物，与直接提起相比（ ）。",
+      "knowledgePoints": [
+        "g8_p5_002"
+      ],
+      "options": [
+        {
+          "text": "做功更多",
+          "isCorrect": false
+        },
+        {
+          "text": "不省力也不费力",
+          "isCorrect": true
+        },
+        {
+          "text": "省一半力",
+          "isCorrect": false
+        },
+        {
+          "text": "费力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_021",
+      "content": "使用滑轮组提起重物，若动滑轮上有2段绳子，则可以省（ ）。",
+      "knowledgePoints": [
+        "g8_p5_003"
+      ],
+      "options": [
+        {
+          "text": "约3/4的力",
+          "isCorrect": false
+        },
+        {
+          "text": "1/2的力",
+          "isCorrect": true
+        },
+        {
+          "text": "1/3的力",
+          "isCorrect": false
+        },
+        {
+          "text": "1/4的力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_022",
+      "content": "压强单位帕斯卡（Pa）的物理意义是（ ）。",
+      "knowledgePoints": [
+        "g8_p2_001"
+      ],
+      "options": [
+        {
+          "text": "1牛顿的力作用在1平方米上",
+          "isCorrect": false
+        },
+        {
+          "text": "1平方厘米面积上受到1牛顿的力",
+          "isCorrect": false
+        },
+        {
+          "text": "1平方米面积上受到1牛顿的力",
+          "isCorrect": true
+        },
+        {
+          "text": "1千克的物体受到1牛顿的力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_023",
+      "content": "机械能守恒的条件是（ ）。",
+      "knowledgePoints": [
+        "g8_p4_005"
+      ],
+      "options": [
+        {
+          "text": "只有重力或弹力做功",
+          "isCorrect": true
+        },
+        {
+          "text": "只有摩擦力做功",
+          "isCorrect": false
+        },
+        {
+          "text": "只有弹力做功",
+          "isCorrect": false
+        },
+        {
+          "text": "不受任何力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_024",
+      "content": "牛顿第一定律又称为（ ）。",
+      "knowledgePoints": [
+        "g8_p1_004"
+      ],
+      "options": [
+        {
+          "text": "动量守恒定律",
+          "isCorrect": false
+        },
+        {
+          "text": "作用与反作用定律",
+          "isCorrect": false
+        },
+        {
+          "text": "能量守恒定律",
+          "isCorrect": false
+        },
+        {
+          "text": "惯性定律",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_p_q_025",
+      "content": "两个物体接触面积相同，压力大的物体对接触面的压强（ ）。",
+      "knowledgePoints": [
+        "g8_p2_001"
+      ],
+      "options": [
+        {
+          "text": "一定小",
+          "isCorrect": false
+        },
+        {
+          "text": "一定大",
+          "isCorrect": true
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        },
+        {
+          "text": "一定相等",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

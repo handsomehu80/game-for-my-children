@@ -102,8 +102,8 @@ describe('OceanSailingScene', () => {
       />
     )
 
-    // Fast-forward time by 800ms (minimal animation duration)
-    vi.advanceTimersByTime(800)
+    // Fast-forward time by 4000ms (animation duration)
+    vi.advanceTimersByTime(4000)
 
     expect(onArrived).toHaveBeenCalled()
     vi.useRealTimers()

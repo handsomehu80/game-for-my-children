@@ -1,0 +1,598 @@
+{
+  "grade": 4,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g4_e_q_001",
+      "content": "What ______ do you have today? I have math and English.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_001",
+        "g4_e1_001"
+      ],
+      "options": [
+        {
+          "text": "lessons",
+          "isCorrect": true
+        },
+        {
+          "text": "times",
+          "isCorrect": false
+        },
+        {
+          "text": "days",
+          "isCorrect": false
+        },
+        {
+          "text": "subjects",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_002",
+      "content": "What day is it today? It's _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_001",
+        "g4_e1_003"
+      ],
+      "options": [
+        {
+          "text": "spring",
+          "isCorrect": false
+        },
+        {
+          "text": "Monday",
+          "isCorrect": true
+        },
+        {
+          "text": "morning",
+          "isCorrect": false
+        },
+        {
+          "text": "January",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_003",
+      "content": "I _______ swim. I can swim very well.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e3_004",
+        "g4_e2_004"
+      ],
+      "options": [
+        {
+          "text": "must",
+          "isCorrect": false
+        },
+        {
+          "text": "need",
+          "isCorrect": false
+        },
+        {
+          "text": "can",
+          "isCorrect": true
+        },
+        {
+          "text": "should",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_004",
+      "content": "What month is it? It's _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_002",
+        "g4_e1_004"
+      ],
+      "options": [
+        {
+          "text": "spring",
+          "isCorrect": false
+        },
+        {
+          "text": "January",
+          "isCorrect": true
+        },
+        {
+          "text": "weekend",
+          "isCorrect": false
+        },
+        {
+          "text": "Monday",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_005",
+      "content": "My friend is very _______. She likes to meet new people.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e1_006"
+      ],
+      "options": [
+        {
+          "text": "shy",
+          "isCorrect": false
+        },
+        {
+          "text": "friendly",
+          "isCorrect": true
+        },
+        {
+          "text": "sad",
+          "isCorrect": false
+        },
+        {
+          "text": "quiet",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_006",
+      "content": "He _______ play the piano. He can't.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e3_005"
+      ],
+      "options": [
+        {
+          "text": "can't",
+          "isCorrect": false
+        },
+        {
+          "text": "does",
+          "isCorrect": false
+        },
+        {
+          "text": "don't",
+          "isCorrect": false
+        },
+        {
+          "text": "can",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_007",
+      "content": "I have English _______ Mondays.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_003"
+      ],
+      "options": [
+        {
+          "text": "at",
+          "isCorrect": false
+        },
+        {
+          "text": "on",
+          "isCorrect": true
+        },
+        {
+          "text": "by",
+          "isCorrect": false
+        },
+        {
+          "text": "in",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_008",
+      "content": "What do you do on weekends? I _______ play football.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_006",
+        "g4_e2_007"
+      ],
+      "options": [
+        {
+          "text": "never",
+          "isCorrect": false
+        },
+        {
+          "text": "always",
+          "isCorrect": true
+        },
+        {
+          "text": "only",
+          "isCorrect": false
+        },
+        {
+          "text": "not",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_009",
+      "content": "She is _______ student. She studies very hard.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e3_002"
+      ],
+      "options": [
+        {
+          "text": "the",
+          "isCorrect": false
+        },
+        {
+          "text": "/",
+          "isCorrect": false
+        },
+        {
+          "text": "a",
+          "isCorrect": true
+        },
+        {
+          "text": "an",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_010",
+      "content": "_______ you like math? Yes, I do.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e3_002"
+      ],
+      "options": [
+        {
+          "text": "Does",
+          "isCorrect": false
+        },
+        {
+          "text": "Is",
+          "isCorrect": false
+        },
+        {
+          "text": "Are",
+          "isCorrect": false
+        },
+        {
+          "text": "Do",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_011",
+      "content": "I have _______ art class on Fridays.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_003",
+        "g4_e1_001"
+      ],
+      "options": [
+        {
+          "text": "a",
+          "isCorrect": true
+        },
+        {
+          "text": "an",
+          "isCorrect": false
+        },
+        {
+          "text": "some",
+          "isCorrect": false
+        },
+        {
+          "text": "the",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_012",
+      "content": "He _______ watches TV. He reads books instead.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e1_005",
+        "g4_e3_003"
+      ],
+      "options": [
+        {
+          "text": "sometimes",
+          "isCorrect": false
+        },
+        {
+          "text": "often",
+          "isCorrect": false
+        },
+        {
+          "text": "always",
+          "isCorrect": false
+        },
+        {
+          "text": "never",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_013",
+      "content": "My sister can _______ English songs.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_005",
+        "g4_e3_004"
+      ],
+      "options": [
+        {
+          "text": "sang",
+          "isCorrect": false
+        },
+        {
+          "text": "sings",
+          "isCorrect": false
+        },
+        {
+          "text": "sing",
+          "isCorrect": true
+        },
+        {
+          "text": "singing",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_014",
+      "content": "What do you usually do on weekends? I usually _______ my homework.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e2_006",
+        "g4_e2_007"
+      ],
+      "options": [
+        {
+          "text": "do",
+          "isCorrect": true
+        },
+        {
+          "text": "did",
+          "isCorrect": false
+        },
+        {
+          "text": "does",
+          "isCorrect": false
+        },
+        {
+          "text": "doing",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_015",
+      "content": "The first month of the year is _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e1_004"
+      ],
+      "options": [
+        {
+          "text": "February",
+          "isCorrect": false
+        },
+        {
+          "text": "December",
+          "isCorrect": false
+        },
+        {
+          "text": "March",
+          "isCorrect": false
+        },
+        {
+          "text": "January",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_016",
+      "content": "My cousin is very _______. She doesn't talk to people easily.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e1_006"
+      ],
+      "options": [
+        {
+          "text": "shy",
+          "isCorrect": true
+        },
+        {
+          "text": "friendly",
+          "isCorrect": false
+        },
+        {
+          "text": "happy",
+          "isCorrect": false
+        },
+        {
+          "text": "active",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_017",
+      "content": "_______ Sunday is my favorite day.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e1_003"
+      ],
+      "options": [
+        {
+          "text": "Every",
+          "isCorrect": true
+        },
+        {
+          "text": "This",
+          "isCorrect": false
+        },
+        {
+          "text": "Next",
+          "isCorrect": false
+        },
+        {
+          "text": "That",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_018",
+      "content": "She _______ her homework on Sundays.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e3_002",
+        "g4_e2_006"
+      ],
+      "options": [
+        {
+          "text": "doing",
+          "isCorrect": false
+        },
+        {
+          "text": "do",
+          "isCorrect": false
+        },
+        {
+          "text": "does",
+          "isCorrect": true
+        },
+        {
+          "text": "did",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_019",
+      "content": "Can you _______ the guitar?",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e3_004",
+        "g4_e2_004"
+      ],
+      "options": [
+        {
+          "text": "play",
+          "isCorrect": true
+        },
+        {
+          "text": "plays",
+          "isCorrect": false
+        },
+        {
+          "text": "played",
+          "isCorrect": false
+        },
+        {
+          "text": "playing",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_e_q_020",
+      "content": "I usually go to the park _______ weekends.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_e1_005",
+        "g4_e3_003"
+      ],
+      "options": [
+        {
+          "text": "in",
+          "isCorrect": false
+        },
+        {
+          "text": "by",
+          "isCorrect": false
+        },
+        {
+          "text": "at",
+          "isCorrect": false
+        },
+        {
+          "text": "on",
+          "isCorrect": true
+        }
+      ]
+    }
+  ]
+}

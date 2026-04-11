@@ -1,0 +1,897 @@
+{
+  "grade": 3,
+  "subject": "math",
+  "questions": [
+    {
+      "id": "g3_q_017",
+      "content": "计算：0 ÷ 25 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_005"
+      ],
+      "options": [
+        {
+          "text": "0",
+          "isCorrect": true
+        },
+        {
+          "text": "25",
+          "isCorrect": false
+        },
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "无意义",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_004",
+      "content": "84 ÷ 7 =（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_001"
+      ],
+      "options": [
+        {
+          "text": "11",
+          "isCorrect": false
+        },
+        {
+          "text": "12",
+          "isCorrect": false
+        },
+        {
+          "text": "13",
+          "isCorrect": false
+        },
+        {
+          "text": "14",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_018",
+      "content": "小明看一本故事书，第一天看了12页，第二天看的比第一天多8页。两天共看了（ ）页。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_001",
+        "g3_n3_005"
+      ],
+      "options": [
+        {
+          "text": "20",
+          "isCorrect": false
+        },
+        {
+          "text": "28",
+          "isCorrect": false
+        },
+        {
+          "text": "32",
+          "isCorrect": false
+        },
+        {
+          "text": "40",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_002",
+      "content": "用0、3、6、9组成最大的四位数是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n1_001",
+        "g3_n1_003"
+      ],
+      "options": [
+        {
+          "text": "9630",
+          "isCorrect": false
+        },
+        {
+          "text": "9603",
+          "isCorrect": true
+        },
+        {
+          "text": "9630",
+          "isCorrect": false
+        },
+        {
+          "text": "9360",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_001",
+      "content": "4305读作（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n1_001",
+        "g3_n1_002"
+      ],
+      "options": [
+        {
+          "text": "四千三百零五",
+          "isCorrect": true
+        },
+        {
+          "text": "四千三百五十",
+          "isCorrect": false
+        },
+        {
+          "text": "四千三百零五十",
+          "isCorrect": false
+        },
+        {
+          "text": "四千三百十五",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_022",
+      "content": "一本科技书有120页，小明每天看18页，一周能看完吗？（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_001",
+        "g3_n3_004"
+      ],
+      "options": [
+        {
+          "text": "能看完",
+          "isCorrect": true
+        },
+        {
+          "text": "不能看完",
+          "isCorrect": false
+        },
+        {
+          "text": "正好看完",
+          "isCorrect": false
+        },
+        {
+          "text": "无法确定",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_013",
+      "content": "妈妈买了一个西瓜，用去了多少钱？",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_004"
+      ],
+      "options": [
+        {
+          "text": "3元",
+          "isCorrect": false
+        },
+        {
+          "text": "4元",
+          "isCorrect": false
+        },
+        {
+          "text": "需要知道西瓜重量",
+          "isCorrect": true
+        },
+        {
+          "text": "5元",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_011",
+      "content": "计算：23 × 15 =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_003"
+      ],
+      "options": [
+        {
+          "text": "315",
+          "isCorrect": true
+        },
+        {
+          "text": "325",
+          "isCorrect": false
+        },
+        {
+          "text": "335",
+          "isCorrect": false
+        },
+        {
+          "text": "345",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_026",
+      "content": "用载重2吨的卡车运完一堆8吨的货物，至少需要（ ）次。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_001",
+        "g3_n3_005"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_003",
+      "content": "250 × 4 =（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_001"
+      ],
+      "options": [
+        {
+          "text": "1000",
+          "isCorrect": false
+        },
+        {
+          "text": "100",
+          "isCorrect": true
+        },
+        {
+          "text": "10000",
+          "isCorrect": false
+        },
+        {
+          "text": "500",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_020",
+      "content": "计算：105 × 7 =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_001",
+        "g3_n2_002"
+      ],
+      "options": [
+        {
+          "text": "735",
+          "isCorrect": false
+        },
+        {
+          "text": "725",
+          "isCorrect": false
+        },
+        {
+          "text": "745",
+          "isCorrect": true
+        },
+        {
+          "text": "715",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_009",
+      "content": "一个长方形长12厘米，宽8厘米，周长是（ ）厘米。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g1_003",
+        "g3_g1_004"
+      ],
+      "options": [
+        {
+          "text": "20",
+          "isCorrect": false
+        },
+        {
+          "text": "40",
+          "isCorrect": true
+        },
+        {
+          "text": "96",
+          "isCorrect": false
+        },
+        {
+          "text": "48",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_025",
+      "content": "计算：450 ÷ □ = 9，□里应填（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_001",
+        "g3_n3_004"
+      ],
+      "options": [
+        {
+          "text": "40",
+          "isCorrect": false
+        },
+        {
+          "text": "50",
+          "isCorrect": true
+        },
+        {
+          "text": "60",
+          "isCorrect": false
+        },
+        {
+          "text": "45",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_016",
+      "content": "用估算的方法判断：52 × 8的积大约是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_004"
+      ],
+      "options": [
+        {
+          "text": "400",
+          "isCorrect": false
+        },
+        {
+          "text": "500",
+          "isCorrect": true
+        },
+        {
+          "text": "350",
+          "isCorrect": false
+        },
+        {
+          "text": "450",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_012",
+      "content": "小明步行的速度是60米/分，他从家走到学校用了15分钟。小明家到学校的距离是（ ）米。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n4_003",
+        "g3_n4_004"
+      ],
+      "options": [
+        {
+          "text": "900",
+          "isCorrect": false
+        },
+        {
+          "text": "75",
+          "isCorrect": false
+        },
+        {
+          "text": "1500",
+          "isCorrect": true
+        },
+        {
+          "text": "450",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_024",
+      "content": "一块长方形菜地，长是宽的2倍，宽是6米，围成这块菜地需要（ ）米的篱笆。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g1_004",
+        "g3_g1_005"
+      ],
+      "options": [
+        {
+          "text": "36",
+          "isCorrect": true
+        },
+        {
+          "text": "18",
+          "isCorrect": false
+        },
+        {
+          "text": "24",
+          "isCorrect": false
+        },
+        {
+          "text": "48",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_021",
+      "content": "一块正方形手帕的边长是25厘米，给它缝一圈花边，至少需要（ ）厘米的花边。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g1_004",
+        "g3_g1_005"
+      ],
+      "options": [
+        {
+          "text": "50",
+          "isCorrect": false
+        },
+        {
+          "text": "100",
+          "isCorrect": false
+        },
+        {
+          "text": "625",
+          "isCorrect": true
+        },
+        {
+          "text": "125",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_014",
+      "content": "一根绳子长8米，剪成两段，第一段长3米，第二段长（ ）米。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_005"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "11",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_030",
+      "content": "一个数除以8，商是12，余数最大是（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_005",
+        "g3_n3_001"
+      ],
+      "options": [
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "7",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": true
+        },
+        {
+          "text": "9",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_005",
+      "content": "小明围着一个正方形花坛走了4圈，一共走了240米。这个花坛的边长是（ ）米。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g1_003",
+        "g3_g1_004"
+      ],
+      "options": [
+        {
+          "text": "15",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": true
+        },
+        {
+          "text": "30",
+          "isCorrect": false
+        },
+        {
+          "text": "60",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_006",
+      "content": "计算：123 × 6 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_001",
+        "g3_n2_002"
+      ],
+      "options": [
+        {
+          "text": "638",
+          "isCorrect": false
+        },
+        {
+          "text": "728",
+          "isCorrect": true
+        },
+        {
+          "text": "738",
+          "isCorrect": false
+        },
+        {
+          "text": "828",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_007",
+      "content": "7吨 =（ ）千克",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g2_001",
+        "g3_g2_002"
+      ],
+      "options": [
+        {
+          "text": "70",
+          "isCorrect": true
+        },
+        {
+          "text": "700",
+          "isCorrect": false
+        },
+        {
+          "text": "7000",
+          "isCorrect": false
+        },
+        {
+          "text": "70000",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_015",
+      "content": "四边形有（ ）条边。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g1_001"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_019",
+      "content": "一个长方形的周长是20厘米，宽是4厘米，长是（ ）厘米。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_g1_004"
+      ],
+      "options": [
+        {
+          "text": "5",
+          "isCorrect": true
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "16",
+          "isCorrect": false
+        },
+        {
+          "text": "8",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_023",
+      "content": "小红买了3本笔记本，每本8元，又买了一支5元的笔。她付了50元，应找回（ ）元。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n2_001",
+        "g3_n2_002",
+        "g3_n3_004"
+      ],
+      "options": [
+        {
+          "text": "21",
+          "isCorrect": false
+        },
+        {
+          "text": "29",
+          "isCorrect": false
+        },
+        {
+          "text": "31",
+          "isCorrect": true
+        },
+        {
+          "text": "24",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_q_029",
+      "content": "在一条长100米的公路两边种树（两端都种），每隔10米种一棵，一共要种（ ）棵。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n4_003",
+        "g3_n4_005"
+      ],
+      "options": [
+        {
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "text": "20",
+          "isCorrect": false
+        },
+        {
+          "text": "22",
+          "isCorrect": false
+        },
+        {
+          "text": "11",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_027",
+      "content": "小明从一楼走到三楼用了30秒，照这样计算，他从一楼走到六楼需要（ ）秒。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n4_003",
+        "g3_n4_004"
+      ],
+      "options": [
+        {
+          "text": "60",
+          "isCorrect": false
+        },
+        {
+          "text": "75",
+          "isCorrect": false
+        },
+        {
+          "text": "90",
+          "isCorrect": false
+        },
+        {
+          "text": "100",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_010",
+      "content": "3.5元 =（ ）角",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n1_006"
+      ],
+      "options": [
+        {
+          "text": "35",
+          "isCorrect": false
+        },
+        {
+          "text": "3.5",
+          "isCorrect": false
+        },
+        {
+          "text": "350",
+          "isCorrect": false
+        },
+        {
+          "text": "0.35",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_008",
+      "content": "832 ÷ 4 =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_n3_001",
+        "g3_n3_002"
+      ],
+      "options": [
+        {
+          "text": "28",
+          "isCorrect": false
+        },
+        {
+          "text": "208",
+          "isCorrect": false
+        },
+        {
+          "text": "280",
+          "isCorrect": false
+        },
+        {
+          "text": "218",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_q_028",
+      "content": "三个同学的平均身高是140厘米，其中两个同学的身高分别是138厘米和142厘米，第三个同学的身高是（ ）厘米。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "math",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_s1_001",
+        "g3_s1_002"
+      ],
+      "options": [
+        {
+          "text": "140",
+          "isCorrect": true
+        },
+        {
+          "text": "138",
+          "isCorrect": false
+        },
+        {
+          "text": "142",
+          "isCorrect": false
+        },
+        {
+          "text": "280",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "grade": 8,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g8_e_q_001",
+      "content": "The word \"ambitious\" is closest in meaning to ( ).",
+      "knowledgePoints": [
+        "g8_e1_001"
+      ],
+      "options": [
+        {
+          "text": "shy",
+          "isCorrect": false
+        },
+        {
+          "text": "honest",
+          "isCorrect": false
+        },
+        {
+          "text": "having strong ambitions",
+          "isCorrect": true
+        },
+        {
+          "text": "lazy",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_002",
+      "content": "Which sentence uses the simple past tense correctly?",
+      "knowledgePoints": [
+        "g8_e2_001"
+      ],
+      "options": [
+        {
+          "text": "They played football last weekend.",
+          "isCorrect": true
+        },
+        {
+          "text": "She go to school yesterday.",
+          "isCorrect": false
+        },
+        {
+          "text": "He is going to the park yesterday.",
+          "isCorrect": false
+        },
+        {
+          "text": "I see him now.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_003",
+      "content": "The past tense of \"go\" is ( ).",
+      "knowledgePoints": [
+        "g8_e2_003"
+      ],
+      "options": [
+        {
+          "text": "went",
+          "isCorrect": true
+        },
+        {
+          "text": "gone",
+          "isCorrect": false
+        },
+        {
+          "text": "goed",
+          "isCorrect": false
+        },
+        {
+          "text": "going",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_004",
+      "content": "Which environmental issue is NOT mentioned?",
+      "knowledgePoints": [
+        "g8_e1_004"
+      ],
+      "options": [
+        {
+          "text": "air pollution",
+          "isCorrect": false
+        },
+        {
+          "text": "space exploration",
+          "isCorrect": true
+        },
+        {
+          "text": "water pollution",
+          "isCorrect": false
+        },
+        {
+          "text": "deforestation",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_005",
+      "content": "Choose the correct negative form: I _____ to the party last night.",
+      "knowledgePoints": [
+        "g8_e2_004"
+      ],
+      "options": [
+        {
+          "text": "don't go",
+          "isCorrect": false
+        },
+        {
+          "text": "didn't go",
+          "isCorrect": true
+        },
+        {
+          "text": "not go",
+          "isCorrect": false
+        },
+        {
+          "text": "doesn't go",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_006",
+      "content": "The sentence \"She was reading when the phone rang\" uses ( ).",
+      "knowledgePoints": [
+        "g8_e2_006"
+      ],
+      "options": [
+        {
+          "text": "past continuous tense",
+          "isCorrect": true
+        },
+        {
+          "text": "present perfect",
+          "isCorrect": false
+        },
+        {
+          "text": "present continuous",
+          "isCorrect": false
+        },
+        {
+          "text": "simple past tense",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_007",
+      "content": "\"Used to\" in English expresses ( ).",
+      "knowledgePoints": [
+        "g8_e3_003"
+      ],
+      "options": [
+        {
+          "text": "a current habit",
+          "isCorrect": false
+        },
+        {
+          "text": "future plans",
+          "isCorrect": false
+        },
+        {
+          "text": "obligation",
+          "isCorrect": false
+        },
+        {
+          "text": "a past habit or state that is no longer true",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_008",
+      "content": "Which is a natural disaster?",
+      "knowledgePoints": [
+        "g8_e1_005"
+      ],
+      "options": [
+        {
+          "text": "hospital",
+          "isCorrect": false
+        },
+        {
+          "text": "airport",
+          "isCorrect": false
+        },
+        {
+          "text": "earthquake",
+          "isCorrect": true
+        },
+        {
+          "text": "museum",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_009",
+      "content": "Complete: \"I have a headache, so I _____ go to school today.\"",
+      "knowledgePoints": [
+        "g8_e2_008"
+      ],
+      "options": [
+        {
+          "text": "shouldn't",
+          "isCorrect": true
+        },
+        {
+          "text": "could",
+          "isCorrect": false
+        },
+        {
+          "text": "must",
+          "isCorrect": false
+        },
+        {
+          "text": "can",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_010",
+      "content": "Which sentence is grammatically correct?",
+      "knowledgePoints": [
+        "g8_e2_005"
+      ],
+      "options": [
+        {
+          "text": "You went to the library?",
+          "isCorrect": false
+        },
+        {
+          "text": "You did went to the library.",
+          "isCorrect": false
+        },
+        {
+          "text": "Did you go to the library?",
+          "isCorrect": true
+        },
+        {
+          "text": "Did you went to the library?",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_011",
+      "content": "In \"What a beautiful flower!\", the word \"beautiful\" is a(n) ( ).",
+      "knowledgePoints": [
+        "g8_e3_004"
+      ],
+      "options": [
+        {
+          "text": "adjective",
+          "isCorrect": true
+        },
+        {
+          "text": "noun",
+          "isCorrect": false
+        },
+        {
+          "text": "verb",
+          "isCorrect": false
+        },
+        {
+          "text": "adverb",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_012",
+      "content": "Wildlife protection is important because many animals are ( ).",
+      "knowledgePoints": [
+        "g8_e1_006"
+      ],
+      "options": [
+        {
+          "text": "not useful",
+          "isCorrect": false
+        },
+        {
+          "text": "in danger of dying out",
+          "isCorrect": true
+        },
+        {
+          "text": "very common",
+          "isCorrect": false
+        },
+        {
+          "text": "increasing",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_013",
+      "content": "Which sentence uses the past continuous tense correctly?",
+      "knowledgePoints": [
+        "g8_e2_007"
+      ],
+      "options": [
+        {
+          "text": "She was cooking when I arrived.",
+          "isCorrect": true
+        },
+        {
+          "text": "They were go to the park.",
+          "isCorrect": false
+        },
+        {
+          "text": "He was swim in the river.",
+          "isCorrect": false
+        },
+        {
+          "text": "I was studied English at 7 o'clock yesterday.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_014",
+      "content": "Safety rules help us to ( ).",
+      "knowledgePoints": [
+        "g8_e1_009"
+      ],
+      "options": [
+        {
+          "text": "make friends",
+          "isCorrect": false
+        },
+        {
+          "text": "have more fun",
+          "isCorrect": false
+        },
+        {
+          "text": "avoid accidents and injuries",
+          "isCorrect": true
+        },
+        {
+          "text": "save money",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_015",
+      "content": "The word \"if\" in \"If it rains, we will stay home\" introduces a ( ) clause.",
+      "knowledgePoints": [
+        "g8_e2_010"
+      ],
+      "options": [
+        {
+          "text": "time",
+          "isCorrect": false
+        },
+        {
+          "text": "condition",
+          "isCorrect": true
+        },
+        {
+          "text": "result",
+          "isCorrect": false
+        },
+        {
+          "text": "reason",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_016",
+      "content": "Which health habit is good for you?",
+      "knowledgePoints": [
+        "g8_e1_008"
+      ],
+      "options": [
+        {
+          "text": "exercising regularly",
+          "isCorrect": true
+        },
+        {
+          "text": "eating junk food every day",
+          "isCorrect": false
+        },
+        {
+          "text": "drinking too much soda",
+          "isCorrect": false
+        },
+        {
+          "text": "staying up late every night",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_017",
+      "content": "To guess the meaning of an unknown word, you should ( ).",
+      "knowledgePoints": [
+        "g8_e4_004"
+      ],
+      "options": [
+        {
+          "text": "look at the title",
+          "isCorrect": false
+        },
+        {
+          "text": "skip the word",
+          "isCorrect": false
+        },
+        {
+          "text": "read the last sentence first",
+          "isCorrect": false
+        },
+        {
+          "text": "use context clues",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_018",
+      "content": "The word \"because\" in \"I was late because of the traffic\" is a ( ) conjunction.",
+      "knowledgePoints": [
+        "g8_e2_009"
+      ],
+      "options": [
+        {
+          "text": "time",
+          "isCorrect": false
+        },
+        {
+          "text": "contrast",
+          "isCorrect": false
+        },
+        {
+          "text": "cause/reason",
+          "isCorrect": true
+        },
+        {
+          "text": "result",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_019",
+      "content": "In reading comprehension, making inferences means ( ).",
+      "knowledgePoints": [
+        "g8_e4_003"
+      ],
+      "options": [
+        {
+          "text": "reading every word aloud",
+          "isCorrect": false
+        },
+        {
+          "text": "finding the main idea only",
+          "isCorrect": false
+        },
+        {
+          "text": "translating each sentence",
+          "isCorrect": false
+        },
+        {
+          "text": "drawing conclusions based on evidence",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_e_q_020",
+      "content": "The best way to get the main idea of a paragraph is to ( ).",
+      "knowledgePoints": [
+        "g8_e4_001"
+      ],
+      "options": [
+        {
+          "text": "memorize all vocabulary",
+          "isCorrect": false
+        },
+        {
+          "text": "read each sentence carefully",
+          "isCorrect": false
+        },
+        {
+          "text": "look at the first and last sentences",
+          "isCorrect": true
+        },
+        {
+          "text": "translate into Chinese",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

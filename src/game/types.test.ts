@@ -8,7 +8,8 @@ describe('Core Types', () => {
       name: 'Player 1',
       hp: 100,
       maxHp: 100,
-      comboCount: 0
+      comboCount: 0,
+      grade: 1
     }
     expect(player.hp).toBe(100)
     expect(player.maxHp).toBe(100)

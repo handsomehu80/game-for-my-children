@@ -1,0 +1,891 @@
+{
+  "grade": 1,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g1_c_q_015",
+      "content": "用'因为...所以...'造句：",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c4_005",
+        "g1_c2_008"
+      ],
+      "options": [
+        {
+          "text": "因为下雨，所以我出门",
+          "isCorrect": false
+        },
+        {
+          "text": "因为天晴",
+          "isCorrect": false
+        },
+        {
+          "text": "所以我开心",
+          "isCorrect": false
+        },
+        {
+          "text": "因为因为",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_007",
+      "content": "'大'和'小'是一对（ ）词。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_024"
+      ],
+      "options": [
+        {
+          "text": "近义词",
+          "isCorrect": false
+        },
+        {
+          "text": "反义词",
+          "isCorrect": true
+        },
+        {
+          "text": "数量词",
+          "isCorrect": false
+        },
+        {
+          "text": "颜色词",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_013",
+      "content": "（）里天气晴，小（）去公园。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c5_001"
+      ],
+      "options": [
+        {
+          "text": "个 个",
+          "isCorrect": true
+        },
+        {
+          "text": "只 只",
+          "isCorrect": false
+        },
+        {
+          "text": "个 只",
+          "isCorrect": false
+        },
+        {
+          "text": "只 个",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_014",
+      "content": "《咏鹅》的作者是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c5_006"
+      ],
+      "options": [
+        {
+          "text": "李白",
+          "isCorrect": true
+        },
+        {
+          "text": "骆宾王",
+          "isCorrect": false
+        },
+        {
+          "text": "王维",
+          "isCorrect": false
+        },
+        {
+          "text": "孟浩然",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_027",
+      "content": "古诗《悯农》中'粒粒皆辛苦'说的是（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c5_007",
+        "g1_c5_009"
+      ],
+      "options": [
+        {
+          "text": "粮食来之不易",
+          "isCorrect": false
+        },
+        {
+          "text": "农民很辛苦",
+          "isCorrect": true
+        },
+        {
+          "text": "不要浪费粮食",
+          "isCorrect": false
+        },
+        {
+          "text": "以上都是",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_001",
+      "content": "下列音节的声调正确的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_001",
+        "g1_c1_002"
+      ],
+      "options": [
+        {
+          "text": "mā",
+          "isCorrect": false
+        },
+        {
+          "text": "mà",
+          "isCorrect": false
+        },
+        {
+          "text": "mǎ",
+          "isCorrect": true
+        },
+        {
+          "text": "ma",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_018",
+      "content": "阅读短文，判断对错：小兔子去菜园拔萝卜，它拔了5个萝卜。（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c2_007",
+        "g1_c2_008"
+      ],
+      "options": [
+        {
+          "text": "对",
+          "isCorrect": false
+        },
+        {
+          "text": "错",
+          "isCorrect": false
+        },
+        {
+          "text": "不知道",
+          "isCorrect": false
+        },
+        {
+          "text": "可能对",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_028",
+      "content": "排列顺序：1明天去公园 2妈妈说 3好吗",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c4_001",
+        "g1_c4_003"
+      ],
+      "options": [
+        {
+          "text": "1 2 3",
+          "isCorrect": false
+        },
+        {
+          "text": "2 1 3",
+          "isCorrect": false
+        },
+        {
+          "text": "3 2 1",
+          "isCorrect": false
+        },
+        {
+          "text": "2 3 1",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_011",
+      "content": "下列句子中，用了拟人修辞的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c5_005"
+      ],
+      "options": [
+        {
+          "text": "小红在跑步",
+          "isCorrect": false
+        },
+        {
+          "text": "小鸟在唱歌",
+          "isCorrect": false
+        },
+        {
+          "text": "小树长高了",
+          "isCorrect": false
+        },
+        {
+          "text": "风儿在唱歌",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_006",
+      "content": "下列词语中，哪个是一年级小学生应该认识的字？",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_017",
+        "g1_c1_020"
+      ],
+      "options": [
+        {
+          "text": "学习",
+          "isCorrect": false
+        },
+        {
+          "text": "初中",
+          "isCorrect": false
+        },
+        {
+          "text": "大学",
+          "isCorrect": true
+        },
+        {
+          "text": "博士",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_030",
+      "content": "课外阅读《小蝌蚪找妈妈》，小蝌蚪最后变成了（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c2_005",
+        "g1_c2_008"
+      ],
+      "options": [
+        {
+          "text": "小青蛙",
+          "isCorrect": false
+        },
+        {
+          "text": "小鸭子",
+          "isCorrect": false
+        },
+        {
+          "text": "小鱼",
+          "isCorrect": true
+        },
+        {
+          "text": "小乌龟",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_020",
+      "content": "把句子补充完整：春天来了，________。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c4_006"
+      ],
+      "options": [
+        {
+          "text": "小花开了",
+          "isCorrect": false
+        },
+        {
+          "text": "下雨了",
+          "isCorrect": false
+        },
+        {
+          "text": "下雪了",
+          "isCorrect": true
+        },
+        {
+          "text": "很冷",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_017",
+      "content": "下列词语中，加点字读音相同的是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_025"
+      ],
+      "options": [
+        {
+          "text": "公鸡 母鸡",
+          "isCorrect": true
+        },
+        {
+          "text": "白云 白纸",
+          "isCorrect": false
+        },
+        {
+          "text": "大鱼 小鱼",
+          "isCorrect": false
+        },
+        {
+          "text": "大山 手山",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_021",
+      "content": "下列音节的标调错误的是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_015"
+      ],
+      "options": [
+        {
+          "text": "nǔ",
+          "isCorrect": false
+        },
+        {
+          "text": "lǜ",
+          "isCorrect": true
+        },
+        {
+          "text": "jǜ",
+          "isCorrect": false
+        },
+        {
+          "text": "qù",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_009",
+      "content": "'鸟'字有（ ）笔画。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_018"
+      ],
+      "options": [
+        {
+          "text": "4",
+          "isCorrect": true
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_012",
+      "content": "数一数，这段话有（ ）个句子。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c2_002",
+        "g1_c4_001"
+      ],
+      "options": [
+        {
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_008",
+      "content": "下面哪个字的笔顺是错的？",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_019"
+      ],
+      "options": [
+        {
+          "text": "木：横竖撇捺",
+          "isCorrect": false
+        },
+        {
+          "text": "月：撇横横横",
+          "isCorrect": true
+        },
+        {
+          "text": "口：先横再竖最后封口",
+          "isCorrect": false
+        },
+        {
+          "text": "火：点撇小捺",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_025",
+      "content": "按要求写字：写出3个带有'氵'的字",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_020",
+        "g1_c1_021"
+      ],
+      "options": [
+        {
+          "text": "河 汗 江",
+          "isCorrect": false
+        },
+        {
+          "text": "山 石 土",
+          "isCorrect": false
+        },
+        {
+          "text": "树 花 草",
+          "isCorrect": true
+        },
+        {
+          "text": "日 月 火",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_010",
+      "content": "拼一拼：m + u + a =（ ）",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_003",
+        "g1_c1_016"
+      ],
+      "options": [
+        {
+          "text": "mi",
+          "isCorrect": false
+        },
+        {
+          "text": "ma",
+          "isCorrect": true
+        },
+        {
+          "text": "mua",
+          "isCorrect": false
+        },
+        {
+          "text": "mā",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_026",
+      "content": "下列汉字读音不同的是（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_025"
+      ],
+      "options": [
+        {
+          "text": "石头的石 十是",
+          "isCorrect": true
+        },
+        {
+          "text": "书包的包 包子",
+          "isCorrect": false
+        },
+        {
+          "text": "大米的米 小米",
+          "isCorrect": false
+        },
+        {
+          "text": "公鸡的鸡 机",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_016",
+      "content": "zh + u + an =（ ）",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_012",
+        "g1_c1_006"
+      ],
+      "options": [
+        {
+          "text": "zhuan",
+          "isCorrect": false
+        },
+        {
+          "text": "zhan",
+          "isCorrect": false
+        },
+        {
+          "text": "zhang",
+          "isCorrect": false
+        },
+        {
+          "text": "zhun",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_005",
+      "content": "'日'字的笔顺是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_019"
+      ],
+      "options": [
+        {
+          "text": "先横后竖",
+          "isCorrect": false
+        },
+        {
+          "text": "先竖后横",
+          "isCorrect": true
+        },
+        {
+          "text": "从上到下",
+          "isCorrect": false
+        },
+        {
+          "text": "从左到右",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_003",
+      "content": "下面哪个是整体认读音节？",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_014"
+      ],
+      "options": [
+        {
+          "text": "ba",
+          "isCorrect": false
+        },
+        {
+          "text": "shi",
+          "isCorrect": false
+        },
+        {
+          "text": "ma",
+          "isCorrect": false
+        },
+        {
+          "text": "ka",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_004",
+      "content": "'人'字有（ ）笔画。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_018"
+      ],
+      "options": [
+        {
+          "text": "1",
+          "isCorrect": false
+        },
+        {
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_023",
+      "content": "给句子加标点：小明说我妈妈",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c4_002",
+        "g1_c4_003"
+      ],
+      "options": [
+        {
+          "text": "小明说我妈妈。",
+          "isCorrect": true
+        },
+        {
+          "text": "小明说我妈妈？",
+          "isCorrect": false
+        },
+        {
+          "text": "小明说我妈妈！",
+          "isCorrect": false
+        },
+        {
+          "text": "小明说我妈妈，",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_019",
+      "content": "'床前明月光'的下一句是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c5_008"
+      ],
+      "options": [
+        {
+          "text": "举头望明月",
+          "isCorrect": true
+        },
+        {
+          "text": "千里江陵",
+          "isCorrect": false
+        },
+        {
+          "text": "两个黄鹂",
+          "isCorrect": false
+        },
+        {
+          "text": "春眠不觉晓",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_024",
+      "content": "阅读短文：小鸡和小鸭是好朋友。有一天，下雨了，小鸭背着小鸡回家。这个故事告诉我们（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c2_004",
+        "g1_c2_008"
+      ],
+      "options": [
+        {
+          "text": "小鸡不会游泳",
+          "isCorrect": false
+        },
+        {
+          "text": "朋友之间要互相帮助",
+          "isCorrect": false
+        },
+        {
+          "text": "下雨天要待在家里",
+          "isCorrect": false
+        },
+        {
+          "text": "小鸭很勇敢",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_022",
+      "content": "比喻句'弯弯的月亮像小船'中，把（ ）比作（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c5_005"
+      ],
+      "options": [
+        {
+          "text": "月亮 小船",
+          "isCorrect": false
+        },
+        {
+          "text": "小船 月亮",
+          "isCorrect": false
+        },
+        {
+          "text": "弯弯 小船",
+          "isCorrect": true
+        },
+        {
+          "text": "月亮 弯弯",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_029",
+      "content": "看图写话：图中小朋友在做什么？他的表情是怎样的？",
+      "type": "image",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c4_006",
+        "g1_c3_005"
+      ],
+      "imageUrl": "/images/chinese/g1/write_01.svg",
+      "options": [
+        {
+          "text": "小朋友在看书，他很开心",
+          "isCorrect": false
+        },
+        {
+          "text": "小朋友在睡觉",
+          "isCorrect": false
+        },
+        {
+          "text": "小朋友在跑步",
+          "isCorrect": true
+        },
+        {
+          "text": "小朋友在哭",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_c_q_002",
+      "content": "拼一拼：b + a =（ ）",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_c1_016"
+      ],
+      "options": [
+        {
+          "text": "ba",
+          "isCorrect": false
+        },
+        {
+          "text": "bo",
+          "isCorrect": true
+        },
+        {
+          "text": "bi",
+          "isCorrect": false
+        },
+        {
+          "text": "bu",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,635 @@
+{
+  "grade": 8,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g8_c_q_001",
+      "content": "下列词语中，与\"精益求精\"意思最接近的是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_001"
+      ],
+      "options": [
+        {
+          "text": "得过且过",
+          "isCorrect": false
+        },
+        {
+          "text": "锦上添花",
+          "isCorrect": false
+        },
+        {
+          "text": "千锤百炼",
+          "isCorrect": true
+        },
+        {
+          "text": "一蹴而就",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_002",
+      "content": "成语\"赴汤蹈火\"的意思是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_002"
+      ],
+      "options": [
+        {
+          "text": "形容天气炎热",
+          "isCorrect": false
+        },
+        {
+          "text": "比喻不怕艰险，勇于牺牲",
+          "isCorrect": true
+        },
+        {
+          "text": "形容工作勤恳",
+          "isCorrect": false
+        },
+        {
+          "text": "比喻危险很大",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_003",
+      "content": "在句子\"他终于完成了这项艰巨的任务。\"中，\"艰巨\"一词的语境含义是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_003"
+      ],
+      "options": [
+        {
+          "text": "困难而重大",
+          "isCorrect": true
+        },
+        {
+          "text": "极其重要",
+          "isCorrect": false
+        },
+        {
+          "text": "超出想象",
+          "isCorrect": false
+        },
+        {
+          "text": "令人担忧",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_004",
+      "content": "下列关联词语使用正确的是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_004"
+      ],
+      "options": [
+        {
+          "text": "因为下雨，因此我没有出门",
+          "isCorrect": false
+        },
+        {
+          "text": "虽然天气很冷，但是我不怕",
+          "isCorrect": false
+        },
+        {
+          "text": "如果明天下雨，就不出门",
+          "isCorrect": false
+        },
+        {
+          "text": "只要努力，就会成功",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_005",
+      "content": "下列句子中，引号使用正确的是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_005"
+      ],
+      "options": [
+        {
+          "text": "老师说：\"明天要考试\"。",
+          "isCorrect": false
+        },
+        {
+          "text": "小明兴奋地说：\"我考了一百分！\"",
+          "isCorrect": false
+        },
+        {
+          "text": "她叫\"小红\"，是我的好朋友。",
+          "isCorrect": false
+        },
+        {
+          "text": "大家都说：那件事真难办。",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_006",
+      "content": "破折号与括号的主要区别是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_006"
+      ],
+      "options": [
+        {
+          "text": "破折号表示解释，括号表示补充",
+          "isCorrect": false
+        },
+        {
+          "text": "破折号表示声音延长，括号表示解释说明",
+          "isCorrect": false
+        },
+        {
+          "text": "破折号表示补充说明，括号表示解释且注释内容不算正文",
+          "isCorrect": true
+        },
+        {
+          "text": "两者没有区别，可以互换",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_007",
+      "content": "在复句中使用分号，正确的是（ ）。",
+      "knowledgePoints": [
+        "g8_c1_007"
+      ],
+      "options": [
+        {
+          "text": "我喜欢语文；也喜欢数学",
+          "isCorrect": true
+        },
+        {
+          "text": "今天天气很好；我们去郊游吧",
+          "isCorrect": false
+        },
+        {
+          "text": "他认真学习；游戏；从不马虎",
+          "isCorrect": false
+        },
+        {
+          "text": "因为下雨；所以路滑",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_008",
+      "content": "说明文的写作顺序不包括（ ）。",
+      "knowledgePoints": [
+        "g8_c2_010"
+      ],
+      "options": [
+        {
+          "text": "时间顺序",
+          "isCorrect": false
+        },
+        {
+          "text": "空间顺序",
+          "isCorrect": false
+        },
+        {
+          "text": "情感顺序",
+          "isCorrect": true
+        },
+        {
+          "text": "逻辑顺序",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_009",
+      "content": "《爱莲说》中\"出淤泥而不染\"的\"染\"字意思是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_004",
+        "g8_c4_007"
+      ],
+      "options": [
+        {
+          "text": "染色",
+          "isCorrect": false
+        },
+        {
+          "text": "沾染",
+          "isCorrect": false
+        },
+        {
+          "text": "污染",
+          "isCorrect": false
+        },
+        {
+          "text": "传染",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_010",
+      "content": "下列句子中，使用了\"举例子\"说明方法的是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_009"
+      ],
+      "options": [
+        {
+          "text": "太阳很大，像个大火球",
+          "isCorrect": false
+        },
+        {
+          "text": "植物能净化空气，例如仙人掌能吸收甲醛",
+          "isCorrect": false
+        },
+        {
+          "text": "空气是无色无味的气体",
+          "isCorrect": false
+        },
+        {
+          "text": "水的沸点是100摄氏度",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_011",
+      "content": "议论文的三要素是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_012"
+      ],
+      "options": [
+        {
+          "text": "开头、经过、结尾",
+          "isCorrect": false
+        },
+        {
+          "text": "时间、地点、人物",
+          "isCorrect": false
+        },
+        {
+          "text": "论点、论据、论证",
+          "isCorrect": true
+        },
+        {
+          "text": "起因、经过、结果",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_012",
+      "content": "在议论文中，使用道理论据的是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_013"
+      ],
+      "options": [
+        {
+          "text": "引用名人名言",
+          "isCorrect": true
+        },
+        {
+          "text": "列举具体数据",
+          "isCorrect": false
+        },
+        {
+          "text": "描述具体事例",
+          "isCorrect": false
+        },
+        {
+          "text": "描写景物烘托",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_013",
+      "content": "《望岳》中\"会当凌绝顶\"的\"会当\"意思是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_005",
+        "g8_c4_001"
+      ],
+      "options": [
+        {
+          "text": "将会",
+          "isCorrect": false
+        },
+        {
+          "text": "应当",
+          "isCorrect": false
+        },
+        {
+          "text": "终要，终当",
+          "isCorrect": true
+        },
+        {
+          "text": "可能",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_014",
+      "content": "下列句式变换正确的是（ ）。",
+      "knowledgePoints": [
+        "g8_c5_001"
+      ],
+      "options": [
+        {
+          "text": "他把作业写完了。（变为被动句）→ 作业被他写完了",
+          "isCorrect": true
+        },
+        {
+          "text": "他完成了作业。（变为被动句）→ 作业完成了被他",
+          "isCorrect": false
+        },
+        {
+          "text": "我打碎了杯子。（变为被动句）→ 杯子把我打碎了",
+          "isCorrect": false
+        },
+        {
+          "text": "风吹倒了树。（变为被动句）→ 树被风吹倒",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_015",
+      "content": "\"比喻\"和\"比拟\"的主要区别是（ ）。",
+      "knowledgePoints": [
+        "g8_c5_005"
+      ],
+      "options": [
+        {
+          "text": "比喻有\"像\"字，比拟没有",
+          "isCorrect": false
+        },
+        {
+          "text": "比喻强调相似性，比拟把物当人或有生命事物",
+          "isCorrect": true
+        },
+        {
+          "text": "比喻用于描写，比拟用于叙述",
+          "isCorrect": false
+        },
+        {
+          "text": "两者没有区别",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_016",
+      "content": "《陋室铭》中表现主人高洁情趣的句子是（ ）。",
+      "knowledgePoints": [
+        "g8_c4_008"
+      ],
+      "options": [
+        {
+          "text": "山不在高，有仙则名",
+          "isCorrect": false
+        },
+        {
+          "text": "苔痕上阶绿，草色入帘青",
+          "isCorrect": true
+        },
+        {
+          "text": "谈笑有鸿儒，往来无白丁",
+          "isCorrect": false
+        },
+        {
+          "text": "南阳诸葛庐，西蜀子云亭",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_017",
+      "content": "文言文\"其\"字的用法，下列判断正确的是（ ）。\"其\"见光。",
+      "knowledgePoints": [
+        "g8_c2_005"
+      ],
+      "options": [
+        {
+          "text": "代词，他",
+          "isCorrect": false
+        },
+        {
+          "text": "代词，它",
+          "isCorrect": true
+        },
+        {
+          "text": "副词，难道",
+          "isCorrect": false
+        },
+        {
+          "text": "连词，因为",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_018",
+      "content": "记叙文中的\"插叙\"作用是（ ）。",
+      "knowledgePoints": [
+        "g8_c3_001"
+      ],
+      "options": [
+        {
+          "text": "推动情节发展",
+          "isCorrect": false
+        },
+        {
+          "text": "补充交代背景或相关内容",
+          "isCorrect": true
+        },
+        {
+          "text": "总结全文",
+          "isCorrect": false
+        },
+        {
+          "text": "点明中心",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_019",
+      "content": "下列修辞手法中，属于\"排比\"的是（ ）。",
+      "knowledgePoints": [
+        "g8_c5_004"
+      ],
+      "options": [
+        {
+          "text": "他的心如刀绞，泪如雨下",
+          "isCorrect": false
+        },
+        {
+          "text": "学如逆水行舟，不进则退",
+          "isCorrect": false
+        },
+        {
+          "text": "秋风吹过，树叶落了，花儿谢了，小草枯了",
+          "isCorrect": true
+        },
+        {
+          "text": "月亮像圆盘一样挂在天空",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_020",
+      "content": "说明文语言的特点是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_011"
+      ],
+      "options": [
+        {
+          "text": "生动形象",
+          "isCorrect": false
+        },
+        {
+          "text": "严谨准确",
+          "isCorrect": true
+        },
+        {
+          "text": "饱含情感",
+          "isCorrect": false
+        },
+        {
+          "text": "富有想象",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_021",
+      "content": "《茅屋为秋风所破歌》中表现诗人忧国忧民情感的诗句是（ ）。",
+      "knowledgePoints": [
+        "g8_c4_003",
+        "g8_c4_005"
+      ],
+      "options": [
+        {
+          "text": "八月秋高风怒号，卷我屋上三重茅",
+          "isCorrect": false
+        },
+        {
+          "text": "南村群童欺我老无力，忍能对面为盗贼",
+          "isCorrect": false
+        },
+        {
+          "text": "安得广厦千万间，大庇天下寒士俱欢颜",
+          "isCorrect": true
+        },
+        {
+          "text": "何时眼前突兀见此屋，吾庐独破受冻死亦足",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_022",
+      "content": "在议论文中，事实论据的特点是（ ）。",
+      "knowledgePoints": [
+        "g8_c3_008"
+      ],
+      "options": [
+        {
+          "text": "以理服人",
+          "isCorrect": false
+        },
+        {
+          "text": "以事感人",
+          "isCorrect": true
+        },
+        {
+          "text": "以情动人",
+          "isCorrect": false
+        },
+        {
+          "text": "以美悦人",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_023",
+      "content": "对偶的特点是（ ）。",
+      "knowledgePoints": [
+        "g8_c5_004"
+      ],
+      "options": [
+        {
+          "text": "字数相等，结构相同",
+          "isCorrect": true
+        },
+        {
+          "text": "三句或三句以上",
+          "isCorrect": false
+        },
+        {
+          "text": "前后事物相似",
+          "isCorrect": false
+        },
+        {
+          "text": "用词夸张",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_024",
+      "content": "文言文判断句的典型标志是（ ）。",
+      "knowledgePoints": [
+        "g8_c2_006"
+      ],
+      "options": [
+        {
+          "text": "者也",
+          "isCorrect": false
+        },
+        {
+          "text": "用\"乃、是、为\"等系词",
+          "isCorrect": true
+        },
+        {
+          "text": "用\"之\"字",
+          "isCorrect": false
+        },
+        {
+          "text": "用\"于\"字",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g8_c_q_025",
+      "content": "写作时使用\"对比\"手法的作用是（ ）。",
+      "knowledgePoints": [
+        "g8_c5_006",
+        "g8_c3_002"
+      ],
+      "options": [
+        {
+          "text": "使形象更加生动",
+          "isCorrect": false
+        },
+        {
+          "text": "突出矛盾，强化中心",
+          "isCorrect": true
+        },
+        {
+          "text": "增加文章情趣",
+          "isCorrect": false
+        },
+        {
+          "text": "渲染气氛",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,881 @@
+{
+  "grade": 3,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g3_c_q_023",
+      "content": "阅读理解：《花钟》这篇课文告诉我们，不同的花开放时间是不同的，主要是因为（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_004"
+      ],
+      "options": [
+        {
+          "text": "花儿的颜色不一样",
+          "isCorrect": true
+        },
+        {
+          "text": "花儿的大小不一样",
+          "isCorrect": false
+        },
+        {
+          "text": "植物开花的时间与温度、湿度、光照有关",
+          "isCorrect": false
+        },
+        {
+          "text": "花儿的香味不一样",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_006",
+      "content": "\"abb\"形式的词语，正确的一项是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_010"
+      ],
+      "options": [
+        {
+          "text": "金灿灿",
+          "isCorrect": true
+        },
+        {
+          "text": "亮晶晶",
+          "isCorrect": false
+        },
+        {
+          "text": "红通通",
+          "isCorrect": false
+        },
+        {
+          "text": "白茫茫",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_010",
+      "content": "下列词语中，互为反义词的一组是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_012"
+      ],
+      "options": [
+        {
+          "text": "高——低",
+          "isCorrect": false
+        },
+        {
+          "text": "长——短",
+          "isCorrect": true
+        },
+        {
+          "text": "粗——细",
+          "isCorrect": false
+        },
+        {
+          "text": "高——矮",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_014",
+      "content": "\"才\"字在不同词语中的意思，错误的一项是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_009"
+      ],
+      "options": [
+        {
+          "text": "刚才——指不久以前",
+          "isCorrect": false
+        },
+        {
+          "text": "才干——指才能",
+          "isCorrect": false
+        },
+        {
+          "text": "人才——指人",
+          "isCorrect": true
+        },
+        {
+          "text": "才华——指表现出来的才能",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_007",
+      "content": "下列词语中，加点字意思相同的一项是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_009",
+        "g3_c1_011"
+      ],
+      "options": [
+        {
+          "text": "闻名——名不虚传",
+          "isCorrect": false
+        },
+        {
+          "text": "著名——名利",
+          "isCorrect": true
+        },
+        {
+          "text": "闻名——陌生人",
+          "isCorrect": false
+        },
+        {
+          "text": "著名——签名",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_011",
+      "content": "\"春风又绿江南岸\"中\"绿\"字的用法，正确的一项是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_004"
+      ],
+      "options": [
+        {
+          "text": "形容词作动词使用",
+          "isCorrect": false
+        },
+        {
+          "text": "名词作形容词使用",
+          "isCorrect": true
+        },
+        {
+          "text": "动词作名词使用",
+          "isCorrect": false
+        },
+        {
+          "text": "形容词作名词使用",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_018",
+      "content": "\"碧玉妆成一树高\"中\"妆\"的意思是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c4_004"
+      ],
+      "options": [
+        {
+          "text": "打扮",
+          "isCorrect": false
+        },
+        {
+          "text": "化妆",
+          "isCorrect": false
+        },
+        {
+          "text": "化妆品",
+          "isCorrect": true
+        },
+        {
+          "text": "装饰",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_029",
+      "content": "体会诗人感情：《饮湖上初晴后雨》表达了诗人对（ ）的喜爱。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c4_005"
+      ],
+      "options": [
+        {
+          "text": "西湖",
+          "isCorrect": false
+        },
+        {
+          "text": "晴天",
+          "isCorrect": false
+        },
+        {
+          "text": "雨天",
+          "isCorrect": true
+        },
+        {
+          "text": "湖水",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_022",
+      "content": "看图写话：图上画的是小鸭子掉进坑里了，小动物们想办法救它。下面的想法哪个最合理？（ ）",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c3_001"
+      ],
+      "options": [
+        {
+          "text": "小兔子直接跳进坑里救小鸭子",
+          "isCorrect": true
+        },
+        {
+          "text": "小象用鼻子往坑里吸水，小猴子往坑里扔树枝让小鸭子爬上来",
+          "isCorrect": false
+        },
+        {
+          "text": "小动物们站在坑边叫小鸭子自己跳上来",
+          "isCorrect": false
+        },
+        {
+          "text": "小动物们去找大人帮忙",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_019",
+      "content": "用修改符号修改病句：\"春天的杭州是美丽的季节。\"（ ）",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c3_007"
+      ],
+      "options": [
+        {
+          "text": "春天的杭州是美丽的。",
+          "isCorrect": true
+        },
+        {
+          "text": "杭州的春天是美丽的季节。",
+          "isCorrect": false
+        },
+        {
+          "text": "春天的杭州是美丽的城市。",
+          "isCorrect": false
+        },
+        {
+          "text": "杭州春天的季节是美丽的。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_025",
+      "content": "给多幅图排序并理解故事：小兔子、小猴子、小熊种树的故事，按照合理顺序排列（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c3_002"
+      ],
+      "options": [
+        {
+          "text": "浇水→挖坑→种树→施肥",
+          "isCorrect": false
+        },
+        {
+          "text": "挖坑→种树→浇水→施肥",
+          "isCorrect": true
+        },
+        {
+          "text": "种树→挖坑→浇水→施肥",
+          "isCorrect": false
+        },
+        {
+          "text": "施肥→种树→挖坑→浇水",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_021",
+      "content": "体会作者感情：朗读《花的学校》时，应带着（ ）感情。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_005"
+      ],
+      "options": [
+        {
+          "text": "悲伤",
+          "isCorrect": false
+        },
+        {
+          "text": "喜悦和好奇",
+          "isCorrect": false
+        },
+        {
+          "text": "愤怒",
+          "isCorrect": false
+        },
+        {
+          "text": "平静",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_020",
+      "content": "概括段意：《富饶的西沙群岛》第2自然段主要写了（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_002"
+      ],
+      "options": [
+        {
+          "text": "西沙群岛的位置",
+          "isCorrect": false
+        },
+        {
+          "text": "西沙群岛海水五光十色",
+          "isCorrect": false
+        },
+        {
+          "text": "西沙群岛的生物",
+          "isCorrect": true
+        },
+        {
+          "text": "西沙群岛的美丽风光",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_017",
+      "content": "下列古诗中，描写春天景色的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c4_001",
+        "g3_c4_002"
+      ],
+      "options": [
+        {
+          "text": "《望天门山》",
+          "isCorrect": false
+        },
+        {
+          "text": "《饮湖上初晴后雨》",
+          "isCorrect": false
+        },
+        {
+          "text": "《望洞庭》",
+          "isCorrect": false
+        },
+        {
+          "text": "《咏柳》",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_005",
+      "content": "下列句子中，标点符号使用正确的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_006"
+      ],
+      "options": [
+        {
+          "text": "春天的花开了，有红的、白的、紫的……",
+          "isCorrect": false
+        },
+        {
+          "text": "春天的花开了，有红的、白的、紫的。",
+          "isCorrect": true
+        },
+        {
+          "text": "春天的花开了，有红的、白的、紫的，",
+          "isCorrect": false
+        },
+        {
+          "text": "春天的花开了，有红的、白的、紫的！",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_008",
+      "content": "按部首查字法，\"染\"字应查（ ）部。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_007"
+      ],
+      "options": [
+        {
+          "text": "木",
+          "isCorrect": false
+        },
+        {
+          "text": "氵",
+          "isCorrect": false
+        },
+        {
+          "text": "九",
+          "isCorrect": false
+        },
+        {
+          "text": "纟",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_003",
+      "content": "下列汉字中，属于上下结构的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_001"
+      ],
+      "options": [
+        {
+          "text": "树",
+          "isCorrect": true
+        },
+        {
+          "text": "花",
+          "isCorrect": false
+        },
+        {
+          "text": "林",
+          "isCorrect": false
+        },
+        {
+          "text": "闪",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_016",
+      "content": "给句子加标点：公园里的花多极了有红的白的黄的紫的（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_006"
+      ],
+      "options": [
+        {
+          "text": "公园里的花多极了，有红的、白的、黄的、紫的。",
+          "isCorrect": true
+        },
+        {
+          "text": "公园里的花多极了，有红的、白的、黄的、紫的……",
+          "isCorrect": false
+        },
+        {
+          "text": "公园里的花多极了，有红的、白的、黄的、紫的、",
+          "isCorrect": false
+        },
+        {
+          "text": "公园里的花多极了：有红的、白的、黄的、紫的。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_030",
+      "content": "口语交际：同学向你借书，你不想借，正确的表达方式是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c5_001",
+        "g3_c5_002"
+      ],
+      "options": [
+        {
+          "text": "\"别烦我，不借！\"",
+          "isCorrect": false
+        },
+        {
+          "text": "\"这本书我还没看完，等我看完了再借给你好吗？\"",
+          "isCorrect": false
+        },
+        {
+          "text": "\"你的眼睛有问题吗？\"",
+          "isCorrect": true
+        },
+        {
+          "text": "直接走开不理他",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_027",
+      "content": "理解文言文词义：《守株待兔》中\"因释其耒而守株\"的\"耒\"指的是（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c4_007"
+      ],
+      "options": [
+        {
+          "text": "树桩",
+          "isCorrect": false
+        },
+        {
+          "text": "农具",
+          "isCorrect": false
+        },
+        {
+          "text": "野兔",
+          "isCorrect": false
+        },
+        {
+          "text": "农田",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_024",
+      "content": "根据词语感情色彩判断：\"圆滑\"和\"灵活\"的感情色彩（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_013"
+      ],
+      "options": [
+        {
+          "text": "都是褒义词",
+          "isCorrect": false
+        },
+        {
+          "text": "都是贬义词",
+          "isCorrect": false
+        },
+        {
+          "text": "\"圆滑\"是贬义，\"灵活\"是褒义",
+          "isCorrect": false
+        },
+        {
+          "text": "\"圆滑\"是褒义，\"灵活\"是贬义",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_026",
+      "content": "文言文朗读：《司马光》中\"光持石击瓮破之\"的正确停顿是（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c4_006"
+      ],
+      "options": [
+        {
+          "text": "光持石/击瓮/破之",
+          "isCorrect": false
+        },
+        {
+          "text": "光/持石击瓮/破之",
+          "isCorrect": false
+        },
+        {
+          "text": "光持/石击/瓮破之",
+          "isCorrect": true
+        },
+        {
+          "text": "光持石击/瓮破之",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_012",
+      "content": "阅读课文《荷花》时，要找出中心句，以下选项正确的是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_003"
+      ],
+      "options": [
+        {
+          "text": "\"荷叶挨挨挤挤的，像一个个碧绿的大圆盘。\"",
+          "isCorrect": false
+        },
+        {
+          "text": "\"这么多的白荷花，一朵有一朵的姿势。\"",
+          "isCorrect": true
+        },
+        {
+          "text": "\"有的还是花骨朵儿，看起来饱胀得马上要破裂似的。\"",
+          "isCorrect": false
+        },
+        {
+          "text": "\"如果把眼前的一池荷花看作一大幅活的画，那画家的本领可真了不起。\"",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_002",
+      "content": "\"望\"字用音序查字法，应先查字母（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_006"
+      ],
+      "options": [
+        {
+          "text": "W",
+          "isCorrect": true
+        },
+        {
+          "text": "M",
+          "isCorrect": false
+        },
+        {
+          "text": "Wáng",
+          "isCorrect": false
+        },
+        {
+          "text": "Máng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_013",
+      "content": "下列句子中，使用了拟人修辞手法的是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c2_004"
+      ],
+      "options": [
+        {
+          "text": "星星在天空中眨着眼睛。",
+          "isCorrect": false
+        },
+        {
+          "text": "太阳像一个大火球。",
+          "isCorrect": false
+        },
+        {
+          "text": "燕子的尾巴像一把剪刀。",
+          "isCorrect": false
+        },
+        {
+          "text": "荷叶圆圆的，绿绿的。",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_001",
+      "content": "下列词语中，书写完全正确的一项是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_001",
+        "g3_c1_002"
+      ],
+      "options": [
+        {
+          "text": "桥梁",
+          "isCorrect": false
+        },
+        {
+          "text": "石桥",
+          "isCorrect": true
+        },
+        {
+          "text": "江河",
+          "isCorrect": false
+        },
+        {
+          "text": "绿色",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_009",
+      "content": "下列词语中，互为近义词的一组是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_011"
+      ],
+      "options": [
+        {
+          "text": "著名——闻名",
+          "isCorrect": false
+        },
+        {
+          "text": "巨大——狭小",
+          "isCorrect": false
+        },
+        {
+          "text": "前进——后退",
+          "isCorrect": false
+        },
+        {
+          "text": "熟悉——陌生",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_028",
+      "content": "古诗理解：《望洞庭》中\"白银盘里一青螺\"运用了什么修辞手法？（ ）",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c4_004",
+        "g3_c4_005"
+      ],
+      "options": [
+        {
+          "text": "比喻",
+          "isCorrect": false
+        },
+        {
+          "text": "拟人",
+          "isCorrect": true
+        },
+        {
+          "text": "夸张",
+          "isCorrect": false
+        },
+        {
+          "text": "排比",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_015",
+      "content": "根据上下文理解词义：\"他对这个问题有研究。\"\"研究\"的意思是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_009"
+      ],
+      "options": [
+        {
+          "text": "深入地探讨",
+          "isCorrect": true
+        },
+        {
+          "text": "重新考虑",
+          "isCorrect": false
+        },
+        {
+          "text": "设计制作",
+          "isCorrect": false
+        },
+        {
+          "text": "观察检验",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_c_q_004",
+      "content": "用\"要挟\"的\"挟\"组词，正确的一项是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_c1_009"
+      ],
+      "options": [
+        {
+          "text": "挟持",
+          "isCorrect": false
+        },
+        {
+          "text": "要挟",
+          "isCorrect": false
+        },
+        {
+          "text": "挟迫",
+          "isCorrect": true
+        },
+        {
+          "text": "挟击",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

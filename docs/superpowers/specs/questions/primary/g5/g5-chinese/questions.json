@@ -1,0 +1,736 @@
+{
+  "grade": 5,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g5_c_q_001",
+      "content": "下列词语中，读音完全相同的一项是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_001"
+      ],
+      "options": [
+        {
+          "text": "竟然 激烈",
+          "isCorrect": false
+        },
+        {
+          "text": "公式 公事",
+          "isCorrect": true
+        },
+        {
+          "text": "时期 时机",
+          "isCorrect": false
+        },
+        {
+          "text": "大海 活动",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_002",
+      "content": "用部首查字法查\"赞\"字，应查（ ）部。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_004"
+      ],
+      "options": [
+        {
+          "text": "贝",
+          "isCorrect": false
+        },
+        {
+          "text": "先",
+          "isCorrect": true
+        },
+        {
+          "text": "口",
+          "isCorrect": false
+        },
+        {
+          "text": "戈",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_003",
+      "content": "《示儿》诗中\"王师北定中原日\"的下一句是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c4_001",
+        "g5_c4_004"
+      ],
+      "options": [
+        {
+          "text": "无家一身轻",
+          "isCorrect": false
+        },
+        {
+          "text": "家祭无忘告乃翁",
+          "isCorrect": true
+        },
+        {
+          "text": "万古江河永不息",
+          "isCorrect": false
+        },
+        {
+          "text": "故国不堪回首月明中",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_004",
+      "content": "词语\"不约而同\"的感情色彩是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_009"
+      ],
+      "options": [
+        {
+          "text": "贬义",
+          "isCorrect": false
+        },
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        },
+        {
+          "text": "中性",
+          "isCorrect": false
+        },
+        {
+          "text": "褒义",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_005",
+      "content": "多音字\"冠\"的读音：\"冠军\"中读（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_003"
+      ],
+      "options": [
+        {
+          "text": "guān",
+          "isCorrect": true
+        },
+        {
+          "text": "guàn",
+          "isCorrect": false
+        },
+        {
+          "text": "guǎn",
+          "isCorrect": false
+        },
+        {
+          "text": "wàn",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_006",
+      "content": "句子\"他的手冻得像胡萝卜\"使用了（ ）修辞手法。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c3_004"
+      ],
+      "options": [
+        {
+          "text": "比喻",
+          "isCorrect": false
+        },
+        {
+          "text": "拟人",
+          "isCorrect": true
+        },
+        {
+          "text": "夸张",
+          "isCorrect": false
+        },
+        {
+          "text": "排比",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_007",
+      "content": "《己亥杂诗》\"我劝天公重抖擞\"的下一句是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c4_002",
+        "g5_c4_004"
+      ],
+      "options": [
+        {
+          "text": "不拘一格降人才",
+          "isCorrect": true
+        },
+        {
+          "text": "万马齐喑究可哀",
+          "isCorrect": false
+        },
+        {
+          "text": "落红不是无情物",
+          "isCorrect": false
+        },
+        {
+          "text": "化作春泥更护花",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_008",
+      "content": "下列句子中，破折号表示解释说明的是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_010"
+      ],
+      "options": [
+        {
+          "text": "我的妈妈——一位普通的老师。",
+          "isCorrect": false
+        },
+        {
+          "text": "我们胜利了——但是不能骄傲。",
+          "isCorrect": false
+        },
+        {
+          "text": "他飞奔过去——哦，原来如此！",
+          "isCorrect": false
+        },
+        {
+          "text": "那是一种鸟——信天翁。",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_009",
+      "content": "找出课文《落花生》的中心句：花生的好处很多，有一样最可贵……这个中心句想表达的是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_002",
+        "g5_c2_004"
+      ],
+      "options": [
+        {
+          "text": "花生很好吃",
+          "isCorrect": false
+        },
+        {
+          "text": "做人要谦虚、不张扬",
+          "isCorrect": true
+        },
+        {
+          "text": "花生产量很高",
+          "isCorrect": false
+        },
+        {
+          "text": "要多种花生",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_010",
+      "content": "形近字辨析：\"幕\"和\"墓\"的不同是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_002"
+      ],
+      "options": [
+        {
+          "text": "读音不同",
+          "isCorrect": false
+        },
+        {
+          "text": "意义不同",
+          "isCorrect": false
+        },
+        {
+          "text": "偏旁不同",
+          "isCorrect": true
+        },
+        {
+          "text": "笔画数不同",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_011",
+      "content": "概括段落大意：《猎人海力布》第3段主要写了（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_001"
+      ],
+      "options": [
+        {
+          "text": "海力布救了白蛇",
+          "isCorrect": true
+        },
+        {
+          "text": "海力布得到宝石",
+          "isCorrect": false
+        },
+        {
+          "text": "海力布告别乡亲",
+          "isCorrect": false
+        },
+        {
+          "text": "海力布介绍来历",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_012",
+      "content": "成语\"守株待兔\"比喻（ ）。",
+      "type": "single",
+      "difficulty": 5,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_010"
+      ],
+      "options": [
+        {
+          "text": "坚持不懈",
+          "isCorrect": false
+        },
+        {
+          "text": "主动出击",
+          "isCorrect": false
+        },
+        {
+          "text": "不主动努力，希望获得意外成功",
+          "isCorrect": false
+        },
+        {
+          "text": "坐享其成",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_013",
+      "content": "用\"因为...所以...\"造句：正确的是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_005"
+      ],
+      "options": [
+        {
+          "text": "因为下雨了，所以我要去游泳。",
+          "isCorrect": false
+        },
+        {
+          "text": "因为学习好，所以我不努力。",
+          "isCorrect": false
+        },
+        {
+          "text": "因为妈妈爱我，所以我很幸福。",
+          "isCorrect": true
+        },
+        {
+          "text": "因为睡觉了，所以吃饭。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_014",
+      "content": "《少年中国说》中\"少年强则国强\"表达了（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c4_003",
+        "g5_c4_005"
+      ],
+      "options": [
+        {
+          "text": "少年要强壮身体",
+          "isCorrect": false
+        },
+        {
+          "text": "国家的强大靠少年的努力",
+          "isCorrect": true
+        },
+        {
+          "text": "少年不需要关心国家",
+          "isCorrect": false
+        },
+        {
+          "text": "少年和國家一样重要",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_015",
+      "content": "理解句子含义：\"他的心像针扎一样难受。\"表达了（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_003"
+      ],
+      "options": [
+        {
+          "text": "高兴",
+          "isCorrect": false
+        },
+        {
+          "text": "疼痛",
+          "isCorrect": false
+        },
+        {
+          "text": "伤心",
+          "isCorrect": true
+        },
+        {
+          "text": "害怕",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_016",
+      "content": "说明文写作\"列数字\"说明方法的作用是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c3_006"
+      ],
+      "options": [
+        {
+          "text": "让文章更生动",
+          "isCorrect": false
+        },
+        {
+          "text": "使说明更准确、有依据",
+          "isCorrect": true
+        },
+        {
+          "text": "引起读者兴趣",
+          "isCorrect": false
+        },
+        {
+          "text": "表达作者感情",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_017",
+      "content": "文言文《精卫填海》中\"故\"的意思是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c4_007"
+      ],
+      "options": [
+        {
+          "text": "故意",
+          "isCorrect": false
+        },
+        {
+          "text": "事故",
+          "isCorrect": false
+        },
+        {
+          "text": "因此",
+          "isCorrect": true
+        },
+        {
+          "text": "故事",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_018",
+      "content": "反义词：\"虚伪\"的反义词是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_008"
+      ],
+      "options": [
+        {
+          "text": "虚假",
+          "isCorrect": false
+        },
+        {
+          "text": "坦诚",
+          "isCorrect": true
+        },
+        {
+          "text": "骄傲",
+          "isCorrect": false
+        },
+        {
+          "text": "谦虚",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_019",
+      "content": "按事情发展顺序排列：①找到水源 ②挖井 ③选址 ④饮水思源（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c3_001"
+      ],
+      "options": [
+        {
+          "text": "①②③④",
+          "isCorrect": false
+        },
+        {
+          "text": "③②①④",
+          "isCorrect": true
+        },
+        {
+          "text": "④③②①",
+          "isCorrect": false
+        },
+        {
+          "text": "②④③①",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_020",
+      "content": "省略号在\"妈妈喊：'小明，小明……'\"中的作用是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_011"
+      ],
+      "options": [
+        {
+          "text": "表示列举的省略",
+          "isCorrect": false
+        },
+        {
+          "text": "表示说话断断续续",
+          "isCorrect": true
+        },
+        {
+          "text": "表示引用的省略",
+          "isCorrect": false
+        },
+        {
+          "text": "表示意犹未尽",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_021",
+      "content": "文章《桂花雨》主要表达了作者对（ ）的思念之情。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_004",
+        "g5_c2_006"
+      ],
+      "options": [
+        {
+          "text": "桂花",
+          "isCorrect": false
+        },
+        {
+          "text": "故乡",
+          "isCorrect": true
+        },
+        {
+          "text": "妈妈",
+          "isCorrect": false
+        },
+        {
+          "text": "童年",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_022",
+      "content": "近义词：\"著名\"的近义词是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c1_007"
+      ],
+      "options": [
+        {
+          "text": "有名",
+          "isCorrect": true
+        },
+        {
+          "text": "闻名",
+          "isCorrect": false
+        },
+        {
+          "text": "丑陋",
+          "isCorrect": false
+        },
+        {
+          "text": "出名",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_023",
+      "content": "细节描写\"他的手指微微颤抖\"属于（ ）描写。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c3_004"
+      ],
+      "options": [
+        {
+          "text": "语言",
+          "isCorrect": false
+        },
+        {
+          "text": "动作",
+          "isCorrect": true
+        },
+        {
+          "text": "外貌",
+          "isCorrect": false
+        },
+        {
+          "text": "心理",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_024",
+      "content": "理解课题：《\"精彩极了\"和\"糟糕透了\"》课题运用了（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_005"
+      ],
+      "options": [
+        {
+          "text": "对比",
+          "isCorrect": true
+        },
+        {
+          "text": "比喻",
+          "isCorrect": false
+        },
+        {
+          "text": "拟人",
+          "isCorrect": false
+        },
+        {
+          "text": "排比",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g5_c_q_025",
+      "content": "句子中引号表示特定称谓的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 5,
+      "knowledgePoints": [
+        "g5_c2_009"
+      ],
+      "options": [
+        {
+          "text": "老师笑着说：'要努力学习。'",
+          "isCorrect": false
+        },
+        {
+          "text": "他被称为'活雷锋'。",
+          "isCorrect": false
+        },
+        {
+          "text": "'一'字很难写。",
+          "isCorrect": false
+        },
+        {
+          "text": "我们要发扬'钉子'精神。",
+          "isCorrect": true
+        }
+      ]
+    }
+  ]
+}

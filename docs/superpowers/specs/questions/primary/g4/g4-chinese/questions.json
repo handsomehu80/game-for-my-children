@@ -1,0 +1,736 @@
+{
+  "grade": 4,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g4_c_q_001",
+      "content": "下列词语中，读音相同的一项是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_001"
+      ],
+      "options": [
+        {
+          "text": "相同 相信",
+          "isCorrect": true
+        },
+        {
+          "text": "青山 青山",
+          "isCorrect": false
+        },
+        {
+          "text": "竟然 激烈",
+          "isCorrect": false
+        },
+        {
+          "text": "蓝天 蓝天",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_002",
+      "content": "用部首查字法查\"飘\"字，应查（ ）部。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_004"
+      ],
+      "options": [
+        {
+          "text": "票",
+          "isCorrect": false
+        },
+        {
+          "text": "风",
+          "isCorrect": true
+        },
+        {
+          "text": "巾",
+          "isCorrect": false
+        },
+        {
+          "text": "西",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_003",
+      "content": "《题西林壁》诗中\"不识庐山真面目\"的原因是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c4_002",
+        "g4_c4_004"
+      ],
+      "options": [
+        {
+          "text": "庐山太高了",
+          "isCorrect": false
+        },
+        {
+          "text": "只缘身在此山中",
+          "isCorrect": false
+        },
+        {
+          "text": "雾气太大了",
+          "isCorrect": true
+        },
+        {
+          "text": "诗人没有仔细看",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_004",
+      "content": "词语\"眉开眼笑\"的感情色彩是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_009"
+      ],
+      "options": [
+        {
+          "text": "无法判断",
+          "isCorrect": false
+        },
+        {
+          "text": "贬义",
+          "isCorrect": false
+        },
+        {
+          "text": "褒义",
+          "isCorrect": false
+        },
+        {
+          "text": "中性",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_005",
+      "content": "下列句子中，破折号表示转折的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_008"
+      ],
+      "options": [
+        {
+          "text": "我们胜利了——但是不能骄傲。",
+          "isCorrect": true
+        },
+        {
+          "text": "那是他的书——我的一本书。",
+          "isCorrect": false
+        },
+        {
+          "text": "他飞奔过去——哦，原来如此！",
+          "isCorrect": false
+        },
+        {
+          "text": "我的妈妈——一位老师。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_006",
+      "content": "\"持续\"的近义词是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_007"
+      ],
+      "options": [
+        {
+          "text": "继续",
+          "isCorrect": true
+        },
+        {
+          "text": "停止",
+          "isCorrect": false
+        },
+        {
+          "text": "结束",
+          "isCorrect": false
+        },
+        {
+          "text": "中断",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_007",
+      "content": "多音字\"散\"的读音：\"散步\"中读（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_003"
+      ],
+      "options": [
+        {
+          "text": "sǎn",
+          "isCorrect": false
+        },
+        {
+          "text": "sàn",
+          "isCorrect": false
+        },
+        {
+          "text": "shàn",
+          "isCorrect": true
+        },
+        {
+          "text": "shǎn",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_008",
+      "content": "《暮江吟》描写的是（ ）的景色。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c4_001",
+        "g4_c4_004"
+      ],
+      "options": [
+        {
+          "text": "夏天",
+          "isCorrect": false
+        },
+        {
+          "text": "秋天",
+          "isCorrect": true
+        },
+        {
+          "text": "春天",
+          "isCorrect": false
+        },
+        {
+          "text": "冬天",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_009",
+      "content": "按事情发展顺序排列：①老师批改作业 ②小明完成作业 ③上课 ④复习（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c3_001"
+      ],
+      "options": [
+        {
+          "text": "①④②③",
+          "isCorrect": true
+        },
+        {
+          "text": "②④③①",
+          "isCorrect": false
+        },
+        {
+          "text": "④②③①",
+          "isCorrect": false
+        },
+        {
+          "text": "③④②①",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_010",
+      "content": "下列句子中，引号表示直接引用的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_007"
+      ],
+      "options": [
+        {
+          "text": "老师说：“要认真写作业。”",
+          "isCorrect": false
+        },
+        {
+          "text": "他叫我去图书馆。",
+          "isCorrect": true
+        },
+        {
+          "text": "他是一个“好学生”。",
+          "isCorrect": false
+        },
+        {
+          "text": "“一”字很难写。",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_011",
+      "content": "形近字辨析：\"辨\"和\"辩\"的不同是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_002"
+      ],
+      "options": [
+        {
+          "text": "结构不同",
+          "isCorrect": false
+        },
+        {
+          "text": "笔画数不同",
+          "isCorrect": false
+        },
+        {
+          "text": "偏旁不同",
+          "isCorrect": true
+        },
+        {
+          "text": "读音不同",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_012",
+      "content": "理解句子含义：\"这场雨真及时啊！\"表达了（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_003",
+        "g4_c2_004"
+      ],
+      "options": [
+        {
+          "text": "高兴",
+          "isCorrect": false
+        },
+        {
+          "text": "惊讶",
+          "isCorrect": false
+        },
+        {
+          "text": "悲伤",
+          "isCorrect": false
+        },
+        {
+          "text": "抱怨",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_013",
+      "content": "词语搭配：（ ）的问题。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_005"
+      ],
+      "options": [
+        {
+          "text": "简单",
+          "isCorrect": true
+        },
+        {
+          "text": "困难",
+          "isCorrect": false
+        },
+        {
+          "text": "复杂",
+          "isCorrect": false
+        },
+        {
+          "text": "严肃",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_014",
+      "content": "《雪梅》诗中\"梅须逊雪三分白\"的下一句是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c4_003",
+        "g4_c4_005"
+      ],
+      "options": [
+        {
+          "text": "日暮诗成天又雪",
+          "isCorrect": false
+        },
+        {
+          "text": "雪却输梅一段香",
+          "isCorrect": true
+        },
+        {
+          "text": "骚人阁笔费评章",
+          "isCorrect": false
+        },
+        {
+          "text": "梅雪争春未肯降",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_015",
+      "content": "找出课文《观潮》的中心句：钱塘江大潮，自古以来被称为（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_002"
+      ],
+      "options": [
+        {
+          "text": "自然景观",
+          "isCorrect": false
+        },
+        {
+          "text": "著名景点",
+          "isCorrect": false
+        },
+        {
+          "text": "天下奇观",
+          "isCorrect": true
+        },
+        {
+          "text": "壮观景象",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_016",
+      "content": "概括段落大意：《富饶的西沙群岛》第2段主要写了（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_001"
+      ],
+      "options": [
+        {
+          "text": "西沙群岛的生物",
+          "isCorrect": false
+        },
+        {
+          "text": "西沙群岛海水五光十色",
+          "isCorrect": false
+        },
+        {
+          "text": "西沙群岛的风景",
+          "isCorrect": false
+        },
+        {
+          "text": "西沙群岛的位置",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_017",
+      "content": "写一件事的起因、经过、结果：起因是小明摔倒了，经过是（ ），结果是大家把他扶起来了。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c3_003"
+      ],
+      "options": [
+        {
+          "text": "老师表扬了小明",
+          "isCorrect": true
+        },
+        {
+          "text": "小红路过看见了",
+          "isCorrect": false
+        },
+        {
+          "text": "同学们围了过来",
+          "isCorrect": false
+        },
+        {
+          "text": "小明自己站了起来",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_018",
+      "content": "文言文朗读：《王戎不取道旁李》中\"道旁\"的意思是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c4_006",
+        "g4_c4_007"
+      ],
+      "options": [
+        {
+          "text": "道路上",
+          "isCorrect": false
+        },
+        {
+          "text": "道路旁边",
+          "isCorrect": true
+        },
+        {
+          "text": "道路后面",
+          "isCorrect": false
+        },
+        {
+          "text": "道路前面",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_019",
+      "content": "体会作者感情：《观潮》表达了作者对钱塘江大潮的（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_004"
+      ],
+      "options": [
+        {
+          "text": "怀念",
+          "isCorrect": false
+        },
+        {
+          "text": "赞叹",
+          "isCorrect": false
+        },
+        {
+          "text": "惋惜",
+          "isCorrect": true
+        },
+        {
+          "text": "恐惧",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_020",
+      "content": "说明文写作使用的说明方法：\"赵州桥是一座石拱桥，这座桥全长50多米，有9米多宽。\"使用了（ ）说明方法。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c3_005"
+      ],
+      "options": [
+        {
+          "text": "作比较",
+          "isCorrect": false
+        },
+        {
+          "text": "打比方",
+          "isCorrect": false
+        },
+        {
+          "text": "列数字",
+          "isCorrect": false
+        },
+        {
+          "text": "比喻",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_021",
+      "content": "多音字\"兴\"的读音：\"高兴\"中读（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_003"
+      ],
+      "options": [
+        {
+          "text": "xìng",
+          "isCorrect": true
+        },
+        {
+          "text": "xīng",
+          "isCorrect": false
+        },
+        {
+          "text": "xíng",
+          "isCorrect": false
+        },
+        {
+          "text": "xēng",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_022",
+      "content": "反义词：\"粗糙\"的反义词是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c1_008"
+      ],
+      "options": [
+        {
+          "text": "粗糙",
+          "isCorrect": false
+        },
+        {
+          "text": "光滑",
+          "isCorrect": true
+        },
+        {
+          "text": "明亮",
+          "isCorrect": false
+        },
+        {
+          "text": "平整",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_023",
+      "content": "《题西林壁》中\"当局者迷\"的哲理是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c4_005"
+      ],
+      "options": [
+        {
+          "text": "当局者清",
+          "isCorrect": false
+        },
+        {
+          "text": "旁观者清",
+          "isCorrect": false
+        },
+        {
+          "text": "人要置身事外才能看清真相",
+          "isCorrect": true
+        },
+        {
+          "text": "需要多角度看问题",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_024",
+      "content": "理解课题：《金色的鱼钩》课题运用了（ ）修辞手法。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_005"
+      ],
+      "options": [
+        {
+          "text": "比喻",
+          "isCorrect": false
+        },
+        {
+          "text": "拟人",
+          "isCorrect": false
+        },
+        {
+          "text": "夸张",
+          "isCorrect": false
+        },
+        {
+          "text": "排比",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g4_c_q_025",
+      "content": "句子中顿号使用正确的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 4,
+      "knowledgePoints": [
+        "g4_c2_006"
+      ],
+      "options": [
+        {
+          "text": "我们爱吃苹果、香蕉、橘子等水果。",
+          "isCorrect": true
+        },
+        {
+          "text": "我们爱吃苹果，香蕉、橘子，等水果。",
+          "isCorrect": false
+        },
+        {
+          "text": "我们爱吃苹果、香蕉、橘子、等水果。",
+          "isCorrect": false
+        },
+        {
+          "text": "我们爱吃苹果，香蕉，橘子，等水果。",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

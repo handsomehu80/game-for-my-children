@@ -1,0 +1,589 @@
+{
+  "grade": 6,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g6_e_q_001",
+      "content": "What will you do tomorrow? (你会怎么做?)",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_001"
+      ],
+      "options": [
+        {
+          "text": "I will go to school.",
+          "isCorrect": true
+        },
+        {
+          "text": "I going to school.",
+          "isCorrect": false
+        },
+        {
+          "text": "I go to school.",
+          "isCorrect": false
+        },
+        {
+          "text": "I went to school.",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_002",
+      "content": "How do you feel about the movie? (你觉得电影怎么样?)",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e2_003"
+      ],
+      "options": [
+        {
+          "text": "I feel happily.",
+          "isCorrect": false
+        },
+        {
+          "text": "I feel happiness.",
+          "isCorrect": false
+        },
+        {
+          "text": "I feeling happy.",
+          "isCorrect": false
+        },
+        {
+          "text": "I feel happy.",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_003",
+      "content": "Choose the correct comparative form: big (选择正确的比较级)",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_004"
+      ],
+      "options": [
+        {
+          "text": "biggest",
+          "isCorrect": false
+        },
+        {
+          "text": "bigger",
+          "isCorrect": true
+        },
+        {
+          "text": "biger",
+          "isCorrect": false
+        },
+        {
+          "text": "more big",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_004",
+      "content": "I think she ___ right.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e2_004",
+        "g6_e3_001"
+      ],
+      "options": [
+        {
+          "text": "was",
+          "isCorrect": false
+        },
+        {
+          "text": "are",
+          "isCorrect": false
+        },
+        {
+          "text": "is",
+          "isCorrect": true
+        },
+        {
+          "text": "be",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_005",
+      "content": "What are you going to do this weekend? (这周末你打算做什么?)",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_002"
+      ],
+      "options": [
+        {
+          "text": "I visits my grandmother.",
+          "isCorrect": false
+        },
+        {
+          "text": "I'm going to visit my grandmother.",
+          "isCorrect": true
+        },
+        {
+          "text": "I will visit my grandmother.",
+          "isCorrect": false
+        },
+        {
+          "text": "I visited my grandmother.",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_006",
+      "content": "She is ___ than her brother.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_004"
+      ],
+      "options": [
+        {
+          "text": "taller",
+          "isCorrect": true
+        },
+        {
+          "text": "tall",
+          "isCorrect": false
+        },
+        {
+          "text": "tallest",
+          "isCorrect": false
+        },
+        {
+          "text": "more tall",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_007",
+      "content": "I ___ English class at 8 o'clock yesterday.",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_e3_007"
+      ],
+      "options": [
+        {
+          "text": "was have",
+          "isCorrect": false
+        },
+        {
+          "text": "were having",
+          "isCorrect": false
+        },
+        {
+          "text": "had",
+          "isCorrect": false
+        },
+        {
+          "text": "was having",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_008",
+      "content": "In my opinion, this book is ___ (good).",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e2_006",
+        "g6_e3_004"
+      ],
+      "options": [
+        {
+          "text": "more good",
+          "isCorrect": false
+        },
+        {
+          "text": "best",
+          "isCorrect": false
+        },
+        {
+          "text": "gooder",
+          "isCorrect": false
+        },
+        {
+          "text": "better",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_009",
+      "content": "When I ___ home, it was raining.",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_e3_007",
+        "g6_e3_008"
+      ],
+      "options": [
+        {
+          "text": "arriving",
+          "isCorrect": false
+        },
+        {
+          "text": "arrived",
+          "isCorrect": true
+        },
+        {
+          "text": "was arriving",
+          "isCorrect": false
+        },
+        {
+          "text": "arrive",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_010",
+      "content": "I agree ___ what you said.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e2_005"
+      ],
+      "options": [
+        {
+          "text": "at",
+          "isCorrect": false
+        },
+        {
+          "text": "with",
+          "isCorrect": true
+        },
+        {
+          "text": "on",
+          "isCorrect": false
+        },
+        {
+          "text": "to",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_011",
+      "content": "The Spring Festival is in ___ (January/February).",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_e1_004"
+      ],
+      "options": [
+        {
+          "text": "March",
+          "isCorrect": false
+        },
+        {
+          "text": "January",
+          "isCorrect": false
+        },
+        {
+          "text": "February",
+          "isCorrect": true
+        },
+        {
+          "text": "December",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_012",
+      "content": "He is an ___ person. He always tells the truth.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e1_002"
+      ],
+      "options": [
+        {
+          "text": "honust",
+          "isCorrect": false
+        },
+        {
+          "text": "honestal",
+          "isCorrect": false
+        },
+        {
+          "text": "honest",
+          "isCorrect": true
+        },
+        {
+          "text": "honusted",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_013",
+      "content": "My mother is ___ kind ___ my grandmother.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_004"
+      ],
+      "options": [
+        {
+          "text": "kind, to",
+          "isCorrect": false
+        },
+        {
+          "text": "more, to",
+          "isCorrect": false
+        },
+        {
+          "text": "more, than",
+          "isCorrect": false
+        },
+        {
+          "text": "kinder, to",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_014",
+      "content": "We ___ the movie tonight. It's very exciting.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_002"
+      ],
+      "options": [
+        {
+          "text": "watched",
+          "isCorrect": false
+        },
+        {
+          "text": "will watch",
+          "isCorrect": false
+        },
+        {
+          "text": "watch",
+          "isCorrect": false
+        },
+        {
+          "text": "are going to watch",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_015",
+      "content": "The word 'well' is a(n) ___ (副词).",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_e3_006"
+      ],
+      "options": [
+        {
+          "text": "verb",
+          "isCorrect": false
+        },
+        {
+          "text": "adverb",
+          "isCorrect": true
+        },
+        {
+          "text": "noun",
+          "isCorrect": false
+        },
+        {
+          "text": "adjective",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_016",
+      "content": "I feel ___ about the exam.",
+      "difficulty": 1,
+      "knowledgePoints": [
+        "g6_e1_001"
+      ],
+      "options": [
+        {
+          "text": "worrying",
+          "isCorrect": false
+        },
+        {
+          "text": "wories",
+          "isCorrect": false
+        },
+        {
+          "text": "worried",
+          "isCorrect": true
+        },
+        {
+          "text": "worry",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_017",
+      "content": "___ you ___ to go to the party tonight?",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e3_001"
+      ],
+      "options": [
+        {
+          "text": "Will, want",
+          "isCorrect": true
+        },
+        {
+          "text": "Are, wanting",
+          "isCorrect": false
+        },
+        {
+          "text": "Do, want",
+          "isCorrect": false
+        },
+        {
+          "text": "Were, want",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_018",
+      "content": "He runs ___ than I do.",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_e3_006"
+      ],
+      "options": [
+        {
+          "text": "fastest",
+          "isCorrect": false
+        },
+        {
+          "text": "most fast",
+          "isCorrect": false
+        },
+        {
+          "text": "fast",
+          "isCorrect": false
+        },
+        {
+          "text": "faster",
+          "isCorrect": true
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_019",
+      "content": "While I ___ TV, the phone rang.",
+      "difficulty": 3,
+      "knowledgePoints": [
+        "g6_e3_008"
+      ],
+      "options": [
+        {
+          "text": "am watching",
+          "isCorrect": false
+        },
+        {
+          "text": "watched",
+          "isCorrect": false
+        },
+        {
+          "text": "was watching",
+          "isCorrect": true
+        },
+        {
+          "text": "watch",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    },
+    {
+      "id": "g6_e_q_020",
+      "content": "I disagree ___ your idea.",
+      "difficulty": 2,
+      "knowledgePoints": [
+        "g6_e2_005"
+      ],
+      "options": [
+        {
+          "text": "with",
+          "isCorrect": true
+        },
+        {
+          "text": "to",
+          "isCorrect": false
+        },
+        {
+          "text": "about",
+          "isCorrect": false
+        },
+        {
+          "text": "for",
+          "isCorrect": false
+        }
+      ],
+      "type": "single",
+      "category": "english",
+      "grade": 6
+    }
+  ]
+}

@@ -1,0 +1,681 @@
+{
+  "grade": 9,
+  "subject": "chinese",
+  "questions": [
+    {
+      "id": "g9_c_q_001",
+      "content": "《鱼我所欲也》中\"所欲有甚于生者\"的\"甚\"意思是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "厉害",
+          "isCorrect": false
+        },
+        {
+          "text": "超过",
+          "isCorrect": true
+        },
+        {
+          "text": "非常",
+          "isCorrect": false
+        },
+        {
+          "text": "严重",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_002",
+      "content": "下列词语中，属于文言虚词的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "水",
+          "isCorrect": false
+        },
+        {
+          "text": "之",
+          "isCorrect": false
+        },
+        {
+          "text": "人",
+          "isCorrect": false
+        },
+        {
+          "text": "山",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_003",
+      "content": "文言文断句时，主要依据是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "标点符号",
+          "isCorrect": false
+        },
+        {
+          "text": "句子结构",
+          "isCorrect": true
+        },
+        {
+          "text": "词语多少",
+          "isCorrect": false
+        },
+        {
+          "text": "字数长短",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_004",
+      "content": "《曹刿论战》中\"何以战\"的句式属于（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "判断句",
+          "isCorrect": false
+        },
+        {
+          "text": "宾语前置",
+          "isCorrect": true
+        },
+        {
+          "text": "状语后置",
+          "isCorrect": false
+        },
+        {
+          "text": "主谓倒装",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_005",
+      "content": "散文的线索作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "连接故事情节",
+          "isCorrect": false
+        },
+        {
+          "text": "贯穿全文组织材料",
+          "isCorrect": true
+        },
+        {
+          "text": "描写人物外貌",
+          "isCorrect": false
+        },
+        {
+          "text": "交代故事背景",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_006",
+      "content": "小说中环境描写的主要作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "烘托人物心情",
+          "isCorrect": true
+        },
+        {
+          "text": "吸引读者注意",
+          "isCorrect": false
+        },
+        {
+          "text": "交代时代背景",
+          "isCorrect": false
+        },
+        {
+          "text": "推动情节发展",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_007",
+      "content": "记叙文开头技巧中\"设置悬念\"的目的是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "点明中心",
+          "isCorrect": false
+        },
+        {
+          "text": "升华主题",
+          "isCorrect": false
+        },
+        {
+          "text": "引起读者阅读兴趣",
+          "isCorrect": true
+        },
+        {
+          "text": "首尾呼应",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_008",
+      "content": "议论文的\"引-议-联-结\"结构中，\"联\"的作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "联系实际展开论证",
+          "isCorrect": true
+        },
+        {
+          "text": "举例论证",
+          "isCorrect": false
+        },
+        {
+          "text": "提出论点",
+          "isCorrect": false
+        },
+        {
+          "text": "总结全文",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_009",
+      "content": "古诗鉴赏中\"一切景语皆情语\"说明古诗的意境特点是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "直抒胸臆",
+          "isCorrect": false
+        },
+        {
+          "text": "叙事抒情",
+          "isCorrect": false
+        },
+        {
+          "text": "托物言志",
+          "isCorrect": false
+        },
+        {
+          "text": "借景抒情",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_010",
+      "content": "宋词中词牌名的作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "说明词的作者",
+          "isCorrect": false
+        },
+        {
+          "text": "规定词的格律",
+          "isCorrect": false
+        },
+        {
+          "text": "表示词的长度",
+          "isCorrect": false
+        },
+        {
+          "text": "表明词的主题",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_011",
+      "content": "复杂单句分析中，主语和谓语是句子的（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "附加成分",
+          "isCorrect": false
+        },
+        {
+          "text": "中心成分",
+          "isCorrect": true
+        },
+        {
+          "text": "修饰成分",
+          "isCorrect": false
+        },
+        {
+          "text": "补充成分",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_012",
+      "content": "病句\"通过这次活动，使我受到了教育\"的病因是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "成分残缺",
+          "isCorrect": true
+        },
+        {
+          "text": "搭配不当",
+          "isCorrect": false
+        },
+        {
+          "text": "语序不当",
+          "isCorrect": false
+        },
+        {
+          "text": "不合逻辑",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_013",
+      "content": "《生于忧患死于安乐》中\"苦其心志\"的苦字的用法是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "名词作动词",
+          "isCorrect": false
+        },
+        {
+          "text": "形容词作动词",
+          "isCorrect": false
+        },
+        {
+          "text": "意动用法",
+          "isCorrect": false
+        },
+        {
+          "text": "使动用法",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_014",
+      "content": "小说人物形象分析不包括（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "性格特点",
+          "isCorrect": true
+        },
+        {
+          "text": "行为动作",
+          "isCorrect": false
+        },
+        {
+          "text": "故事情节",
+          "isCorrect": false
+        },
+        {
+          "text": "外貌特征",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_015",
+      "content": "记叙文细节描写的作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "交代故事时间",
+          "isCorrect": false
+        },
+        {
+          "text": "使人物形象更丰满",
+          "isCorrect": true
+        },
+        {
+          "text": "概括全文内容",
+          "isCorrect": false
+        },
+        {
+          "text": "点明文章标题",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_016",
+      "content": "古诗\"春风又绿江南岸\"中\"绿\"字的修辞手法是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "动词活用",
+          "isCorrect": false
+        },
+        {
+          "text": "比喻",
+          "isCorrect": false
+        },
+        {
+          "text": "借代",
+          "isCorrect": true
+        },
+        {
+          "text": "拟人",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_017",
+      "content": "文言文翻译时\"之\"字可翻译为（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "的",
+          "isCorrect": false
+        },
+        {
+          "text": "他/她/它",
+          "isCorrect": false
+        },
+        {
+          "text": "去、到",
+          "isCorrect": false
+        },
+        {
+          "text": "以上均可",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_018",
+      "content": "议论文中驳论的主要方法是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "道理论证",
+          "isCorrect": true
+        },
+        {
+          "text": "比喻论证",
+          "isCorrect": false
+        },
+        {
+          "text": "对比论证",
+          "isCorrect": false
+        },
+        {
+          "text": "举例论证",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_019",
+      "content": "散文托物言志手法的作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "叙述事情经过",
+          "isCorrect": false
+        },
+        {
+          "text": "通过事物寄托志向",
+          "isCorrect": true
+        },
+        {
+          "text": "直接表达感情",
+          "isCorrect": false
+        },
+        {
+          "text": "描写景物特征",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_020",
+      "content": "小说情节结构的\"开端-发展-高潮-结局\"中，高潮的作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "矛盾冲突最尖锐",
+          "isCorrect": false
+        },
+        {
+          "text": "介绍主要人物",
+          "isCorrect": false
+        },
+        {
+          "text": "交代故事背景",
+          "isCorrect": true
+        },
+        {
+          "text": "引出故事结局",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_021",
+      "content": "多种修辞手法综合运用分析时，首先要（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "找出修辞手法",
+          "isCorrect": true
+        },
+        {
+          "text": "分析修辞效果",
+          "isCorrect": false
+        },
+        {
+          "text": "理解文章内容",
+          "isCorrect": false
+        },
+        {
+          "text": "体会作者感情",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_022",
+      "content": "古诗情感主旨分析时，需要结合（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "诗歌格律",
+          "isCorrect": true
+        },
+        {
+          "text": "诗歌标题",
+          "isCorrect": false
+        },
+        {
+          "text": "写作背景",
+          "isCorrect": false
+        },
+        {
+          "text": "诗人简介",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_023",
+      "content": "议论文论证方法运用中，比喻论证的作用是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "强调论点重要性",
+          "isCorrect": false
+        },
+        {
+          "text": "使论证更形象易懂",
+          "isCorrect": true
+        },
+        {
+          "text": "反驳错误观点",
+          "isCorrect": false
+        },
+        {
+          "text": "增强说服力",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_024",
+      "content": "《邹忌讽齐王纳谏》中邹忌采用的讽谏方法是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "类比讽谏",
+          "isCorrect": true
+        },
+        {
+          "text": "直接批评",
+          "isCorrect": false
+        },
+        {
+          "text": "威胁恐吓",
+          "isCorrect": false
+        },
+        {
+          "text": "谄媚奉承",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g9_c_q_025",
+      "content": "复句中关联词语\"因为...所以...\"表示（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "chinese",
+      "grade": 9,
+      "knowledgePoints": [],
+      "options": [
+        {
+          "text": "并列关系",
+          "isCorrect": false
+        },
+        {
+          "text": "递进关系",
+          "isCorrect": false
+        },
+        {
+          "text": "转折关系",
+          "isCorrect": false
+        },
+        {
+          "text": "因果关系",
+          "isCorrect": true
+        }
+      ]
+    }
+  ]
+}

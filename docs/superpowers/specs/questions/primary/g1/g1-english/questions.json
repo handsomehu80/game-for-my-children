@@ -1,0 +1,914 @@
+{
+  "grade": 1,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g1_e_q_009",
+      "content": "Please stand __________. (起立)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_007"
+      ],
+      "options": [
+        {
+          "text": "here",
+          "isCorrect": false
+        },
+        {
+          "text": "up",
+          "isCorrect": true
+        },
+        {
+          "text": "down",
+          "isCorrect": false
+        },
+        {
+          "text": "there",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_013",
+      "content": "My __________ is Lily. She is my sister. (填空)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_015",
+        "g1_e3_003"
+      ],
+      "options": [
+        {
+          "text": "name",
+          "isCorrect": false
+        },
+        {
+          "text": "friend",
+          "isCorrect": false
+        },
+        {
+          "text": "book",
+          "isCorrect": false
+        },
+        {
+          "text": "sister",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_027",
+      "content": "Which sentence is correct? (哪个句子是正确的？)",
+      "type": "single",
+      "difficulty": 5,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e4_001",
+        "g1_e4_002"
+      ],
+      "options": [
+        {
+          "text": "This is the cat.",
+          "isCorrect": false
+        },
+        {
+          "text": "This is cat.",
+          "isCorrect": false
+        },
+        {
+          "text": "This cat is.",
+          "isCorrect": false
+        },
+        {
+          "text": "This is a cat.",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_010",
+      "content": "数一数，five对应的数字是（ ）。",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_007"
+      ],
+      "options": [
+        {
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "text": "5",
+          "isCorrect": true
+        },
+        {
+          "text": "6",
+          "isCorrect": false
+        },
+        {
+          "text": "4",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_007",
+      "content": "yellow对应的中文是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_003"
+      ],
+      "options": [
+        {
+          "text": "黄色",
+          "isCorrect": true
+        },
+        {
+          "text": "绿色",
+          "isCorrect": false
+        },
+        {
+          "text": "蓝色",
+          "isCorrect": false
+        },
+        {
+          "text": "红色",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_002",
+      "content": "What's this? (看图：红色的苹果)",
+      "type": "image",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_004",
+        "g1_e4_001",
+        "g1_e2_001"
+      ],
+      "imageUrl": "/images/english/g1/red_apple.svg",
+      "options": [
+        {
+          "text": "Apple.",
+          "isCorrect": false
+        },
+        {
+          "text": "It's an apple.",
+          "isCorrect": true
+        },
+        {
+          "text": "It's red.",
+          "isCorrect": false
+        },
+        {
+          "text": "I like apple.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_005",
+      "content": "小猫的英语是（ ）。",
+      "type": "image",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_011"
+      ],
+      "imageUrl": "/images/english/g1/cat.svg",
+      "options": [
+        {
+          "text": "fish",
+          "isCorrect": false
+        },
+        {
+          "text": "cat",
+          "isCorrect": true
+        },
+        {
+          "text": "dog",
+          "isCorrect": false
+        },
+        {
+          "text": "bird",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_011",
+      "content": "This is a __________. (看图：黄色的鸟)",
+      "type": "image",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e4_001",
+        "g1_e2_012",
+        "g1_e2_004"
+      ],
+      "imageUrl": "/images/english/g1/yellow_bird.svg",
+      "options": [
+        {
+          "text": "blue bird",
+          "isCorrect": false
+        },
+        {
+          "text": "green bird",
+          "isCorrect": false
+        },
+        {
+          "text": "yellow bird",
+          "isCorrect": true
+        },
+        {
+          "text": "red bird",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_008",
+      "content": "I'm __________. (我爸爸)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_003",
+        "g1_e2_014"
+      ],
+      "options": [
+        {
+          "text": "brother",
+          "isCorrect": false
+        },
+        {
+          "text": "sister",
+          "isCorrect": false
+        },
+        {
+          "text": "dad",
+          "isCorrect": true
+        },
+        {
+          "text": "mum",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_021",
+      "content": "Which one is NOT a color? (哪个不是颜色？)",
+      "type": "single",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_005"
+      ],
+      "options": [
+        {
+          "text": "Blue",
+          "isCorrect": false
+        },
+        {
+          "text": "Red",
+          "isCorrect": false
+        },
+        {
+          "text": "Yellow",
+          "isCorrect": false
+        },
+        {
+          "text": "Apple",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_020",
+      "content": "How many cats can you see? (看图：3只猫)",
+      "type": "image",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_010",
+        "g1_e3_004",
+        "g1_e2_011"
+      ],
+      "imageUrl": "/images/english/g1/three_cats.svg",
+      "options": [
+        {
+          "text": "Three.",
+          "isCorrect": true
+        },
+        {
+          "text": "One.",
+          "isCorrect": false
+        },
+        {
+          "text": "Two.",
+          "isCorrect": false
+        },
+        {
+          "text": "Four.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_006",
+      "content": "I'd like to say hello. I should say（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_001"
+      ],
+      "options": [
+        {
+          "text": "Thank you",
+          "isCorrect": false
+        },
+        {
+          "text": "Goodbye",
+          "isCorrect": false
+        },
+        {
+          "text": "Sorry",
+          "isCorrect": false
+        },
+        {
+          "text": "Hello!",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_030",
+      "content": "My family has 5 people. We are dad, mum, brother, sister and me. How many sisters do I have? (看图：有两个女孩)",
+      "type": "image",
+      "difficulty": 5,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_010",
+        "g1_e2_015",
+        "g1_e3_003"
+      ],
+      "imageUrl": "/images/english/g1/family_5.svg",
+      "options": [
+        {
+          "text": "One sister",
+          "isCorrect": true
+        },
+        {
+          "text": "No sister",
+          "isCorrect": false
+        },
+        {
+          "text": "Two sisters",
+          "isCorrect": false
+        },
+        {
+          "text": "Three sisters",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_003",
+      "content": "数字3的英语是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_006"
+      ],
+      "options": [
+        {
+          "text": "three",
+          "isCorrect": true
+        },
+        {
+          "text": "four",
+          "isCorrect": false
+        },
+        {
+          "text": "one",
+          "isCorrect": false
+        },
+        {
+          "text": "two",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_017",
+      "content": "That is a green __________. (看图：青蛙)",
+      "type": "image",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e4_002",
+        "g1_e2_004"
+      ],
+      "imageUrl": "/images/english/g1/frog.svg",
+      "options": [
+        {
+          "text": "fish",
+          "isCorrect": false
+        },
+        {
+          "text": "cat",
+          "isCorrect": false
+        },
+        {
+          "text": "duck",
+          "isCorrect": true
+        },
+        {
+          "text": "dog",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_014",
+      "content": "Nice to __________ you!",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_005"
+      ],
+      "options": [
+        {
+          "text": "see",
+          "isCorrect": false
+        },
+        {
+          "text": "meet",
+          "isCorrect": true
+        },
+        {
+          "text": "play",
+          "isCorrect": false
+        },
+        {
+          "text": "look",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_028",
+      "content": "I have 3 red pencils and 2 blue pencils. How many pencils do I have? (填空)",
+      "type": "single",
+      "difficulty": 5,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_006",
+        "g1_e2_002",
+        "g1_e2_010"
+      ],
+      "options": [
+        {
+          "text": "Three",
+          "isCorrect": false
+        },
+        {
+          "text": "Five",
+          "isCorrect": true
+        },
+        {
+          "text": "Six",
+          "isCorrect": false
+        },
+        {
+          "text": "Four",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_029",
+      "content": "Listen and choose: What color is the banana? (听描述选择)",
+      "type": "single",
+      "difficulty": 5,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_003",
+        "g1_e3_004"
+      ],
+      "options": [
+        {
+          "text": "Green",
+          "isCorrect": false
+        },
+        {
+          "text": "Blue",
+          "isCorrect": false
+        },
+        {
+          "text": "Yellow",
+          "isCorrect": true
+        },
+        {
+          "text": "Red",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_016",
+      "content": "six + four = ( )",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_008",
+        "g1_e2_009",
+        "g1_e2_010"
+      ],
+      "options": [
+        {
+          "text": "ten",
+          "isCorrect": true
+        },
+        {
+          "text": "eight",
+          "isCorrect": false
+        },
+        {
+          "text": "eleven",
+          "isCorrect": false
+        },
+        {
+          "text": "nine",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_019",
+      "content": "Open your book, please. 这句话的意思是（ ）。",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_008"
+      ],
+      "options": [
+        {
+          "text": "拿起你的书",
+          "isCorrect": false
+        },
+        {
+          "text": "合上你的书",
+          "isCorrect": false
+        },
+        {
+          "text": "打开你的书",
+          "isCorrect": true
+        },
+        {
+          "text": "放下你的书",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_025",
+      "content": "看图，选择正确选项：What's that? (远处有一只鸭子)",
+      "type": "image",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e4_002",
+        "g1_e4_003",
+        "g1_e2_013"
+      ],
+      "imageUrl": "/images/english/g1/duck_far.svg",
+      "options": [
+        {
+          "text": "It's a duck.",
+          "isCorrect": true
+        },
+        {
+          "text": "It's a bird.",
+          "isCorrect": false
+        },
+        {
+          "text": "It's a cat.",
+          "isCorrect": false
+        },
+        {
+          "text": "It's a fish.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_004",
+      "content": "早上见面应该说（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_001",
+        "g1_e3_002"
+      ],
+      "options": [
+        {
+          "text": "Hello!",
+          "isCorrect": false
+        },
+        {
+          "text": "Good morning!",
+          "isCorrect": true
+        },
+        {
+          "text": "Bye!",
+          "isCorrect": false
+        },
+        {
+          "text": "Good night!",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_024",
+      "content": "选出不同类的单词：cat dog fish book",
+      "type": "single",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_011",
+        "g1_e2_012"
+      ],
+      "options": [
+        {
+          "text": "book",
+          "isCorrect": true
+        },
+        {
+          "text": "dog",
+          "isCorrect": false
+        },
+        {
+          "text": "fish",
+          "isCorrect": false
+        },
+        {
+          "text": "cat",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_001",
+      "content": "字母Aa的对应大小写是（ ）。",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e1_001",
+        "g1_e1_002"
+      ],
+      "options": [
+        {
+          "text": "a",
+          "isCorrect": false
+        },
+        {
+          "text": "A",
+          "isCorrect": true
+        },
+        {
+          "text": "C",
+          "isCorrect": false
+        },
+        {
+          "text": "B",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_012",
+      "content": "以下哪个是字母Bb的正确书写？",
+      "type": "image",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e1_001",
+        "g1_e1_003"
+      ],
+      "imageUrl": "/images/english/g1/letter_b.svg",
+      "options": [
+        {
+          "text": "第三个",
+          "isCorrect": true
+        },
+        {
+          "text": "第二个",
+          "isCorrect": false
+        },
+        {
+          "text": "第一个",
+          "isCorrect": false
+        },
+        {
+          "text": "第四个",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_018",
+      "content": "I like blue. My friend likes red. I don't like __________. (填空)",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e4_004",
+        "g1_e2_002",
+        "g1_e2_001"
+      ],
+      "options": [
+        {
+          "text": "yellow",
+          "isCorrect": false
+        },
+        {
+          "text": "green",
+          "isCorrect": false
+        },
+        {
+          "text": "red",
+          "isCorrect": true
+        },
+        {
+          "text": "blue",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_015",
+      "content": "What is the color of the sky? (天空是什么颜色？)",
+      "type": "image",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_002",
+        "g1_e3_004"
+      ],
+      "imageUrl": "/images/english/g1/sky.svg",
+      "options": [
+        {
+          "text": "Red",
+          "isCorrect": false
+        },
+        {
+          "text": "Green",
+          "isCorrect": false
+        },
+        {
+          "text": "Blue",
+          "isCorrect": true
+        },
+        {
+          "text": "Yellow",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_026",
+      "content": "I'm Amy. I'm a girl. My brother is Tom. Tom is a __________. (填空)",
+      "type": "single",
+      "difficulty": 5,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e3_003",
+        "g1_e2_015"
+      ],
+      "options": [
+        {
+          "text": "boy",
+          "isCorrect": true
+        },
+        {
+          "text": "girl",
+          "isCorrect": false
+        },
+        {
+          "text": "dad",
+          "isCorrect": false
+        },
+        {
+          "text": "mum",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_023",
+      "content": "Do you like blue? (蓝色) 回答正确的是（ ）。",
+      "type": "single",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e4_005",
+        "g1_e2_002"
+      ],
+      "options": [
+        {
+          "text": "Blue.",
+          "isCorrect": false
+        },
+        {
+          "text": "Yes, I do.",
+          "isCorrect": true
+        },
+        {
+          "text": "Yes, I don't.",
+          "isCorrect": false
+        },
+        {
+          "text": "No, I'm not.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g1_e_q_022",
+      "content": "This is my brother. __________ name is Tom. (填空)",
+      "type": "single",
+      "difficulty": 4,
+      "category": "english",
+      "grade": 1,
+      "knowledgePoints": [
+        "g1_e2_015",
+        "g1_e3_003"
+      ],
+      "options": [
+        {
+          "text": "She",
+          "isCorrect": false
+        },
+        {
+          "text": "He",
+          "isCorrect": true
+        },
+        {
+          "text": "I",
+          "isCorrect": false
+        },
+        {
+          "text": "It",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

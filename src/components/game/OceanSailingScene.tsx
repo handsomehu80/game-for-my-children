@@ -51,7 +51,7 @@ export function generateStars(seed: number): Star[] {
  * Used for normal islands - 0.8s duration with simple gradient background.
  */
 function renderMinimalStyle(isReducedMotion: boolean): JSX.Element {
-  const animationDuration = '0.8s'
+  const animationDuration = '4s'
 
   return (
     <>
@@ -59,18 +59,18 @@ function renderMinimalStyle(isReducedMotion: boolean): JSX.Element {
       <style>
         {`
           @keyframes minimalSail {
-            0% { opacity: 0; transform: translateX(-20px); }
-            20% { opacity: 1; }
-            100% { opacity: 1; transform: translateX(0); }
+            0% { left: -10%; bottom: 35%; opacity: 0; }
+            10% { opacity: 1; }
+            100% { left: 65%; bottom: 32%; opacity: 1; }
           }
           .minimal-ship {
             position: absolute;
-            left: 10%;
-            bottom: 30%;
+            left: -10%;
+            bottom: 35%;
             animation: minimalSail ${animationDuration} ease-out forwards;
           }
           ${isReducedMotion ? `
-            .minimal-ship { animation: none; opacity: 1; }
+            .minimal-ship { animation: none; opacity: 1; left: 65%; bottom: 32%; }
           ` : ''}
         `}
       </style>
@@ -326,13 +326,18 @@ export default function OceanSailingScene({
   useEffect(() => {
     if (!isActive) return
 
-    // Animation duration based on style
-    const duration = style === 'minimal' ? 800 : 4000
+    // Animation duration based on style (minimal = 4s = 0.8s * 5, cinematic = 4s)
+    const duration = 4000
+    console.log('[DEBUG OceanSailingScene] Timer set for', duration, 'ms, isActive:', isActive)
     const timer = setTimeout(() => {
+      console.log('[DEBUG OceanSailingScene] Timer fired!')
       onArrived()
     }, duration)
 
-    return () => clearTimeout(timer)
+    return () => {
+      console.log('[DEBUG OceanSailingScene] Cleanup called')
+      clearTimeout(timer)
+    }
   }, [isActive, style, onArrived])
 
   if (!isActive) return null

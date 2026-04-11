@@ -1,0 +1,216 @@
+{
+  "grade": 2,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g2_e_q_001",
+      "content": "How many grandparents do you have? I have two _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_001"],
+      "options": [
+        { "text": "grandmother", "isCorrect": false },
+        { "text": "grandparents", "isCorrect": true },
+        { "text": "father", "isCorrect": false },
+        { "text": "mother", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_002",
+      "content": "Where is the ball? It's _______ the box.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e2_005"],
+      "options": [
+        { "text": "on", "isCorrect": false },
+        { "text": "in", "isCorrect": true },
+        { "text": "under", "isCorrect": false },
+        { "text": "to", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_003",
+      "content": "What do you have for breakfast? I have _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_007"],
+      "options": [
+        { "text": "banana", "isCorrect": false },
+        { "text": "orange", "isCorrect": false },
+        { "text": "rice", "isCorrect": true },
+        { "text": "apple", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_004",
+      "content": "There is a _______ in my bedroom.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e2_001", "g2_e1_004"],
+      "options": [
+        { "text": "kitchen", "isCorrect": false },
+        { "text": "fish", "isCorrect": false },
+        { "text": "bed", "isCorrect": true },
+        { "text": "rice", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_005",
+      "content": "Choose the correct word: My mother is a _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_001"],
+      "options": [
+        { "text": "aunt", "isCorrect": true },
+        { "text": "uncle", "isCorrect": false },
+        { "text": "cousin", "isCorrect": false },
+        { "text": "grandfather", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_006",
+      "content": "I sit on a _______ in the classroom.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_005"],
+      "options": [
+        { "text": "bed", "isCorrect": false },
+        { "text": "wall", "isCorrect": false },
+        { "text": "floor", "isCorrect": false },
+        { "text": "desk", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_e_q_007",
+      "content": "My favorite fruit is _______. It's yellow and long.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_009"],
+      "options": [
+        { "text": "orange", "isCorrect": false },
+        { "text": "egg", "isCorrect": false },
+        { "text": "banana", "isCorrect": true },
+        { "text": "apple", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_008",
+      "content": "There are _______ books on the desk.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e2_002"],
+      "options": [
+        { "text": "a", "isCorrect": false },
+        { "text": "is", "isCorrect": false },
+        { "text": "an", "isCorrect": false },
+        { "text": "some", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_e_q_009",
+      "content": "_______ is the cat? It's under the chair.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e2_004"],
+      "options": [
+        { "text": "How", "isCorrect": false },
+        { "text": "Where", "isCorrect": true },
+        { "text": "Who", "isCorrect": false },
+        { "text": "What", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_010",
+      "content": "My sister is my mother's _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_001"],
+      "options": [
+        { "text": "brother", "isCorrect": false },
+        { "text": "father", "isCorrect": false },
+        { "text": "son", "isCorrect": false },
+        { "text": "daughter", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_e_q_011",
+      "content": "There is a window _______ the wall.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e2_003", "g2_e1_006"],
+      "options": [
+        { "text": "on", "isCorrect": true },
+        { "text": "in", "isCorrect": false },
+        { "text": "to", "isCorrect": false },
+        { "text": "at", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_012",
+      "content": "I eat _______ and _______ for breakfast.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_007", "g2_e1_008"],
+      "options": [
+        { "text": "egg, milk", "isCorrect": true },
+        { "text": "apple, banana", "isCorrect": false },
+        { "text": "bread, orange", "isCorrect": false },
+        { "text": "rice, chicken", "isCorrect": false }
+      ]
+    },
+    {
+      "id": "g2_e_q_013",
+      "content": "My uncle is my father's _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e1_002"],
+      "options": [
+        { "text": "sister", "isCorrect": false },
+        { "text": "daughter", "isCorrect": false },
+        { "text": "mother", "isCorrect": false },
+        { "text": "brother", "isCorrect": true }
+      ]
+    },
+    {
+      "id": "g2_e_q_014",
+      "content": "There is a chair _______ the table.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 2,
+      "knowledgePoints": ["g2_e2_003", "g2_e2_005"],
+      "options": [
+        { "text": "on", "isCorrect": false },
+        { "text": "to", "isCorrect": false },
+        { "text": "near", "isCorrect": true },
+        { "text": "in", "isCorrect": false }
+      ]
+    }
+  ]
+}

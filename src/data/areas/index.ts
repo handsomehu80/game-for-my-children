@@ -220,10 +220,15 @@ export function isAreaReachable(
     return { reachable: true }
   }
 
-  // Boss岛屿需要9个岛屿完成后才能访问
+  // Boss岛屿需要9个岛屿完成后才能访问（只计算normal类型岛屿）
   if (area.type === 'boss') {
-    if (defeatedMiniBosses.length < 9) {
-      return { reachable: false, reason: `需要打败9个岛屿才能挑战Boss (${defeatedMiniBosses.length}/9)` }
+    // 过滤出normal类型的已击败岛屿
+    const defeatedNormalIslands = defeatedMiniBosses.filter(id => {
+      const a = getAreaById(id)
+      return a && a.type === 'normal'
+    })
+    if (defeatedNormalIslands.length < 9) {
+      return { reachable: false, reason: `需要打败9个岛屿才能挑战Boss (${defeatedNormalIslands.length}/9)` }
     }
     return { reachable: true }
   }

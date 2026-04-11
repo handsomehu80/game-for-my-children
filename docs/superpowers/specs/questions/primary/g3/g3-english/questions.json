@@ -1,0 +1,884 @@
+{
+  "grade": 3,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g3_e_q_004",
+      "content": "What do you have for breakfast? I have _______. ",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_010"
+      ],
+      "options": [
+        {
+          "text": "rice",
+          "isCorrect": false
+        },
+        {
+          "text": "water",
+          "isCorrect": false
+        },
+        {
+          "text": "juice",
+          "isCorrect": false
+        },
+        {
+          "text": "milk",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_006",
+      "content": "Fill in the blank: The rabbit has long _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_008"
+      ],
+      "options": [
+        {
+          "text": "ears",
+          "isCorrect": true
+        },
+        {
+          "text": "eyes",
+          "isCorrect": false
+        },
+        {
+          "text": "hair",
+          "isCorrect": false
+        },
+        {
+          "text": "nose",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_022",
+      "content": "He is old but he is _______. (strong)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_002"
+      ],
+      "options": [
+        {
+          "text": "young",
+          "isCorrect": false
+        },
+        {
+          "text": "strong",
+          "isCorrect": true
+        },
+        {
+          "text": "thin",
+          "isCorrect": false
+        },
+        {
+          "text": "short",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_017",
+      "content": "The cat is sleeping. The cat is _______.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e2_007"
+      ],
+      "options": [
+        {
+          "text": "short",
+          "isCorrect": false
+        },
+        {
+          "text": "thin",
+          "isCorrect": false
+        },
+        {
+          "text": "quiet",
+          "isCorrect": true
+        },
+        {
+          "text": "tall",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_026",
+      "content": "She can swim but she _______ fly.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_003"
+      ],
+      "options": [
+        {
+          "text": "can",
+          "isCorrect": false
+        },
+        {
+          "text": "can't",
+          "isCorrect": false
+        },
+        {
+          "text": "doesn't",
+          "isCorrect": true
+        },
+        {
+          "text": "don't",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_003",
+      "content": "Which animal is this? \"It has a long nose and big ears.\"",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_007"
+      ],
+      "options": [
+        {
+          "text": "monkey",
+          "isCorrect": false
+        },
+        {
+          "text": "mouse",
+          "isCorrect": false
+        },
+        {
+          "text": "elephant",
+          "isCorrect": true
+        },
+        {
+          "text": "panda",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_011",
+      "content": "He _______ apples every day. (第三人称单数)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_002"
+      ],
+      "options": [
+        {
+          "text": "eat",
+          "isCorrect": false
+        },
+        {
+          "text": "eats",
+          "isCorrect": true
+        },
+        {
+          "text": "eating",
+          "isCorrect": false
+        },
+        {
+          "text": "ate",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_015",
+      "content": "Is she a teacher? _______. She teaches math.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_004",
+        "g3_e2_004"
+      ],
+      "options": [
+        {
+          "text": "Yes, she is",
+          "isCorrect": true
+        },
+        {
+          "text": "Yes, she does",
+          "isCorrect": false
+        },
+        {
+          "text": "No, she is",
+          "isCorrect": false
+        },
+        {
+          "text": "No, she doesn't",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_001",
+      "content": "Look at the picture: A tall boy and a short girl. The boy is _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_001"
+      ],
+      "options": [
+        {
+          "text": "thin",
+          "isCorrect": false
+        },
+        {
+          "text": "fat",
+          "isCorrect": false
+        },
+        {
+          "text": "tall",
+          "isCorrect": true
+        },
+        {
+          "text": "short",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_030",
+      "content": "What do you have? I have bread and _______ for breakfast.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_011"
+      ],
+      "options": [
+        {
+          "text": "noodles",
+          "isCorrect": false
+        },
+        {
+          "text": "juice",
+          "isCorrect": true
+        },
+        {
+          "text": "rice",
+          "isCorrect": false
+        },
+        {
+          "text": "fish",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_010",
+      "content": "Choose the correct option: I can see _______ orange on the table.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_002"
+      ],
+      "options": [
+        {
+          "text": "a",
+          "isCorrect": false
+        },
+        {
+          "text": "an",
+          "isCorrect": false
+        },
+        {
+          "text": "some",
+          "isCorrect": true
+        },
+        {
+          "text": "many",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_002",
+      "content": "Choose the correct answer: My mother is a _______. She helps sick people.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_004"
+      ],
+      "options": [
+        {
+          "text": "teacher",
+          "isCorrect": true
+        },
+        {
+          "text": "doctor",
+          "isCorrect": false
+        },
+        {
+          "text": "driver",
+          "isCorrect": false
+        },
+        {
+          "text": "cook",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_029",
+      "content": "She _______ TV every evening. (watch)",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_002"
+      ],
+      "options": [
+        {
+          "text": "watch",
+          "isCorrect": false
+        },
+        {
+          "text": "watches",
+          "isCorrect": true
+        },
+        {
+          "text": "watching",
+          "isCorrect": false
+        },
+        {
+          "text": "watched",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_005",
+      "content": "Choose the correct sentence: _______. ",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e2_001"
+      ],
+      "options": [
+        {
+          "text": "I am tall",
+          "isCorrect": true
+        },
+        {
+          "text": "I are tall",
+          "isCorrect": false
+        },
+        {
+          "text": "I is tall",
+          "isCorrect": false
+        },
+        {
+          "text": "I am talls",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_025",
+      "content": "Do you want _______ water? (some)",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_003"
+      ],
+      "options": [
+        {
+          "text": "any",
+          "isCorrect": false
+        },
+        {
+          "text": "a",
+          "isCorrect": false
+        },
+        {
+          "text": "an",
+          "isCorrect": false
+        },
+        {
+          "text": "some",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_009",
+      "content": "What does he do? He is a policeman. He is _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_006",
+        "g3_e2_002"
+      ],
+      "options": [
+        {
+          "text": "young",
+          "isCorrect": true
+        },
+        {
+          "text": "strong",
+          "isCorrect": false
+        },
+        {
+          "text": "thin",
+          "isCorrect": false
+        },
+        {
+          "text": "fat",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_020",
+      "content": "They are doctors. They help _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e2_003"
+      ],
+      "options": [
+        {
+          "text": "people",
+          "isCorrect": true
+        },
+        {
+          "text": "a people",
+          "isCorrect": false
+        },
+        {
+          "text": "peoples",
+          "isCorrect": false
+        },
+        {
+          "text": "peoplees",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_018",
+      "content": "We _______ to school every day. (go)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_001"
+      ],
+      "options": [
+        {
+          "text": "go",
+          "isCorrect": true
+        },
+        {
+          "text": "goes",
+          "isCorrect": false
+        },
+        {
+          "text": "going",
+          "isCorrect": false
+        },
+        {
+          "text": "went",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_008",
+      "content": "Choose the plural form: box",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_001"
+      ],
+      "options": [
+        {
+          "text": "boxs",
+          "isCorrect": false
+        },
+        {
+          "text": "boxes",
+          "isCorrect": true
+        },
+        {
+          "text": "boxies",
+          "isCorrect": false
+        },
+        {
+          "text": "boxe",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_007",
+      "content": "How many apples? Five apples. It's _______.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_001"
+      ],
+      "options": [
+        {
+          "text": "an",
+          "isCorrect": false
+        },
+        {
+          "text": "a",
+          "isCorrect": false
+        },
+        {
+          "text": "some",
+          "isCorrect": true
+        },
+        {
+          "text": "any",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_024",
+      "content": "The panda eats _______.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_008"
+      ],
+      "options": [
+        {
+          "text": "grass and leaves",
+          "isCorrect": false
+        },
+        {
+          "text": "meat",
+          "isCorrect": false
+        },
+        {
+          "text": "fish",
+          "isCorrect": false
+        },
+        {
+          "text": "bananas",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_023",
+      "content": "Make a question: \"He is a farmer.\" _______?",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_004",
+        "g3_e2_004"
+      ],
+      "options": [
+        {
+          "text": "What he is",
+          "isCorrect": false
+        },
+        {
+          "text": "What does he",
+          "isCorrect": false
+        },
+        {
+          "text": "What is he",
+          "isCorrect": true
+        },
+        {
+          "text": "He is what",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_012",
+      "content": "The farmer _______ rice on the farm. (grow)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_002"
+      ],
+      "options": [
+        {
+          "text": "grow",
+          "isCorrect": false
+        },
+        {
+          "text": "grows",
+          "isCorrect": true
+        },
+        {
+          "text": "growing",
+          "isCorrect": false
+        },
+        {
+          "text": "growed",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_016",
+      "content": "There are _______ books on the desk. (a lot of)",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_003"
+      ],
+      "options": [
+        {
+          "text": "some",
+          "isCorrect": false
+        },
+        {
+          "text": "a",
+          "isCorrect": false
+        },
+        {
+          "text": "a lot of",
+          "isCorrect": true
+        },
+        {
+          "text": "an",
+          "isCorrect": false
+        },
+        {
+          "text": "the",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_014",
+      "content": "Choose the correct negative sentence: He likes fish.",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e3_003"
+      ],
+      "options": [
+        {
+          "text": "He not likes fish.",
+          "isCorrect": false
+        },
+        {
+          "text": "He doesn't likes fish.",
+          "isCorrect": false
+        },
+        {
+          "text": "He doesn't like fish.",
+          "isCorrect": true
+        },
+        {
+          "text": "He don't like fish.",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_028",
+      "content": "There are three _______ in the picture. (child)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_001"
+      ],
+      "options": [
+        {
+          "text": "childs",
+          "isCorrect": false
+        },
+        {
+          "text": "childrens",
+          "isCorrect": false
+        },
+        {
+          "text": "children",
+          "isCorrect": true
+        },
+        {
+          "text": "childes",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_027",
+      "content": "The _______ has a long tail and likes bananas.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_007"
+      ],
+      "options": [
+        {
+          "text": "monkey",
+          "isCorrect": true
+        },
+        {
+          "text": "mouse",
+          "isCorrect": false
+        },
+        {
+          "text": "tiger",
+          "isCorrect": false
+        },
+        {
+          "text": "lion",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_021",
+      "content": "I have _______ friends at school. (many)",
+      "type": "single",
+      "difficulty": 3,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_003"
+      ],
+      "options": [
+        {
+          "text": "some",
+          "isCorrect": false
+        },
+        {
+          "text": "a lot of",
+          "isCorrect": true
+        },
+        {
+          "text": "a",
+          "isCorrect": false
+        },
+        {
+          "text": "an",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_019",
+      "content": "There is _______ milk in the glass.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e4_002"
+      ],
+      "options": [
+        {
+          "text": "any",
+          "isCorrect": false
+        },
+        {
+          "text": "many",
+          "isCorrect": false
+        },
+        {
+          "text": "some",
+          "isCorrect": false
+        },
+        {
+          "text": "a little",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g3_e_q_013",
+      "content": "She has long black _______. ",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 3,
+      "knowledgePoints": [
+        "g3_e1_003",
+        "g3_e2_006"
+      ],
+      "options": [
+        {
+          "text": "hair",
+          "isCorrect": true
+        },
+        {
+          "text": "eyes",
+          "isCorrect": false
+        },
+        {
+          "text": "ears",
+          "isCorrect": false
+        },
+        {
+          "text": "nose",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

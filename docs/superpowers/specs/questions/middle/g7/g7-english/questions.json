@@ -1,0 +1,586 @@
+{
+  "grade": 7,
+  "subject": "english",
+  "questions": [
+    {
+      "id": "g7_e_q_001",
+      "content": "What is the plural form of \"child\"?",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_003"
+      ],
+      "options": [
+        {
+          "text": "childrens",
+          "isCorrect": false
+        },
+        {
+          "text": "children",
+          "isCorrect": true
+        },
+        {
+          "text": "childs",
+          "isCorrect": false
+        },
+        {
+          "text": "childes",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_002",
+      "content": "She _______ (read) a book now. What is the correct form?",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_005"
+      ],
+      "options": [
+        {
+          "text": "are reading",
+          "isCorrect": false
+        },
+        {
+          "text": "read",
+          "isCorrect": false
+        },
+        {
+          "text": "is reading",
+          "isCorrect": true
+        },
+        {
+          "text": "reads",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_003",
+      "content": "There _______ a book and two pens on the desk.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_007"
+      ],
+      "options": [
+        {
+          "text": "is",
+          "isCorrect": true
+        },
+        {
+          "text": "be",
+          "isCorrect": false
+        },
+        {
+          "text": "are",
+          "isCorrect": false
+        },
+        {
+          "text": "been",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_004",
+      "content": "The book is _______ the table. (在桌子上面)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_006"
+      ],
+      "options": [
+        {
+          "text": "behind",
+          "isCorrect": false
+        },
+        {
+          "text": "on",
+          "isCorrect": true
+        },
+        {
+          "text": "in",
+          "isCorrect": false
+        },
+        {
+          "text": "under",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_005",
+      "content": "He _______ (go) to school every day. (第三人称单数)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_002"
+      ],
+      "options": [
+        {
+          "text": "went",
+          "isCorrect": false
+        },
+        {
+          "text": "goes",
+          "isCorrect": true
+        },
+        {
+          "text": "go",
+          "isCorrect": false
+        },
+        {
+          "text": "going",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_006",
+      "content": "_______ sister is a doctor. (我的)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_004"
+      ],
+      "options": [
+        {
+          "text": "me",
+          "isCorrect": false
+        },
+        {
+          "text": "mine",
+          "isCorrect": false
+        },
+        {
+          "text": "my",
+          "isCorrect": true
+        },
+        {
+          "text": "I",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_007",
+      "content": "I usually get up _______ 6 o'clock _______ the morning.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_007"
+      ],
+      "options": [
+        {
+          "text": "at / at",
+          "isCorrect": false
+        },
+        {
+          "text": "at / in",
+          "isCorrect": true
+        },
+        {
+          "text": "on / in",
+          "isCorrect": false
+        },
+        {
+          "text": "in / at",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_008",
+      "content": "_______ you like some water? (表示邀请)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_004"
+      ],
+      "options": [
+        {
+          "text": "Is",
+          "isCorrect": false
+        },
+        {
+          "text": "Do",
+          "isCorrect": false
+        },
+        {
+          "text": "Does",
+          "isCorrect": false
+        },
+        {
+          "text": "Would",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_009",
+      "content": "What _______ she _______ (do) on weekends?",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_006"
+      ],
+      "options": [
+        {
+          "text": "do / do",
+          "isCorrect": false
+        },
+        {
+          "text": "does / does",
+          "isCorrect": false
+        },
+        {
+          "text": "do / does",
+          "isCorrect": false
+        },
+        {
+          "text": "does / do",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_010",
+      "content": "There are some _______ (water) in the bottle.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_001"
+      ],
+      "options": [
+        {
+          "text": "a water",
+          "isCorrect": false
+        },
+        {
+          "text": "waters",
+          "isCorrect": false
+        },
+        {
+          "text": "water",
+          "isCorrect": true
+        },
+        {
+          "text": "wateres",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_011",
+      "content": "The cat is _______ the chair. (在椅子后面)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_006"
+      ],
+      "options": [
+        {
+          "text": "under",
+          "isCorrect": false
+        },
+        {
+          "text": "next to",
+          "isCorrect": false
+        },
+        {
+          "text": "behind",
+          "isCorrect": true
+        },
+        {
+          "text": "in front of",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_012",
+      "content": "_______ is this? — It's an English book.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_004"
+      ],
+      "options": [
+        {
+          "text": "What",
+          "isCorrect": true
+        },
+        {
+          "text": "Which",
+          "isCorrect": false
+        },
+        {
+          "text": "Where",
+          "isCorrect": false
+        },
+        {
+          "text": "Who",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_013",
+      "content": "My mother is a _______ . She works in a hospital. (护士)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e1_002"
+      ],
+      "options": [
+        {
+          "text": "teacher",
+          "isCorrect": false
+        },
+        {
+          "text": "nurse",
+          "isCorrect": true
+        },
+        {
+          "text": "driver",
+          "isCorrect": false
+        },
+        {
+          "text": "doctor",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_014",
+      "content": "Tom and Jerry _______ (watch) TV now.",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_005"
+      ],
+      "options": [
+        {
+          "text": "are watching",
+          "isCorrect": true
+        },
+        {
+          "text": "watch",
+          "isCorrect": false
+        },
+        {
+          "text": "is watching",
+          "isCorrect": false
+        },
+        {
+          "text": "watches",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_015",
+      "content": "This is _______ book. (我的)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_005"
+      ],
+      "options": [
+        {
+          "text": "I",
+          "isCorrect": false
+        },
+        {
+          "text": "my",
+          "isCorrect": true
+        },
+        {
+          "text": "me",
+          "isCorrect": false
+        },
+        {
+          "text": "mine",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_016",
+      "content": "_______ people came to the party yesterday.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e1_008"
+      ],
+      "options": [
+        {
+          "text": "Lot of",
+          "isCorrect": false
+        },
+        {
+          "text": "Much",
+          "isCorrect": false
+        },
+        {
+          "text": "A little",
+          "isCorrect": false
+        },
+        {
+          "text": "Many",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_017",
+      "content": "The boy is Tom's brother. He is a _______ student. (三年级的)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e3_002"
+      ],
+      "options": [
+        {
+          "text": "three grade",
+          "isCorrect": false
+        },
+        {
+          "text": "third grade",
+          "isCorrect": true
+        },
+        {
+          "text": "three grades",
+          "isCorrect": false
+        },
+        {
+          "text": "third grades",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_018",
+      "content": "I don't like fish _______ rice. (和)",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_003"
+      ],
+      "options": [
+        {
+          "text": "but",
+          "isCorrect": false
+        },
+        {
+          "text": "or",
+          "isCorrect": false
+        },
+        {
+          "text": "so",
+          "isCorrect": false
+        },
+        {
+          "text": "and",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_019",
+      "content": "_______ subject do you like best? — Math.",
+      "type": "single",
+      "difficulty": 1,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e1_004"
+      ],
+      "options": [
+        {
+          "text": "What",
+          "isCorrect": true
+        },
+        {
+          "text": "Where",
+          "isCorrect": false
+        },
+        {
+          "text": "Which",
+          "isCorrect": false
+        },
+        {
+          "text": "Who",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": "g7_e_q_020",
+      "content": "There aren't _______ apples in the basket. (任何)",
+      "type": "single",
+      "difficulty": 2,
+      "category": "english",
+      "grade": 7,
+      "knowledgePoints": [
+        "g7_e2_003"
+      ],
+      "options": [
+        {
+          "text": "some",
+          "isCorrect": false
+        },
+        {
+          "text": "much",
+          "isCorrect": false
+        },
+        {
+          "text": "any",
+          "isCorrect": true
+        },
+        {
+          "text": "many",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}
