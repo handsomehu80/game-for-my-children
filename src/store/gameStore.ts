@@ -18,6 +18,64 @@ import { getAreasByOcean, getAreaById } from '../data/areas'
 import { getQuestionForBattle } from '../game/QuestionSelector'
 import { SeededRandom, generatePortalSeed } from '../game/utils/seededRandom'
 
+// ==================== SaveSlot validation ====================
+
+/**
+ * Type guard to validate SaveSlot structure
+ * Checks nested properties to prevent runtime errors from malformed save data
+ */
+function isValidSaveSlot(data: unknown): data is SaveSlot {
+  if (!data || typeof data !== 'object') return false
+
+  const slot = data as Record<string, unknown>
+
+  // Validate version
+  if (slot.version !== 1) return false
+
+  // Validate gameState
+  if (!slot.gameState || typeof slot.gameState !== 'object') return false
+  const gameState = slot.gameState as Record<string, unknown>
+  if (typeof gameState.currentOcean !== 'string' && gameState.currentOcean !== null) return false
+  if (!Array.isArray(gameState.players)) return false
+  if (typeof gameState.selectedGrade !== 'number') return false
+  if (typeof gameState.selectedSubject !== 'string') return false
+  if (typeof gameState.totalScore !== 'number') return false
+
+  // Validate players array structure
+  for (const player of gameState.players) {
+    if (!player || typeof player !== 'object') return false
+    const p = player as Record<string, unknown>
+    if (typeof p.id !== 'string') return false
+    if (typeof p.name !== 'string') return false
+    if (typeof p.hp !== 'number') return false
+    if (typeof p.maxHp !== 'number') return false
+  }
+
+  // Validate explorationState
+  if (!slot.explorationState || typeof slot.explorationState !== 'object') return false
+  const explorationState = slot.explorationState as Record<string, unknown>
+  if (typeof explorationState.currentOcean !== 'string' && explorationState.currentOcean !== null) return false
+  if (typeof explorationState.currentArea !== 'string' && explorationState.currentArea !== null) return false
+  if (!Array.isArray(explorationState.visitedAreas)) return false
+  if (!Array.isArray(explorationState.defeatedMiniBosses)) return false
+  if (!Array.isArray(explorationState.unlockedAreas)) return false
+  if (!Array.isArray(explorationState.reachableAreas)) return false
+  if (typeof explorationState.collectedKeys !== 'number') return false
+  if (!Array.isArray(explorationState.collectedItems)) return false
+  if (typeof explorationState.consecutiveVictoriesWithoutKey !== 'number') return false
+
+  // Validate globalProgress
+  if (!slot.globalProgress || typeof slot.globalProgress !== 'object') return false
+  const globalProgress = slot.globalProgress as Record<string, unknown>
+  if (!Array.isArray(globalProgress.unlockedOceans)) return false
+  if (!Array.isArray(globalProgress.completedOceans)) return false
+
+  // Validate savedAt
+  if (typeof slot.savedAt !== 'number') return false
+
+  return true
+}
+
 // ==================== 探索相关 reducer ====================
 
 function explorationReducer(state: ExplorationState, action: ExplorationAction): ExplorationState {
@@ -578,12 +636,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (!data) return false
 
     try {
-      const slot: SaveSlot = JSON.parse(data)
+      const parsed = JSON.parse(data)
 
-      // Validate required fields
-      if (slot.version !== 1) return false
-      if (!slot.gameState || !slot.explorationState || !slot.globalProgress) return false
+      // Validate save slot structure using type guard
+      if (!isValidSaveSlot(parsed)) return false
 
+      const slot = parsed
       const { gameState, explorationState, globalProgress } = slot
 
       // Determine game phase based on currentArea
