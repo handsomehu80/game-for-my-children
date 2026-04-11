@@ -283,75 +283,6 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           : null,
       }
 
-    case 'COMPLETE_OCEAN': {
-      if (!state.currentOcean) return state
-      const newCompletedOceans = [...state.completedOceans, state.currentOcean]
-      const oceanOrder = ['east', 'west', 'southHot', 'northIce', 'mysterious'] as const
-      const currentIndex = oceanOrder.indexOf(state.currentOcean as typeof oceanOrder[number])
-      const nextOcean = oceanOrder[currentIndex + 1]
-      const newUnlockedOceans = nextOcean && !state.unlockedOceans.includes(nextOcean)
-        ? [...state.unlockedOceans, nextOcean]
-        : state.unlockedOceans
-      return {
-        ...state,
-        completedOceans: newCompletedOceans,
-        unlockedOceans: newUnlockedOceans,
-        gamePhase: 'world_map',
-        battle: null,
-        exploration: null,
-      }
-    }
-
-    case 'END_EXPLORATION_BATTLE': {
-      if (!state.exploration || !state.explorationBattle) {
-        // No exploration context, fallback to RESET_GAME
-        return { ...initialState, gamePhase: 'game_over' }
-      }
-
-      const { areaId } = state.explorationBattle
-      const exploration = state.exploration
-
-      if (action.victory) {
-        // Increment victory counter and dispatch BATTLE_WIN
-        const updatedExploration = explorationTransition(exploration, { type: 'INCREMENT_VICTORY_COUNTER' })
-        const finalExploration = explorationTransition(updatedExploration, { type: 'BATTLE_WIN', areaId })
-
-        // Generate portals after victory
-        const portalSeed = generatePortalSeed(exploration.currentOcean || 'east', Date.now())
-        const rng = new SeededRandom(portalSeed)
-        const availablePortals: Portal[] = rng.next() < 0.3
-          ? (['east_boss', 'west_boss', 'south_boss', 'north_boss', 'mysterious_boss']
-              .filter(id => {
-                const bossArea = getAreaById(id)
-                return bossArea && finalExploration.defeatedMiniBosses.includes(id)
-              })
-              .map(id => ({ id, targetAreaId: id, type: 'ocean_portal' as const }))
-              .slice(0, 2))
-          : []
-
-        return {
-          ...state,
-          gamePhase: 'exploration',
-          battle: null,
-          exploration: {
-            ...finalExploration,
-            availablePortals,
-          },
-          explorationBattle: null,
-        }
-      } else {
-        // Defeat - dispatch BATTLE_LOSE
-        const updatedExploration = explorationTransition(exploration, { type: 'BATTLE_LOSE' })
-        return {
-          ...state,
-          gamePhase: 'exploration',
-          battle: null,
-          exploration: updatedExploration,
-          explorationBattle: null,
-        }
-      }
-    }
-
     case 'GAME_OVER':
       return {
         ...initialState,
@@ -392,7 +323,100 @@ interface GameStore extends GameState {
 export const useGameStore = create<GameStore>((set, get) => ({
   ...initialState,
 
-  dispatch: (action) => set((state) => gameReducer(state, action)),
+  dispatch: (action) => {
+    // Handle END_EXPLORATION_BATTLE with victory inline to access get() for auto-save
+    if (action.type === 'END_EXPLORATION_BATTLE') {
+      const state = get()
+      if (!state.exploration || !state.explorationBattle) {
+        // No exploration context, fallback to RESET_GAME
+        set({ ...initialState, gamePhase: 'game_over' })
+        return
+      }
+
+      const { areaId } = state.explorationBattle
+      const exploration = state.exploration
+
+      if (action.victory) {
+        // Increment victory counter and dispatch BATTLE_WIN
+        const updatedExploration = explorationTransition(exploration, { type: 'INCREMENT_VICTORY_COUNTER' })
+        const finalExploration = explorationTransition(updatedExploration, { type: 'BATTLE_WIN', areaId })
+
+        // Generate portals after victory
+        const portalSeed = generatePortalSeed(exploration.currentOcean || 'east', Date.now())
+        const rng = new SeededRandom(portalSeed)
+        const availablePortals: Portal[] = rng.next() < 0.3
+          ? (['east_boss', 'west_boss', 'south_boss', 'north_boss', 'mysterious_boss']
+              .filter(id => {
+                const bossArea = getAreaById(id)
+                return bossArea && finalExploration.defeatedMiniBosses.includes(id)
+              })
+              .map(id => ({ id, targetAreaId: id, type: 'ocean_portal' as const }))
+              .slice(0, 2))
+          : []
+
+        set({
+          ...get(),
+          gamePhase: 'exploration',
+          battle: null,
+          exploration: {
+            ...finalExploration,
+            availablePortals,
+          },
+          explorationBattle: null,
+        })
+
+        // Auto-save after victory
+        const currentSlot = get().currentSaveSlot
+        if (currentSlot >= 0) {
+          get().saveGame(currentSlot)
+        }
+      } else {
+        // Defeat - dispatch BATTLE_LOSE
+        const updatedExploration = explorationTransition(exploration, { type: 'BATTLE_LOSE' })
+        set({
+          ...get(),
+          gamePhase: 'exploration',
+          battle: null,
+          exploration: updatedExploration,
+          explorationBattle: null,
+        })
+      }
+      return
+    }
+
+    // Handle COMPLETE_OCEAN inline to access get() for auto-save
+    if (action.type === 'COMPLETE_OCEAN') {
+      const state = get()
+      if (!state.currentOcean) return
+
+      const newCompletedOceans = [...state.completedOceans, state.currentOcean]
+      const oceanOrder = ['east', 'west', 'southHot', 'northIce', 'mysterious'] as const
+      const currentIndex = oceanOrder.indexOf(state.currentOcean as typeof oceanOrder[number])
+      const nextOcean = oceanOrder[currentIndex + 1]
+      const newUnlockedOceans = nextOcean && !state.unlockedOceans.includes(nextOcean)
+        ? [...state.unlockedOceans, nextOcean]
+        : state.unlockedOceans
+
+      set({
+        ...state,
+        completedOceans: newCompletedOceans,
+        unlockedOceans: newUnlockedOceans,
+        gamePhase: 'world_map',
+        battle: null,
+        exploration: null,
+      })
+
+      // Auto-save after ocean completion
+      const currentSlot = get().currentSaveSlot
+      if (currentSlot >= 0) {
+        get().saveGame(currentSlot)
+      }
+      return
+    }
+
+    // For all other actions, use gameReducer
+    set((state) => gameReducer(state, action))
+  },
 
   // 探索 dispatch
   explorationDispatch: (action) =>
@@ -507,6 +531,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
     // Award key if dropped
     if (keyDrop > 0) {
       get().explorationDispatch({ type: 'RECEIVE_KEY', count: keyDrop })
+      // Auto-save after key collection
+      const currentSlot = get().currentSaveSlot
+      if (currentSlot >= 0) {
+        get().saveGame(currentSlot)
+      }
     }
 
     if (currentArea.type === 'boss') {
@@ -578,6 +607,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
     if (state.exploration.collectedKeys < 1) return
 
     get().explorationDispatch({ type: 'UNLOCK_AREA', areaId })
+    // Auto-save after area unlock
+    const currentSlot = get().currentSaveSlot
+    if (currentSlot >= 0) {
+      get().saveGame(currentSlot)
+    }
   },
 
   // 检查是否需要降级难度
