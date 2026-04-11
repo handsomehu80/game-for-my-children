@@ -691,7 +691,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   deleteSave: (slotIndex) => {
-    localStorage.removeItem('save_' + slotIndex)
+    localStorage.removeItem('ocean_game_save_' + slotIndex)
+    localStorage.removeItem('ocean_game_save_' + slotIndex + '_ts')
   },
 
   getSaveSlotInfo: () => {
