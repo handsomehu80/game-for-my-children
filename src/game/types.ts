@@ -200,7 +200,7 @@ export type ExplorationPhase =
   | 'rollback'         // 回滚状态
 
 // 知识区域类型
-export type KnowledgeArea = 'math' | 'chinese' | 'english' | 'comprehensive'
+export type KnowledgeArea = 'math' | 'chinese' | 'english' | 'science' | 'comprehensive'
 
 // 区域
 export interface Area {
