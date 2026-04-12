@@ -62,13 +62,13 @@
 
 | ID | 名称 | 难度 | 位置(x,z) | 钥匙需求 | 连接 |
 |----|------|------|----------|---------|------|
-| west_treasure_1 | 沙漠宝藏秘境 | 1 | (4,7) | 2 | west_chinese_2 |
+| west_treasure_1 | 沙漠宝藏秘境 | 1 | (4,7) | 2 | west_chinese_2（特例：连接上一级难度2岛屿，作为进阶奖励）|
 
 ### 2.4 Boss区域（1个）
 
 | ID | 名称 | 难度 | 位置(x,z) | 怪物 | 连接 |
 |----|------|------|----------|------|------|
-| west_boss | 海蛇王之巢 | 3 | (4,8) | sea_serpent_king | west_math_3, west_chinese_3, west_english_3, west_science_3 |
+| west_boss | 海蛇王之巢 | 3 | (4,8) | sea_serpent_king | west_math_3, west_chinese_3, west_english_3, west_science_3（连接所有难度3岛屿）|
 
 ---
 
