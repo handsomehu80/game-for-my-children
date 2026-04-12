@@ -525,6 +525,176 @@ export const monstersData: Record<string, Monster> = {
     maxHp: 180,
     sprite: '🐋',
   },
+  // 幽灵系列怪物 - 语文
+  ghost_bear_1: {
+    id: 'ghost_bear_1',
+    name: '幽灵熊',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐻',
+  },
+  ghost_bear_2: {
+    id: 'ghost_bear_2',
+    name: '幽灵熊王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐻',
+  },
+  ghost_bear_3: {
+    id: 'ghost_bear_3',
+    name: '幽灵熊皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🐻',
+  },
+  // 幽灵系列怪物 - 数学
+  ghost_penguin_1: {
+    id: 'ghost_penguin_1',
+    name: '幽灵企鹅',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐧',
+  },
+  ghost_penguin_2: {
+    id: 'ghost_penguin_2',
+    name: '幽灵企鹅王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐧',
+  },
+  ghost_penguin_3: {
+    id: 'ghost_penguin_3',
+    name: '幽灵企鹅皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🐧',
+  },
+  // 幽灵系列怪物 - 英语
+  ghost_seal_1: {
+    id: 'ghost_seal_1',
+    name: '幽灵海豹',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🦭',
+  },
+  ghost_seal_2: {
+    id: 'ghost_seal_2',
+    name: '幽灵海豹王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🦭',
+  },
+  ghost_seal_3: {
+    id: 'ghost_seal_3',
+    name: '幽灵海豹皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🦭',
+  },
+  // 幽灵系列怪物 - 科学
+  ghost_jellyfish_1: {
+    id: 'ghost_jellyfish_1',
+    name: '幽灵水母',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🪼',
+  },
+  ghost_jellyfish_2: {
+    id: 'ghost_jellyfish_2',
+    name: '幽灵水母王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🪼',
+  },
+  ghost_jellyfish_3: {
+    id: 'ghost_jellyfish_3',
+    name: '幽灵水母皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🪼',
+  },
+  // 幽灵系列怪物 - 物理
+  ghost_eagle_1: {
+    id: 'ghost_eagle_1',
+    name: '幽灵鹰',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🦅',
+  },
+  ghost_eagle_2: {
+    id: 'ghost_eagle_2',
+    name: '幽灵鹰王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🦅',
+  },
+  ghost_eagle_3: {
+    id: 'ghost_eagle_3',
+    name: '幽灵鹰皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🦅',
+  },
+  // 幽灵系列怪物 - 化学
+  ghost_turtle_1: {
+    id: 'ghost_turtle_1',
+    name: '幽灵海龟',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐢',
+  },
+  ghost_turtle_2: {
+    id: 'ghost_turtle_2',
+    name: '幽灵海龟王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐢',
+  },
+  ghost_turtle_3: {
+    id: 'ghost_turtle_3',
+    name: '幽灵海龟皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🐢',
+  },
+  // 幽灵系列怪物 - 历史
+  ghost_snake_1: {
+    id: 'ghost_snake_1',
+    name: '幽灵蛇',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐍',
+  },
+  ghost_snake_2: {
+    id: 'ghost_snake_2',
+    name: '幽灵蛇王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐍',
+  },
+  ghost_snake_3: {
+    id: 'ghost_snake_3',
+    name: '幽灵蛇皇',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🐍',
+  },
+  // 隐藏区域守护者
+  shadow_guardian: {
+    id: 'shadow_guardian',
+    name: '暗影守护者',
+    hp: 100,
+    maxHp: 100,
+    sprite: '👻',
+  },
+  // Boss怪物
+  kraken_prime: {
+    id: 'kraken_prime',
+    name: '深海巨妖',
+    hp: 220,
+    maxHp: 220,
+    sprite: '🐙',
+  },
 }
 
 export function getMonstersByOcean(_ocean: string): Monster[] {
