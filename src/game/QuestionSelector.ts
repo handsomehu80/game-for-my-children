@@ -2,10 +2,10 @@ import type { Question } from './types'
 import { questionsData } from '../data/questions'
 import { oceansData } from '../data/oceans'
 import {
-  allGradedQuestions,
   getQuestionsByGradeAndSubject,
   getQuestionsByDifficulty as getGradedQuestionsByDifficulty,
 } from '../data/questions/graded'
+import { getOceanQuestionBank } from '../data/questions/ocean'
 import type { BattleState } from './types'
 
 export interface QuestionSelectorOptions {
@@ -18,7 +18,7 @@ export interface QuestionSelectorOptions {
 }
 
 export function getRandomQuestion(options: QuestionSelectorOptions): Question | null {
-  const { oceanId, difficulty, category, grade, subject, excludeIds = [] } = options
+  const { oceanId, difficulty, category, grade, excludeIds = [] } = options
 
   // P0-5: Fallback to 1 if difficulty is null/undefined
   const effectiveDifficulty = difficulty ?? 1
@@ -27,42 +27,46 @@ export function getRandomQuestion(options: QuestionSelectorOptions): Question | 
   const ocean = Object.values(oceansData).find(o => o.id === oceanId)
   if (!ocean) return null
 
+  // Try ocean-specific question bank first
+  const oceanBank = getOceanQuestionBank(oceanId)
+  if (oceanBank) {
+    // Filter by category (use category field from Question, not subject)
+    const filterCategory = category as string | undefined
+
+    // Try specified difficulty first
+    let questions = oceanBank.getQuestions({
+      category: filterCategory,
+      difficulty: effectiveDifficulty,
+      grade,
+      excludeIds,
+    })
+
+    if (questions.length > 0) {
+      return questions[Math.floor(Math.random() * questions.length)]
+    }
+
+    // Fallback: try lower difficulties within same ocean (D4→D3→D2→D1)
+    for (let diff = effectiveDifficulty - 1; diff >= 1; diff--) {
+      const fallback = oceanBank.getQuestions({
+        category: filterCategory,
+        difficulty: diff,
+        grade,
+        excludeIds,
+      })
+      if (fallback.length > 0) {
+        return fallback[Math.floor(Math.random() * fallback.length)]
+      }
+    }
+
+    // No questions in this ocean at any difficulty - do NOT fallback to other oceans
+    return null
+  }
+
+  // Fallback to old questionsData (no ocean isolation)
   const [minDiff, maxDiff] = difficulty != null
     ? [effectiveDifficulty, effectiveDifficulty]
     : ocean.difficulty
 
-  // If grade is specified, use graded questions
-  if (grade != null) {
-    const gradeQuestions = allGradedQuestions.filter(q => {
-      if (q.grade !== grade) return false
-      if (subject && q.category !== subject) return false
-      // When grade is specified, don't filter by difficulty (grade already determines difficulty)
-      if (category && category.length > 0 && q.category !== category) return false
-      // 排除已使用的问题ID
-      if (excludeIds.includes(q.id)) return false
-      return true
-    })
-
-    // P0-fallback: 如果该年级该科目没有题目，回退到使用ocean难度
-    if (gradeQuestions.length === 0 && subject) {
-      const fallbackQuestions = allGradedQuestions.filter(q => {
-        if (q.difficulty < minDiff || q.difficulty > maxDiff) return false
-        if (q.category !== subject) return false
-        if (excludeIds.includes(q.id)) return false
-        return true
-      })
-      if (fallbackQuestions.length > 0) {
-        const index = Math.floor(Math.random() * fallbackQuestions.length)
-        return fallbackQuestions[index]
-      }
-    }
-
-    if (gradeQuestions.length === 0) return null
-    const index = Math.floor(Math.random() * gradeQuestions.length)
-    return gradeQuestions[index]
-  }
-
-  // Fallback to original questions data
   const filtered = questionsData.filter(q => {
     if (q.difficulty < minDiff || q.difficulty > maxDiff) return false
     if (category && category.length > 0) {
