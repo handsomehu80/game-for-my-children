@@ -139,6 +139,118 @@ export const monstersData: Record<string, Monster> = {
     maxHp: 250,
     sprite: '👹',
   },
+  // 普通怪物 - 南大洋数学区域
+  scorpion_1: {
+    id: 'scorpion_1',
+    name: '沙漠蝎子',
+    hp: 35,
+    maxHp: 35,
+    sprite: '🦂',
+  },
+  scorpion_2: {
+    id: 'scorpion_2',
+    name: '沙漠巨蝎',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🦂',
+  },
+  scorpion_3: {
+    id: 'scorpion_3',
+    name: '沙漠蝎王',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🦂',
+  },
+  // 普通怪物 - 南大洋语文区域
+  lizard_1: {
+    id: 'lizard_1',
+    name: '沙漠蜥蜴',
+    hp: 35,
+    maxHp: 35,
+    sprite: '🦎',
+  },
+  lizard_2: {
+    id: 'lizard_2',
+    name: '沙漠巨蜥',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🦎',
+  },
+  lizard_3: {
+    id: 'lizard_3',
+    name: '沙漠蜥王',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🦎',
+  },
+  // 普通怪物 - 南大洋英语区域
+  snake_1: {
+    id: 'snake_1',
+    name: '响尾蛇',
+    hp: 35,
+    maxHp: 35,
+    sprite: '🐍',
+  },
+  snake_2: {
+    id: 'snake_2',
+    name: '沙漠蟒蛇',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🐍',
+  },
+  snake_3: {
+    id: 'snake_3',
+    name: '响尾蛇王',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🐍',
+  },
+  // 普通怪物 - 南大洋科学区域
+  desert_eagle_1: {
+    id: 'desert_eagle_1',
+    name: '沙漠鹰',
+    hp: 35,
+    maxHp: 35,
+    sprite: '🦅',
+  },
+  desert_eagle_2: {
+    id: 'desert_eagle_2',
+    name: '沙漠巨鹰',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🦅',
+  },
+  desert_eagle_3: {
+    id: 'desert_eagle_3',
+    name: '沙漠鹰王',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🦅',
+  },
+  // 隐藏区域守护者
+  desert_guardian: {
+    id: 'desert_guardian',
+    name: '沙漠守护者',
+    hp: 70,
+    maxHp: 70,
+    sprite: '🗿',
+  },
+  // 宝藏区域精灵
+  treasure_spirit: {
+    id: 'treasure_spirit',
+    name: '宝藏精灵',
+    hp: 50,
+    maxHp: 50,
+    sprite: '💎',
+  },
+  // Boss - 南大洋
+  sea_serpent_king: {
+    id: 'sea_serpent_king',
+    name: '海蛇王',
+    hp: 130,
+    maxHp: 130,
+    sprite: '🐉',
+  },
 }
 
 export function getMonstersByOcean(_ocean: string): Monster[] {
