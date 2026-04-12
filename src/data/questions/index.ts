@@ -1,5 +1,18 @@
 import { Question } from '../../game/types'
 
+// Ocean question banks
+export {
+  type OceanQuestionBank,
+  getOceanQuestionBank,
+  eastQuestionBank,
+  westQuestionBank,
+  southHotQuestionBank,
+  southQuestionBank,
+  northIceQuestionBank,
+  northQuestionBank,
+  mysteriousQuestionBank,
+} from './ocean'
+
 // Question bank organized by difficulty (1-5)
 export const questionsData: Question[] = [
   // Difficulty 1 - East Ocean (Basic knowledge)
