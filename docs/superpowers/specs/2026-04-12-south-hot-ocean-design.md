@@ -132,7 +132,7 @@
 ## 6. 实现任务
 
 ### 6.1 数据文件
-- [ ] `src/data/areas/index.ts`：添加southAreas数组（17个区域）
+- [ ] `src/data/areas/index.ts`：添加southAreas数组（19个区域：15普通+2隐藏+1宝藏+1Boss）
 - [ ] `src/data/monsters/index.ts`：添加新怪物数据（火焰鱼、熔岩龟、岩浆龙虾、焰鼻鳗、古灵、熔岩守护者、熔岩巨龙）
 - [ ] `src/game/types.ts`：确保 'history' 在 KnowledgeArea 类型中
 
