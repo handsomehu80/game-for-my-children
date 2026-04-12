@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Implement West Ocean (西大洋) data - 16 areas, 9 monster types, following the desert island theme with 4 knowledge chains (math, chinese, english, science).
+**Goal:** Implement West Ocean (西大洋) data - 16 areas, 7 monster types (15 instances), following the desert island theme with 4 knowledge chains (math, chinese, english, science).
 
 **Architecture:** Data-only implementation. Add westAreas array to areas/index.ts and monster definitions to monsters/index.ts. No core logic changes needed - the existing exploration system, battle system, and save system will automatically support the new ocean once data is added.
 
@@ -200,7 +200,7 @@ export const areasData: Record<string, Area[]> = {
 **Files:**
 - Modify: `src/data/monsters/index.ts`
 
-Add the following monster entries to `monstersData` object:
+Add the following monster entries to `monstersData` object (7 types, 15 instances total):
 
 ### 沙漠蝎子（数学）
 ```typescript
