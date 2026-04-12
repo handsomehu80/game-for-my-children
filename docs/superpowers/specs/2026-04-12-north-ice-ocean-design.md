@@ -74,6 +74,8 @@
 | north_hidden_A | 冰洞秘密基地 A | 2 | (1.5,0) | 1 | north_chinese_1 |
 | north_hidden_B | 冰洞秘密基地 B | 2 | (7.5,0) | 1 | north_physics_1 |
 
+> 注：隐藏区域难度2，符合普通区域难度1-3的范围
+
 ### 2.3 宝藏区域（1个）
 
 | ID | 名称 | 难度 | 位置(x,z) | 钥匙需求 | 连接 |
@@ -144,6 +146,7 @@
 - [ ] `src/data/areas/index.ts`：添加northAreas数组（22个区域）
 - [ ] `src/data/monsters/index.ts`：添加新怪物数据
 - [ ] `src/game/types.ts`：添加 'physics' 和 'chemistry' 到 KnowledgeArea 类型
+- [ ] `src/data/oceans/index.ts`：northIce 已注册，无需修改
 
 ### 6.2 题库扩展（关键任务）
 - [ ] 添加物理题目（Grade 1-9，各难度）
@@ -172,8 +175,11 @@
 ## 8. 完成条件
 
 - 击败北极巨鲸
+- 收集足够钥匙解锁并击败所有隐藏区域
 - 掉落5把钥匙
 - 解锁下一大洋：神秘大洋（mysterious）
+
+> 注：玩家需要收集足够的钥匙才能解锁隐藏区域宝藏，参考东大洋/西大洋的钥匙机制
 
 ---
 
