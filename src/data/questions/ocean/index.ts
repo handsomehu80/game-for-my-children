@@ -1,12 +1,16 @@
 import type { Question } from '../../../game/types'
 
+// Import East Ocean questions
+import { eastQuestionBank } from './east'
+export { eastQuestionBank }
+
 export interface OceanQuestionBank {
   oceanId: string
   questions: Question[]
 
   // 按条件筛选题目
   getQuestions(options: {
-    subject?: string
+    category?: string
     difficulty?: number
     grade?: number
     excludeIds?: string[]
@@ -19,7 +23,7 @@ export interface OceanQuestionBank {
 /**
  * 创建海洋题库实例
  */
-function createOceanQuestionBank(oceanId: string, questions: Question[]): OceanQuestionBank {
+export function createOceanQuestionBank(oceanId: string, questions: Question[]): OceanQuestionBank {
   return {
     oceanId,
     questions,
@@ -27,8 +31,8 @@ function createOceanQuestionBank(oceanId: string, questions: Question[]): OceanQ
     getQuestions(options) {
       let result = [...this.questions]
 
-      if (options.subject) {
-        result = result.filter((q) => q.category === options.subject)
+      if (options.category) {
+        result = result.filter((q) => q.category === options.category)
       }
 
       if (options.difficulty !== undefined) {
@@ -51,10 +55,6 @@ function createOceanQuestionBank(oceanId: string, questions: Question[]): OceanQ
     },
   }
 }
-
-// 东部海洋题库 (East Ocean)
-const eastQuestions: Question[] = []
-export const eastQuestionBank = createOceanQuestionBank('east', eastQuestions)
 
 // 西部海洋题库 (West Ocean)
 const westQuestions: Question[] = []
