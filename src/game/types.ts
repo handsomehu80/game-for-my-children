@@ -58,7 +58,7 @@ export interface Question {
   content: string
   type: 'single' | 'multiple' | 'fill' | 'image'
   difficulty: 1 | 2 | 3 | 4 | 5
-  category: 'math' | 'chinese' | 'english' | 'science' | 'general'
+  category: 'math' | 'chinese' | 'english' | 'science' | 'history' | 'physics' | 'chemistry' | 'general'
   options: QuestionOption[]
   imageUrl?: string
   grade?: number  // 年级 (1-9), 用于按年级选题
@@ -200,7 +200,7 @@ export type ExplorationPhase =
   | 'rollback'         // 回滚状态
 
 // 知识区域类型
-export type KnowledgeArea = 'math' | 'chinese' | 'english' | 'science' | 'history' | 'comprehensive'
+export type KnowledgeArea = 'math' | 'chinese' | 'english' | 'science' | 'history' | 'physics' | 'chemistry' | 'comprehensive'
 
 // 区域
 export interface Area {
