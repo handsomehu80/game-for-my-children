@@ -377,6 +377,154 @@ export const monstersData: Record<string, Monster> = {
     maxHp: 150,
     sprite: '🐉',
   },
+  // 北冰洋区域怪物 - 语文
+  polar_bear_1: {
+    id: 'polar_bear_1',
+    name: '北极熊',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🐻‍❄️',
+  },
+  polar_bear_2: {
+    id: 'polar_bear_2',
+    name: '北极熊王',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🐻‍❄️',
+  },
+  polar_bear_3: {
+    id: 'polar_bear_3',
+    name: '北极熊皇',
+    hp: 65,
+    maxHp: 65,
+    sprite: '🐻‍❄️',
+  },
+  // 北冰洋区域怪物 - 数学
+  penguin_1: {
+    id: 'penguin_1',
+    name: '企鹅',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🐧',
+  },
+  penguin_2: {
+    id: 'penguin_2',
+    name: '帝企鹅',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🐧',
+  },
+  penguin_3: {
+    id: 'penguin_3',
+    name: '企鹅王',
+    hp: 65,
+    maxHp: 65,
+    sprite: '🐧',
+  },
+  // 北冰洋区域怪物 - 英语
+  seal_1: {
+    id: 'seal_1',
+    name: '海豹',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🦭',
+  },
+  seal_2: {
+    id: 'seal_2',
+    name: '海豹王',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🦭',
+  },
+  seal_3: {
+    id: 'seal_3',
+    name: '海豹皇',
+    hp: 65,
+    maxHp: 65,
+    sprite: '🦭',
+  },
+  // 北冰洋区域怪物 - 科学
+  whale_1: {
+    id: 'whale_1',
+    name: '鲸鱼',
+    hp: 45,
+    maxHp: 45,
+    sprite: '🐋',
+  },
+  whale_2: {
+    id: 'whale_2',
+    name: '蓝鲸',
+    hp: 55,
+    maxHp: 55,
+    sprite: '🐋',
+  },
+  whale_3: {
+    id: 'whale_3',
+    name: '鲸鱼王',
+    hp: 65,
+    maxHp: 65,
+    sprite: '🐋',
+  },
+  // 北冰洋区域怪物 - 物理
+  ice_crystal_1: {
+    id: 'ice_crystal_1',
+    name: '冰晶',
+    hp: 45,
+    maxHp: 45,
+    sprite: '💠',
+  },
+  ice_crystal_2: {
+    id: 'ice_crystal_2',
+    name: '大冰晶',
+    hp: 55,
+    maxHp: 55,
+    sprite: '💠',
+  },
+  ice_crystal_3: {
+    id: 'ice_crystal_3',
+    name: '冰晶王',
+    hp: 65,
+    maxHp: 65,
+    sprite: '💠',
+  },
+  // 北冰洋区域怪物 - 化学
+  snowflake_1: {
+    id: 'snowflake_1',
+    name: '雪花',
+    hp: 45,
+    maxHp: 45,
+    sprite: '❄️',
+  },
+  snowflake_2: {
+    id: 'snowflake_2',
+    name: '大雪花',
+    hp: 55,
+    maxHp: 55,
+    sprite: '❄️',
+  },
+  snowflake_3: {
+    id: 'snowflake_3',
+    name: '雪花王',
+    hp: 65,
+    maxHp: 65,
+    sprite: '❄️',
+  },
+  // 北冰洋隐藏区域守护者
+  ice_guardian: {
+    id: 'ice_guardian',
+    name: '冰之守护者',
+    hp: 90,
+    maxHp: 90,
+    sprite: '🗿',
+  },
+  // 北冰洋Boss
+  arctic_whale_king: {
+    id: 'arctic_whale_king',
+    name: '北极巨鲸',
+    hp: 180,
+    maxHp: 180,
+    sprite: '🐋',
+  },
 }
 
 export function getMonstersByOcean(_ocean: string): Monster[] {
