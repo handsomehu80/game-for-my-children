@@ -332,9 +332,9 @@ sea_serpent_king: {
   hp: 130,
   maxHp: 130,
   sprite: '🐉',
-  skills: ['wave_attack', 'constrict', 'deep_sea_call'],
 },
 ```
+> Note: Skills field not populated to match existing monster pattern. Boss difficulty is handled through HP and question difficulty, not active skills.
 
 ---
 
