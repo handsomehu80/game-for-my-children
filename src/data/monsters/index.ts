@@ -251,6 +251,132 @@ export const monstersData: Record<string, Monster> = {
     maxHp: 130,
     sprite: '🐉',
   },
+  // 普通怪物 - 火焰鱼（数学区域）
+  flame_fish_1: {
+    id: 'flame_fish_1',
+    name: '火焰鱼',
+    hp: 40,
+    maxHp: 40,
+    sprite: '🐟',
+  },
+  flame_fish_2: {
+    id: 'flame_fish_2',
+    name: '火焰鳗',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐟',
+  },
+  flame_fish_3: {
+    id: 'flame_fish_3',
+    name: '火焰鱼王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐠',
+  },
+  // 普通怪物 - 熔岩龟（语文区域）
+  lava_turtle_1: {
+    id: 'lava_turtle_1',
+    name: '熔岩龟',
+    hp: 40,
+    maxHp: 40,
+    sprite: '🐢',
+  },
+  lava_turtle_2: {
+    id: 'lava_turtle_2',
+    name: '熔岩巨龟',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐢',
+  },
+  lava_turtle_3: {
+    id: 'lava_turtle_3',
+    name: '熔岩神龟',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐢',
+  },
+  // 普通怪物 - 岩浆龙虾（英语区域）
+  magma_lobster_1: {
+    id: 'magma_lobster_1',
+    name: '岩浆龙虾',
+    hp: 40,
+    maxHp: 40,
+    sprite: '🦞',
+  },
+  magma_lobster_2: {
+    id: 'magma_lobster_2',
+    name: '岩浆巨钳',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🦞',
+  },
+  magma_lobster_3: {
+    id: 'magma_lobster_3',
+    name: '岩浆虾王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🦞',
+  },
+  // 普通怪物 - 焰鼻鳗（科学区域）
+  flame_eel_1: {
+    id: 'flame_eel_1',
+    name: '焰鼻鳗',
+    hp: 40,
+    maxHp: 40,
+    sprite: '🐍',
+  },
+  flame_eel_2: {
+    id: 'flame_eel_2',
+    name: '焰鼻巨鳗',
+    hp: 50,
+    maxHp: 50,
+    sprite: '🐍',
+  },
+  flame_eel_3: {
+    id: 'flame_eel_3',
+    name: '焰鼻鳗皇',
+    hp: 60,
+    maxHp: 60,
+    sprite: '🐍',
+  },
+  // 普通怪物 - 古灵（历史区域）
+  ancient_spirit_1: {
+    id: 'ancient_spirit_1',
+    name: '古灵',
+    hp: 40,
+    maxHp: 40,
+    sprite: '👻',
+  },
+  ancient_spirit_2: {
+    id: 'ancient_spirit_2',
+    name: '古灵长',
+    hp: 50,
+    maxHp: 50,
+    sprite: '👻',
+  },
+  ancient_spirit_3: {
+    id: 'ancient_spirit_3',
+    name: '古灵王',
+    hp: 60,
+    maxHp: 60,
+    sprite: '👻',
+  },
+  // 隐藏区域守护者
+  lava_guardian: {
+    id: 'lava_guardian',
+    name: '熔岩守护者',
+    hp: 80,
+    maxHp: 80,
+    sprite: '🗿',
+  },
+  // Boss - 熔岩巨龙
+  lava_dragon_king: {
+    id: 'lava_dragon_king',
+    name: '熔岩巨龙',
+    hp: 150,
+    maxHp: 150,
+    sprite: '🐉',
+  },
 }
 
 export function getMonstersByOcean(_ocean: string): Monster[] {
