@@ -1263,6 +1263,12 @@ export function getAreaById(areaId: string): Area | undefined {
   return undefined
 }
 
+// 获取指定大洋的普通岛屿数量（排除hidden、treasure、boss类型）
+export function getNormalIslandCount(oceanId: string): number {
+  const areas = getAreasByOcean(oceanId)
+  return areas.filter(a => a.type === 'normal').length
+}
+
 // 获取区域的难度标签
 export function getDifficultyStars(difficulty: 1 | 2 | 3): string {
   return '⭐'.repeat(difficulty)
@@ -1288,15 +1294,16 @@ export function isAreaReachable(
     return { reachable: true }
   }
 
-  // Boss岛屿需要9个岛屿完成后才能访问（只计算normal类型岛屿）
+  // Boss岛屿需要当前大洋所有普通岛屿完成后才能访问
   if (area.type === 'boss') {
+    const requiredCount = getNormalIslandCount(area.oceanId)
     // 过滤出normal类型的已击败岛屿
     const defeatedNormalIslands = defeatedMiniBosses.filter(id => {
       const a = getAreaById(id)
       return a && a.type === 'normal'
     })
-    if (defeatedNormalIslands.length < 9) {
-      return { reachable: false, reason: `需要打败9个岛屿才能挑战Boss (${defeatedNormalIslands.length}/9)` }
+    if (defeatedNormalIslands.length < requiredCount) {
+      return { reachable: false, reason: `需要打败全部${requiredCount}个岛屿才能挑战Boss (${defeatedNormalIslands.length}/${requiredCount})` }
     }
     return { reachable: true }
   }

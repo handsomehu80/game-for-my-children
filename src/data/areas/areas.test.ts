@@ -52,7 +52,8 @@ describe('isAreaReachable', () => {
     expect(result.reachable).toBe(true)
   })
 
-  it('Boss岛屿需要9个岛屿完成后才能访问', () => {
+  it('Boss岛屿需要当前大洋所有普通岛屿完成后才能访问', () => {
+    // 东大洋有9个普通岛屿（3链×3难度）
     // 8个岛屿不足以挑战boss
     const result = isAreaReachable('east_boss', null, ['east_math_1', 'east_math_2', 'east_math_3', 'east_chinese_1', 'east_chinese_2', 'east_chinese_3', 'east_english_1', 'east_english_2'], [])
     expect(result.reachable).toBe(false)

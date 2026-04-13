@@ -1,8 +1,20 @@
 import type { Question } from '../../../game/types'
 
-// Import East Ocean questions
+// Import all Ocean Question Banks
 import { eastQuestionBank } from './east'
-export { eastQuestionBank }
+import { westQuestionBank } from './west'
+import { southHotQuestionBank } from './southHot'
+import { northIceQuestionBank } from './northIce'
+import { mysteriousQuestionBank } from './mysterious'
+
+// Export all Question Banks
+export {
+  eastQuestionBank,
+  westQuestionBank,
+  southHotQuestionBank,
+  northIceQuestionBank,
+  mysteriousQuestionBank,
+}
 
 export interface OceanQuestionBank {
   oceanId: string
@@ -55,22 +67,6 @@ export function createOceanQuestionBank(oceanId: string, questions: Question[]):
     },
   }
 }
-
-// 西部海洋题库 (West Ocean)
-const westQuestions: Question[] = []
-export const westQuestionBank = createOceanQuestionBank('west', westQuestions)
-
-// 南部热带海洋题库 (South Hot Ocean)
-const southHotQuestions: Question[] = []
-export const southHotQuestionBank = createOceanQuestionBank('southHot', southHotQuestions)
-
-// 北部冰冻海洋题库 (North Ice Ocean)
-const northIceQuestions: Question[] = []
-export const northIceQuestionBank = createOceanQuestionBank('northIce', northIceQuestions)
-
-// 神秘海洋题库 (Mysterious Ocean)
-const mysteriousQuestions: Question[] = []
-export const mysteriousQuestionBank = createOceanQuestionBank('mysterious', mysteriousQuestions)
 
 // 各洋题库映射
 const questionBanks: Record<string, OceanQuestionBank> = {

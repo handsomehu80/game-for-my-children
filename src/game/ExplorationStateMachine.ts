@@ -1,5 +1,5 @@
 import type { ExplorationState, ExplorationAction, ExplorationPhase, Savepoint } from './types'
-import { getAreaById } from '../data/areas'
+import { getAreaById, getNormalIslandCount } from '../data/areas'
 
 // 初始探索状态
 export const initialExplorationState: ExplorationState = {
@@ -60,14 +60,15 @@ export function explorationTransition(
           if (area.requiredKeys > 0 && !state.unlockedAreas.includes(area.id)) {
             return { ...state, phase: 'error', lastError: `Area ${action.areaId} requires keys` }
           }
-          // 1. 打败所有9个normal岛屿后才能和boss战斗（隐藏和宝藏岛屿不计算在内）
+          // 1. 打败所有normal岛屿后才能和boss战斗（隐藏和宝藏岛屿不计算在内）
           if (area.type === 'boss') {
+            const requiredCount = getNormalIslandCount(area.oceanId)
             const defeatedNormalIslands = state.defeatedMiniBosses.filter(id => {
               const a = getAreaById(id)
               return a && a.type === 'normal'
             })
-            if (defeatedNormalIslands.length < 9) {
-              return { ...state, phase: 'error', lastError: `Defeat all 9 islands before challenging the boss (${defeatedNormalIslands.length}/9)` }
+            if (defeatedNormalIslands.length < requiredCount) {
+              return { ...state, phase: 'error', lastError: `Defeat all ${requiredCount} islands before challenging the boss (${defeatedNormalIslands.length}/${requiredCount})` }
             }
           }
           return {
