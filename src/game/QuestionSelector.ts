@@ -1,15 +1,14 @@
 import type { Question } from './types'
 import { questionsData } from '../data/questions'
-import { oceansData } from '../data/oceans'
 import {
   getQuestionsByGradeAndSubject,
   getQuestionsByDifficulty as getGradedQuestionsByDifficulty,
 } from '../data/questions/graded'
-import { getOceanQuestionBank } from '../data/questions/ocean'
+import { allQuestions } from '../data/questions'
 import type { BattleState } from './types'
 
 export interface QuestionSelectorOptions {
-  oceanId: string
+  oceanId: string  // Kept for compatibility/logging, NOT used for filtering
   difficulty?: number | null
   category?: string
   grade?: number  // 年级 (1-9)
@@ -18,67 +17,22 @@ export interface QuestionSelectorOptions {
 }
 
 export function getRandomQuestion(options: QuestionSelectorOptions): Question | null {
-  const { oceanId, difficulty, category, grade, excludeIds = [] } = options
+  const { category, grade, difficulty, excludeIds = [] } = options
 
   // P0-5: Fallback to 1 if difficulty is null/undefined
   const effectiveDifficulty = difficulty ?? 1
 
-  // Get ocean difficulty range
-  const ocean = Object.values(oceansData).find(o => o.id === oceanId)
-  if (!ocean) return null
-
-  // Try ocean-specific question bank first
-  const oceanBank = getOceanQuestionBank(oceanId)
-  if (oceanBank) {
-    // Filter by category (use category field from Question, not subject)
-    const filterCategory = category as string | undefined
-
-    // Try specified difficulty first
-    let questions = oceanBank.getQuestions({
-      category: filterCategory,
-      difficulty: effectiveDifficulty,
-      grade,
-      excludeIds,
-    })
-
-    if (questions.length > 0) {
-      return questions[Math.floor(Math.random() * questions.length)]
-    }
-
-    // Fallback: try lower difficulties within same ocean (D4→D3→D2→D1)
-    for (let diff = effectiveDifficulty - 1; diff >= 1; diff--) {
-      const fallback = oceanBank.getQuestions({
-        category: filterCategory,
-        difficulty: diff,
-        grade,
-        excludeIds,
-      })
-      if (fallback.length > 0) {
-        return fallback[Math.floor(Math.random() * fallback.length)]
-      }
-    }
-
-    // No questions in this ocean at any difficulty - do NOT fallback to other oceans
-    return null
-  }
-
-  // Fallback to old questionsData (no ocean isolation)
-  const [minDiff, maxDiff] = difficulty != null
-    ? [effectiveDifficulty, effectiveDifficulty]
-    : ocean.difficulty
-
-  const filtered = questionsData.filter(q => {
-    if (q.difficulty < minDiff || q.difficulty > maxDiff) return false
-    if (category && category.length > 0) {
-      if (q.category !== category) return false
-    }
+  // Filter questions by category, grade, difficulty (NOT oceanId)
+  const filtered = allQuestions.filter(q => {
+    if (category && q.category !== category) return false
+    if (grade !== undefined && q.grade !== grade) return false
+    if (q.difficulty !== effectiveDifficulty) return false
     if (excludeIds.includes(q.id)) return false
     return true
   })
 
   if (filtered.length === 0) return null
 
-  // Random selection
   const index = Math.floor(Math.random() * filtered.length)
   return filtered[index]
 }
@@ -121,8 +75,7 @@ export function getQuestionForBattle(
   return getRandomQuestion({
     oceanId,
     grade: questionGrade,
-    subject: subject as 'math' | 'chinese' | 'english',
+    category: subject,
     excludeIds,
-    // difficulty 由 getRandomQuestion 内部根据 grade 自行处理
   })
 }
