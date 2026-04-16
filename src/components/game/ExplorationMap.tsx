@@ -161,10 +161,6 @@ if (area.type === 'boss') {
       }, 1000)
       return () => clearTimeout(timer)
     }
-    // sailing 阶段：启动航行动画
-    if (latestExplorationRef.current?.phase === 'sailing' && isSailing) {
-      // OceanSailingScene 已经显示，等待动画完成
-    }
   }, [exploration, explorationDispatch, isSailing])
 
   // 模拟遭遇判定
@@ -179,7 +175,6 @@ if (area.type === 'boss') {
     if (area.type === 'treasure') {
       result = 'treasure'
     } else if (area.type === 'hidden' || area.type === 'boss') {
-      // P0-2: 隐藏区域和Boss跳过随机，直接触发战斗
       result = 'battle'
     } else if (Math.random() < HIDDEN_EVENT_PROBABILITY) {
       result = 'hidden_event'
@@ -214,8 +209,9 @@ if (area.type === 'boss') {
       oceanId: latestExplorationRef.current.currentOcean || 'east',
       difficulty: area.difficulty ?? null,
       grade: playerGrade,
-      subject: area.knowledgeArea === 'comprehensive' ? undefined : area.knowledgeArea as 'math' | 'chinese' | 'english',
+      category: area.knowledgeArea === 'comprehensive' ? undefined : area.knowledgeArea as 'math' | 'chinese' | 'english' | 'science' | 'physics' | 'chemistry' | 'history',
     })
+
     if (!question) return
 
     battleStartedRef.current = true
