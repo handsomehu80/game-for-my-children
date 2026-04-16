@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { oceansData } from './oceans'
 import { monstersData } from './monsters'
-import { questionsData } from './questions'
+import { allQuestions } from './questions'
 
 describe('Data Validation', () => {
   it('oceans should have required fields', () => {
@@ -24,7 +24,7 @@ describe('Data Validation', () => {
   })
 
   it('questions should have correct options structure', () => {
-    questionsData.forEach((question) => {
+    allQuestions.forEach((question) => {
       expect(question.options).toBeDefined()
       expect(question.options.length).toBeGreaterThan(0)
       question.options.forEach((opt) => {
