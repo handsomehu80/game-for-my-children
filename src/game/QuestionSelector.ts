@@ -1,25 +1,27 @@
 import type { Question } from './types'
-import { questionsData } from '../data/questions'
-import {
-  getQuestionsByGradeAndSubject,
-  getQuestionsByDifficulty as getGradedQuestionsByDifficulty,
-} from '../data/questions/graded'
 import { allQuestions } from '../data/questions'
 import type { BattleState } from './types'
+
+export type QuestionCategory = 'math' | 'chinese' | 'english' | 'science' | 'physics' | 'chemistry' | 'history' | 'general'
 
 export interface QuestionSelectorOptions {
   oceanId: string  // Kept for compatibility/logging, NOT used for filtering
   difficulty?: number | null
   category?: string
   grade?: number  // 年级 (1-9)
-  subject?: 'chinese' | 'math' | 'english' | 'science'
   excludeIds?: string[]  // 排除的问题ID（避免重复）
 }
 
+/**
+ * 根据 category+grade+difficulty 随机选择一道题目
+ * - 按 category、grade、difficulty 筛选
+ * - 排除 excludeIds 中已使用的题目
+ * - 返回 null 如果没有可用题目
+ */
 export function getRandomQuestion(options: QuestionSelectorOptions): Question | null {
   const { category, grade, difficulty, excludeIds = [] } = options
 
-  // P0-5: Fallback to 1 if difficulty is null/undefined
+  // Fallback to 1 if difficulty is null/undefined
   const effectiveDifficulty = difficulty ?? 1
 
   // Filter questions by category, grade, difficulty (NOT oceanId)
@@ -37,15 +39,12 @@ export function getRandomQuestion(options: QuestionSelectorOptions): Question | 
   return filtered[index]
 }
 
+/**
+ * 按难度获取所有题目（兼容性函数，仅用于旧代码）
+ */
 export function getQuestionsByDifficulty(difficulty: number): Question[] {
-  // Try to use graded questions first
-  const graded = getGradedQuestionsByDifficulty(difficulty)
-  if (graded.length > 0) return graded
-  // Fallback to original
-  return questionsData.filter(q => q.difficulty === difficulty)
+  return allQuestions.filter(q => q.difficulty === difficulty)
 }
-
-export { getQuestionsByGradeAndSubject }
 
 interface BattleQuestionOptions {
   oceanId: string
