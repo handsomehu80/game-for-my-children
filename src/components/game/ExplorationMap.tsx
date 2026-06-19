@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useGameStore } from '../../store/gameStore'
-import { getAreasByOcean, getAreaById } from '../../data/areas'
+import { getAreasByOcean, getAreaById, getAccessibleNormalIslands } from '../../data/areas'
 import { monstersData } from '../../data/monsters'
 import { getRandomQuestion } from '../../game/QuestionSelector'
 import { AreaNode } from './AreaNode'
@@ -30,9 +30,43 @@ export default function ExplorationMap() {
   const exploration = useGameStore((state) => state.exploration)
   const players = useGameStore((state) => state.players)
 
+  // 获取当前玩家的年级（单人模式用玩家1，双人模式用当前玩家）
+  const currentPlayerGrade = (() => {
+    const currentPlayerIndex = exploration?.currentPlayerIndex ?? 0
+    return players[currentPlayerIndex]?.grade ?? players[0]?.grade ?? 1
+  })()
+
+  // 各学科覆盖的年级范围
+  const getSubjectGradeRange = (subject: string): [number, number] | null => {
+    switch (subject) {
+      case 'math': return [1, 9]
+      case 'chinese': return [1, 9]
+      case 'english': return [1, 9]
+      case 'science': return [3, 6]
+      case 'physics': return [7, 9]
+      case 'chemistry': return [7, 9]
+      case 'history': return [7, 9]
+      default: return null
+    }
+  }
+
+  // 检查学科是否在玩家年级可用
+  const isSubjectAvailableForGrade = (subject: string): boolean => {
+    const range = getSubjectGradeRange(subject)
+    if (!range) return false
+    return currentPlayerGrade >= range[0] && currentPlayerGrade <= range[1]
+  }
+
   // 监控状态变化用于调试
   useEffect(() => {
-    // console.log('exploration changed:', exploration?.phase)
+    console.log('[DEBUG] exploration changed:', exploration?.phase)
+  }, [exploration?.phase])
+
+  // DEBUG: Component-level log when phase becomes battle
+  useEffect(() => {
+    if (exploration?.phase === 'battle') {
+      console.log('[DEBUG] BATTLE PHASE REACHED in ExplorationMap!')
+    }
   }, [exploration?.phase])
 
   // P0-3: Use ref to prevent stale closures in useEffect hooks
@@ -43,6 +77,13 @@ export default function ExplorationMap() {
 
   // Guard to prevent START_BATTLE from being dispatched multiple times
   const battleStartedRef = useRef(false)
+
+  // Reset battleStartedRef when returning to exploring phase
+  useEffect(() => {
+    if (exploration?.phase === 'exploring') {
+      battleStartedRef.current = false
+    }
+  }, [exploration?.phase])
 
   const selectArea = useGameStore((state) => state.selectArea)
   const generatePortals = useGameStore((state) => state.generatePortals)
@@ -68,13 +109,31 @@ export default function ExplorationMap() {
     const area = getAreaById(areaId)
     if (!area) return false
     if (exploration?.defeatedMiniBosses.includes(areaId)) return false
-    // Boss needs 9 islands completed before becoming clickable
-if (area.type === 'boss') {
-  return (exploration?.defeatedMiniBosses.length ?? 0) >= 9
-}
+
+    // 检查学科是否在玩家年级可用（针对 normal 岛屿）
+    if (area.type === 'normal' && area.knowledgeArea) {
+      if (!isSubjectAvailableForGrade(area.knowledgeArea)) {
+        return false
+      }
+    }
+
+    // Boss needs all accessible normal islands completed before becoming clickable
+    if (area.type === 'boss') {
+      const accessibleIslands = exploration?.currentOcean
+        ? getAccessibleNormalIslands(exploration.currentOcean, currentPlayerGrade)
+        : []
+      const accessibleIds = accessibleIslands.map(a => a.id)
+      const defeatedAccessible = exploration?.defeatedMiniBosses.filter(id => accessibleIds.includes(id)) ?? []
+      return defeatedAccessible.length >= accessibleIslands.length
+    }
+
     // If no current area (first entry to ocean), difficulty-1 normal islands are clickable
     if (!exploration?.currentArea) {
       return area.difficulty === 1 && area.type === 'normal'
+    }
+    // D1 normal islands are always clickable if undefeated (preserve initial accessibility)
+    if (area.difficulty === 1 && area.type === 'normal') {
+      return true
     }
     // During exploring and error phases, use reachableAreas to determine clickability.
     // This ensures islands only become clickable AFTER battle is won (via BATTLE_WIN updates reachableAreas).
@@ -128,16 +187,18 @@ if (area.type === 'boss') {
     setPendingAreaId(null)
   }
 
-  const handleSailingArrived = () => {
+  const handleSailingArrived = useCallback(() => {
     console.log('[DEBUG] handleSailingArrived called')
     setIsSailing(false)
+    console.log('[DEBUG] dispatching SAILING_COMPLETE')
     explorationDispatch({ type: 'SAILING_COMPLETE' })
-    // Small delay then transition to moving
+    console.log('[DEBUG] SAILING_COMPLETE dispatched, phase should be arrived')
     setTimeout(() => {
-      console.log('[DEBUG] ARRIVED timeout fired')
+      console.log('[DEBUG] ARRIVED timeout fired, dispatching ARRIVED')
       explorationDispatch({ type: 'ARRIVED' })
+      console.log('[DEBUG] ARRIVED dispatched, phase should be moving')
     }, 300)
-  }
+  }, [explorationDispatch])
 
   const handleAreaCancel = () => {
     setShowAreaConfirm(false)
@@ -155,20 +216,26 @@ if (area.type === 'boss') {
 
   // 模拟移动动画完成
   useEffect(() => {
-    if (latestExplorationRef.current?.phase === 'moving') {
+    // 直接检查 exploration.phase，而不是通过 ref
+    console.log('[DEBUG] moving useEffect running, phase:', exploration?.phase)
+    if (exploration?.phase === 'moving') {
+      console.log('[DEBUG] setting MOVE_COMPLETE timer')
       const timer = setTimeout(() => {
+        console.log('[DEBUG] MOVE_COMPLETE timeout fired, dispatching')
         explorationDispatch({ type: 'MOVE_COMPLETE' })
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [exploration, explorationDispatch, isSailing])
+  }, [exploration, explorationDispatch])
 
   // 模拟遭遇判定
   useEffect(() => {
-    if (!latestExplorationRef.current || latestExplorationRef.current.phase !== 'encounter') {
+    // 直接使用 exploration.phase，而不是 latestExplorationRef
+    console.log('[DEBUG] encounter useEffect running, phase:', exploration?.phase)
+    if (!exploration || exploration.phase !== 'encounter') {
       return
     }
-    const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
+    const area = areas.find((a) => a.id === exploration.currentArea)
     if (!area) return
 
     let result: 'battle' | 'treasure' | 'hidden_event'
@@ -187,15 +254,32 @@ if (area.type === 'boss') {
 
   // 战斗阶段 - 触发实际战斗（只执行一次）
   useEffect(() => {
-    if (battleStartedRef.current) return
-    if (latestExplorationRef.current?.phase !== 'battle') return
-    if (!latestExplorationRef.current?.currentArea) return
+    console.log('[DEBUG] battle useEffect running, phase:', latestExplorationRef.current?.phase, 'battleStartedRef:', battleStartedRef.current)
+    if (battleStartedRef.current) {
+      console.log('[DEBUG] battle already started, skipping')
+      return
+    }
+    if (latestExplorationRef.current?.phase !== 'battle') {
+      console.log('[DEBUG] not battle phase, skipping')
+      return
+    }
+    if (!latestExplorationRef.current?.currentArea) {
+      console.log('[DEBUG] no currentArea, skipping')
+      return
+    }
 
     const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
-    if (!area || !area.monsterId) return
+    if (!area || !area.monsterId) {
+      console.log('[DEBUG] no area or monsterId found')
+      return
+    }
 
     const monster = monstersData[area.monsterId]
-    if (!monster) return
+    if (!monster) {
+      console.log('[DEBUG] monster not found:', area.monsterId)
+      return
+    }
+    console.log('[DEBUG] found monster:', monster.name)
 
     // 双人模式：随机选择先手玩家
     // 单人模式：使用玩家1的年级
@@ -205,14 +289,28 @@ if (area.type === 'boss') {
       : 0
     const playerGrade = players[firstPlayerIndex]?.grade ?? 1
 
-    const question = getRandomQuestion({
+    let question = getRandomQuestion({
       oceanId: latestExplorationRef.current.currentOcean || 'east',
       difficulty: area.difficulty ?? null,
       grade: playerGrade,
       category: area.knowledgeArea === 'comprehensive' ? undefined : area.knowledgeArea as 'math' | 'chinese' | 'english' | 'science' | 'physics' | 'chemistry' | 'history',
     })
 
-    if (!question) return
+    if (!question) {
+      console.log('[DEBUG] no question for category, trying without category restriction')
+      question = getRandomQuestion({
+        oceanId: latestExplorationRef.current.currentOcean || 'east',
+        difficulty: area.difficulty ?? null,
+        grade: playerGrade,
+      })
+    }
+
+    if (!question) {
+      console.log('[DEBUG] no question found at all! grade:', playerGrade, '- rolling back')
+      explorationDispatch({ type: 'ROLLBACK_TO_SAVEPOINT' })
+      return
+    }
+    console.log('[DEBUG] question found:', question.id, 'dispatching START_BATTLE')
 
     battleStartedRef.current = true
     useGameStore.getState().dispatch({

@@ -5,7 +5,7 @@ import type { BattleState } from './types'
 export type QuestionCategory = 'math' | 'chinese' | 'english' | 'science' | 'physics' | 'chemistry' | 'history' | 'general'
 
 export interface QuestionSelectorOptions {
-  oceanId: string  // Kept for compatibility/logging, NOT used for filtering
+  oceanId?: string  // Kept for compatibility/logging, NOT used for filtering
   difficulty?: number | null
   category?: string
   grade?: number  // 年级 (1-9)
@@ -16,6 +16,7 @@ export interface QuestionSelectorOptions {
  * 根据 category+grade+difficulty 随机选择一道题目
  * - 按 category、grade、difficulty 筛选
  * - 排除 excludeIds 中已使用的题目
+ * - 如果没有找到指定难度的题目，尝试其他难度（降级策略）
  * - 返回 null 如果没有可用题目
  */
 export function getRandomQuestion(options: QuestionSelectorOptions): Question | null {
@@ -24,14 +25,38 @@ export function getRandomQuestion(options: QuestionSelectorOptions): Question | 
   // Fallback to 1 if difficulty is null/undefined
   const effectiveDifficulty = difficulty ?? 1
 
-  // Filter questions by category, grade, difficulty (NOT oceanId)
-  const filtered = allQuestions.filter(q => {
+  // 尝试查找指定难度的题目
+  let filtered = allQuestions.filter(q => {
     if (category && q.category !== category) return false
     if (grade !== undefined && q.grade !== grade) return false
     if (q.difficulty !== effectiveDifficulty) return false
     if (excludeIds.includes(q.id)) return false
     return true
   })
+
+  // 如果没有找到，尝试其他难度但同grade（按难度从低到高降级）
+  if (filtered.length === 0 && grade !== undefined && difficulty !== null && difficulty !== undefined) {
+    for (let fallbackDiff = 1; fallbackDiff <= 3; fallbackDiff++) {
+      if (fallbackDiff === difficulty) continue
+      filtered = allQuestions.filter(q => {
+        if (category && q.category !== category) return false
+        if (q.difficulty !== fallbackDiff) return false
+        if (excludeIds.includes(q.id)) return false
+        return true
+      })
+      if (filtered.length > 0) break
+    }
+  }
+
+  // 如果仍然没有，尝试其他难度其他年级（最后兜底）
+  if (filtered.length === 0) {
+    filtered = allQuestions.filter(q => {
+      if (category && q.category !== category) return false
+      if (grade !== undefined && q.grade !== grade) return false
+      if (excludeIds.includes(q.id)) return false
+      return true
+    })
+  }
 
   if (filtered.length === 0) return null
 

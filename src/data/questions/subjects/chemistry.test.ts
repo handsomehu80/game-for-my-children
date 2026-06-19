@@ -17,7 +17,7 @@ describe('chemistry question bank', () => {
     })
     // 对于迁移数据，验证分布不要严重失衡
     // 任何单一答案选项不超过85%（宽松阈值）
-    Object.entries(combinations).forEach(([combo, indices]) => {
+    Object.entries(combinations).forEach(([_combo, indices]) => {
       const n = indices.length
       if (n === 0) return
       const dist = [0,0,0,0]

@@ -31,9 +31,24 @@ export default function Battle() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const hasEnabledRef = useRef(false)
 
-  // Redirect if no battle
+  // Redirect if no battle - but only if gamePhase is NOT 'battle' (battle phase should have battle set)
+  // This guard is for catching unexpected states, not for normal battle flow
   useEffect(() => {
+    // If we're in battle phase but battle is null, set a timer to check
+    // This handles the case where START_BATTLE is still in flight
     if (!battle && gamePhase === 'battle') {
+      const timer = setTimeout(() => {
+        const state = useGameStore.getState()
+        if (!state.battle && state.gamePhase === 'battle') {
+          // START_BATTLE didn't complete, go back to exploration
+          useGameStore.getState().explorationDispatch({ type: 'RESET_EXPLORATION' })
+        }
+      }, 0)
+      return () => clearTimeout(timer)
+    }
+
+    // Only reset if we're in a completely wrong phase (not battle, not exploration)
+    if (!battle && gamePhase !== 'battle' && gamePhase !== 'exploration') {
       dispatch({ type: 'RESET_GAME' })
     }
   }, [battle, gamePhase, dispatch])

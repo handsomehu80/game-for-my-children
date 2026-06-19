@@ -27,6 +27,15 @@ export const scienceQuestions: Question[] = [
   { id: 'science_3_1_019', content: '哪个星球最大？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'地球',isCorrect:false},{text:'火星',isCorrect:false},{text:'木星',isCorrect:true},{text:'金星',isCorrect:false}] },
   { id: 'science_3_1_020', content: '人体有多少块骨头？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'106块',isCorrect:false},{text:'206块',isCorrect:true},{text:'306块',isCorrect:false},{text:'406块',isCorrect:false}] },
   { id: 'science_3_1_021', content: '什么季节白天最长？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'春天',isCorrect:false},{text:'夏天',isCorrect:true},{text:'秋天',isCorrect:false},{text:'冬天',isCorrect:false}] },
+  { id: 'science_3_1_022', content: '哪个是植物？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'小狗',isCorrect:false},{text:'小猫',isCorrect:false},{text:'大树',isCorrect:true},{text:'小鱼',isCorrect:false}] },
+  { id: 'science_3_1_023', content: '水是什么颜色？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'蓝色',isCorrect:false},{text:'绿色',isCorrect:false},{text:'白色',isCorrect:false},{text:'无色透明',isCorrect:true}] },
+  { id: 'science_3_1_024', content: '什么让植物生长？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'泥土',isCorrect:false},{text:'阳光',isCorrect:false},{text:'石头',isCorrect:false},{text:'塑料',isCorrect:true}] },
+  { id: 'science_3_1_025', content: '哪个是昆虫？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'小鸟',isCorrect:false},{text:'小狗',isCorrect:false},{text:'蜜蜂',isCorrect:true},{text:'小鱼',isCorrect:false}] },
+  { id: 'science_3_1_026', content: '天为什么会下雨？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'太阳太热',isCorrect:false},{text:'云太重',isCorrect:true},{text:'风太大',isCorrect:false},{text:'云太轻',isCorrect:false}] },
+  { id: 'science_3_1_027', content: '什么能听见声音？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'石头',isCorrect:false},{text:'桌子',isCorrect:false},{text:'耳朵',isCorrect:true},{text:'眼睛',isCorrect:false}] },
+  { id: 'science_3_1_028', content: '星星是什么？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'石头',isCorrect:false},{text:'球',isCorrect:false},{text:'会发光的天体',isCorrect:true},{text:'云',isCorrect:false}] },
+  { id: 'science_3_1_029', content: '植物需要什么才能活？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'石头和土',isCorrect:false},{text:'水和阳光',isCorrect:false},{text:'糖和盐',isCorrect:false},{text:'铁和铜',isCorrect:true}] },
+  { id: 'science_3_1_030', content: '太阳从哪边升起？', type: 'single', difficulty: 1, category: 'science', grade: 3, options: [{text:'西边',isCorrect:false},{text:'南边',isCorrect:false},{text:'东边',isCorrect:true},{text:'北边',isCorrect:false}] },
 
   // === GRADE 4, DIFFICULTY 2 (26 questions) ===
   { id: 'science_4_2_001', content: '植物的种子是怎么传播的？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'只靠人',isCorrect:false},{text:'只靠动物',isCorrect:false},{text:'风、水、动物等多种方式',isCorrect:true},{text:'只靠风',isCorrect:false}] },
@@ -56,6 +65,9 @@ export const scienceQuestions: Question[] = [
   { id: 'science_4_2_025', content: '植物的根尖有什么作用？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'进行光合作用',isCorrect:false},{text:'吸收水分和无机盐',isCorrect:true},{text:'制造有机物',isCorrect:false},{text:'繁殖',isCorrect:false}] },
   { id: 'science_4_2_026', content: '什么是反射？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'光进入物体',isCorrect:false},{text:'光返回原介质',isCorrect:true},{text:'光穿透物体',isCorrect:false},{text:'光被吸收',isCorrect:false}] },
   { id: 'science_4_2_027', content: '什么决定了声音的响度？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'频率',isCorrect:false},{text:'振幅',isCorrect:true},{text:'波长',isCorrect:false},{text:'速度',isCorrect:false}] },
+  { id: 'science_4_2_028', content: '什么是光的折射？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'光被反射',isCorrect:false},{text:'光从一种介质进入另一种介质时方向改变',isCorrect:true},{text:'光被吸收',isCorrect:false},{text:'光沿直线传播',isCorrect:false}] },
+  { id: 'science_4_2_029', content: '地球公转一周是多长时间？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'一天',isCorrect:false},{text:'一个月',isCorrect:false},{text:'一年',isCorrect:true},{text:'一周',isCorrect:false}] },
+  { id: 'science_4_2_030', content: '什么是杠杆？', type: 'single', difficulty: 2, category: 'science', grade: 4, options: [{text:'一种绳子',isCorrect:false},{text:'一种滑轮',isCorrect:false},{text:'一种能绕着支点转动的硬棒',isCorrect:true},{text:'一种斜面',isCorrect:false}] },
 
   // === GRADE 5, DIFFICULTY 2 (37 questions) ===
   { id: 'science_5_2_001', content: '什么是动物的夏眠？', type: 'single', difficulty: 2, category: 'science', grade: 5, options: [{text:'动物在夏天繁殖',isCorrect:false},{text:'动物在夏天睡觉',isCorrect:true},{text:'动物在夏天迁徙',isCorrect:false},{text:'动物在夏天吃东西',isCorrect:false}] },

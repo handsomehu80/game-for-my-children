@@ -27,11 +27,15 @@ src/
 │   ├── BattleEngine.ts  # Combat mechanics
 │   ├── OceanWorld.ts    # World/map logic
 │   ├── ExplorationStateMachine.ts  # Exploration state machine
+│   ├── QuestionSelector.ts  # Question selection by category+grade+difficulty
 │   └── types.ts         # Game type definitions
 ├── data/                # Data-driven configurations
 │   ├── oceans/          # Ocean zone definitions
 │   ├── monsters/        # Boss monster configurations
-│   └── questions/       # Question banks by difficulty
+│   ├── questions/       # Question banks
+│   │   ├── subjects/    # Category-based question banks (chinese, math, english, science, physics, chemistry, history)
+│   │   └── index.ts     # Exports allQuestions aggregated from subjects/
+│   └── areas/           # Area/node definitions for exploration
 ├── store/               # Zustand state management
 │   └── gameStore.ts     # Main game state store
 ├── hooks/               # Custom React hooks
@@ -39,22 +43,52 @@ src/
 └── assets/              # Images, audio, sprites, fonts
 ```
 
+### Question Bank Architecture
+
+**New category-based structure** (`src/data/questions/subjects/`):
+- Questions organized by subject: `chinese.ts`, `math.ts`, `english.ts`, `science.ts`, `physics.ts`, `chemistry.ts`, `history.ts`
+- Each question has ID format: `{subject}_{grade}_{difficulty}_{seq}` (e.g., `math_3_1_015`)
+- All questions aggregated into `allQuestions` via `src/data/questions/index.ts`
+- Question selection uses `QuestionSelector.ts`: filters by `category` + `grade` + `difficulty`
+- All oceans share the same question pool (oceanId not used for filtering)
+
+**Subject coverage by grade:**
+| Subject | Grades | Difficulties |
+|---------|--------|--------------|
+| math, chinese, english | 1-9 | 1-3 |
+| science | 3-6 | 1-3 |
+| physics, chemistry, history | 7-9 | 1-3 |
+
 ### Key Architectural Principles
 - **Rendering abstraction**: Game rendering lives in dedicated components, decoupled from game logic
 - **Data-driven design**: Oceans, monsters, and questions defined as configuration data
 - **Progressive difficulty**: Question difficulty tied to ocean zone progression
 - **Extensible to 3D**: 2D canvas renderer can be swapped with React-Three-Fiber renderer
+- **State machine for exploration**: Ocean exploration uses a state machine (`ExplorationPhase`) with clear transitions: `exploring` → `sailing` → `arrived` → `moving` → `encounter` → `battle`/`treasure`/`hidden_area`
+
+### Exploration Battle Flow
+
+When battle is triggered from exploration:
+1. `SELECT_AREA` → user selects destination
+2. `sailing` → ship moves along path
+3. `arrived` → ship arrives at destination
+4. `moving` → character moves on island
+5. `encounter` → random encounter check (80% battle / 15% treasure / 5% hidden event)
+6. `battle` → question selection via `getRandomQuestion({category, grade, difficulty, excludeIds})`
+7. `START_BATTLE` → transitions to Battle component
+8. Battle completes → `END_EXPLORATION_BATTLE` → returns to exploration
 
 ## Development Commands
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm test             # Run tests
-npm test -- --watch  # Run tests in watch mode
+npm install                    # Install dependencies
+npm run dev                   # Start development server (http://localhost:5173)
+npm run build                 # Build for production
+npm run preview               # Preview production build
+npm run lint                  # Run ESLint
+npm test                      # Run all tests
+npm test -- --run             # Run tests once (no watch)
+npm test -- --run src/path    # Run specific test file
 ```
 
 ## Code Conventions
@@ -126,7 +160,157 @@ npm test -- --watch  # Run tests in watch mode
 
 ---
 
-## 红蓝对抗优化记录 (Red-Blue Review Optimizations)
+## 题库质量保障经验记录 (Question Bank Quality Assurance)
+
+### 问题发现
+
+在红蓝对抗审查中发现大量数学题目答案错误：
+- **Grade 7 Difficulty 1**: 12道方程题答案错误（正确答案是x，但选项标记了x+2）
+- **Grade 7 Difficulty 2**: 16道方程题答案错误（正确答案是5，标记为4）
+- **Grade 6 Difficulty 2**: 13道题目答案全部反转（正确答案在index 0但标记为index 1，或相反）
+
+### 根本原因分析
+
+1. **批量生成时未验证**：大量题目通过模板批量生成，正确答案位置机械化设置
+2. **答案位置偏移**：正确答案应该在index 1（第二位置），但被错误地放在index 2或3
+3. **数学概念错误**：
+   - `25% of 80 = 20`（不是18）
+   - `2³ = 8`（不是6）
+   - `√144 = 12`（不是11）
+   - `4³ = 64`（不是68）
+   - `√169 = 13`（不是11）
+
+### 高质量出题检查清单
+
+#### 1. 数学题必须验证的内容
+
+| 检查项 | 方法 |
+|--------|------|
+| 正确答案计算 | 用计算器或独立计算验证 |
+| 错误选项合理性 | 错误选项应该"看起来合理"但明显错误 |
+| 答案位置分布 | 确保A/B/C/D四个位置都有正确答案分布 |
+| 单位一致性 | 答案单位与题目一致（如有单位需标注） |
+
+#### 2. 方程题特别检查
+
+```
+对于 "x + 9 = 18, x = ?"
+- 正确解: x = 9
+- 验证: 9 + 9 = 18 ✓
+- 错误常见: 把 x+2 当作答案（11）而非正确答案（9）
+```
+
+#### 3. 答案分布平衡检查
+
+```typescript
+// 每个grade+difficulty组合应该有平衡的答案分布
+const dist = [0, 0, 0, 0] // A/B/C/D 各位置计数
+questions.forEach(q => {
+  const idx = q.options.findIndex(o => o.isCorrect)
+  if (idx >= 0) dist[idx]++
+})
+// 检查: min ≤ 每项 ≤ max (根据题目数量动态计算)
+```
+
+#### 4. 批量生成后必须执行
+
+- [ ] 数学计算逐一验证
+- [ ] 运行答案分布测试
+- [ ] 随机抽查10%题目人工验证
+- [ ] 确保正确答案文本与isCorrect标志一致
+
+### 反面案例
+
+**错误示例（Grade 6）**：
+```typescript
+// 错误：2³ = 8，但选项中8的isCorrect是false
+{ content: '2³ = ?', options: [{text:'6',isCorrect:true},{text:'8',isCorrect:false}] }
+// 正确：正确答案8应该 isCorrect:true
+{ content: '2³ = ?', options: [{text:'6',isCorrect:false},{text:'8',isCorrect:true}] }
+```
+
+**错误示例（方程）**：
+```typescript
+// 错误：x + 9 = 18 正确答案 x=9，但标记为11
+{ content: 'x + 9 = 18, x = ?', options: [{text:'7',isCorrect:false},{text:'9',isCorrect:false},{text:'11',isCorrect:true}] }
+// 正确：正确答案9应该 isCorrect:true
+{ content: 'x + 9 = 18, x = ?', options: [{text:'7',isCorrect:false},{text:'9',isCorrect:true},{text:'11',isCorrect:false}] }
+```
+
+### 自动化验证建议
+
+```typescript
+// 每个题目应该通过这道检查：
+function validateQuestion(q: Question): boolean {
+  // 1. 恰好有一个 isCorrect: true
+  const correctCount = q.options.filter(o => o.isCorrect).length
+  if (correctCount !== 1) return false
+
+  // 2. 数学题验证答案
+  if (isMathQuestion(q)) {
+    const answer = computeAnswer(q.content)
+    const correctOption = q.options.find(o => o.isCorrect)
+    return correctOption.text === answer.toString()
+  }
+
+  return true
+}
+```
+
+---
+
+## 各科目出题检查要点
+
+### 数学题
+
+| 检查项 | 方法 |
+|--------|------|
+| 四则运算 | 用计算器验证每道题 |
+| 方程题 | 解方程验证答案正确性 |
+| 乘方/根号 | 确认2³=8不是6，√144=12不是11 |
+| 百分比 | 25% of 80 = 20，不是18 |
+
+### 英语题
+
+| 检查项 | 方法 |
+|--------|------|
+| 颜色翻译 | red=红, blue=蓝, green=绿, yellow=黄 |
+| 句子类型 | greeting(问候) vs exclamation(感叹) vs question(疑问) |
+| 拼写题 | b-o-o-k not b-o-k |
+| 翻译题 | "狗" = Dog, "猫" = Cat |
+
+### 语文题
+
+| 检查项 | 方法 |
+|--------|------|
+| 古诗作者 | 《观沧海》作者是曹操，不是刘邦 |
+| 名句出处 | "出淤泥而不染"赞美的是莲花，不是牡丹 |
+| 词性判断 | 动词(跑步) vs 形容词(美丽) vs 名词(红色) |
+
+### 物理/化学/历史题
+
+| 检查项 | 方法 |
+|--------|------|
+| 物理公式 | V=IR, P=I²R 验证计算结果 |
+| 化学式 | H₂O是水，不是H₂O₂ |
+| 历史人物 | 秦始皇vs刘邦，清朝vs明朝 |
+| 选项一致性 | 同一题中不能有重复选项 |
+
+---
+
+## 红蓝对抗审查发现记录
+
+### 本次审查修复的错误
+
+| 科目 | 问题数 | 示例 |
+|------|--------|------|
+| 数学 | 41 | 方程答案偏移、计算错误 |
+| 英语 | 5 | 颜色翻译错误、句子类型判断错误 |
+| 语文 | 3 | 莲花/牡丹、古诗作者、动词判断 |
+| 物理 | 待深入检查 | 选项计算结果不匹配 |
+| 历史 | 1 | 选项重复 |
+
+---
 
 ### P0 问题 (阻塞性 - 已优化)
 

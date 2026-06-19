@@ -21,7 +21,7 @@ describe('getRandomQuestion', () => {
       category: 'math',
       grade: 3,
       difficulty: 1,
-      excludeIds: [q1?.id]
+      excludeIds: q1?.id ? [q1.id] : []
     })
     expect(q1?.id).not.toBe(q2?.id)
   })

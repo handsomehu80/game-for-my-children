@@ -1,5 +1,5 @@
 // src/components/game/OceanSailingScene.tsx
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { SeededRandom } from '../../game/utils/seededRandom'
 
 interface Star {
@@ -323,6 +323,9 @@ export default function OceanSailingScene({
   // Generate stars once when seed changes (memoized)
   const stars = useMemo(() => generateStars(seed), [seed])
 
+  const onArrivedRef = useRef(onArrived)
+  onArrivedRef.current = onArrived
+
   useEffect(() => {
     if (!isActive) return
 
@@ -331,14 +334,14 @@ export default function OceanSailingScene({
     console.log('[DEBUG OceanSailingScene] Timer set for', duration, 'ms, isActive:', isActive)
     const timer = setTimeout(() => {
       console.log('[DEBUG OceanSailingScene] Timer fired!')
-      onArrived()
+      onArrivedRef.current()
     }, duration)
 
     return () => {
       console.log('[DEBUG OceanSailingScene] Cleanup called')
       clearTimeout(timer)
     }
-  }, [isActive, style, onArrived])
+  }, [isActive, style])
 
   if (!isActive) return null
 

@@ -375,7 +375,7 @@ export const westAreas: Area[] = [
     name: '西大洋守护者',
     difficulty: 3,
     type: 'boss',
-    position: { x: 4, z: 8 },
+    position: { x: 4, z: 9 },
     requiredKeys: 0,
     monsterId: 'sea_serpent_king',
     connections: ['west_math_3', 'west_chinese_3', 'west_english_3', 'west_science_3'],
@@ -1263,6 +1263,44 @@ export function getAreaById(areaId: string): Area | undefined {
   return undefined
 }
 
+// 各学科覆盖的年级范围
+const SUBJECT_GRADE_RANGES: Record<string, [number, number]> = {
+  math: [1, 9],
+  chinese: [1, 9],
+  english: [1, 9],
+  science: [3, 6],
+  physics: [7, 9],
+  chemistry: [7, 9],
+  history: [7, 9],
+}
+
+// 检查学科是否在玩家年级可用
+function isSubjectAvailableForGrade(subject: string, grade: number): boolean {
+  const range = SUBJECT_GRADE_RANGES[subject]
+  if (!range) return false
+  return grade >= range[0] && grade <= range[1]
+}
+
+// 获取指定大洋在玩家年级可访问的普通岛屿数量
+export function getAccessibleNormalIslandCount(oceanId: string, playerGrade: number): number {
+  const areas = getAreasByOcean(oceanId)
+  return areas.filter(a => {
+    if (a.type !== 'normal') return false
+    if (!a.knowledgeArea) return true // 没有 knowledgeArea 的岛屿默认可访问
+    return isSubjectAvailableForGrade(a.knowledgeArea, playerGrade)
+  }).length
+}
+
+// 获取指定大洋在玩家年级可访问的普通岛屿列表
+export function getAccessibleNormalIslands(oceanId: string, playerGrade: number): Area[] {
+  const areas = getAreasByOcean(oceanId)
+  return areas.filter(a => {
+    if (a.type !== 'normal') return false
+    if (!a.knowledgeArea) return true
+    return isSubjectAvailableForGrade(a.knowledgeArea, playerGrade)
+  })
+}
+
 // 获取指定大洋的普通岛屿数量（排除hidden、treasure、boss类型）
 export function getNormalIslandCount(oceanId: string): number {
   const areas = getAreasByOcean(oceanId)
@@ -1279,7 +1317,8 @@ export function isAreaReachable(
   areaId: string,
   currentAreaId: string | null,
   defeatedMiniBosses: string[],
-  reachableAreas: string[]
+  reachableAreas: string[],
+  playerGrade?: number // 可选，不传则使用旧的全局计算方式
 ): { reachable: boolean; reason?: string } {
   const area = getAreaById(areaId)
   if (!area) return { reachable: false, reason: '区域不存在' }
@@ -1294,8 +1333,19 @@ export function isAreaReachable(
     return { reachable: true }
   }
 
-  // Boss岛屿需要当前大洋所有普通岛屿完成后才能访问
-  if (area.type === 'boss') {
+  // Boss岛屿需要当前大洋所有该年级可访问的普通岛屿完成后才能访问
+  if (area.type === 'boss' && playerGrade !== undefined) {
+    const accessibleIslands = getAccessibleNormalIslands(area.oceanId, playerGrade)
+    const accessibleIds = accessibleIslands.map(a => a.id)
+    const defeatedAccessible = defeatedMiniBosses.filter(id => accessibleIds.includes(id))
+    if (defeatedAccessible.length < accessibleIslands.length) {
+      return { reachable: false, reason: `需要打败全部${accessibleIslands.length}个可访问岛屿才能挑战Boss (${defeatedAccessible.length}/${accessibleIslands.length})` }
+    }
+    return { reachable: true }
+  }
+
+  // Boss岛屿 - 旧逻辑（向后兼容，不考虑年级）
+  if (area.type === 'boss' && playerGrade === undefined) {
     const requiredCount = getNormalIslandCount(area.oceanId)
     // 过滤出normal类型的已击败岛屿
     const defeatedNormalIslands = defeatedMiniBosses.filter(id => {

@@ -662,6 +662,26 @@ button:active {
   box-shadow: 0 8px 25px rgba(0, 217, 255, 0.4);
 }
 
+.new-game-btn,
+.start-btn {
+  padding: 1.2rem 3rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
+  color: #1a1a2e;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.new-game-btn:hover,
+.start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+}
+
 /* ========================================
    Team HP Bar
    ======================================== */

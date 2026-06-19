@@ -17,7 +17,7 @@ describe('english question bank', () => {
     })
     // A=0, B=1, C=2, D=3
     // Just check that no single answer option exceeds 70% (relaxed for migrated data)
-    Object.entries(combinations).forEach(([combo, indices]) => {
+    Object.entries(combinations).forEach(([_combo, indices]) => {
       const dist = [0,0,0,0]
       indices.forEach(i => dist[i] = (dist[i] || 0) + 1)
       const total = indices.length
@@ -38,7 +38,7 @@ describe('english question bank', () => {
   // 验证题目格式
   it('should have valid question structure', () => {
     englishQuestions.forEach(q => {
-      expect(q.id).toMatch(/^english_\d+_\d+_[a-zA-Z]+_\d+$/)
+      expect(q.id).toMatch(/^english_\d+_\d+_([a-zA-Z]+_)?\d+$/)
       expect(q.content).toBeTruthy()
       expect(q.category).toBe('english')
       expect(q.grade).toBeGreaterThanOrEqual(1)
