@@ -56,7 +56,19 @@
       "Bash(grep \"苹果\" docs/superpowers/specs/questions/primary/g1/*/questions.json)",
       "Bash(grep \"content.*1 + 1\\\\|content.*1+1\" docs/superpowers/specs/questions/primary/g1/*/questions.json)",
       "Bash(for f:*)",
-      "Bash(grep -B 5 -A 15 '\"\"2 + 1\"\"' questions.json)"
+      "Bash(grep -B 5 -A 15 '\"\"2 + 1\"\"' questions.json)",
+      "Bash(node -e \"require\\(''''@babel/core''''\\).parseSync\\(require\\(''''fs''''\\).readFileSync\\(''''./src/data/questions/ocean/east.ts'''', ''''utf8''''\\), {presets: [''''@babel/preset-typescript'''']}\\)\")",
+      "Bash(grep -l \"中国第一个皇帝是谁\" *.ts)",
+      "Bash(grep -v \":1$\")",
+      "Bash(cat *.ts)",
+      "Bash(grep -n \"欧姆定律的公式是\" *.ts)",
+      "Bash(grep -n \"什么是动能\" *.ts)",
+      "Bash(grep -n \"速度的国际单位是\" *.ts)",
+      "Bash(node -e \"const e = require\\(''./src/data/questions/ocean/east.ts''\\); const q = e.eastQuestionBank.questions; console.log\\(''Total:'', q.length\\); const byCat = {}; q.forEach\\(x => { byCat[x.category] = \\(byCat[x.category]||0\\)+1 }\\); console.log\\(''By category:'', byCat\\); const byDiff = {}; q.forEach\\(x => { byDiff[x.difficulty] = \\(byDiff[x.difficulty]||0\\)+1 }\\); console.log\\(''By difficulty:'', byDiff\\);\")",
+      "Bash(npx tsx -e \":*)",
+      "Bash(grep -A1 \"id: ''''.*_chinese\" src/data/questions/ocean/east.ts)",
+      "Bash(node:*)",
+      "Bash(grep -n \"chineseD\" src/data/questions/ocean/*.ts)"
     ]
   }
 }
