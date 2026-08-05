@@ -7,7 +7,9 @@ import { AreaNode } from './AreaNode'
 import { Portal } from './Portal'
 import { ConfirmDialog } from './ConfirmDialog'
 import { DangerConfirmDialog } from './DangerConfirmDialog'
-import OceanSailingScene from './OceanSailingScene'
+import OceanSailingScene, { getOceanTheme } from './OceanSailingScene'
+import BossEntrance from './BossEntrance'
+import { useAccessibility } from '../../hooks/useAccessibility'
 
 // 生成确定性 seed (基于 areaId)
 function generateSailingSeed(areaId: string): number {
@@ -96,6 +98,16 @@ export default function ExplorationMap() {
 
   // Sailing state
   const [isSailing, setIsSailing] = useState(false)
+
+  // Boss entrance sequence state
+  const [pendingBossBattle, setPendingBossBattle] = useState<{
+    monster: import('../../game/types').Monster
+    question: import('../../game/types').Question
+    firstPlayerIndex: number
+    areaId: string
+    monsterId: string
+  } | null>(null)
+  const { isReducedMotion } = useAccessibility()
 
   // P0-1: Extract magic number to named constant
   const HIDDEN_EVENT_PROBABILITY = 0.2
@@ -313,6 +325,19 @@ export default function ExplorationMap() {
     console.log('[DEBUG] question found:', question.id, 'dispatching START_BATTLE')
 
     battleStartedRef.current = true
+
+    if (area.type === 'boss') {
+      // Boss battles play an entrance sequence before START_BATTLE is dispatched
+      setPendingBossBattle({
+        monster,
+        question,
+        firstPlayerIndex,
+        areaId: area.id,
+        monsterId: area.monsterId,
+      })
+      return
+    }
+
     useGameStore.getState().dispatch({
       type: 'START_BATTLE',
       monster,
@@ -322,6 +347,20 @@ export default function ExplorationMap() {
       explorationContext: { areaId: area.id, monsterId: area.monsterId },
     })
   }, [exploration, areas])
+
+  const handleBossEntranceComplete = useCallback(() => {
+    if (!pendingBossBattle) return
+    const { monster, question, firstPlayerIndex, areaId, monsterId } = pendingBossBattle
+    setPendingBossBattle(null)
+    useGameStore.getState().dispatch({
+      type: 'START_BATTLE',
+      monster,
+      question,
+      players: players.map(p => ({ id: p.id, name: p.name, grade: p.grade })),
+      currentPlayerIndex: firstPlayerIndex,
+      explorationContext: { areaId, monsterId },
+    })
+  }, [pendingBossBattle, players])
 
   // 战斗胜利后生成传送门
   useEffect(() => {
@@ -355,9 +394,22 @@ export default function ExplorationMap() {
         <OceanSailingScene
           isActive={isSailing}
           style={getAnimationStyle(pendingAreaId || '')}
+          oceanTheme={getOceanTheme(exploration.currentOcean || 'east')}
+          bossId={getAreaById(pendingAreaId || '')?.monsterId}
           seed={generateSailingSeed(pendingAreaId || '')}
           onArrived={handleSailingArrived}
           isReducedMotion={false}
+        />
+      )}
+
+      {/* Boss Entrance Sequence */}
+      {pendingBossBattle && (
+        <BossEntrance
+          isActive={!!pendingBossBattle}
+          bossName={pendingBossBattle.monster.name}
+          bossSprite={pendingBossBattle.monster.sprite}
+          isReducedMotion={isReducedMotion}
+          onComplete={handleBossEntranceComplete}
         />
       )}
 
