@@ -147,3 +147,96 @@ describe('ExplorationMap - portal transition animation (PORTAL-01)', () => {
     expect(document.querySelector('.ocean-sailing-scene.cinematic-scene')).not.toBeNull()
   })
 })
+
+describe('ExplorationMap - encounter phase freeze fix (PORTAL-02)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    cleanup()
+    mockMatchMedia(false)
+  })
+
+  afterEach(() => {
+    cleanup()
+  })
+
+  it('dispatches a safe fallback ENCOUNTER_RESULT instead of freezing when the area cannot be resolved', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    setupStore(
+      baseExploration({
+        phase: 'encounter',
+        currentOcean: 'east',
+        currentArea: 'nonexistent_area_xyz',
+      })
+    )
+
+    render(<ExplorationMap />)
+
+    expect(mockExplorationDispatch).toHaveBeenCalledWith({ type: 'ENCOUNTER_RESULT', result: 'battle' })
+    expect(errorSpy).toHaveBeenCalled()
+
+    errorSpy.mockRestore()
+  })
+})
+
+describe('ExplorationMap - handleAreaConfirm ordering fix (PORTAL-02)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    cleanup()
+    mockMatchMedia(false)
+  })
+
+  afterEach(() => {
+    cleanup()
+  })
+
+  it('does not play the sailing animation when selectArea fails to enter the sailing phase', () => {
+    // Simulate selectArea() rejecting the transition (e.g. insufficient keys / boss
+    // prerequisites not met): getState().exploration.phase stays 'error', not 'sailing'.
+    const exploration = baseExploration({ phase: 'exploring', reachableAreas: ['east_math_1'] })
+    const state = {
+      exploration,
+      players: basePlayers,
+      selectArea: mockSelectArea,
+      generatePortals: mockGeneratePortals,
+      explorationDispatch: mockExplorationDispatch,
+      dispatch: mockDispatch,
+    }
+    mockSelectArea.mockImplementation(() => {
+      state.exploration = { ...state.exploration, phase: 'error', lastError: 'Not enough keys' }
+    })
+    ;(useGameStore as any).mockImplementation((selector: any) => selector(state))
+    ;(useGameStore as any).getState = () => state
+
+    render(<ExplorationMap />)
+
+    fireEvent.click(screen.getByLabelText(/数学迷宫 - 入门/))
+    fireEvent.click(screen.getByText('要去！出发'))
+
+    expect(mockSelectArea).toHaveBeenCalledWith('east_math_1')
+    expect(document.querySelector('.ocean-sailing-scene')).toBeNull()
+  })
+
+  it('plays the sailing animation when selectArea succeeds and enters the sailing phase', () => {
+    const exploration = baseExploration({ phase: 'exploring', reachableAreas: ['east_math_1'] })
+    const state = {
+      exploration,
+      players: basePlayers,
+      selectArea: mockSelectArea,
+      generatePortals: mockGeneratePortals,
+      explorationDispatch: mockExplorationDispatch,
+      dispatch: mockDispatch,
+    }
+    mockSelectArea.mockImplementation(() => {
+      state.exploration = { ...state.exploration, phase: 'sailing', currentArea: 'east_math_1' }
+    })
+    ;(useGameStore as any).mockImplementation((selector: any) => selector(state))
+    ;(useGameStore as any).getState = () => state
+
+    render(<ExplorationMap />)
+
+    fireEvent.click(screen.getByLabelText(/数学迷宫 - 入门/))
+    fireEvent.click(screen.getByText('要去！出发'))
+
+    expect(document.querySelector('.ocean-sailing-scene')).not.toBeNull()
+  })
+})

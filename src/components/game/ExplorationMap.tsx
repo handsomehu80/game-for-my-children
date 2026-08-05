@@ -200,12 +200,15 @@ export default function ExplorationMap() {
       const area = getAreaById(pendingAreaId)
       console.log('[DEBUG] area found:', area?.name)
       if (area) {
-        // Start sailing animation
-        setIsSailing(true)
-        console.log('[DEBUG] setIsSailing(true) called')
-        // Note: The actual state transition to 'sailing' happens via selectArea below
+        // PORTAL-02: selectArea 可能因为钥匙/前置条件校验失败而不进入 'sailing' 阶段
+        // （例如返回 'error' 阶段）。只有在确认真正进入 sailing 后才播放航行动画，
+        // 避免在无效跳转时播放一段无意义的动画并卡在错误状态。
         selectArea(pendingAreaId)
-        console.log('[DEBUG] selectArea called')
+        const newPhase = useGameStore.getState().exploration?.phase
+        console.log('[DEBUG] selectArea called, resulting phase:', newPhase)
+        if (newPhase === 'sailing') {
+          setIsSailing(true)
+        }
       }
     }
     setShowAreaConfirm(false)
@@ -261,7 +264,17 @@ export default function ExplorationMap() {
       return
     }
     const area = areas.find((a) => a.id === exploration.currentArea)
-    if (!area) return
+    if (!area) {
+      // PORTAL-02: 找不到对应区域时不能静默 return，否则游戏会永久卡在 encounter 阶段
+      // （岛屿点击表现为"没有反应"）。记录错误并派发一个安全的兜底结果，让状态机继续推进。
+      console.error(
+        '[ExplorationMap] encounter phase: area not found for currentArea =',
+        exploration.currentArea,
+        '- falling back to battle result'
+      )
+      explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
+      return
+    }
 
     let result: 'battle' | 'treasure' | 'hidden_event'
     if (area.type === 'treasure') {
