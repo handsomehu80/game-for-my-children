@@ -34,10 +34,7 @@ export default function ExplorationMap() {
   const players = useGameStore((state) => state.players)
 
   // 获取当前玩家的年级（单人模式用玩家1，双人模式用当前玩家）
-  const currentPlayerGrade = (() => {
-    const currentPlayerIndex = exploration?.currentPlayerIndex ?? 0
-    return players[currentPlayerIndex]?.grade ?? players[0]?.grade ?? 1
-  })()
+  const currentPlayerGrade = players[0]?.grade ?? 1
 
   // 各学科覆盖的年级范围
   const getSubjectGradeRange = (subject: string): [number, number] | null => {
@@ -59,18 +56,6 @@ export default function ExplorationMap() {
     if (!range) return false
     return currentPlayerGrade >= range[0] && currentPlayerGrade <= range[1]
   }
-
-  // 监控状态变化用于调试
-  useEffect(() => {
-    console.log('[DEBUG] exploration changed:', exploration?.phase)
-  }, [exploration?.phase])
-
-  // DEBUG: Component-level log when phase becomes battle
-  useEffect(() => {
-    if (exploration?.phase === 'battle') {
-      console.log('[DEBUG] BATTLE PHASE REACHED in ExplorationMap!')
-    }
-  }, [exploration?.phase])
 
   // P0-3: Use ref to prevent stale closures in useEffect hooks
   const latestExplorationRef = useRef(exploration)
@@ -195,17 +180,14 @@ export default function ExplorationMap() {
 
   // 区域确认对话框处理
   const handleAreaConfirm = () => {
-    console.log('[DEBUG] handleAreaConfirm called, pendingAreaId:', pendingAreaId)
     if (pendingAreaId) {
       const area = getAreaById(pendingAreaId)
-      console.log('[DEBUG] area found:', area?.name)
       if (area) {
         // PORTAL-02: selectArea 可能因为钥匙/前置条件校验失败而不进入 'sailing' 阶段
         // （例如返回 'error' 阶段）。只有在确认真正进入 sailing 后才播放航行动画，
         // 避免在无效跳转时播放一段无意义的动画并卡在错误状态。
         selectArea(pendingAreaId)
         const newPhase = useGameStore.getState().exploration?.phase
-        console.log('[DEBUG] selectArea called, resulting phase:', newPhase)
         if (newPhase === 'sailing') {
           setIsSailing(true)
         }
@@ -216,15 +198,10 @@ export default function ExplorationMap() {
   }
 
   const handleSailingArrived = useCallback(() => {
-    console.log('[DEBUG] handleSailingArrived called')
     setIsSailing(false)
-    console.log('[DEBUG] dispatching SAILING_COMPLETE')
     explorationDispatch({ type: 'SAILING_COMPLETE' })
-    console.log('[DEBUG] SAILING_COMPLETE dispatched, phase should be arrived')
     setTimeout(() => {
-      console.log('[DEBUG] ARRIVED timeout fired, dispatching ARRIVED')
       explorationDispatch({ type: 'ARRIVED' })
-      console.log('[DEBUG] ARRIVED dispatched, phase should be moving')
     }, 300)
   }, [explorationDispatch])
 
@@ -244,12 +221,8 @@ export default function ExplorationMap() {
 
   // 模拟移动动画完成
   useEffect(() => {
-    // 直接检查 exploration.phase，而不是通过 ref
-    console.log('[DEBUG] moving useEffect running, phase:', exploration?.phase)
     if (exploration?.phase === 'moving') {
-      console.log('[DEBUG] setting MOVE_COMPLETE timer')
       const timer = setTimeout(() => {
-        console.log('[DEBUG] MOVE_COMPLETE timeout fired, dispatching')
         explorationDispatch({ type: 'MOVE_COMPLETE' })
       }, 1000)
       return () => clearTimeout(timer)
@@ -258,8 +231,6 @@ export default function ExplorationMap() {
 
   // 模拟遭遇判定
   useEffect(() => {
-    // 直接使用 exploration.phase，而不是 latestExplorationRef
-    console.log('[DEBUG] encounter useEffect running, phase:', exploration?.phase)
     if (!exploration || exploration.phase !== 'encounter') {
       return
     }
@@ -292,32 +263,25 @@ export default function ExplorationMap() {
 
   // 战斗阶段 - 触发实际战斗（只执行一次）
   useEffect(() => {
-    console.log('[DEBUG] battle useEffect running, phase:', latestExplorationRef.current?.phase, 'battleStartedRef:', battleStartedRef.current)
     if (battleStartedRef.current) {
-      console.log('[DEBUG] battle already started, skipping')
       return
     }
     if (latestExplorationRef.current?.phase !== 'battle') {
-      console.log('[DEBUG] not battle phase, skipping')
       return
     }
     if (!latestExplorationRef.current?.currentArea) {
-      console.log('[DEBUG] no currentArea, skipping')
       return
     }
 
     const area = areas.find((a) => a.id === latestExplorationRef.current?.currentArea)
     if (!area || !area.monsterId) {
-      console.log('[DEBUG] no area or monsterId found')
       return
     }
 
     const monster = monstersData[area.monsterId]
     if (!monster) {
-      console.log('[DEBUG] monster not found:', area.monsterId)
       return
     }
-    console.log('[DEBUG] found monster:', monster.name)
 
     // 双人模式：随机选择先手玩家
     // 单人模式：使用玩家1的年级
@@ -335,7 +299,6 @@ export default function ExplorationMap() {
     })
 
     if (!question) {
-      console.log('[DEBUG] no question for category, trying without category restriction')
       question = getRandomQuestion({
         oceanId: latestExplorationRef.current.currentOcean || 'east',
         difficulty: area.difficulty ?? null,
@@ -344,11 +307,9 @@ export default function ExplorationMap() {
     }
 
     if (!question) {
-      console.log('[DEBUG] no question found at all! grade:', playerGrade, '- rolling back')
       explorationDispatch({ type: 'ROLLBACK_TO_SAVEPOINT' })
       return
     }
-    console.log('[DEBUG] question found:', question.id, 'dispatching START_BATTLE')
 
     battleStartedRef.current = true
 
@@ -683,24 +644,6 @@ export default function ExplorationMap() {
             })
           )}
         </svg>
-      </div>
-
-      {/* 当前状态提示 */}
-      <div className="phase-indicator" style={{ marginTop: '16px', textAlign: 'center', background: 'rgba(0,255,0,0.3)', padding: '10px', borderRadius: '10px' }}>
-        <strong>DEBUG: phase = "{exploration.phase}"</strong>
-        {exploration.phase === 'battle' && <span style={{background: 'red', color: 'white', padding: '5px 10px', borderRadius: '5px'}}>应该显示战斗按钮！</span>}
-        {exploration.phase === 'exploring' && <span> - 选择要探索的区域</span>}
-        {exploration.phase === 'sailing' && <span> - ⛵ 航行中...</span>}
-        {exploration.phase === 'arrived' && <span> - 🏝️ 到达！</span>}
-        {exploration.phase === 'moving' && <span>移动中...</span>}
-        {exploration.phase === 'encounter' && <span>遭遇判定中...</span>}
-        {exploration.phase === 'battle' && <span>⚔️ 战斗开始！</span>}
-        {exploration.phase === 'hidden_area' && <span>🔮 隐藏事件触发！</span>}
-        {exploration.phase === 'treasure' && <span>发现宝箱！</span>}
-        {exploration.phase === 'victory' && <span>🎉 战斗胜利！</span>}
-        {exploration.phase === 'portal_appear' && <span>选择传送门</span>}
-        {exploration.phase === 'error' && <span style={{ color: 'red' }}>错误: {exploration.lastError}</span>}
-        {exploration.phase === 'rollback' && <span style={{ color: 'orange' }}>回滚中...</span>}
       </div>
 
       {/* 传送门选择 - 无论是否有传送门，都要显示返回按钮 */}
