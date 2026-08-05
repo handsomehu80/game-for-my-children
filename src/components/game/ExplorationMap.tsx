@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useGameStore } from '../../store/gameStore'
 import { getAreasByOcean, getAreaById, getAccessibleNormalIslands } from '../../data/areas'
+import type { Portal as PortalType } from '../../game/types'
 import { monstersData } from '../../data/monsters'
 import { getRandomQuestion } from '../../game/QuestionSelector'
 import { AreaNode } from './AreaNode'
 import { Portal } from './Portal'
 import { ConfirmDialog } from './ConfirmDialog'
 import { DangerConfirmDialog } from './DangerConfirmDialog'
-import OceanSailingScene, { getOceanTheme } from './OceanSailingScene'
+import OceanSailingScene, { getOceanTheme, getPortalAnimationStyle } from './OceanSailingScene'
 import BossEntrance from './BossEntrance'
 import { useAccessibility } from '../../hooks/useAccessibility'
 
@@ -99,6 +100,9 @@ export default function ExplorationMap() {
   // Sailing state
   const [isSailing, setIsSailing] = useState(false)
 
+  // Portal transition state (PORTAL-01: portal clicks get their own transition animation)
+  const [pendingPortal, setPendingPortal] = useState<PortalType | null>(null)
+
   // Boss entrance sequence state
   const [pendingBossBattle, setPendingBossBattle] = useState<{
     monster: import('../../game/types').Monster
@@ -175,10 +179,19 @@ export default function ExplorationMap() {
     setShowAreaConfirm(true)
   }
 
-  // 处理传送门点击
-  const handlePortalClick = (portal: any) => {
-    explorationDispatch({ type: 'SELECT_PORTAL', portal })
+  // 处理传送门点击 (PORTAL-01: 先播放传送动画，动画结束后再实际派发 SELECT_PORTAL)
+  const handlePortalClick = (portal: PortalType) => {
+    setPendingPortal(portal)
   }
+
+  const handlePortalArrived = useCallback(() => {
+    setPendingPortal((current) => {
+      if (current) {
+        explorationDispatch({ type: 'SELECT_PORTAL', portal: current })
+      }
+      return null
+    })
+  }, [explorationDispatch])
 
   // 区域确认对话框处理
   const handleAreaConfirm = () => {
@@ -399,6 +412,20 @@ export default function ExplorationMap() {
           seed={generateSailingSeed(pendingAreaId || '')}
           onArrived={handleSailingArrived}
           isReducedMotion={false}
+        />
+      )}
+
+      {/* Portal Transition Scene (PORTAL-01) */}
+      {pendingPortal && (
+        <OceanSailingScene
+          isActive={!!pendingPortal}
+          style={getPortalAnimationStyle(pendingPortal.type)}
+          oceanTheme={getOceanTheme(
+            pendingPortal.type === 'ocean_portal' ? pendingPortal.targetAreaId : (exploration.currentOcean || 'east')
+          )}
+          seed={generateSailingSeed(pendingPortal.id)}
+          onArrived={handlePortalArrived}
+          isReducedMotion={isReducedMotion}
         />
       )}
 

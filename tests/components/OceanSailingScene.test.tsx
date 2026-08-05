@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import OceanSailingScene, { generateStars, getAnimationStyle, getOceanTheme } from '../../src/components/game/OceanSailingScene'
+import OceanSailingScene, { generateStars, getAnimationStyle, getOceanTheme, getPortalAnimationStyle } from '../../src/components/game/OceanSailingScene'
 
 describe('OceanSailingScene', () => {
   it('renders minimal style with gradient background', () => {
@@ -208,6 +208,83 @@ describe('OceanSailingScene - getOceanTheme', () => {
   it('falls back to east for unknown ocean ids', () => {
     expect(getOceanTheme('unknown_ocean')).toBe('east')
     expect(getOceanTheme('')).toBe('east')
+  })
+})
+
+describe('OceanSailingScene - getPortalAnimationStyle', () => {
+  it('uses cinematic style for ocean_portal (cross-ocean) type', () => {
+    expect(getPortalAnimationStyle('ocean_portal')).toBe('cinematic')
+  })
+
+  it('uses vortex style for normal/hidden/treasure/event portal types', () => {
+    expect(getPortalAnimationStyle('normal')).toBe('vortex')
+    expect(getPortalAnimationStyle('hidden')).toBe('vortex')
+    expect(getPortalAnimationStyle('treasure')).toBe('vortex')
+    expect(getPortalAnimationStyle('event')).toBe('vortex')
+  })
+})
+
+describe('OceanSailingScene - vortex style', () => {
+  it('renders the vortex scene container and whirlpool emoji', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="vortex"
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    expect(container.querySelector('.ocean-sailing-scene.vortex-scene')).not.toBeNull()
+    expect(screen.getByText('🌀')).toBeTruthy()
+  })
+
+  it('calls onArrived after ~1.5s (faster than minimal/cinematic 4s)', () => {
+    vi.useFakeTimers()
+    const onArrived = vi.fn()
+
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="vortex"
+        onArrived={onArrived}
+      />
+    )
+
+    vi.advanceTimersByTime(1500)
+
+    expect(onArrived).toHaveBeenCalled()
+    vi.useRealTimers()
+  })
+
+  it('does not call onArrived before 1.5s has elapsed', () => {
+    vi.useFakeTimers()
+    const onArrived = vi.fn()
+
+    render(
+      <OceanSailingScene
+        isActive={true}
+        style="vortex"
+        onArrived={onArrived}
+      />
+    )
+
+    vi.advanceTimersByTime(1000)
+
+    expect(onArrived).not.toHaveBeenCalled()
+    vi.useRealTimers()
+  })
+
+  it('renders without crashing when isReducedMotion is true', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="vortex"
+        isReducedMotion={true}
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    expect(container.querySelector('.ocean-sailing-scene')).not.toBeNull()
   })
 })
 
