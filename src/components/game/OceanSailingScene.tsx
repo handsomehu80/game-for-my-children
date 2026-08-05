@@ -17,10 +17,15 @@ interface WeatherParticle {
 
 export type OceanTheme = 'east' | 'west' | 'southHot' | 'northIce' | 'mysterious'
 
+export type BossTheme = 'jellyfish_king' | 'sea_serpent_king' | 'lava_dragon_king' | 'arctic_whale_king' | 'kraken_prime'
+
+const BOSS_THEMES: BossTheme[] = ['jellyfish_king', 'sea_serpent_king', 'lava_dragon_king', 'arctic_whale_king', 'kraken_prime']
+
 interface OceanSailingSceneProps {
   isActive: boolean
   style: 'minimal' | 'cinematic'
   oceanTheme?: OceanTheme
+  bossId?: string
   seed?: number
   onArrived: () => void
   isReducedMotion?: boolean
@@ -205,6 +210,120 @@ function renderThemeBackdrop(
 }
 
 /**
+ * Resolve a raw bossId (area.monsterId) into a recognized BossTheme, or
+ * undefined if unrecognized (falls back to generic cinematic atmosphere).
+ */
+function resolveBossTheme(bossId?: string): BossTheme | undefined {
+  if (!bossId) return undefined
+  return BOSS_THEMES.includes(bossId as BossTheme) ? (bossId as BossTheme) : undefined
+}
+
+/**
+ * Render Boss-specific "danger atmosphere" overlay for the cinematic style.
+ * Only active when style === 'cinematic' and a recognized bossId is provided.
+ * Falls back to no overlay (generic cinematic effect) for unknown/missing bossId.
+ */
+function renderBossAtmosphere(bossTheme: BossTheme | undefined, isReducedMotion: boolean): JSX.Element | null {
+  if (!bossTheme) return null
+
+  switch (bossTheme) {
+    case 'jellyfish_king':
+      return (
+        <div className="boss-atmosphere boss-jellyfish" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+          <span style={{ position: 'absolute', bottom: '15%', left: '30%', fontSize: '28px', opacity: 0.75, filter: 'drop-shadow(0 0 8px #7fdbff)' }}>🪼</span>
+          <span style={{ position: 'absolute', bottom: '35%', left: '55%', fontSize: '20px', opacity: 0.6, filter: 'drop-shadow(0 0 8px #7fdbff)' }}>🪼</span>
+        </div>
+      )
+    case 'sea_serpent_king':
+      return (
+        <div className="boss-atmosphere boss-serpent" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+          <div
+            className="whirlpool"
+            style={{
+              position: 'absolute',
+              bottom: '10%',
+              left: '50%',
+              width: '140px',
+              height: '140px',
+              marginLeft: '-70px',
+              borderRadius: '50%',
+              background: 'conic-gradient(#0f3460, #16213e, #1a1a2e, #0f3460)',
+              opacity: 0.6,
+            }}
+          />
+        </div>
+      )
+    case 'lava_dragon_king':
+      return (
+        <div className="boss-atmosphere boss-lava" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '30%',
+              background: 'linear-gradient(180deg, transparent 0%, #8B0000 60%, #FF4500 100%)',
+              opacity: 0.5,
+            }}
+          />
+          {!isReducedMotion && (
+            <span className="ember" style={{ position: 'absolute', bottom: '20%', left: '40%', fontSize: '14px' }}>✨</span>
+          )}
+        </div>
+      )
+    case 'arctic_whale_king':
+      return (
+        <div className="boss-atmosphere boss-arctic" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+          <div
+            className="aurora-band"
+            style={{
+              position: 'absolute',
+              top: '5%',
+              left: 0,
+              right: 0,
+              height: '25%',
+              background: 'linear-gradient(90deg, rgba(0,255,150,0.25), rgba(0,200,255,0.25), rgba(150,0,255,0.25))',
+              opacity: 0.7,
+            }}
+          />
+        </div>
+      )
+    case 'kraken_prime':
+      return (
+        <div className="boss-atmosphere boss-kraken" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+          <div
+            className="tentacle"
+            style={{
+              position: 'absolute',
+              bottom: '-10%',
+              left: '5%',
+              width: '30px',
+              height: '45%',
+              background: 'linear-gradient(180deg, transparent, #1B1B2F)',
+              opacity: 0.7,
+              borderRadius: '50% 50% 0 0',
+            }}
+          />
+          <div
+            className="tentacle"
+            style={{
+              position: 'absolute',
+              bottom: '-10%',
+              right: '8%',
+              width: '24px',
+              height: '35%',
+              background: 'linear-gradient(180deg, transparent, #1B1B2F)',
+              opacity: 0.7,
+              borderRadius: '50% 50% 0 0',
+            }}
+          />
+        </div>
+      )
+  }
+}
+
+/**
  * Render minimal style sailing animation.
  * Used for normal islands - 0.8s duration with simple gradient background.
  */
@@ -357,6 +476,7 @@ function renderCinematicStyle(
   stars: Star[],
   oceanTheme: OceanTheme,
   particles: WeatherParticle[],
+  bossTheme: BossTheme | undefined,
   isReducedMotion: boolean
 ): JSX.Element {
   const animationDuration = '4s'
@@ -386,6 +506,26 @@ function renderCinematicStyle(
             50% { opacity: 0.75; }
             100% { transform: translateX(5%); opacity: 0.5; }
           }
+          @keyframes whirlpoolSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes emberRise {
+            0% { transform: translateY(0); opacity: 0.9; }
+            100% { transform: translateY(-40px); opacity: 0; }
+          }
+          @keyframes auroraDrift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); }
+          }
+          @keyframes tentacleSway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+          }
+          @keyframes jellyPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+          }
           .cinematic-ship {
             position: absolute;
             left: 5%;
@@ -403,11 +543,21 @@ function renderCinematicStyle(
             background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
             animation: fogDrift 5s ease-in-out infinite;
           }
+          .whirlpool { animation: whirlpoolSpin 6s linear infinite; }
+          .ember { animation: emberRise 2s ease-out infinite; }
+          .aurora-band { animation: auroraDrift 4s ease-in-out infinite; }
+          .tentacle { animation: tentacleSway 3s ease-in-out infinite; transform-origin: bottom center; }
+          .boss-jellyfish span { animation: jellyPulse 2.5s ease-in-out infinite; }
           ${isReducedMotion ? `
             .cinematic-ship { animation: none; left: 75%; bottom: 35%; opacity: 0.8; }
             .star { animation: none; }
             .snowflake { animation: none; opacity: 0.6; }
             .fog-layer { animation: none; }
+            .whirlpool { animation: none; }
+            .ember { animation: none; opacity: 0; }
+            .aurora-band { animation: none; }
+            .tentacle { animation: none; }
+            .boss-jellyfish span { animation: none; }
           ` : ''}
         `}
       </style>
@@ -426,6 +576,9 @@ function renderCinematicStyle(
 
       {/* 主题装饰层 */}
       {renderThemeBackdrop(oceanTheme, particles, isReducedMotion)}
+
+      {/* Boss 危险氛围层 */}
+      {renderBossAtmosphere(bossTheme, isReducedMotion)}
 
       {/* 星空 */}
       {stars.map((star, index) => (
@@ -522,6 +675,7 @@ export default function OceanSailingScene({
   isActive,
   style,
   oceanTheme = 'east',
+  bossId,
   seed = Date.now(),
   onArrived,
   isReducedMotion = false,
@@ -529,6 +683,7 @@ export default function OceanSailingScene({
   // Generate stars and weather particles once when seed changes (memoized)
   const stars = useMemo(() => generateStars(seed), [seed])
   const particles = useMemo(() => generateWeatherParticles(seed), [seed])
+  const bossTheme = useMemo(() => resolveBossTheme(bossId), [bossId])
 
   const onArrivedRef = useRef(onArrived)
   onArrivedRef.current = onArrived
@@ -564,7 +719,7 @@ export default function OceanSailingScene({
     >
       {style === 'minimal'
         ? renderMinimalStyle(oceanTheme, particles, isReducedMotion)
-        : renderCinematicStyle(stars, oceanTheme, particles, isReducedMotion)
+        : renderCinematicStyle(stars, oceanTheme, particles, bossTheme, isReducedMotion)
       }
     </div>
   )

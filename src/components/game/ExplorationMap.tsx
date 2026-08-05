@@ -356,6 +356,7 @@ export default function ExplorationMap() {
           isActive={isSailing}
           style={getAnimationStyle(pendingAreaId || '')}
           oceanTheme={getOceanTheme(exploration.currentOcean || 'east')}
+          bossId={getAreaById(pendingAreaId || '')?.monsterId}
           seed={generateSailingSeed(pendingAreaId || '')}
           onArrived={handleSailingArrived}
           isReducedMotion={false}

@@ -274,3 +274,62 @@ describe('OceanSailingScene - ocean themes render distinct backdrops', () => {
     expect(container.querySelector('.theme-mysterious')).not.toBeNull()
   })
 })
+
+describe('OceanSailingScene - Boss danger atmosphere', () => {
+  const bossIds = ['jellyfish_king', 'sea_serpent_king', 'lava_dragon_king', 'arctic_whale_king', 'kraken_prime']
+
+  it('renders a distinct boss-atmosphere class for each recognized bossId', () => {
+    const atmosphereClasses = bossIds.map((bossId) => {
+      const { container } = render(
+        <OceanSailingScene
+          isActive={true}
+          style="cinematic"
+          bossId={bossId}
+          seed={1}
+          onArrived={() => {}}
+        />
+      )
+      const atmosphere = container.querySelector('.boss-atmosphere')
+      expect(atmosphere).not.toBeNull()
+      return atmosphere?.className
+    })
+
+    expect(new Set(atmosphereClasses).size).toBe(bossIds.length)
+  })
+
+  it('renders no boss-atmosphere overlay for unrecognized or missing bossId', () => {
+    const { container: withUnknown } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="cinematic"
+        bossId="unknown_boss"
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    expect(withUnknown.querySelector('.boss-atmosphere')).toBeNull()
+
+    const { container: withoutBossId } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="cinematic"
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    expect(withoutBossId.querySelector('.boss-atmosphere')).toBeNull()
+  })
+
+  it('does not render boss-atmosphere for minimal style even if bossId is passed', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        bossId="jellyfish_king"
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    expect(container.querySelector('.boss-atmosphere')).toBeNull()
+  })
+})
