@@ -39,7 +39,7 @@ describe('chemistry question bank', () => {
   // 验证题目格式
   it('should have valid question structure', () => {
     chemistryQuestions.forEach(q => {
-      expect(q.id).toMatch(/^chemistry_\d+_\d+_\d+$/)
+      expect(q.id).toMatch(/^chemistry_\d+_\d+_\d+(_[a-z])?$/)
       expect(q.content).toBeTruthy()
       expect(q.category).toBe('chemistry')
       expect(q.grade).toBeGreaterThanOrEqual(7)

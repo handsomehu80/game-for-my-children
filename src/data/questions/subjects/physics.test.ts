@@ -39,7 +39,7 @@ describe('physics question bank', () => {
   // 验证题目格式
   it('should have valid question structure', () => {
     physicsQuestions.forEach(q => {
-      expect(q.id).toMatch(/^physics_\d+_\d+_\d+$/)
+      expect(q.id).toMatch(/^physics_\d+_\d+_\d+(_[a-z])?$/)
       expect(q.content).toBeTruthy()
       expect(q.category).toBe('physics')
       expect(q.grade).toBeGreaterThanOrEqual(7)

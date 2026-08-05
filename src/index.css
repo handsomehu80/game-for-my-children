@@ -206,6 +206,77 @@ button:active {
   border-color: transparent;
   font-weight: bold;
 }
+
+/* Title Screen - Subtitle */
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* Title Screen - Menu Buttons Container */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+/* Title Screen - Error Message */
+.error-message {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 12px;
+  color: #fca5a5;
+}
+
+.error-message p {
+  margin-bottom: 0.8rem;
+}
+
+.error-message button {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
+  color: #1a1a2e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.error-message button:hover {
+  transform: scale(1.05);
+}
+
+/* Title Screen - Button Group (setup view actions) */
+.button-group {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.button-group button {
+  flex: 1;
+}
+
+.start-form button.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.start-form button.secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
 /* World Map */
 .world-map {
   padding: 2rem;
@@ -481,6 +552,13 @@ button:active {
   align-items: center;
   justify-content: center;
   z-index: 100;
+}
+
+.battle-result-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .battle-result-overlay h2 {
