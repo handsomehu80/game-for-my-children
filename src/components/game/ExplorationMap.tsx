@@ -7,7 +7,7 @@ import { AreaNode } from './AreaNode'
 import { Portal } from './Portal'
 import { ConfirmDialog } from './ConfirmDialog'
 import { DangerConfirmDialog } from './DangerConfirmDialog'
-import OceanSailingScene from './OceanSailingScene'
+import OceanSailingScene, { getOceanTheme } from './OceanSailingScene'
 
 // 生成确定性 seed (基于 areaId)
 function generateSailingSeed(areaId: string): number {
@@ -355,6 +355,7 @@ export default function ExplorationMap() {
         <OceanSailingScene
           isActive={isSailing}
           style={getAnimationStyle(pendingAreaId || '')}
+          oceanTheme={getOceanTheme(exploration.currentOcean || 'east')}
           seed={generateSailingSeed(pendingAreaId || '')}
           onArrived={handleSailingArrived}
           isReducedMotion={false}

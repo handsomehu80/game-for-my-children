@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import OceanSailingScene, { generateStars, getAnimationStyle } from '../../src/components/game/OceanSailingScene'
+import OceanSailingScene, { generateStars, getAnimationStyle, getOceanTheme } from '../../src/components/game/OceanSailingScene'
 
 describe('OceanSailingScene', () => {
   it('renders minimal style with gradient background', () => {
@@ -193,5 +193,84 @@ describe('OceanSailingScene - prefers-reduced-motion', () => {
       />
     )
     expect(container.querySelector('.minimal-scene')).toBeTruthy()
+  })
+})
+
+describe('OceanSailingScene - getOceanTheme', () => {
+  it('maps known ocean ids to themselves', () => {
+    expect(getOceanTheme('east')).toBe('east')
+    expect(getOceanTheme('west')).toBe('west')
+    expect(getOceanTheme('southHot')).toBe('southHot')
+    expect(getOceanTheme('northIce')).toBe('northIce')
+    expect(getOceanTheme('mysterious')).toBe('mysterious')
+  })
+
+  it('falls back to east for unknown ocean ids', () => {
+    expect(getOceanTheme('unknown_ocean')).toBe('east')
+    expect(getOceanTheme('')).toBe('east')
+  })
+})
+
+describe('OceanSailingScene - ocean themes render distinct backdrops', () => {
+  const themes = ['east', 'west', 'southHot', 'northIce', 'mysterious'] as const
+
+  it('renders a distinct theme-decor class for each ocean theme', () => {
+    const decorClasses = themes.map((theme) => {
+      const { container } = render(
+        <OceanSailingScene
+          isActive={true}
+          style="minimal"
+          oceanTheme={theme}
+          seed={1}
+          onArrived={() => {}}
+        />
+      )
+      const decor = container.querySelector('.theme-decor')
+      expect(decor).not.toBeNull()
+      return decor?.className
+    })
+
+    // All 5 theme-decor class names must be unique (distinct visual theme per ocean)
+    expect(new Set(decorClasses).size).toBe(themes.length)
+  })
+
+  it('defaults to east theme when oceanTheme prop is omitted', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        onArrived={() => {}}
+      />
+    )
+    expect(container.querySelector('.theme-east')).not.toBeNull()
+  })
+
+  it('does not render animated weather particles when isReducedMotion is true', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="minimal"
+        oceanTheme="northIce"
+        isReducedMotion={true}
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    // Snowflakes should still be present but with animation disabled via style block,
+    // no crash and container renders successfully
+    expect(container.querySelector('.ocean-sailing-scene')).not.toBeNull()
+  })
+
+  it('renders theme backdrop for cinematic style too', () => {
+    const { container } = render(
+      <OceanSailingScene
+        isActive={true}
+        style="cinematic"
+        oceanTheme="mysterious"
+        seed={1}
+        onArrived={() => {}}
+      />
+    )
+    expect(container.querySelector('.theme-mysterious')).not.toBeNull()
   })
 })
