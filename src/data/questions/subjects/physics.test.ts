@@ -39,7 +39,8 @@ describe('physics question bank', () => {
   // 验证题目格式
   it('should have valid question structure', () => {
     physicsQuestions.forEach(q => {
-      expect(q.id).toMatch(/^physics_\d+_\d+_\d+$/)
+      // 允许 _a/_b 后缀（用于区分修正后语义不同的重复题目）
+      expect(q.id).toMatch(/^physics_\d+_\d+_\d+(_[a-z])?$/)
       expect(q.content).toBeTruthy()
       expect(q.category).toBe('physics')
       expect(q.grade).toBeGreaterThanOrEqual(7)
@@ -53,5 +54,12 @@ describe('physics question bank', () => {
         expect(correctCount).toBe(1)
       }
     })
+  })
+
+  // 验证题目ID全局唯一（避免 excludeIds 去重机制失效）
+  it('should have unique question ids', () => {
+    const ids = physicsQuestions.map(q => q.id)
+    const uniqueIds = new Set(ids)
+    expect(uniqueIds.size).toBe(ids.length)
   })
 })
