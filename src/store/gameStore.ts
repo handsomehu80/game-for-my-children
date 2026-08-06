@@ -227,22 +227,27 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
       const nextPlayer = players[nextPlayerIndex]
 
-      // 确定科目
+      // 确定科目与难度（沿用当前区域，避免掉回难度1）
       let subject = state.selectedSubject
+      let difficulty: number | null = null
       if (state.exploration?.currentArea) {
         const area = getAreaById(state.exploration.currentArea)
-        if (area && area.knowledgeArea !== 'comprehensive') {
-          subject = area.knowledgeArea as 'math' | 'chinese' | 'english'
+        if (area) {
+          difficulty = area.difficulty ?? null
+          if (area.knowledgeArea !== 'comprehensive') {
+            subject = area.knowledgeArea as 'math' | 'chinese' | 'english'
+          }
         }
       }
 
-      // 选题（按下一个玩家的年级），排除已使用的问题
+      // 选题（按下一个玩家的年级+当前区域难度），排除已使用的问题
       const question = getQuestionForBattle({
         oceanId: state.currentOcean,
         battle: { ...state.battle, currentPlayerIndex: nextPlayerIndex },
         subject,
         selectedGrade: state.selectedGrade,
         excludeIds: usedQuestionIds,
+        difficulty,
       })
 
       if (!question) return state

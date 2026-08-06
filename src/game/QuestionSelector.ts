@@ -77,19 +77,20 @@ interface BattleQuestionOptions {
   subject: string
   selectedGrade: number
   excludeIds?: string[]
+  difficulty?: number | null
 }
 
 /**
  * 根据当前战斗状态获取题目
  * - 单人模式：使用当前玩家年级选题（从battle.players获取）
  * - 双人模式：使用当前玩家年级选题
- * - 难度：始终使用 ocean 难度
+ * - 难度：使用调用方传入的区域难度（如未传，则由 getRandomQuestion 兜底为难度1）
  * - excludeIds: 已使用的问题ID，用于避免重复
  */
 export function getQuestionForBattle(
   options: BattleQuestionOptions
 ): Question | null {
-  const { oceanId, battle, subject, selectedGrade, excludeIds = [] } = options
+  const { oceanId, battle, subject, selectedGrade, excludeIds = [], difficulty } = options
   const { players, currentPlayerIndex } = battle
 
   // 确定使用哪个年级选题
@@ -101,5 +102,6 @@ export function getQuestionForBattle(
     grade: questionGrade,
     category: subject,
     excludeIds,
+    difficulty,
   })
 }
