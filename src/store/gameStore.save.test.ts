@@ -158,7 +158,10 @@ describe('Save System', () => {
       expect(state.players[0].name).toBe('TestPlayer')
       expect(state.selectedGrade).toBe(2)
       expect(state.exploration).not.toBeNull()
-      expect(state.exploration?.currentArea).toBe('east_math_1')
+      // currentArea 指向已击败的岛屿（east_math_1 已通过 BATTLE_WIN 击败），
+      // 加载时会被清洗为 null，避免地图全灰不可点击
+      expect(state.exploration?.currentArea).toBeNull()
+      expect(state.exploration?.defeatedMiniBosses).toContain('east_math_1')
       expect(state.currentSaveSlot).toBe(0)
     })
 
@@ -239,10 +242,10 @@ describe('Save System', () => {
       expect(state.explorationBattle).toBeNull()
     })
 
-    it('should set gamePhase to world_map when currentArea is null', () => {
+    it('should set gamePhase to world_map when currentArea is null and the ocean is complete (boss defeated)', () => {
       const { saveGame, loadGame, dispatch, startExploration } = useGameStore.getState()
 
-      // Set up and save game with no currentArea (after completing an ocean)
+      // Set up and save game (defeat boss to complete the ocean)
       dispatch({
         type: 'START_GAME',
         players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
@@ -250,12 +253,15 @@ describe('Save System', () => {
       startExploration('east')
 
       const { explorationDispatch } = useGameStore.getState()
-      explorationDispatch({ type: 'SELECT_AREA', areaId: 'east_math_1' })
-      explorationDispatch({ type: 'SAILING_COMPLETE' })
-      explorationDispatch({ type: 'ARRIVED' })
-      explorationDispatch({ type: 'MOVE_COMPLETE' })
-      explorationDispatch({ type: 'ENCOUNTER_RESULT', result: 'battle' })
-      explorationDispatch({ type: 'BATTLE_WIN', areaId: 'east_math_1' })
+      const normalIslands = [
+        'east_math_1', 'east_math_2', 'east_math_3',
+        'east_chinese_1', 'east_chinese_2', 'east_chinese_3',
+        'east_english_1', 'east_english_2', 'east_english_3',
+      ]
+      normalIslands.forEach((islandId) => {
+        explorationDispatch({ type: 'BATTLE_WIN', areaId: islandId })
+      })
+      explorationDispatch({ type: 'BATTLE_WIN', areaId: 'east_boss' })
 
       saveGame(0)
 
@@ -285,6 +291,113 @@ describe('Save System', () => {
 
       const state = useGameStore.getState()
       expect(state.gamePhase).toBe('world_map')
+    })
+
+    it('should keep exploration phase with currentArea reset when the defeated area is not the boss (progress preserved)', () => {
+      const { loadGame } = useGameStore.getState()
+
+      // 存档：只击败 east_math_1（大洋未通关），currentArea 指向已击败的 east_math_1
+      const saveSlot: SaveSlot = {
+        version: 1,
+        slotIndex: 0,
+        gameState: {
+          currentOcean: 'east',
+          players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
+          selectedGrade: 1,
+          selectedSubject: 'math',
+          totalScore: 100,
+        },
+        explorationState: {
+          currentOcean: 'east',
+          currentArea: 'east_math_1',
+          visitedAreas: ['east_math_1'],
+          defeatedMiniBosses: ['east_math_1'],
+          unlockedAreas: [],
+          reachableAreas: ['east_math_1', 'east_math_2', 'east_chinese_1', 'east_english_1'],
+          collectedKeys: 0,
+          collectedItems: [],
+          consecutiveVictoriesWithoutKey: 0,
+        },
+        globalProgress: { unlockedOceans: ['east'], completedOceans: [] },
+        savedAt: Date.now(),
+      }
+      localStorageMock.setItem('ocean_game_save_0', JSON.stringify(saveSlot))
+
+      useGameStore.setState({
+        gamePhase: 'title',
+        currentOcean: null,
+        players: [],
+        unlockedOceans: ['east'],
+        completedOceans: [],
+        battle: null,
+        totalScore: 0,
+        exploration: null,
+        explorationBattle: null,
+        selectedGrade: 1,
+        selectedSubject: 'math',
+        currentSaveSlot: -1,
+      })
+
+      loadGame(0)
+
+      const state = useGameStore.getState()
+      // 大洋未通关：留在探索地图，currentArea 被清洗，进度保留
+      expect(state.gamePhase).toBe('exploration')
+      expect(state.exploration?.currentArea).toBeNull()
+      expect(state.exploration?.defeatedMiniBosses).toContain('east_math_1')
+    })
+
+    it('should reset currentArea to null when it references a non-existent area', () => {
+      const { loadGame } = useGameStore.getState()
+
+      // 存档：currentArea 指向不存在的区域（数据变更后）
+      const saveSlot: SaveSlot = {
+        version: 1,
+        slotIndex: 0,
+        gameState: {
+          currentOcean: 'east',
+          players: [{ id: 'p1', name: 'TestPlayer', hp: 100, maxHp: 100, comboCount: 0, grade: 1 }],
+          selectedGrade: 1,
+          selectedSubject: 'math',
+          totalScore: 100,
+        },
+        explorationState: {
+          currentOcean: 'east',
+          currentArea: 'non_existent_area',
+          visitedAreas: ['east_math_1'],
+          defeatedMiniBosses: ['east_math_1'],
+          unlockedAreas: [],
+          reachableAreas: ['east_math_1', 'east_math_2', 'east_chinese_1', 'east_english_1'],
+          collectedKeys: 0,
+          collectedItems: [],
+          consecutiveVictoriesWithoutKey: 0,
+        },
+        globalProgress: { unlockedOceans: ['east'], completedOceans: [] },
+        savedAt: Date.now(),
+      }
+      localStorageMock.setItem('ocean_game_save_0', JSON.stringify(saveSlot))
+
+      useGameStore.setState({
+        gamePhase: 'title',
+        currentOcean: null,
+        players: [],
+        unlockedOceans: ['east'],
+        completedOceans: [],
+        battle: null,
+        totalScore: 0,
+        exploration: null,
+        explorationBattle: null,
+        selectedGrade: 1,
+        selectedSubject: 'math',
+        currentSaveSlot: -1,
+      })
+
+      loadGame(0)
+
+      const state = useGameStore.getState()
+      // 不存在的区域会被清洗掉，且未通关时保持在探索地图
+      expect(state.exploration?.currentArea).toBeNull()
+      expect(state.gamePhase).toBe('exploration')
     })
 
     it('should reset player HP to maxHp after load', () => {

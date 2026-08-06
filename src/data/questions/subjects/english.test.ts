@@ -38,7 +38,8 @@ describe('english question bank', () => {
   // 验证题目格式
   it('should have valid question structure', () => {
     englishQuestions.forEach(q => {
-      expect(q.id).toMatch(/^english_\d+_\d+_([a-zA-Z]+_)?\d+$/)
+      // 允许 _a/_b 后缀（用于区分修正后语义不同的重复题目）
+      expect(q.id).toMatch(/^english_\d+_\d+_([a-zA-Z]+_)?\d+(_[a-z])?$/)
       expect(q.content).toBeTruthy()
       expect(q.category).toBe('english')
       expect(q.grade).toBeGreaterThanOrEqual(1)

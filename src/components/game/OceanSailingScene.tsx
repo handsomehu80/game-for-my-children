@@ -23,7 +23,7 @@ const BOSS_THEMES: BossTheme[] = ['jellyfish_king', 'sea_serpent_king', 'lava_dr
 
 interface OceanSailingSceneProps {
   isActive: boolean
-  style: 'minimal' | 'cinematic'
+  style: 'minimal' | 'cinematic' | 'vortex'
   oceanTheme?: OceanTheme
   bossId?: string
   seed?: number
@@ -47,6 +47,15 @@ export function getAnimationStyle(areaId: string): 'minimal' | 'cinematic' {
 export function getOceanTheme(oceanId: string): OceanTheme {
   const themes: OceanTheme[] = ['east', 'west', 'southHot', 'northIce', 'mysterious']
   return themes.includes(oceanId as OceanTheme) ? (oceanId as OceanTheme) : 'east'
+}
+
+/**
+ * Determine animation style for a portal based on its type.
+ * 'ocean_portal' (cross-ocean) uses the cinematic style to preview the destination
+ * ocean's theme; all other portal types use the lightweight 'vortex' whirlpool style.
+ */
+export function getPortalAnimationStyle(portalType: string): 'cinematic' | 'vortex' {
+  return portalType === 'ocean_portal' ? 'cinematic' : 'vortex'
 }
 
 /**
@@ -671,6 +680,144 @@ function renderCinematicStyle(
   )
 }
 
+/**
+ * Generate fixed whirlpool particle positions (angle + radius + delay) using
+ * SeededRandom for reproducible layout.
+ */
+interface VortexParticle {
+  angle: number
+  radius: number
+  delay: number
+  size: number
+}
+
+function generateVortexParticles(seed: number): VortexParticle[] {
+  const rng = new SeededRandom(seed + 2) // offset seed so it differs from stars/weather
+  const particles: VortexParticle[] = []
+
+  for (let i = 0; i < 12; i++) {
+    particles.push({
+      angle: rng.nextInt(0, 359),
+      radius: rng.nextInt(20, 45),
+      delay: rng.nextInt(0, 400),
+      size: rng.nextInt(6, 14),
+    })
+  }
+
+  return particles
+}
+
+/**
+ * Render vortex style sailing animation.
+ * Used for non-ocean portals (normal/hidden/treasure) - fast ~1.5s whirlpool
+ * particle transition, lighter weight than the minimal/cinematic ship sailing scenes.
+ */
+function renderVortexStyle(particles: VortexParticle[], isReducedMotion: boolean): JSX.Element {
+  return (
+    <>
+      <style>
+        {`
+          @keyframes vortexSpin {
+            0% { transform: rotate(0deg) scale(0.3); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: rotate(720deg) scale(1.4); opacity: 0; }
+          }
+          @keyframes vortexPulse {
+            0% { transform: scale(0.6); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(0.6); opacity: 0.3; }
+          }
+          .vortex-particle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            background: radial-gradient(circle, #a29bfe 0%, #6c5ce7 60%, transparent 100%);
+            animation: vortexSpin 1.5s ease-in forwards;
+          }
+          .vortex-core {
+            animation: vortexPulse 1.5s ease-in-out infinite;
+          }
+          ${isReducedMotion ? `
+            .vortex-particle { animation: none; opacity: 0; }
+            .vortex-core { animation: none; opacity: 0.6; }
+          ` : ''}
+        `}
+      </style>
+
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle, #2C2C54 0%, #1B1B2F 70%, #0a0a15 100%)',
+        }}
+      />
+
+      {particles.map((p, index) => (
+        <div
+          key={index}
+          className="vortex-particle"
+          style={{
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            marginLeft: `${Math.cos((p.angle * Math.PI) / 180) * p.radius - p.size / 2}%`,
+            marginTop: `${Math.sin((p.angle * Math.PI) / 180) * p.radius - p.size / 2}%`,
+            animationDelay: `${p.delay}ms`,
+          }}
+        />
+      ))}
+
+      <div
+        className="vortex-core"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          width: '80px',
+          height: '80px',
+          marginLeft: '-40px',
+          marginTop: '-40px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, #ffffff 0%, #a29bfe 40%, transparent 80%)',
+        }}
+      />
+
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: '48px',
+          zIndex: 10,
+        }}
+      >
+        🌀
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          top: '65%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'rgba(0,0,0,0.5)',
+          padding: '10px 20px',
+          borderRadius: '20px',
+          color: 'white',
+          fontFamily: "'Baloo 2', cursive",
+          fontSize: '18px',
+        }}
+      >
+        ✨ 传送中...
+      </div>
+    </>
+  )
+}
+
 export default function OceanSailingScene({
   isActive,
   style,
@@ -683,6 +830,7 @@ export default function OceanSailingScene({
   // Generate stars and weather particles once when seed changes (memoized)
   const stars = useMemo(() => generateStars(seed), [seed])
   const particles = useMemo(() => generateWeatherParticles(seed), [seed])
+  const vortexParticles = useMemo(() => generateVortexParticles(seed), [seed])
   const bossTheme = useMemo(() => resolveBossTheme(bossId), [bossId])
 
   const onArrivedRef = useRef(onArrived)
@@ -691,8 +839,8 @@ export default function OceanSailingScene({
   useEffect(() => {
     if (!isActive) return
 
-    // Animation duration based on style (minimal = 4s = 0.8s * 5, cinematic = 4s)
-    const duration = 4000
+    // Animation duration based on style (minimal = 4s, cinematic = 4s, vortex = 1.5s fast transition)
+    const duration = style === 'vortex' ? 1500 : 4000
     const timer = setTimeout(() => {
       onArrivedRef.current()
     }, duration)
@@ -703,6 +851,12 @@ export default function OceanSailingScene({
   }, [isActive, style])
 
   if (!isActive) return null
+
+  const renderStyle = () => {
+    if (style === 'minimal') return renderMinimalStyle(oceanTheme, particles, isReducedMotion)
+    if (style === 'vortex') return renderVortexStyle(vortexParticles, isReducedMotion)
+    return renderCinematicStyle(stars, oceanTheme, particles, bossTheme, isReducedMotion)
+  }
 
   return (
     <div
@@ -717,10 +871,7 @@ export default function OceanSailingScene({
         overflow: 'hidden',
       }}
     >
-      {style === 'minimal'
-        ? renderMinimalStyle(oceanTheme, particles, isReducedMotion)
-        : renderCinematicStyle(stars, oceanTheme, particles, bossTheme, isReducedMotion)
-      }
+      {renderStyle()}
     </div>
   )
 }
