@@ -33,7 +33,11 @@ export default function PhaseTransition({
   const duration = DURATIONS[effectiveKind]
 
   return (
-    <div key={transitionKey} className={`phase-transition phase-transition-${effectiveKind}`}>
+    <div
+      key={transitionKey}
+      className={`phase-transition phase-transition-${effectiveKind}`}
+      style={{ width: '100%', minHeight: '100vh' }}
+    >
       {effectiveKind !== 'none' && (
         <style>
           {`

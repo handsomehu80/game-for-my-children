@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { getRandomQuestion } from './QuestionSelector'
+import { getRandomQuestion, getQuestionForBattle } from './QuestionSelector'
+import type { BattleState } from './types'
 
 describe('getRandomQuestion', () => {
   it('should return question matching category+grade+difficulty', () => {
@@ -51,6 +52,44 @@ describe('getRandomQuestion', () => {
     })
     expect(question).toBeDefined()
     expect(question?.category).toBe('math')
+    expect(question?.difficulty).toBe(1)
+  })
+})
+
+describe('getQuestionForBattle', () => {
+  it('should honor the passed difficulty instead of defaulting to 1', () => {
+    const battle = {
+      players: [{ id: 'p1', name: '玩家1', grade: 7 }],
+      currentPlayerIndex: 0,
+    } as BattleState
+
+    const question = getQuestionForBattle({
+      oceanId: 'east',
+      battle,
+      subject: 'math',
+      selectedGrade: 7,
+      difficulty: 3,
+    })
+
+    expect(question).toBeDefined()
+    expect(question?.grade).toBe(7)
+    expect(question?.difficulty).toBe(3)
+  })
+
+  it('should fall back to difficulty 1 when difficulty is not passed (legacy behavior)', () => {
+    const battle = {
+      players: [{ id: 'p1', name: '玩家1', grade: 7 }],
+      currentPlayerIndex: 0,
+    } as BattleState
+
+    const question = getQuestionForBattle({
+      oceanId: 'east',
+      battle,
+      subject: 'math',
+      selectedGrade: 7,
+    })
+
+    expect(question).toBeDefined()
     expect(question?.difficulty).toBe(1)
   })
 })

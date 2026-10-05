@@ -8,6 +8,7 @@ import type {
   Portal,
   SaveSlot,
   SaveSlotInfo,
+  Area,
 } from '../game/types'
 import { safeSetItem, safeGetItem } from '../utils/storage'
 import {
@@ -226,22 +227,27 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
       const nextPlayer = players[nextPlayerIndex]
 
-      // 确定科目
+      // 确定科目与难度（沿用当前区域，避免掉回难度1）
       let subject = state.selectedSubject
+      let difficulty: number | null = null
       if (state.exploration?.currentArea) {
         const area = getAreaById(state.exploration.currentArea)
-        if (area && area.knowledgeArea !== 'comprehensive') {
-          subject = area.knowledgeArea as 'math' | 'chinese' | 'english'
+        if (area) {
+          difficulty = area.difficulty ?? null
+          if (area.knowledgeArea !== 'comprehensive') {
+            subject = area.knowledgeArea as 'math' | 'chinese' | 'english'
+          }
         }
       }
 
-      // 选题（按下一个玩家的年级），排除已使用的问题
+      // 选题（按下一个玩家的年级+当前区域难度），排除已使用的问题
       const question = getQuestionForBattle({
         oceanId: state.currentOcean,
         battle: { ...state.battle, currentPlayerIndex: nextPlayerIndex },
         subject,
         selectedGrade: state.selectedGrade,
         excludeIds: usedQuestionIds,
+        difficulty,
       })
 
       if (!question) return state
@@ -674,7 +680,27 @@ export const useGameStore = create<GameStore>((set, get) => ({
       const { gameState, explorationState, globalProgress } = slot
 
       // Determine game phase based on currentArea
-      const gamePhase = explorationState.currentArea === null ? 'world_map' : 'exploration'
+      let restoredCurrentArea = explorationState.currentArea
+
+      // 修复 P0 bug：存档的 currentArea 指向"已击败的岛屿"时，
+      // isClickable() 会对该岛屿及所有岛屿返回 false，导致地图全灰不可点击。
+      // 同样地，若 currentArea 指向不存在的岛屿（数据变更后），地图也会卡死。
+      // 清洗规则：
+      // 1) 岛屿不存在 / 已击败 → 清除 currentArea（phase 由大洋完成度决定）
+      // 2) 该大洋已通关（Boss 已击败）→ 回到世界地图（符合通关后的正常状态）
+      // 3) 否则留在探索地图，玩家可从其他可达岛屿继续（避免丢失进度）
+      const oceanBossDefeated = explorationState.defeatedMiniBosses.some(id => getAreaById(id)?.type === 'boss')
+      let areaResolved: Area | undefined
+      if (restoredCurrentArea !== null) {
+        areaResolved = getAreaById(restoredCurrentArea)
+        const areaDefeated = explorationState.defeatedMiniBosses.includes(restoredCurrentArea)
+        if (!areaResolved || areaDefeated) {
+          restoredCurrentArea = null
+        }
+      }
+
+      const oceanCompleted = oceanBossDefeated || explorationState.defeatedMiniBosses.length === 0 && restoredCurrentArea === null
+      const gamePhase = restoredCurrentArea === null && oceanCompleted ? 'world_map' : 'exploration'
 
       // Reset players HP to maxHp
       const playersWithRestoredHP = gameState.players.map(p => ({ ...p, hp: p.maxHp }))
@@ -693,7 +719,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         exploration: {
           phase: 'exploring',
           currentOcean: explorationState.currentOcean,
-          currentArea: explorationState.currentArea,
+          currentArea: restoredCurrentArea,
           visitedAreas: explorationState.visitedAreas,
           defeatedMiniBosses: explorationState.defeatedMiniBosses,
           unlockedAreas: explorationState.unlockedAreas,
